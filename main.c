@@ -16,6 +16,7 @@ void date_time(void);
 void bottle_count(void);
 void bottle_time(void);
 void standby(void);
+void operation(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
@@ -27,6 +28,7 @@ const char timeset[7] = {   0x50, //Seconds
                             0x17};//Year, last two digits
 enum state {
         STANDBY,
+        OPERATION,
         DATETIME,
         BOTTLECOUNT,
         BOTTLETIME
@@ -35,6 +37,7 @@ enum state {
 enum state curr_state;
 
 unsigned char time[7];
+int bottle_count_disp = -1;
 
 void main(void) {
     
@@ -73,6 +76,9 @@ void main(void) {
             case STANDBY:
                 standby();
                 break;
+            case OPERATION:
+                operation();
+                break;
             case DATETIME:
                 date_time();
                 break;
@@ -95,11 +101,15 @@ void interrupt isr(void){
             case 239:   //KP_*
                 curr_state = STANDBY;
                 break;
-            case 191:    //KP_C
+            case 63:    //KP_A
                 curr_state = DATETIME;
                 break;
-            case 61:
-                curr_state = DATETIME;
+            case 31:    //KP_2
+                curr_state = BOTTLECOUNT;
+                bottle_count_disp += 1;
+                while(PORTB == 31){
+                    
+                }
                 break;
         }
     }
@@ -118,7 +128,7 @@ void standby(void){
     __lcd_home();
     printf("standby         ");
     __lcd_newline();
-    printf("PORTB: %d   ", PORTB);
+    printf("PORTB: %d       ", PORTB);
     return;
 }
 
@@ -150,17 +160,59 @@ void date_time(void){
 
     //LCD Display
     __lcd_home();
-    printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);    //Print date in MM/DD/YY
+    printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);    //Print date in MM/DD/YY
     __lcd_newline();
-    printf("%02x:%02x:%02x        ", time[2],time[1],time[0]);    //HH:MM:SS
+    printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);    //HH:MM:SS
 
     return;
 }
 
 void bottle_count(void){
+    switch(bottle_count_disp % 5){
+        case 0:
+            __lcd_home();
+            printf("Bottle Count    ");
+            __lcd_newline();
+            printf("Total: 10       ");
+            break;
+        case 1:
+            __lcd_home();
+            printf("YOP+CAP+LBL: 3  ");
+            __lcd_newline();
+            printf("YOP+CAP-LBL: 1  ");
+            break;
+        case 2:
+            __lcd_home();
+            printf("YOP-CAP+LBL: 1  ");
+            __lcd_newline();
+            printf("YOP-CAP-LBL: 0  ");
+            break;
+        case 3:
+            __lcd_home();
+            printf("ESKA+CAP+LBL: 1 ");
+            __lcd_newline();
+            printf("ESKA+CAP-LBL: 1 ");
+            break;
+        case 4:
+            __lcd_home();
+            printf("ESKA-CAP+LBL: 1 ");
+            __lcd_newline();
+            printf("ESKA-CAP-LBL: 2 ");
+            break;
+        default:
+            while(1){
+                __lcd_home();
+                printf("ERROR: %d", bottle_count_disp);
+            }
+            break;
+    }
     return;
 }
 
 void bottle_time(void){
+    return;
+}
+
+void operation(void){
     return;
 }

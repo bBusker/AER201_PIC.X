@@ -3,13 +3,16 @@
 [d edition pro ]
 [d chip 18F4620 ]
 [d frameptr 4065 ]
-"35 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
-[e E3055 state `uc
+"37 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
+[e E3057 state `uc
 STANDBY 0
-DATETIME 1
-BOTTLECOUNT 2
-BOTTLETIME 3
+OPERATION 1
+DATETIME 2
+BOTTLECOUNT 3
+BOTTLETIME 4
 ]
+"8 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
 "464 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
 [v i2_printf printf `(i  1 e 2 0 ]
@@ -70,18 +73,20 @@ BOTTLETIME 3
 "36
 [v _lcdNibble lcdNibble `(v  1 e 1 0 ]
 [v i2_lcdNibble lcdNibble `(v  1 e 1 0 ]
-"39 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
+"42 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"92
+"98
 [v _isr isr `II(v  1 e 1 0 ]
-"117
+"127
 [v _standby standby `(v  1 e 1 0 ]
-"135
+"145
 [v _date_time date_time `(v  1 e 1 0 ]
-"160
+"170
 [v _bottle_count bottle_count `(v  1 e 1 0 ]
-"164
+"212
 [v _bottle_time bottle_time `(v  1 e 1 0 ]
+"216
+[v _operation operation `(v  1 e 1 0 ]
 "185 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
 "872
@@ -139,7 +144,7 @@ BOTTLETIME 3
 [v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
 "4966
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
-[s S144 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S145 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -149,7 +154,7 @@ BOTTLETIME 3
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "6298
-[s S153 . 1 `uc 1 . 1 0 :1:0 
+[s S154 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -158,12 +163,12 @@ BOTTLETIME 3
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S162 . 1 `uc 1 . 1 0 :6:0 
+[s S163 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S166 . 1 `S144 1 . 1 0 `S153 1 . 1 0 `S162 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES166  1 e 1 @4082 ]
+[u S167 . 1 `S145 1 . 1 0 `S154 1 . 1 0 `S163 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES167  1 e 1 @4082 ]
 "6604
 [v _ACKDT ACKDT `VEb  1 e 0 @32301 ]
 "6606
@@ -190,33 +195,83 @@ BOTTLETIME 3
 [v _dpowers dpowers `C[5]ui  1 s 10 dpowers ]
 "362
 [v _hexpowers hexpowers `C[4]ui  1 s 8 hexpowers ]
-"21 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
+"22 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
 [v _timeset timeset `C[7]uc  1 e 7 0 ]
-"35
-[v _curr_state curr_state `E3055  1 e 1 0 ]
 "37
-[v _time time `[7]uc  1 e 7 0 ]
+[v _curr_state curr_state `E3057  1 e 1 0 ]
 "39
+[v _time time `[7]uc  1 e 7 0 ]
+"40
+[v _bottle_count_disp bottle_count_disp `i  1 e 2 0 ]
+"42
 [v _main main `(v  1 e 1 0 ]
 {
-"90
+"96
 } 0
-"117
+"127
 [v _standby standby `(v  1 e 1 0 ]
 {
-"123
+"133
+} 0
+"216
+[v _operation operation `(v  1 e 1 0 ]
+{
+"218
 } 0
 "14 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\lcd.c
 [v _initLCD initLCD `(v  1 e 1 0 ]
 {
 "24
 } 0
-"135 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
+"145 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
 [v _date_time date_time `(v  1 e 1 0 ]
 {
-"145
+"155
 [v date_time@i i `uc  1 a 1 68 ]
-"158
+"168
+} 0
+"47 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\I2C.c
+[v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
+{
+[v I2C_Master_Write@d d `ui  1 p 2 45 ]
+"51
+} 0
+"41
+[v _I2C_Master_Stop I2C_Master_Stop `(v  1 e 1 0 ]
+{
+"45
+} 0
+"29
+[v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
+{
+"33
+} 0
+"53
+[v _I2C_Master_Read I2C_Master_Read `(uc  1 e 1 0 ]
+{
+[v I2C_Master_Read@a a `uc  1 a 1 wreg ]
+"55
+[v I2C_Master_Read@temp temp `uc  1 a 1 46 ]
+"53
+[v I2C_Master_Read@a a `uc  1 a 1 wreg ]
+"56
+[v I2C_Master_Read@a a `uc  1 a 1 45 ]
+"64
+} 0
+"24
+[v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
+{
+"27
+} 0
+"212 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
+[v _bottle_time bottle_time `(v  1 e 1 0 ]
+{
+"214
+} 0
+"170
+[v _bottle_count bottle_count `(v  1 e 1 0 ]
+{
+"210
 } 0
 "464 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
 [v _printf printf `(i  1 e 2 0 ]
@@ -308,48 +363,16 @@ BOTTLETIME 3
 [v lcdNibble@data data `uc  1 a 1 45 ]
 "57
 } 0
-"47 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\I2C.c
-[v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
+"8 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
 {
-[v I2C_Master_Write@d d `ui  1 p 2 45 ]
-"51
-} 0
-"41
-[v _I2C_Master_Stop I2C_Master_Stop `(v  1 e 1 0 ]
-{
-"45
-} 0
-"29
-[v _I2C_Master_Start I2C_Master_Start `(v  1 e 1 0 ]
-{
-"33
-} 0
-"53
-[v _I2C_Master_Read I2C_Master_Read `(uc  1 e 1 0 ]
-{
-[v I2C_Master_Read@a a `uc  1 a 1 wreg ]
-"55
-[v I2C_Master_Read@temp temp `uc  1 a 1 46 ]
-"53
-[v I2C_Master_Read@a a `uc  1 a 1 wreg ]
-"56
-[v I2C_Master_Read@a a `uc  1 a 1 45 ]
-"64
-} 0
-"24
-[v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
-{
-"27
-} 0
-"164 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
-[v _bottle_time bottle_time `(v  1 e 1 0 ]
-{
-"166
-} 0
-"160
-[v _bottle_count bottle_count `(v  1 e 1 0 ]
-{
-"162
+"11
+[v ___awmod@sign sign `uc  1 a 1 49 ]
+[v ___awmod@counter counter `uc  1 a 1 48 ]
+"8
+[v ___awmod@dividend dividend `i  1 p 2 44 ]
+[v ___awmod@divisor divisor `i  1 p 2 46 ]
+"35
 } 0
 "13 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\I2C.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
@@ -369,12 +392,12 @@ BOTTLETIME 3
 [v ___lldiv@divisor divisor `ul  1 p 4 48 ]
 "31
 } 0
-"92 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
+"98 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"110
+"120
 [v isr@i i `uc  1 a 1 43 ]
-"115
+"125
 } 0
 "464 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
 [v i2_printf printf `(i  1 e 2 0 ]

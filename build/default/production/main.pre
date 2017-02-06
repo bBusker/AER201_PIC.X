@@ -3804,6 +3804,7 @@ void date_time(void);
 void bottle_count(void);
 void bottle_time(void);
 void standby(void);
+void operation(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
@@ -3815,6 +3816,7 @@ const char timeset[7] = { 0x50,
 0x17};
 enum state {
 STANDBY,
+OPERATION,
 DATETIME,
 BOTTLECOUNT,
 BOTTLETIME
@@ -3823,6 +3825,7 @@ BOTTLETIME
 enum state curr_state;
 
 unsigned char time[7];
+int bottle_count_disp = -1;
 
 void main(void) {
 
@@ -3861,6 +3864,9 @@ switch(curr_state){
 case STANDBY:
 standby();
 break;
+case OPERATION:
+operation();
+break;
 case DATETIME:
 date_time();
 break;
@@ -3883,11 +3889,15 @@ switch(PORTB){
 case 239:
 curr_state = STANDBY;
 break;
-case 191:
+case 63:
 curr_state = DATETIME;
 break;
-case 61:
-curr_state = DATETIME;
+case 31:
+curr_state = BOTTLECOUNT;
+bottle_count_disp += 1;
+while(PORTB == 31){
+
+}
 break;
 }
 }
@@ -3906,7 +3916,7 @@ void standby(void){
 lcdInst(0b10000000);
 printf("standby         ");
 lcdInst(0b11000000);
-printf("PORTB: %d   ", PORTB);
+printf("PORTB: %d       ", PORTB);
 return;
 }
 
@@ -3938,17 +3948,59 @@ I2C_Master_Stop();
 
 
 lcdInst(0b10000000);
-printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);
+printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);
 lcdInst(0b11000000);
-printf("%02x:%02x:%02x        ", time[2],time[1],time[0]);
+printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);
 
 return;
 }
 
 void bottle_count(void){
+switch(bottle_count_disp % 5){
+case 0:
+lcdInst(0b10000000);
+printf("Bottle Count    ");
+lcdInst(0b11000000);
+printf("Total: 10       ");
+break;
+case 1:
+lcdInst(0b10000000);
+printf("YOP+CAP+LBL: 3  ");
+lcdInst(0b11000000);
+printf("YOP+CAP-LBL: 1  ");
+break;
+case 2:
+lcdInst(0b10000000);
+printf("YOP-CAP+LBL: 1  ");
+lcdInst(0b11000000);
+printf("YOP-CAP-LBL: 0  ");
+break;
+case 3:
+lcdInst(0b10000000);
+printf("ESKA+CAP+LBL: 1 ");
+lcdInst(0b11000000);
+printf("ESKA+CAP-LBL: 1 ");
+break;
+case 4:
+lcdInst(0b10000000);
+printf("ESKA-CAP+LBL: 1 ");
+lcdInst(0b11000000);
+printf("ESKA-CAP-LBL: 2 ");
+break;
+default:
+while(1){
+lcdInst(0b10000000);
+printf("ERROR: %d", bottle_count_disp);
+}
+break;
+}
 return;
 }
 
 void bottle_time(void){
+return;
+}
+
+void operation(void){
 return;
 }
