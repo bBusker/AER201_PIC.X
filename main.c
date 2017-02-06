@@ -31,6 +31,10 @@ enum state {
         BOTTLECOUNT,
         BOTTLETIME
     };
+    
+enum state curr_state = STANDBY;
+
+unsigned char time[7];
 
 void main(void) {
     
@@ -63,11 +67,10 @@ void main(void) {
     ei();
         
     //set_time();
-    unsigned char time[7];
-    state = STANDBY;
+    curr_state = STANDBY;
     
     while(1){
-        switch(state){
+        switch(curr_state){
             case STANDBY:
                 standby();
                 break;
@@ -90,10 +93,10 @@ void interrupt isr(void){
     if (INT1IF) {
         switch(PORTB){
             case 15:
-                state = STANDBY;
+                curr_state = STANDBY;
                 break;
             case 63:
-                state = DATETIME;
+                curr_state = DATETIME;
                 break;               
         }
     }

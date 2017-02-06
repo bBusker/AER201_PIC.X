@@ -3800,7 +3800,9 @@ unsigned char I2C_Master_Read(unsigned char a);
 
 # 14 "main.c"
 void set_time(void);
-void disp_time(void);
+void date_time(void);
+void bottle_count(void);
+void bottle_time(void);
 void standby(void);
 
 const char keys[] = "123A456B789C*0#D";
@@ -3811,6 +3813,16 @@ const char timeset[7] = { 0x50,
 0x05,
 0x02,
 0x17};
+enum state {
+STANDBY,
+DATETIME,
+BOTTLECOUNT,
+BOTTLETIME
+};
+
+enum state curr_state = STANDBY;
+
+unsigned char time[7];
 
 void main(void) {
 
@@ -3843,22 +3855,37 @@ I2C_Master_Init(10000);
 (INTCONbits.GIE = 1);
 
 
+curr_state = STANDBY;
+
+while(1){
+switch(curr_state){
+case STANDBY:
 standby();
+break;
+case DATETIME:
+date_time();
+break;
+case BOTTLECOUNT:
+bottle_count();
+break;
+case BOTTLETIME:
+bottle_time();
+break;
+}
+}
 
 return;
 }
 
 void interrupt isr(void){
 if (INT1IF) {
-while(INT1IF){
 switch(PORTB){
 case 15:
-standby();
+curr_state = STANDBY;
 break;
 case 63:
-disp_time();
+curr_state = DATETIME;
 break;
-}
 }
 }
 else{
@@ -3869,18 +3896,15 @@ for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
 }
 }
 INT1IF = 0;
-INT1IE = 1;
 return;
 }
 
 void standby(void){
-while(1){
 lcdInst(0b10000000);
 printf("standby");
 lcdInst(0b11000000);
 printf("PORTB: %d", (PORTB & 0xF0) >> 4);
 _delay((unsigned long)((300)*(10000000/4000.0)));
-}
 return;
 }
 
@@ -3894,9 +3918,7 @@ I2C_Master_Write(timeset[i]);
 I2C_Master_Stop();
 }
 
-void disp_time(void){
-unsigned char time[7];
-while (1) {
+void date_time(void){
 
 I2C_Master_Start();
 I2C_Master_Write(0b11010000);
@@ -3918,6 +3940,14 @@ printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);
 lcdInst(0b11000000);
 printf("%02x:%02x:%02x        ", time[2],time[1],time[0]);
 for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
+
+return;
 }
+
+void bottle_count(void){
+return;
+}
+
+void bottle_time(void){
 return;
 }
