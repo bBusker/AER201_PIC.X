@@ -57,6 +57,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _bottle_count `(v ~T0 @X0 0 ef ]
 "17
 [v _bottle_time `(v ~T0 @X0 0 ef ]
+[v F2878 `(v ~T0 @X0 1 tf1`ul ]
+"159 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
+[v __delay `JF2878 ~T0 @X0 0 e ]
+[p i __delay ]
 "6898 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _INT1IF `Vb ~T0 @X0 0 e@32640 ]
 "185
@@ -65,15 +69,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _lcdInst `(v ~T0 @X0 0 ef1`uc ]
 "195 D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-[v F2878 `(v ~T0 @X0 1 tf1`ul ]
-"159 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
-[v __delay `JF2878 ~T0 @X0 0 e ]
-[p i __delay ]
-"124 main.c
+"123 main.c
 [v _I2C_Master_Start `(i ~T0 @X0 0 ef ]
 "2 I2C.h
 [v _I2C_Master_Write `(v ~T0 @X0 0 ef1`ui ]
-"130 main.c
+"129 main.c
 [v _I2C_Master_Stop `(i ~T0 @X0 0 ef ]
 "3 I2C.h
 [v _I2C_Master_Read `(uc ~T0 @X0 0 ef1`uc ]
@@ -2949,10 +2949,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 33: };
 "35
 [v _curr_state `E3055 ~T0 @X0 1 e ]
-[i _curr_state
-. `E3055 0
-]
-[; ;main.c: 35: enum state curr_state = STANDBY;
+[; ;main.c: 35: enum state curr_state;
 "37
 [v _time `uc ~T0 @X0 -> 7 `i e ]
 [; ;main.c: 37: unsigned char time[7];
@@ -3013,70 +3010,73 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 67: (INTCONbits.GIE = 1);
 "67
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 70: curr_state = STANDBY;
-"70
+[; ;main.c: 69: curr_state = STANDBY;
+"69
 [e = _curr_state . `E3055 0 ]
-[; ;main.c: 72: while(1){
-"72
+[; ;main.c: 71: while(1){
+"71
 [e :U 268 ]
 {
-[; ;main.c: 73: switch(curr_state){
-"73
+[; ;main.c: 72: switch(curr_state){
+"72
 [e $U 271  ]
 {
-[; ;main.c: 74: case STANDBY:
-"74
-[e :U 272 ]
-[; ;main.c: 75: standby();
-"75
-[e ( _standby ..  ]
-[; ;main.c: 76: break;
-"76
-[e $U 270  ]
-[; ;main.c: 77: case DATETIME:
-"77
-[e :U 273 ]
-[; ;main.c: 78: date_time();
-"78
-[e ( _date_time ..  ]
-[; ;main.c: 79: break;
-"79
-[e $U 270  ]
-[; ;main.c: 80: case BOTTLECOUNT:
-"80
-[e :U 274 ]
-[; ;main.c: 81: bottle_count();
-"81
-[e ( _bottle_count ..  ]
-[; ;main.c: 82: break;
-"82
-[e $U 270  ]
-[; ;main.c: 83: case BOTTLETIME:
-"83
-[e :U 275 ]
-[; ;main.c: 84: bottle_time();
-"84
-[e ( _bottle_time ..  ]
-[; ;main.c: 85: break;
-"85
-[e $U 270  ]
-"86
-}
-[; ;main.c: 86: }
-[e $U 270  ]
+[; ;main.c: 73: case STANDBY:
 "73
+[e :U 272 ]
+[; ;main.c: 74: standby();
+"74
+[e ( _standby ..  ]
+[; ;main.c: 75: break;
+"75
+[e $U 270  ]
+[; ;main.c: 76: case DATETIME:
+"76
+[e :U 273 ]
+[; ;main.c: 77: date_time();
+"77
+[e ( _date_time ..  ]
+[; ;main.c: 78: break;
+"78
+[e $U 270  ]
+[; ;main.c: 79: case BOTTLECOUNT:
+"79
+[e :U 274 ]
+[; ;main.c: 80: bottle_count();
+"80
+[e ( _bottle_count ..  ]
+[; ;main.c: 81: break;
+"81
+[e $U 270  ]
+[; ;main.c: 82: case BOTTLETIME:
+"82
+[e :U 275 ]
+[; ;main.c: 83: bottle_time();
+"83
+[e ( _bottle_time ..  ]
+[; ;main.c: 84: break;
+"84
+[e $U 270  ]
+"85
+}
+[; ;main.c: 85: }
+[e $U 270  ]
+"72
 [e :U 271 ]
 [e [\ _curr_state , $ . `E3055 0 272
  , $ . `E3055 1 273
  , $ . `E3055 2 274
  , $ . `E3055 3 275
  270 ]
-"86
+"85
 [e :U 270 ]
+[; ;main.c: 86: _delay((unsigned long)((200)*(10000000/4000.0)));
+"86
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
 "87
 }
 [e :U 267 ]
-"72
+"71
 [e $U 268  ]
 [e :U 269 ]
 [; ;main.c: 87: }
@@ -3087,9 +3087,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "90
 [e :UE 266 ]
 }
-[v F3066 `(v ~T0 @X0 1 tf ]
+[v F3067 `(v ~T0 @X0 1 tf ]
 "92
-[v _isr `IF3066 ~T0 @X0 1 e ]
+[v _isr `IF3067 ~T0 @X0 1 e ]
 {
 [; ;main.c: 92: void interrupt isr(void){
 [e :U _isr ]
@@ -3200,36 +3200,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 117: lcdInst(0b11000000);
 "117
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 118: printf("PORTB: %d", (PORTB & 0xF0) >> 4);
+[; ;main.c: 118: printf("PORTB: %d", PORTB);
 "118
-[e ( _printf , (. :s 3C >> & -> _PORTB `i -> 240 `i -> 4 `i ]
-[; ;main.c: 119: _delay((unsigned long)((300)*(10000000/4000.0)));
+[e ( _printf , (. :s 3C -> _PORTB `i ]
+[; ;main.c: 119: return;
 "119
-[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
-[; ;main.c: 120: return;
-"120
 [e $UE 289  ]
-[; ;main.c: 121: }
-"121
+[; ;main.c: 120: }
+"120
 [e :UE 289 ]
 }
-"123
+"122
 [v _set_time `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 123: void set_time(void){
+[; ;main.c: 122: void set_time(void){
 [e :U _set_time ]
 [f ]
-[; ;main.c: 124: I2C_Master_Start();
-"124
+[; ;main.c: 123: I2C_Master_Start();
+"123
 [e ( _I2C_Master_Start ..  ]
-[; ;main.c: 125: I2C_Master_Write(0b11010000);
-"125
+[; ;main.c: 124: I2C_Master_Write(0b11010000);
+"124
 [e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
-[; ;main.c: 126: I2C_Master_Write(0x00);
-"126
+[; ;main.c: 125: I2C_Master_Write(0x00);
+"125
 [e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;main.c: 127: for(char i=0; i<7; i++){
-"127
+[; ;main.c: 126: for(char i=0; i<7; i++){
+"126
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
@@ -3237,51 +3234,51 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 292  ]
 [e :U 291 ]
 {
-[; ;main.c: 128: I2C_Master_Write(timeset[i]);
-"128
-[e ( _I2C_Master_Write (1 -> *U + &U _timeset * -> _i `ux -> -> # *U &U _timeset `ui `ux `ui ]
-"129
-}
+[; ;main.c: 127: I2C_Master_Write(timeset[i]);
 "127
+[e ( _I2C_Master_Write (1 -> *U + &U _timeset * -> _i `ux -> -> # *U &U _timeset `ui `ux `ui ]
+"128
+}
+"126
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 7 `i 291  ]
 [e :U 292 ]
-"129
+"128
 }
-[; ;main.c: 129: }
-[; ;main.c: 130: I2C_Master_Stop();
-"130
+[; ;main.c: 128: }
+[; ;main.c: 129: I2C_Master_Stop();
+"129
 [e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 131: }
-"131
+[; ;main.c: 130: }
+"130
 [e :UE 290 ]
 }
-"133
+"132
 [v _date_time `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 133: void date_time(void){
+[; ;main.c: 132: void date_time(void){
 [e :U _date_time ]
 [f ]
-[; ;main.c: 135: I2C_Master_Start();
+[; ;main.c: 134: I2C_Master_Start();
+"134
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 135: I2C_Master_Write(0b11010000);
 "135
-[e ( _I2C_Master_Start ..  ]
-[; ;main.c: 136: I2C_Master_Write(0b11010000);
-"136
 [e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
-[; ;main.c: 137: I2C_Master_Write(0x00);
-"137
+[; ;main.c: 136: I2C_Master_Write(0x00);
+"136
 [e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;main.c: 138: I2C_Master_Stop();
-"138
+[; ;main.c: 137: I2C_Master_Stop();
+"137
 [e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 141: I2C_Master_Start();
-"141
+[; ;main.c: 140: I2C_Master_Start();
+"140
 [e ( _I2C_Master_Start ..  ]
-[; ;main.c: 142: I2C_Master_Write(0b11010001);
-"142
+[; ;main.c: 141: I2C_Master_Write(0b11010001);
+"141
 [e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
-[; ;main.c: 143: for(unsigned char i=0;i<0x06;i++){
-"143
+[; ;main.c: 142: for(unsigned char i=0;i<0x06;i++){
+"142
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
@@ -3289,83 +3286,68 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 296  ]
 [e :U 295 ]
 {
-[; ;main.c: 144: time[i] = I2C_Master_Read(1);
-"144
-[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-"145
-}
+[; ;main.c: 143: time[i] = I2C_Master_Read(1);
 "143
+[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+"144
+}
+"142
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 6 `i 295  ]
 [e :U 296 ]
+"144
+}
+[; ;main.c: 144: }
+[; ;main.c: 145: time[6] = I2C_Master_Read(0);
 "145
-}
-[; ;main.c: 145: }
-[; ;main.c: 146: time[6] = I2C_Master_Read(0);
-"146
 [e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
-[; ;main.c: 147: I2C_Master_Stop();
-"147
+[; ;main.c: 146: I2C_Master_Stop();
+"146
 [e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 150: lcdInst(0b10000000);
-"150
+[; ;main.c: 149: lcdInst(0b10000000);
+"149
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 151: printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);
-"151
+[; ;main.c: 150: printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);
+"150
 [e ( _printf , , , (. :s 4C -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
-[; ;main.c: 152: lcdInst(0b11000000);
-"152
+[; ;main.c: 151: lcdInst(0b11000000);
+"151
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 153: printf("%02x:%02x:%02x        ", time[2],time[1],time[0]);
-"153
+[; ;main.c: 152: printf("%02x:%02x:%02x        ", time[2],time[1],time[0]);
+"152
 [e ( _printf , , , (. :s 5C -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
-[; ;main.c: 154: for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
+[; ;main.c: 154: return;
 "154
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 100 `i 298  ]
-[e $U 299  ]
-[e :U 298 ]
-{
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 100 `i 298  ]
-[e :U 299 ]
-}
-[; ;main.c: 156: return;
-"156
 [e $UE 294  ]
-[; ;main.c: 157: }
-"157
+[; ;main.c: 155: }
+"155
 [e :UE 294 ]
 }
-"159
+"157
 [v _bottle_count `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 159: void bottle_count(void){
+[; ;main.c: 157: void bottle_count(void){
 [e :U _bottle_count ]
 [f ]
-[; ;main.c: 160: return;
-"160
-[e $UE 301  ]
-[; ;main.c: 161: }
-"161
-[e :UE 301 ]
+[; ;main.c: 158: return;
+"158
+[e $UE 298  ]
+[; ;main.c: 159: }
+"159
+[e :UE 298 ]
 }
-"163
+"161
 [v _bottle_time `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 163: void bottle_time(void){
+[; ;main.c: 161: void bottle_time(void){
 [e :U _bottle_time ]
 [f ]
-[; ;main.c: 164: return;
-"164
-[e $UE 302  ]
-[; ;main.c: 165: }
-"165
-[e :UE 302 ]
+[; ;main.c: 162: return;
+"162
+[e $UE 299  ]
+[; ;main.c: 163: }
+"163
+[e :UE 299 ]
 }
 [p f _printf 12615812 ]
 [a 2C 115 116 97 110 100 98 121 0 ]

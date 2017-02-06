@@ -32,7 +32,7 @@ enum state {
         BOTTLETIME
     };
     
-enum state curr_state = STANDBY;
+enum state curr_state;
 
 unsigned char time[7];
 
@@ -65,8 +65,7 @@ void main(void) {
     //</editor-fold>
     
     ei();
-        
-    //set_time();
+
     curr_state = STANDBY;
     
     while(1){
@@ -84,6 +83,7 @@ void main(void) {
                 bottle_time();
                 break;
         }
+        __delay_ms(200);
     }
     
     return;
@@ -115,8 +115,7 @@ void standby(void){
     __lcd_home();
     printf("standby");
     __lcd_newline();
-    printf("PORTB: %d", (PORTB & 0xF0) >> 4);
-    __delay_ms(300);
+    printf("PORTB: %d", PORTB);
     return;
 }
 
@@ -151,7 +150,6 @@ void date_time(void){
     printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);    //Print date in YY/MM/DD
     __lcd_newline();
     printf("%02x:%02x:%02x        ", time[2],time[1],time[0]);    //HH:MM:SS
-    __delay_1s();
 
     return;
 }

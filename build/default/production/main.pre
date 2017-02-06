@@ -3820,7 +3820,7 @@ BOTTLECOUNT,
 BOTTLETIME
 };
 
-enum state curr_state = STANDBY;
+enum state curr_state;
 
 unsigned char time[7];
 
@@ -3854,7 +3854,6 @@ I2C_Master_Init(10000);
 
 (INTCONbits.GIE = 1);
 
-
 curr_state = STANDBY;
 
 while(1){
@@ -3872,6 +3871,7 @@ case BOTTLETIME:
 bottle_time();
 break;
 }
+_delay((unsigned long)((200)*(10000000/4000.0)));
 }
 
 return;
@@ -3903,8 +3903,7 @@ void standby(void){
 lcdInst(0b10000000);
 printf("standby");
 lcdInst(0b11000000);
-printf("PORTB: %d", (PORTB & 0xF0) >> 4);
-_delay((unsigned long)((300)*(10000000/4000.0)));
+printf("PORTB: %d", PORTB);
 return;
 }
 
@@ -3939,7 +3938,6 @@ lcdInst(0b10000000);
 printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);
 lcdInst(0b11000000);
 printf("%02x:%02x:%02x        ", time[2],time[1],time[0]);
-for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
 
 return;
 }
