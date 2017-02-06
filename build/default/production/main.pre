@@ -3880,10 +3880,13 @@ return;
 void interrupt isr(void){
 if (INT1IF) {
 switch(PORTB){
-case 15:
+case 239:
 curr_state = STANDBY;
 break;
-case 63:
+case 191:
+curr_state = DATETIME;
+break;
+case 61:
 curr_state = DATETIME;
 break;
 }
@@ -3901,9 +3904,9 @@ return;
 
 void standby(void){
 lcdInst(0b10000000);
-printf("standby");
+printf("standby         ");
 lcdInst(0b11000000);
-printf("PORTB: %d", PORTB);
+printf("PORTB: %d   ", PORTB);
 return;
 }
 

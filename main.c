@@ -92,12 +92,15 @@ void main(void) {
 void interrupt isr(void){
     if (INT1IF) {
         switch(PORTB){
-            case 15:
+            case 239:   //KP_*
                 curr_state = STANDBY;
                 break;
-            case 63:
+            case 191:    //KP_C
                 curr_state = DATETIME;
-                break;               
+                break;
+            case 61:
+                curr_state = DATETIME;
+                break;
         }
     }
     else{
@@ -113,9 +116,9 @@ void interrupt isr(void){
 
 void standby(void){
     __lcd_home();
-    printf("standby");
+    printf("standby         ");
     __lcd_newline();
-    printf("PORTB: %d", PORTB);
+    printf("PORTB: %d   ", PORTB);
     return;
 }
 
@@ -147,7 +150,7 @@ void date_time(void){
 
     //LCD Display
     __lcd_home();
-    printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);    //Print date in YY/MM/DD
+    printf("%02x/%02x/%02x        ", time[5],time[4],time[6]);    //Print date in MM/DD/YY
     __lcd_newline();
     printf("%02x:%02x:%02x        ", time[2],time[1],time[0]);    //HH:MM:SS
 
