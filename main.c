@@ -38,6 +38,7 @@ enum state curr_state;
 
 unsigned char time[7];
 int bottle_count_disp = -1;
+int operation_disp = 0;
 
 void main(void) {
     
@@ -101,15 +102,20 @@ void interrupt isr(void){
             case 239:   //KP_*
                 curr_state = STANDBY;
                 break;
-            case 63:    //KP_A
-                curr_state = DATETIME;
+            case 15:    //KP_1
+                __lcd_clear();
+                curr_state = OPERATION;
                 break;
             case 31:    //KP_2
                 curr_state = BOTTLECOUNT;
                 bottle_count_disp += 1;
-                while(PORTB == 31){
-                    
-                }
+                while(PORTB == 31){}
+                break;
+            case 47:    //KP_3
+                curr_state = BOTTLETIME;
+                break;
+            case 63:    //KP_A
+                curr_state = DATETIME;
                 break;
         }
     }
@@ -210,9 +216,30 @@ void bottle_count(void){
 }
 
 void bottle_time(void){
+    __lcd_home();
+    printf("Total Operation       ");
+    __lcd_newline();
+    printf("Time: 92s             ");
     return;
 }
 
 void operation(void){
+    switch(operation_disp){
+        case 0:
+            __lcd_home();
+            printf("Running~              ");
+            operation_disp = 1;
+            break;
+        case 1:
+            __lcd_home();
+            printf("Running~~              ");
+            operation_disp = 2;
+            break;
+        case 2:
+            __lcd_home();
+            printf("Running~~~              ");
+            operation_disp = 0;
+            break;
+    }
     return;
 }
