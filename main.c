@@ -17,6 +17,7 @@ void bottle_count(void);
 void bottle_time(void);
 void standby(void);
 void operation(void);
+void operationend(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
@@ -29,6 +30,7 @@ const char timeset[7] = {   0x50, //Seconds
 enum state {
         STANDBY,
         OPERATION,
+        OPERATIONEND,
         DATETIME,
         BOTTLECOUNT,
         BOTTLETIME
@@ -80,6 +82,9 @@ void main(void) {
             case OPERATION:
                 operation();
                 break;
+            case OPERATIONEND:
+                operationend();
+                break;
             case DATETIME:
                 date_time();
                 break;
@@ -116,6 +121,10 @@ void interrupt isr(void){
                 break;
             case 63:    //KP_A
                 curr_state = DATETIME;
+                break;
+            case 79:
+                __lcd_clear();
+                curr_state = OPERATIONEND;
                 break;
         }
     }
@@ -241,5 +250,11 @@ void operation(void){
             operation_disp = 0;
             break;
     }
+    return;
+}
+
+void operationend(void){
+    __lcd_home();
+    printf("Operation Done!");
     return;
 }

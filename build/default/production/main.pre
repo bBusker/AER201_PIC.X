@@ -3805,6 +3805,7 @@ void bottle_count(void);
 void bottle_time(void);
 void standby(void);
 void operation(void);
+void operationend(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
@@ -3817,6 +3818,7 @@ const char timeset[7] = { 0x50,
 enum state {
 STANDBY,
 OPERATION,
+OPERATIONEND,
 DATETIME,
 BOTTLECOUNT,
 BOTTLETIME
@@ -3868,6 +3870,9 @@ break;
 case OPERATION:
 operation();
 break;
+case OPERATIONEND:
+operationend();
+break;
 case DATETIME:
 date_time();
 break;
@@ -3890,8 +3895,9 @@ switch(PORTB){
 case 239:
 curr_state = STANDBY;
 break;
-case 63:
-curr_state = DATETIME;
+case 15:
+lcdInst(0b00000001);
+curr_state = OPERATION;
 break;
 case 31:
 curr_state = BOTTLECOUNT;
@@ -3901,9 +3907,12 @@ break;
 case 47:
 curr_state = BOTTLETIME;
 break;
-case 15:
+case 63:
+curr_state = DATETIME;
+break;
+case 79:
 lcdInst(0b00000001);
-curr_state = OPERATION;
+curr_state = OPERATIONEND;
 break;
 }
 }
@@ -4029,5 +4038,11 @@ printf("Running~~~              ");
 operation_disp = 0;
 break;
 }
+return;
+}
+
+void operationend(void){
+lcdInst(0b10000000);
+printf("Operation Done!");
 return;
 }
