@@ -6,6 +6,7 @@
 #include <xc.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "configBits.h"
 #include "constants.h"
 #include "lcd.h"
@@ -16,11 +17,12 @@ void set_time(void);
 void date_time(void);
 void read_time(void);
 void bottle_count(void);
-void bottle_time(void);
+void bottle_time(int time);
 void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
+int dec_to_hex(int num);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
@@ -45,6 +47,8 @@ enum state curr_state;
 unsigned char time[7];
 unsigned char start_time[2];
 unsigned char end_time[2];
+int stime;
+int etime;
 char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
@@ -110,7 +114,7 @@ void main(void) {
                 bottle_count();
                 break;
             case BOTTLETIME:
-                bottle_time();
+                bottle_time(etime - stime);
                 break;
         }
         __delay_ms(200);
@@ -143,6 +147,8 @@ void interrupt isr(void){
                 while(PORTB == 31){}
                 break;
             case 47:    //KP_3
+                stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+                etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
                 curr_state = BOTTLETIME;
                 bottle_count_disp = -1;
                 break;
@@ -191,7 +197,8 @@ void standby(void){
     __lcd_home();
     printf("standby         ");
     __lcd_newline();
-    printf("PORTB: %d       ", PORTB);
+    read_time();
+    printf("Sec: %02x %c %d     ", time[0], time[0], time[0]);
     return;
 }
 
@@ -203,6 +210,20 @@ void set_time(void){
         I2C_Master_Write(timeset[i]);
     }    
     I2C_Master_Stop(); //Stop condition
+}
+
+int dec_to_hex(int num) {                   //Convert decimal unsigned char to hexadecimal int
+    int i = 0, quotient = num, temp, hexnum = 0;
+ 
+    while (quotient != 0) {
+        temp = quotient % 16;
+        
+        hexnum += temp*pow(10,i);
+        
+        quotient = quotient / 16;
+        i += 1;
+    }
+    return hexnum;
 }
 
 void date_time(void){
@@ -290,14 +311,11 @@ void bottle_count(void){
     return;
 }
 
-void bottle_time(void){
-    //long stime = 60*strtoul(start_time[1], &ptr, 16)+strtoul(start_time[0], &ptr, 16);
-    //long etime = 60*strtoul(end_time[1], &ptr, 16)+strtoul(end_time[0], &ptr, 16);
+void bottle_time(int time){
     __lcd_home();
     printf("Total Operation       ");
     __lcd_newline();
-    //printf("Time: %d s       ", etime-stime);
-    printf("Time: 7s             ");
+    printf("Time: %d s       ", time);
     return;
 }
 

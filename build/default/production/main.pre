@@ -3769,6 +3769,34 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
+# 30 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h"
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
+extern double atof(const char *);
+extern double sin(double) ;
+extern double cos(double) ;
+extern double tan(double) ;
+extern double asin(double) ;
+extern double acos(double) ;
+extern double atan(double);
+extern double atan2(double, double) ;
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double) ;
+extern double exp(double) ;
+extern double sinh(double) ;
+extern double cosh(double) ;
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
+
 
 # 9 "configBits.h"
 #pragma config OSC = HS
@@ -3867,16 +3895,17 @@ void I2C_Master_Init(const unsigned long c);
 void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 
-# 15 "main.c"
+# 16 "main.c"
 void set_time(void);
 void date_time(void);
 void read_time(void);
 void bottle_count(void);
-void bottle_time(void);
+void bottle_time(int time);
 void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
+int dec_to_hex(int num);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
@@ -3901,6 +3930,8 @@ enum state curr_state;
 unsigned char time[7];
 unsigned char start_time[2];
 unsigned char end_time[2];
+int stime;
+int etime;
 char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
@@ -3966,7 +3997,7 @@ case BOTTLECOUNT:
 bottle_count();
 break;
 case BOTTLETIME:
-bottle_time();
+bottle_time(etime - stime);
 break;
 }
 _delay((unsigned long)((200)*(10000000/4000.0)));
@@ -3999,6 +4030,8 @@ bottle_count_disp += 1;
 while(PORTB == 31){}
 break;
 case 47:
+stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
 curr_state = BOTTLETIME;
 bottle_count_disp = -1;
 break;
@@ -4047,7 +4080,8 @@ void standby(void){
 lcdInst(0b10000000);
 printf("standby         ");
 lcdInst(0b11000000);
-printf("PORTB: %d       ", PORTB);
+read_time();
+printf("Sec: %02x %c %d     ", time[0], time[0], time[0]);
 return;
 }
 
@@ -4146,14 +4180,11 @@ break;
 return;
 }
 
-void bottle_time(void){
-
-
+void bottle_time(int time){
 lcdInst(0b10000000);
 printf("Total Operation       ");
 lcdInst(0b11000000);
-
-printf("Time: 7s             ");
+printf("Time: %d" + "s       ", time);
 return;
 }
 
@@ -4190,4 +4221,18 @@ printf("EMERGENCY STOP");
 (INTCONbits.GIE = 0);
 while(1){}
 return;
+}
+
+int dec_to_hex(int num) {
+int i = 0, quotient = num, temp, hexnum = 0;
+
+while (quotient != 0) {
+temp = quotient % 16;
+
+hexnum += temp*pow(10,i);
+
+quotient = quotient / 16;
+i += 1;
+}
+return hexnum;
 }

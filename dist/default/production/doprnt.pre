@@ -359,11 +359,38 @@ flag |= 0x80;
 
 break;
 
-# 802
+# 750
+dostring:
+
+# 757
+if(width > len)
+width -= len;
+else
+width = 0;
+
+# 764
+while(width--)
+(putch(' ') );
+
+while(len--)
+(putch(*cp++) );
+
+# 774
+continue;
+
+# 784
+case 'c':
+
+# 799
+c = (*(int *)__va_arg((*(int **)ap), (int)0));
+
+
 default:
 
-# 813
-continue;
+
+cp = (char *)&c;
+len = 1;
+goto dostring;
 
 # 822
 }
