@@ -1,17 +1,17 @@
 
 # 1 "main.c"
 
-# 26 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
+# 26 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-# 13 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\xc8debug.h"
+# 13 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 49 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h"
+# 49 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h"
 extern volatile unsigned char PORTA @ 0xF80;
 
 asm("PORTA equ 0F80h");
@@ -3614,7 +3614,7 @@ extern volatile __bit nWR @ (((unsigned) &PORTE)*8) + 1;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
-# 18 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h"
+# 18 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h"
 __attribute__((__unsupported__("The " "flash_write" " routine is no longer supported. Please use the MPLAB X MCC."))) void flash_write(const unsigned char *, unsigned int, __far unsigned char *);
 __attribute__((__unsupported__("The " "EraseFlash" " routine is no longer supported. Please use the MPLAB X MCC."))) void EraseFlash(unsigned long startaddr, unsigned long endaddr);
 
@@ -3637,10 +3637,10 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 4 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
+# 4 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
 typedef unsigned size_t;
 
-# 7 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdarg.h"
+# 7 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdarg.h"
 typedef void * va_list[1];
 
 #pragma intrinsic(__va_start)
@@ -3649,17 +3649,17 @@ extern void * __va_start(void);
 #pragma intrinsic(__va_arg)
 extern void * __va_arg(void *, ...);
 
-# 43 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
+# 43 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
 struct __prbuf
 {
 char * ptr;
 void (* func)(char);
 };
 
-# 29 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\errno.h"
+# 29 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\errno.h"
 extern int errno;
 
-# 12 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\conio.h"
+# 12 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\conio.h"
 extern void init_uart(void);
 
 extern char getch(void);
@@ -3673,7 +3673,7 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 88 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
+# 88 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
 extern int cprintf(char *, ...);
 #pragma printf_check(cprintf)
 
@@ -3699,6 +3699,75 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
+
+# 7 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdlib.h"
+typedef unsigned short wchar_t;
+
+# 15
+typedef struct {
+int rem;
+int quot;
+} div_t;
+typedef struct {
+unsigned rem;
+unsigned quot;
+} udiv_t;
+typedef struct {
+long quot;
+long rem;
+} ldiv_t;
+typedef struct {
+unsigned long quot;
+unsigned long rem;
+} uldiv_t;
+
+# 53
+extern double atof(const char *);
+extern double strtod(const char *, const char **);
+extern int atoi(const char *);
+extern unsigned xtoi(const char *);
+extern long atol(const char *);
+extern long strtol(const char *, char **, int);
+
+extern int rand(void);
+extern void srand(unsigned int);
+extern void * calloc(size_t, size_t);
+extern div_t div(int numer, int denom);
+extern udiv_t udiv(unsigned numer, unsigned denom);
+extern ldiv_t ldiv(long numer, long denom);
+extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+extern unsigned int _rotl(unsigned int value, unsigned int shift);
+extern unsigned int _rotr(unsigned int value, unsigned int shift);
+
+
+
+
+extern void * malloc(size_t);
+extern void free(void *);
+extern void * realloc(void *, size_t);
+
+# 86
+extern int atexit(void (*)(void));
+extern char * getenv(const char *);
+extern char ** environ;
+extern int system(char *);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+extern int abs(int);
+extern long labs(long);
+
+extern char * itoa(char * buf, int val, int base);
+extern char * utoa(char * buf, unsigned val, int base);
+
+
+
+
+extern char * ltoa(char * buf, long val, int base);
+extern char * ultoa(char * buf, unsigned long val, int base);
+
+extern char * ftoa(float f, int * status);
 
 
 # 9 "configBits.h"
@@ -3756,7 +3825,7 @@ extern int printf(const char *, ...);
 
 #pragma config EBTRB = OFF
 
-# 14 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
+# 14 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
 extern void * memcpy(void *, const void *, size_t);
 extern void * memmove(void *, const void *, size_t);
 extern void * memset(void *, int, size_t);
@@ -3798,14 +3867,16 @@ void I2C_Master_Init(const unsigned long c);
 void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 
-# 14 "main.c"
+# 15 "main.c"
 void set_time(void);
 void date_time(void);
+void read_time(void);
 void bottle_count(void);
 void bottle_time(void);
 void standby(void);
 void operation(void);
 void operationend(void);
+void emergencystop(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
@@ -3817,6 +3888,7 @@ const char timeset[7] = { 0x50,
 0x17};
 enum state {
 STANDBY,
+EMERGENCYSTOP,
 OPERATION,
 OPERATIONEND,
 DATETIME,
@@ -3827,6 +3899,9 @@ BOTTLETIME
 enum state curr_state;
 
 unsigned char time[7];
+unsigned char start_time[2];
+unsigned char end_time[2];
+char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
 
@@ -3856,6 +3931,14 @@ nRBPU = 0;
 initLCD();
 I2C_Master_Init(10000);
 
+TMR0 = 0;
+T08BIT = 0;
+T0CS = 0;
+PSA = 0;
+T0PS2 = 1;
+T0PS1 = 1;
+T0PS0 = 1;
+
 
 
 (INTCONbits.GIE = 1);
@@ -3866,6 +3949,9 @@ while(1){
 switch(curr_state){
 case STANDBY:
 standby();
+break;
+case EMERGENCYSTOP:
+emergencystop();
 break;
 case OPERATION:
 operation();
@@ -3894,10 +3980,18 @@ if (INT1IF) {
 switch(PORTB){
 case 239:
 curr_state = STANDBY;
+bottle_count_disp = 0;
 break;
 case 15:
+TMR0IE = 1;
+TMR0ON = 1;
+TMR0 = 0;
+read_time();
+start_time[1] = time[1];
+start_time[0] = time[0];
 lcdInst(0b00000001);
 curr_state = OPERATION;
+bottle_count_disp = -1;
 break;
 case 31:
 curr_state = BOTTLECOUNT;
@@ -3906,15 +4000,38 @@ while(PORTB == 31){}
 break;
 case 47:
 curr_state = BOTTLETIME;
+bottle_count_disp = -1;
 break;
 case 63:
 curr_state = DATETIME;
+bottle_count_disp = -1;
 break;
 case 79:
+read_time();
+end_time[1] = time[1];
+end_time[0] = time[0];
 lcdInst(0b00000001);
 curr_state = OPERATIONEND;
+bottle_count_disp = -1;
+break;
+case 207:
+lcdInst(0b00000001);
+curr_state = EMERGENCYSTOP;
+bottle_count_disp = -1;
+TMR0ON = 0;
 break;
 }
+INT1IF = 0;
+}
+else if (TMR0IF) {
+TMR0ON = 0;
+read_time();
+end_time[1] = time[1];
+end_time[0] = time[0];
+lcdInst(0b00000001);
+curr_state = OPERATIONEND;
+bottle_count_disp = -1;
+TMR0IF = 0;
 }
 else{
 while(1){
@@ -3923,7 +4040,6 @@ printf("bad interrupt");
 for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
 }
 }
-INT1IF = 0;
 return;
 }
 
@@ -3970,6 +4086,24 @@ printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);
 return;
 }
 
+void read_time(void){
+
+I2C_Master_Start();
+I2C_Master_Write(0b11010000);
+I2C_Master_Write(0x00);
+I2C_Master_Stop();
+
+
+I2C_Master_Start();
+I2C_Master_Write(0b11010001);
+for(unsigned char i=0;i<0x06;i++){
+time[i] = I2C_Master_Read(1);
+}
+time[6] = I2C_Master_Read(0);
+I2C_Master_Stop();
+return;
+}
+
 void bottle_count(void){
 switch(bottle_count_disp % 5){
 case 0:
@@ -4013,10 +4147,13 @@ return;
 }
 
 void bottle_time(void){
+
+
 lcdInst(0b10000000);
 printf("Total Operation       ");
 lcdInst(0b11000000);
-printf("Time: 92s             ");
+
+printf("Time: 7s             ");
 return;
 }
 
@@ -4044,5 +4181,13 @@ return;
 void operationend(void){
 lcdInst(0b10000000);
 printf("Operation Done!");
+return;
+}
+
+void emergencystop(void){
+lcdInst(0b10000000);
+printf("EMERGENCY STOP");
+(INTCONbits.GIE = 0);
+while(1){}
 return;
 }

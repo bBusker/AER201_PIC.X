@@ -1,9 +1,9 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"39 main.c
-[c E3059 0 1 2 3 4 5 .. ]
-[n E3059 state STANDBY OPERATION OPERATIONEND DATETIME BOTTLECOUNT BOTTLETIME  ]
+"43 main.c
+[c E3182 0 1 2 3 4 5 6 .. ]
+[n E3182 state STANDBY EMERGENCYSTOP OPERATION OPERATIONEND DATETIME BOTTLECOUNT BOTTLETIME  ]
 [p mainexit ]
-"1367 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"1367 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "1588
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
@@ -35,7 +35,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _initLCD `(v ~T0 @X0 0 ef ]
 "1 I2C.h
 [v _I2C_Master_Init `(v ~T0 @X0 0 ef1`Cul ]
-"6272 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"5857 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+[v _TMR0 `Vus ~T0 @X0 0 e@4054 ]
+"7500
+[v _T08BIT `Vb ~T0 @X0 0 e@32430 ]
+"7504
+[v _T0CS `Vb ~T0 @X0 0 e@32429 ]
+"7234
+[v _PSA `Vb ~T0 @X0 0 e@32427 ]
+"7514
+[v _T0PS2 `Vb ~T0 @X0 0 e@32426 ]
+"7512
+[v _T0PS1 `Vb ~T0 @X0 0 e@32425 ]
+"7510
+[v _T0PS0 `Vb ~T0 @X0 0 e@32424 ]
+"6272
 [s S258 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S258 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
 "6282
@@ -49,35 +63,45 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S257 . . . . ]
 "6298
 [v _INTCONbits `VS257 ~T0 @X0 0 e@4082 ]
-"18 main.c
+"20 main.c
 [v _standby `(v ~T0 @X0 0 ef ]
-"19
+"23
+[v _emergencystop `(v ~T0 @X0 0 ef ]
+"21
 [v _operation `(v ~T0 @X0 0 ef ]
-"20
+"22
 [v _operationend `(v ~T0 @X0 0 ef ]
-"15
-[v _date_time `(v ~T0 @X0 0 ef ]
 "16
+[v _date_time `(v ~T0 @X0 0 ef ]
+"18
 [v _bottle_count `(v ~T0 @X0 0 ef ]
-"17
+"19
 [v _bottle_time `(v ~T0 @X0 0 ef ]
 [v F2878 `(v ~T0 @X0 1 tf1`ul ]
-"159 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
+"159 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
-"6898 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"6898 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _INT1IF `Vb ~T0 @X0 0 e@32640 ]
+"7562
+[v _TMR0IE `Vb ~T0 @X0 0 e@32661 ]
+"7568
+[v _TMR0ON `Vb ~T0 @X0 0 e@32431 ]
+"17 main.c
+[v _read_time `(v ~T0 @X0 0 ef ]
 "11 lcd.h
 [v _lcdInst `(v ~T0 @X0 0 ef1`uc ]
-"185 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"185 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
-"195 D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
+"7564
+[v _TMR0IF `Vb ~T0 @X0 0 e@32658 ]
+"195 C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"151 main.c
+"199 main.c
 [v _I2C_Master_Start `(i ~T0 @X0 0 ef ]
 "2 I2C.h
 [v _I2C_Master_Write `(v ~T0 @X0 0 ef1`ui ]
-"157 main.c
+"205 main.c
 [v _I2C_Master_Stop `(i ~T0 @X0 0 ef ]
 "3 I2C.h
 [v _I2C_Master_Read `(uc ~T0 @X0 0 ef1`uc ]
@@ -85,7 +109,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic18f4620.h: 49: extern volatile unsigned char PORTA @ 0xF80;
-"51 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"51 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [; ;pic18f4620.h: 51: asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
 [; ;pic18f4620.h: 54: typedef union {
@@ -2792,6 +2816,56 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
+[; ;stdlib.h: 7: typedef unsigned short wchar_t;
+[; ;stdlib.h: 15: typedef struct {
+[; ;stdlib.h: 16: int rem;
+[; ;stdlib.h: 17: int quot;
+[; ;stdlib.h: 18: } div_t;
+[; ;stdlib.h: 19: typedef struct {
+[; ;stdlib.h: 20: unsigned rem;
+[; ;stdlib.h: 21: unsigned quot;
+[; ;stdlib.h: 22: } udiv_t;
+[; ;stdlib.h: 23: typedef struct {
+[; ;stdlib.h: 24: long quot;
+[; ;stdlib.h: 25: long rem;
+[; ;stdlib.h: 26: } ldiv_t;
+[; ;stdlib.h: 27: typedef struct {
+[; ;stdlib.h: 28: unsigned long quot;
+[; ;stdlib.h: 29: unsigned long rem;
+[; ;stdlib.h: 30: } uldiv_t;
+[; ;stdlib.h: 53: extern double atof(const char *);
+[; ;stdlib.h: 54: extern double strtod(const char *, const char **);
+[; ;stdlib.h: 55: extern int atoi(const char *);
+[; ;stdlib.h: 56: extern unsigned xtoi(const char *);
+[; ;stdlib.h: 57: extern long atol(const char *);
+[; ;stdlib.h: 58: extern long strtol(const char *, char **, int);
+[; ;stdlib.h: 60: extern int rand(void);
+[; ;stdlib.h: 61: extern void srand(unsigned int);
+[; ;stdlib.h: 62: extern void * calloc(size_t, size_t);
+[; ;stdlib.h: 63: extern div_t div(int numer, int denom);
+[; ;stdlib.h: 64: extern udiv_t udiv(unsigned numer, unsigned denom);
+[; ;stdlib.h: 65: extern ldiv_t ldiv(long numer, long denom);
+[; ;stdlib.h: 66: extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+[; ;stdlib.h: 67: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 68: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 69: extern unsigned int _rotl(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 70: extern unsigned int _rotr(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 75: extern void * malloc(size_t);
+[; ;stdlib.h: 76: extern void free(void *);
+[; ;stdlib.h: 77: extern void * realloc(void *, size_t);
+[; ;stdlib.h: 86: extern int atexit(void (*)(void));
+[; ;stdlib.h: 87: extern char * getenv(const char *);
+[; ;stdlib.h: 88: extern char ** environ;
+[; ;stdlib.h: 89: extern int system(char *);
+[; ;stdlib.h: 90: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+[; ;stdlib.h: 91: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+[; ;stdlib.h: 92: extern int abs(int);
+[; ;stdlib.h: 93: extern long labs(long);
+[; ;stdlib.h: 95: extern char * itoa(char * buf, int val, int base);
+[; ;stdlib.h: 96: extern char * utoa(char * buf, unsigned val, int base);
+[; ;stdlib.h: 101: extern char * ltoa(char * buf, long val, int base);
+[; ;stdlib.h: 102: extern char * ultoa(char * buf, unsigned long val, int base);
+[; ;stdlib.h: 104: extern char * ftoa(float f, int * status);
 "9 configBits.h
 [p x OSC=HS ]
 "10
@@ -2890,14 +2964,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;I2C.h: 1: void I2C_Master_Init(const unsigned long c);
 [; ;I2C.h: 2: void I2C_Master_Write(unsigned d);
 [; ;I2C.h: 3: unsigned char I2C_Master_Read(unsigned char a);
-[; ;main.c: 14: void set_time(void);
-[; ;main.c: 15: void date_time(void);
-[; ;main.c: 16: void bottle_count(void);
-[; ;main.c: 17: void bottle_time(void);
-[; ;main.c: 18: void standby(void);
-[; ;main.c: 19: void operation(void);
-[; ;main.c: 20: void operationend(void);
-"22 main.c
+[; ;main.c: 15: void set_time(void);
+[; ;main.c: 16: void date_time(void);
+[; ;main.c: 17: void read_time(void);
+[; ;main.c: 18: void bottle_count(void);
+[; ;main.c: 19: void bottle_time(void);
+[; ;main.c: 20: void standby(void);
+[; ;main.c: 21: void operation(void);
+[; ;main.c: 22: void operationend(void);
+[; ;main.c: 23: void emergencystop(void);
+"25 main.c
 [v _keys `Cuc ~T0 @X0 -> 0 `x e ]
 [i _keys
 :U ..
@@ -2920,772 +2996,997 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `c
 ..
 ]
-[; ;main.c: 22: const char keys[] = "123A456B789C*0#D";
-"23
+[; ;main.c: 25: const char keys[] = "123A456B789C*0#D";
+"26
 [v _timeset `Cuc ~T0 @X0 -> 7 `i e ]
 [i _timeset
 :U ..
 -> -> 80 `i `uc
-"24
--> -> 53 `i `uc
-"25
--> -> 33 `i `uc
-"26
--> -> 8 `i `uc
 "27
--> -> 5 `i `uc
+-> -> 53 `i `uc
 "28
--> -> 2 `i `uc
+-> -> 33 `i `uc
 "29
+-> -> 8 `i `uc
+"30
+-> -> 5 `i `uc
+"31
+-> -> 2 `i `uc
+"32
 -> -> 23 `i `uc
 ..
 ]
-[; ;main.c: 23: const char timeset[7] = { 0x50,
-[; ;main.c: 24: 0x35,
-[; ;main.c: 25: 0x21,
-[; ;main.c: 26: 0x08,
-[; ;main.c: 27: 0x05,
-[; ;main.c: 28: 0x02,
-[; ;main.c: 29: 0x17};
-[; ;main.c: 30: enum state {
-[; ;main.c: 31: STANDBY,
-[; ;main.c: 32: OPERATION,
-[; ;main.c: 33: OPERATIONEND,
-[; ;main.c: 34: DATETIME,
-[; ;main.c: 35: BOTTLECOUNT,
-[; ;main.c: 36: BOTTLETIME
-[; ;main.c: 37: };
-"39
-[v _curr_state `E3059 ~T0 @X0 1 e ]
-[; ;main.c: 39: enum state curr_state;
-"41
+[; ;main.c: 26: const char timeset[7] = { 0x50,
+[; ;main.c: 27: 0x35,
+[; ;main.c: 28: 0x21,
+[; ;main.c: 29: 0x08,
+[; ;main.c: 30: 0x05,
+[; ;main.c: 31: 0x02,
+[; ;main.c: 32: 0x17};
+[; ;main.c: 33: enum state {
+[; ;main.c: 34: STANDBY,
+[; ;main.c: 35: EMERGENCYSTOP,
+[; ;main.c: 36: OPERATION,
+[; ;main.c: 37: OPERATIONEND,
+[; ;main.c: 38: DATETIME,
+[; ;main.c: 39: BOTTLECOUNT,
+[; ;main.c: 40: BOTTLETIME
+[; ;main.c: 41: };
+"43
+[v _curr_state `E3182 ~T0 @X0 1 e ]
+[; ;main.c: 43: enum state curr_state;
+"45
 [v _time `uc ~T0 @X0 -> 7 `i e ]
-[; ;main.c: 41: unsigned char time[7];
-"42
+[; ;main.c: 45: unsigned char time[7];
+"46
+[v _start_time `uc ~T0 @X0 -> 2 `i e ]
+[; ;main.c: 46: unsigned char start_time[2];
+"47
+[v _end_time `uc ~T0 @X0 -> 2 `i e ]
+[; ;main.c: 47: unsigned char end_time[2];
+"48
+[v _ptr `*uc ~T0 @X0 1 e ]
+[; ;main.c: 48: char *ptr;
+"49
 [v _bottle_count_disp `i ~T0 @X0 1 e ]
 [i _bottle_count_disp
 -U -> 1 `i
 ]
-[; ;main.c: 42: int bottle_count_disp = -1;
-"43
+[; ;main.c: 49: int bottle_count_disp = -1;
+"50
 [v _operation_disp `i ~T0 @X0 1 e ]
 [i _operation_disp
 -> 0 `i
 ]
-[; ;main.c: 43: int operation_disp = 0;
-"45
+[; ;main.c: 50: int operation_disp = 0;
+"52
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 45: void main(void) {
+[; ;main.c: 52: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 49: TRISA = 0xFF;
-"49
-[e = _TRISA -> -> 255 `i `uc ]
-[; ;main.c: 50: TRISB = 0xFF;
-"50
-[e = _TRISB -> -> 255 `i `uc ]
-[; ;main.c: 51: TRISC = 0x00;
-"51
-[e = _TRISC -> -> 0 `i `uc ]
-[; ;main.c: 52: TRISD = 0x00;
-"52
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;main.c: 53: TRISE = 0x00;
-"53
-[e = _TRISE -> -> 0 `i `uc ]
-[; ;main.c: 55: LATA = 0x00;
-"55
-[e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 56: LATB = 0x00;
+[; ;main.c: 56: TRISA = 0xFF;
 "56
-[e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 57: LATC = 0x00;
+[e = _TRISA -> -> 255 `i `uc ]
+[; ;main.c: 57: TRISB = 0xFF;
 "57
-[e = _LATC -> -> 0 `i `uc ]
-[; ;main.c: 58: LATD = 0x00;
+[e = _TRISB -> -> 255 `i `uc ]
+[; ;main.c: 58: TRISC = 0x00;
 "58
-[e = _LATD -> -> 0 `i `uc ]
-[; ;main.c: 59: LATE = 0x00;
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;main.c: 59: TRISD = 0x00;
 "59
-[e = _LATE -> -> 0 `i `uc ]
-[; ;main.c: 61: ADCON0 = 0x00;
-"61
-[e = _ADCON0 -> -> 0 `i `uc ]
-[; ;main.c: 62: ADCON1 = 0xFF;
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;main.c: 60: TRISE = 0x00;
+"60
+[e = _TRISE -> -> 0 `i `uc ]
+[; ;main.c: 62: LATA = 0x00;
 "62
-[e = _ADCON1 -> -> 255 `i `uc ]
-[; ;main.c: 64: INT1IE = 1;
+[e = _LATA -> -> 0 `i `uc ]
+[; ;main.c: 63: LATB = 0x00;
+"63
+[e = _LATB -> -> 0 `i `uc ]
+[; ;main.c: 64: LATC = 0x00;
 "64
-[e = _INT1IE -> -> 1 `i `b ]
-[; ;main.c: 66: nRBPU = 0;
+[e = _LATC -> -> 0 `i `uc ]
+[; ;main.c: 65: LATD = 0x00;
+"65
+[e = _LATD -> -> 0 `i `uc ]
+[; ;main.c: 66: LATE = 0x00;
 "66
-[e = _nRBPU -> -> 0 `i `b ]
-[; ;main.c: 68: initLCD();
+[e = _LATE -> -> 0 `i `uc ]
+[; ;main.c: 68: ADCON0 = 0x00;
 "68
-[e ( _initLCD ..  ]
-[; ;main.c: 69: I2C_Master_Init(10000);
+[e = _ADCON0 -> -> 0 `i `uc ]
+[; ;main.c: 69: ADCON1 = 0xFF;
 "69
-[e ( _I2C_Master_Init (1 -> -> -> 10000 `i `l `ul ]
-[; ;main.c: 73: (INTCONbits.GIE = 1);
+[e = _ADCON1 -> -> 255 `i `uc ]
+[; ;main.c: 71: INT1IE = 1;
+"71
+[e = _INT1IE -> -> 1 `i `b ]
+[; ;main.c: 73: nRBPU = 0;
 "73
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;main.c: 75: curr_state = STANDBY;
+[e = _nRBPU -> -> 0 `i `b ]
+[; ;main.c: 75: initLCD();
 "75
-[e = _curr_state . `E3059 0 ]
-[; ;main.c: 77: while(1){
-"77
-[e :U 268 ]
-{
-[; ;main.c: 78: switch(curr_state){
+[e ( _initLCD ..  ]
+[; ;main.c: 76: I2C_Master_Init(10000);
+"76
+[e ( _I2C_Master_Init (1 -> -> -> 10000 `i `l `ul ]
+[; ;main.c: 78: TMR0 = 0;
 "78
-[e $U 271  ]
-{
-[; ;main.c: 79: case STANDBY:
+[e = _TMR0 -> -> 0 `i `us ]
+[; ;main.c: 79: T08BIT = 0;
 "79
-[e :U 272 ]
-[; ;main.c: 80: standby();
+[e = _T08BIT -> -> 0 `i `b ]
+[; ;main.c: 80: T0CS = 0;
 "80
-[e ( _standby ..  ]
-[; ;main.c: 81: break;
+[e = _T0CS -> -> 0 `i `b ]
+[; ;main.c: 81: PSA = 0;
 "81
-[e $U 270  ]
-[; ;main.c: 82: case OPERATION:
+[e = _PSA -> -> 0 `i `b ]
+[; ;main.c: 82: T0PS2 = 1;
 "82
-[e :U 273 ]
-[; ;main.c: 83: operation();
+[e = _T0PS2 -> -> 1 `i `b ]
+[; ;main.c: 83: T0PS1 = 1;
 "83
-[e ( _operation ..  ]
-[; ;main.c: 84: break;
+[e = _T0PS1 -> -> 1 `i `b ]
+[; ;main.c: 84: T0PS0 = 1;
 "84
-[e $U 270  ]
-[; ;main.c: 85: case OPERATIONEND:
-"85
-[e :U 274 ]
-[; ;main.c: 86: operationend();
-"86
-[e ( _operationend ..  ]
-[; ;main.c: 87: break;
-"87
-[e $U 270  ]
-[; ;main.c: 88: case DATETIME:
+[e = _T0PS0 -> -> 1 `i `b ]
+[; ;main.c: 88: (INTCONbits.GIE = 1);
 "88
-[e :U 275 ]
-[; ;main.c: 89: date_time();
-"89
-[e ( _date_time ..  ]
-[; ;main.c: 90: break;
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 90: curr_state = STANDBY;
 "90
-[e $U 270  ]
-[; ;main.c: 91: case BOTTLECOUNT:
-"91
-[e :U 276 ]
-[; ;main.c: 92: bottle_count();
+[e = _curr_state . `E3182 0 ]
+[; ;main.c: 92: while(1){
 "92
-[e ( _bottle_count ..  ]
-[; ;main.c: 93: break;
+[e :U 272 ]
+{
+[; ;main.c: 93: switch(curr_state){
 "93
-[e $U 270  ]
-[; ;main.c: 94: case BOTTLETIME:
+[e $U 275  ]
+{
+[; ;main.c: 94: case STANDBY:
 "94
-[e :U 277 ]
-[; ;main.c: 95: bottle_time();
+[e :U 276 ]
+[; ;main.c: 95: standby();
 "95
-[e ( _bottle_time ..  ]
+[e ( _standby ..  ]
 [; ;main.c: 96: break;
 "96
-[e $U 270  ]
+[e $U 274  ]
+[; ;main.c: 97: case EMERGENCYSTOP:
 "97
-}
-[; ;main.c: 97: }
-[e $U 270  ]
-"78
-[e :U 271 ]
-[e [\ _curr_state , $ . `E3059 0 272
- , $ . `E3059 1 273
- , $ . `E3059 2 274
- , $ . `E3059 3 275
- , $ . `E3059 4 276
- , $ . `E3059 5 277
- 270 ]
-"97
-[e :U 270 ]
-[; ;main.c: 98: _delay((unsigned long)((200)*(10000000/4000.0)));
+[e :U 277 ]
+[; ;main.c: 98: emergencystop();
 "98
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
+[e ( _emergencystop ..  ]
+[; ;main.c: 99: break;
 "99
-}
-[e :U 267 ]
-"77
-[e $U 268  ]
-[e :U 269 ]
-[; ;main.c: 99: }
-[; ;main.c: 101: return;
+[e $U 274  ]
+[; ;main.c: 100: case OPERATION:
+"100
+[e :U 278 ]
+[; ;main.c: 101: operation();
 "101
-[e $UE 266  ]
-[; ;main.c: 102: }
+[e ( _operation ..  ]
+[; ;main.c: 102: break;
 "102
-[e :UE 266 ]
-}
-[v F3075 `(v ~T0 @X0 1 tf ]
+[e $U 274  ]
+[; ;main.c: 103: case OPERATIONEND:
+"103
+[e :U 279 ]
+[; ;main.c: 104: operationend();
 "104
-[v _isr `IF3075 ~T0 @X0 1 e ]
+[e ( _operationend ..  ]
+[; ;main.c: 105: break;
+"105
+[e $U 274  ]
+[; ;main.c: 106: case DATETIME:
+"106
+[e :U 280 ]
+[; ;main.c: 107: date_time();
+"107
+[e ( _date_time ..  ]
+[; ;main.c: 108: break;
+"108
+[e $U 274  ]
+[; ;main.c: 109: case BOTTLECOUNT:
+"109
+[e :U 281 ]
+[; ;main.c: 110: bottle_count();
+"110
+[e ( _bottle_count ..  ]
+[; ;main.c: 111: break;
+"111
+[e $U 274  ]
+[; ;main.c: 112: case BOTTLETIME:
+"112
+[e :U 282 ]
+[; ;main.c: 113: bottle_time();
+"113
+[e ( _bottle_time ..  ]
+[; ;main.c: 114: break;
+"114
+[e $U 274  ]
+"115
+}
+[; ;main.c: 115: }
+[e $U 274  ]
+"93
+[e :U 275 ]
+[e [\ _curr_state , $ . `E3182 0 276
+ , $ . `E3182 1 277
+ , $ . `E3182 2 278
+ , $ . `E3182 3 279
+ , $ . `E3182 4 280
+ , $ . `E3182 5 281
+ , $ . `E3182 6 282
+ 274 ]
+"115
+[e :U 274 ]
+[; ;main.c: 116: _delay((unsigned long)((200)*(10000000/4000.0)));
+"116
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
+"117
+}
+[e :U 271 ]
+"92
+[e $U 272  ]
+[e :U 273 ]
+[; ;main.c: 117: }
+[; ;main.c: 119: return;
+"119
+[e $UE 270  ]
+[; ;main.c: 120: }
+"120
+[e :UE 270 ]
+}
+[v F3202 `(v ~T0 @X0 1 tf ]
+"122
+[v _isr `IF3202 ~T0 @X0 1 e ]
 {
-[; ;main.c: 104: void interrupt isr(void){
+[; ;main.c: 122: void interrupt isr(void){
 [e :U _isr ]
 [f ]
-[; ;main.c: 105: if (INT1IF) {
-"105
-[e $ ! _INT1IF 279  ]
-{
-[; ;main.c: 106: switch(PORTB){
-"106
-[e $U 281  ]
-{
-[; ;main.c: 107: case 239:
-"107
-[e :U 282 ]
-[; ;main.c: 108: curr_state = STANDBY;
-"108
-[e = _curr_state . `E3059 0 ]
-[; ;main.c: 109: break;
-"109
-[e $U 280  ]
-[; ;main.c: 110: case 15:
-"110
-[e :U 283 ]
-[; ;main.c: 111: lcdInst(0b00000001);
-"111
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[; ;main.c: 112: curr_state = OPERATION;
-"112
-[e = _curr_state . `E3059 1 ]
-[; ;main.c: 113: break;
-"113
-[e $U 280  ]
-[; ;main.c: 114: case 31:
-"114
-[e :U 284 ]
-[; ;main.c: 115: curr_state = BOTTLECOUNT;
-"115
-[e = _curr_state . `E3059 4 ]
-[; ;main.c: 116: bottle_count_disp += 1;
-"116
-[e =+ _bottle_count_disp -> 1 `i ]
-[; ;main.c: 117: while(PORTB == 31){}
-"117
-[e $U 285  ]
-[e :U 286 ]
-{
-}
-[e :U 285 ]
-[e $ == -> _PORTB `i -> 31 `i 286  ]
-[e :U 287 ]
-[; ;main.c: 118: break;
-"118
-[e $U 280  ]
-[; ;main.c: 119: case 47:
-"119
-[e :U 288 ]
-[; ;main.c: 120: curr_state = BOTTLETIME;
-"120
-[e = _curr_state . `E3059 5 ]
-[; ;main.c: 121: break;
-"121
-[e $U 280  ]
-[; ;main.c: 122: case 63:
-"122
-[e :U 289 ]
-[; ;main.c: 123: curr_state = DATETIME;
+[; ;main.c: 123: if (INT1IF) {
 "123
-[e = _curr_state . `E3059 3 ]
-[; ;main.c: 124: break;
+[e $ ! _INT1IF 284  ]
+{
+[; ;main.c: 124: switch(PORTB){
 "124
-[e $U 280  ]
-[; ;main.c: 125: case 79:
+[e $U 286  ]
+{
+[; ;main.c: 125: case 239:
 "125
-[e :U 290 ]
-[; ;main.c: 126: lcdInst(0b00000001);
+[e :U 287 ]
+[; ;main.c: 126: curr_state = STANDBY;
 "126
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[; ;main.c: 127: curr_state = OPERATIONEND;
+[e = _curr_state . `E3182 0 ]
+[; ;main.c: 127: bottle_count_disp = 0;
 "127
-[e = _curr_state . `E3059 2 ]
+[e = _bottle_count_disp -> 0 `i ]
 [; ;main.c: 128: break;
 "128
-[e $U 280  ]
+[e $U 285  ]
+[; ;main.c: 129: case 15:
 "129
-}
-[; ;main.c: 129: }
-[e $U 280  ]
-"106
-[e :U 281 ]
-[e [\ _PORTB , $ -> -> 239 `i `uc 282
- , $ -> -> 15 `i `uc 283
- , $ -> -> 31 `i `uc 284
- , $ -> -> 47 `i `uc 288
- , $ -> -> 63 `i `uc 289
- , $ -> -> 79 `i `uc 290
- 280 ]
-"129
-[e :U 280 ]
+[e :U 288 ]
+[; ;main.c: 130: TMR0IE = 1;
 "130
-}
-[; ;main.c: 130: }
-[e $U 291  ]
+[e = _TMR0IE -> -> 1 `i `b ]
+[; ;main.c: 131: TMR0ON = 1;
 "131
-[e :U 279 ]
-[; ;main.c: 131: else{
-{
-[; ;main.c: 132: while(1){
+[e = _TMR0ON -> -> 1 `i `b ]
+[; ;main.c: 132: TMR0 = 0;
 "132
-[e :U 293 ]
-{
-[; ;main.c: 133: lcdInst(0b10000000);
+[e = _TMR0 -> -> 0 `i `us ]
+[; ;main.c: 133: read_time();
 "133
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 134: printf("bad interrupt");
+[e ( _read_time ..  ]
+[; ;main.c: 134: start_time[1] = time[1];
 "134
-[e ( _printf :s 1C ]
-[; ;main.c: 135: for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
+[e = *U + &U _start_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _start_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 135: start_time[0] = time[0];
 "135
+[e = *U + &U _start_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _start_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 136: lcdInst(0b00000001);
+"136
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[; ;main.c: 137: curr_state = OPERATION;
+"137
+[e = _curr_state . `E3182 2 ]
+[; ;main.c: 138: bottle_count_disp = -1;
+"138
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 139: break;
+"139
+[e $U 285  ]
+[; ;main.c: 140: case 31:
+"140
+[e :U 289 ]
+[; ;main.c: 141: curr_state = BOTTLECOUNT;
+"141
+[e = _curr_state . `E3182 5 ]
+[; ;main.c: 142: bottle_count_disp += 1;
+"142
+[e =+ _bottle_count_disp -> 1 `i ]
+[; ;main.c: 143: while(PORTB == 31){}
+"143
+[e $U 290  ]
+[e :U 291 ]
+{
+}
+[e :U 290 ]
+[e $ == -> _PORTB `i -> 31 `i 291  ]
+[e :U 292 ]
+[; ;main.c: 144: break;
+"144
+[e $U 285  ]
+[; ;main.c: 145: case 47:
+"145
+[e :U 293 ]
+[; ;main.c: 146: curr_state = BOTTLETIME;
+"146
+[e = _curr_state . `E3182 6 ]
+[; ;main.c: 147: bottle_count_disp = -1;
+"147
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 148: break;
+"148
+[e $U 285  ]
+[; ;main.c: 149: case 63:
+"149
+[e :U 294 ]
+[; ;main.c: 150: curr_state = DATETIME;
+"150
+[e = _curr_state . `E3182 4 ]
+[; ;main.c: 151: bottle_count_disp = -1;
+"151
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 152: break;
+"152
+[e $U 285  ]
+[; ;main.c: 153: case 79:
+"153
+[e :U 295 ]
+[; ;main.c: 154: read_time();
+"154
+[e ( _read_time ..  ]
+[; ;main.c: 155: end_time[1] = time[1];
+"155
+[e = *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 156: end_time[0] = time[0];
+"156
+[e = *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 157: lcdInst(0b00000001);
+"157
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[; ;main.c: 158: curr_state = OPERATIONEND;
+"158
+[e = _curr_state . `E3182 3 ]
+[; ;main.c: 159: bottle_count_disp = -1;
+"159
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 160: break;
+"160
+[e $U 285  ]
+[; ;main.c: 161: case 207:
+"161
+[e :U 296 ]
+[; ;main.c: 162: lcdInst(0b00000001);
+"162
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[; ;main.c: 163: curr_state = EMERGENCYSTOP;
+"163
+[e = _curr_state . `E3182 1 ]
+[; ;main.c: 164: bottle_count_disp = -1;
+"164
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 165: TMR0ON = 0;
+"165
+[e = _TMR0ON -> -> 0 `i `b ]
+[; ;main.c: 166: break;
+"166
+[e $U 285  ]
+"167
+}
+[; ;main.c: 167: }
+[e $U 285  ]
+"124
+[e :U 286 ]
+[e [\ _PORTB , $ -> -> 239 `i `uc 287
+ , $ -> -> 15 `i `uc 288
+ , $ -> -> 31 `i `uc 289
+ , $ -> -> 47 `i `uc 293
+ , $ -> -> 63 `i `uc 294
+ , $ -> -> 79 `i `uc 295
+ , $ -> -> 207 `i `uc 296
+ 285 ]
+"167
+[e :U 285 ]
+[; ;main.c: 168: INT1IF = 0;
+"168
+[e = _INT1IF -> -> 0 `i `b ]
+"169
+}
+[; ;main.c: 169: }
+[e $U 297  ]
+"170
+[e :U 284 ]
+[; ;main.c: 170: else if (TMR0IF) {
+[e $ ! _TMR0IF 298  ]
+{
+[; ;main.c: 171: TMR0ON = 0;
+"171
+[e = _TMR0ON -> -> 0 `i `b ]
+[; ;main.c: 172: read_time();
+"172
+[e ( _read_time ..  ]
+[; ;main.c: 173: end_time[1] = time[1];
+"173
+[e = *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 174: end_time[0] = time[0];
+"174
+[e = *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 175: lcdInst(0b00000001);
+"175
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[; ;main.c: 176: curr_state = OPERATIONEND;
+"176
+[e = _curr_state . `E3182 3 ]
+[; ;main.c: 177: bottle_count_disp = -1;
+"177
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 178: TMR0IF = 0;
+"178
+[e = _TMR0IF -> -> 0 `i `b ]
+"179
+}
+[; ;main.c: 179: }
+[e $U 299  ]
+"180
+[e :U 298 ]
+[; ;main.c: 180: else{
+{
+[; ;main.c: 181: while(1){
+"181
+[e :U 301 ]
+{
+[; ;main.c: 182: lcdInst(0b10000000);
+"182
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 183: printf("bad interrupt");
+"183
+[e ( _printf :s 1C ]
+[; ;main.c: 184: for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
+"184
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 100 `i 295  ]
-[e $U 296  ]
-[e :U 295 ]
+[e $ < -> _i `i -> 100 `i 303  ]
+[e $U 304  ]
+[e :U 303 ]
 {
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 100 `i 295  ]
-[e :U 296 ]
-}
-"136
-}
-[e :U 292 ]
-"132
-[e $U 293  ]
-[e :U 294 ]
-"137
-}
-[e :U 291 ]
-[; ;main.c: 136: }
-[; ;main.c: 137: }
-[; ;main.c: 138: INT1IF = 0;
-"138
-[e = _INT1IF -> -> 0 `i `b ]
-[; ;main.c: 139: return;
-"139
-[e $UE 278  ]
-[; ;main.c: 140: }
-"140
-[e :UE 278 ]
-}
-"142
-[v _standby `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 142: void standby(void){
-[e :U _standby ]
-[f ]
-[; ;main.c: 143: lcdInst(0b10000000);
-"143
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 144: printf("standby         ");
-"144
-[e ( _printf :s 2C ]
-[; ;main.c: 145: lcdInst(0b11000000);
-"145
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 146: printf("PORTB: %d       ", PORTB);
-"146
-[e ( _printf , (. :s 3C -> _PORTB `i ]
-[; ;main.c: 147: return;
-"147
-[e $UE 298  ]
-[; ;main.c: 148: }
-"148
-[e :UE 298 ]
-}
-"150
-[v _set_time `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 150: void set_time(void){
-[e :U _set_time ]
-[f ]
-[; ;main.c: 151: I2C_Master_Start();
-"151
-[e ( _I2C_Master_Start ..  ]
-[; ;main.c: 152: I2C_Master_Write(0b11010000);
-"152
-[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
-[; ;main.c: 153: I2C_Master_Write(0x00);
-"153
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;main.c: 154: for(char i=0; i<7; i++){
-"154
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 7 `i 300  ]
-[e $U 301  ]
-[e :U 300 ]
-{
-[; ;main.c: 155: I2C_Master_Write(timeset[i]);
-"155
-[e ( _I2C_Master_Write (1 -> *U + &U _timeset * -> _i `ux -> -> # *U &U _timeset `ui `ux `ui ]
-"156
-}
-"154
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 7 `i 300  ]
-[e :U 301 ]
-"156
-}
-[; ;main.c: 156: }
-[; ;main.c: 157: I2C_Master_Stop();
-"157
-[e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 158: }
-"158
-[e :UE 299 ]
-}
-"160
-[v _date_time `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 160: void date_time(void){
-[e :U _date_time ]
-[f ]
-[; ;main.c: 162: I2C_Master_Start();
-"162
-[e ( _I2C_Master_Start ..  ]
-[; ;main.c: 163: I2C_Master_Write(0b11010000);
-"163
-[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
-[; ;main.c: 164: I2C_Master_Write(0x00);
-"164
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;main.c: 165: I2C_Master_Stop();
-"165
-[e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 168: I2C_Master_Start();
-"168
-[e ( _I2C_Master_Start ..  ]
-[; ;main.c: 169: I2C_Master_Write(0b11010001);
-"169
-[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
-[; ;main.c: 170: for(unsigned char i=0;i<0x06;i++){
-"170
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 6 `i 304  ]
-[e $U 305  ]
+[e $ < -> _i `i -> 100 `i 303  ]
 [e :U 304 ]
-{
-[; ;main.c: 171: time[i] = I2C_Master_Read(1);
-"171
-[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-"172
-}
-"170
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 304  ]
-[e :U 305 ]
-"172
-}
-[; ;main.c: 172: }
-[; ;main.c: 173: time[6] = I2C_Master_Read(0);
-"173
-[e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
-[; ;main.c: 174: I2C_Master_Stop();
-"174
-[e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 177: lcdInst(0b10000000);
-"177
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 178: printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);
-"178
-[e ( _printf , , , (. :s 4C -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
-[; ;main.c: 179: lcdInst(0b11000000);
-"179
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 180: printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);
-"180
-[e ( _printf , , , (. :s 5C -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
-[; ;main.c: 182: return;
-"182
-[e $UE 303  ]
-[; ;main.c: 183: }
-"183
-[e :UE 303 ]
 }
 "185
-[v _bottle_count `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 185: void bottle_count(void){
-[e :U _bottle_count ]
-[f ]
-[; ;main.c: 186: switch(bottle_count_disp % 5){
+}
+[e :U 300 ]
+"181
+[e $U 301  ]
+[e :U 302 ]
 "186
-[e $U 309  ]
-{
-[; ;main.c: 187: case 0:
+}
+[e :U 299 ]
+[e :U 297 ]
+[; ;main.c: 185: }
+[; ;main.c: 186: }
+[; ;main.c: 187: return;
 "187
-[e :U 310 ]
-[; ;main.c: 188: lcdInst(0b10000000);
+[e $UE 283  ]
+[; ;main.c: 188: }
 "188
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 189: printf("Bottle Count    ");
-"189
-[e ( _printf :s 6C ]
-[; ;main.c: 190: lcdInst(0b11000000);
+[e :UE 283 ]
+}
 "190
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 191: printf("Total: 10       ");
-"191
-[e ( _printf :s 7C ]
-[; ;main.c: 192: break;
-"192
-[e $U 308  ]
-[; ;main.c: 193: case 1:
-"193
-[e :U 311 ]
-[; ;main.c: 194: lcdInst(0b10000000);
-"194
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 195: printf("YOP+CAP+LBL: 3  ");
-"195
-[e ( _printf :s 8C ]
-[; ;main.c: 196: lcdInst(0b11000000);
-"196
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 197: printf("YOP+CAP-LBL: 1  ");
-"197
-[e ( _printf :s 9C ]
-[; ;main.c: 198: break;
-"198
-[e $U 308  ]
-[; ;main.c: 199: case 2:
-"199
-[e :U 312 ]
-[; ;main.c: 200: lcdInst(0b10000000);
-"200
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 201: printf("YOP-CAP+LBL: 1  ");
-"201
-[e ( _printf :s 10C ]
-[; ;main.c: 202: lcdInst(0b11000000);
-"202
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 203: printf("YOP-CAP-LBL: 0  ");
-"203
-[e ( _printf :s 11C ]
-[; ;main.c: 204: break;
-"204
-[e $U 308  ]
-[; ;main.c: 205: case 3:
-"205
-[e :U 313 ]
-[; ;main.c: 206: lcdInst(0b10000000);
-"206
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 207: printf("ESKA+CAP+LBL: 1 ");
-"207
-[e ( _printf :s 12C ]
-[; ;main.c: 208: lcdInst(0b11000000);
-"208
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 209: printf("ESKA+CAP-LBL: 1 ");
-"209
-[e ( _printf :s 13C ]
-[; ;main.c: 210: break;
-"210
-[e $U 308  ]
-[; ;main.c: 211: case 4:
-"211
-[e :U 314 ]
-[; ;main.c: 212: lcdInst(0b10000000);
-"212
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 213: printf("ESKA-CAP+LBL: 1 ");
-"213
-[e ( _printf :s 14C ]
-[; ;main.c: 214: lcdInst(0b11000000);
-"214
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 215: printf("ESKA-CAP-LBL: 2 ");
-"215
-[e ( _printf :s 15C ]
-[; ;main.c: 216: break;
-"216
-[e $U 308  ]
-[; ;main.c: 217: default:
-"217
-[e :U 315 ]
-[; ;main.c: 218: while(1){
-"218
-[e :U 317 ]
+[v _standby `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 219: lcdInst(0b10000000);
-"219
+[; ;main.c: 190: void standby(void){
+[e :U _standby ]
+[f ]
+[; ;main.c: 191: lcdInst(0b10000000);
+"191
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 220: printf("ERROR: %d", bottle_count_disp);
-"220
-[e ( _printf , (. :s 16C _bottle_count_disp ]
-"221
+[; ;main.c: 192: printf("standby         ");
+"192
+[e ( _printf :s 2C ]
+[; ;main.c: 193: lcdInst(0b11000000);
+"193
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 194: printf("PORTB: %d       ", PORTB);
+"194
+[e ( _printf , (. :s 3C -> _PORTB `i ]
+[; ;main.c: 195: return;
+"195
+[e $UE 306  ]
+[; ;main.c: 196: }
+"196
+[e :UE 306 ]
 }
-[e :U 316 ]
-"218
-[e $U 317  ]
-[e :U 318 ]
-[; ;main.c: 221: }
-[; ;main.c: 222: break;
-"222
-[e $U 308  ]
-"223
-}
-[; ;main.c: 223: }
-[e $U 308  ]
-"186
-[e :U 309 ]
-[e [\ % _bottle_count_disp -> 5 `i , $ -> 0 `i 310
- , $ -> 1 `i 311
- , $ -> 2 `i 312
- , $ -> 3 `i 313
- , $ -> 4 `i 314
- 315 ]
-"223
+"198
+[v _set_time `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 198: void set_time(void){
+[e :U _set_time ]
+[f ]
+[; ;main.c: 199: I2C_Master_Start();
+"199
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 200: I2C_Master_Write(0b11010000);
+"200
+[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
+[; ;main.c: 201: I2C_Master_Write(0x00);
+"201
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+[; ;main.c: 202: for(char i=0; i<7; i++){
+"202
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 7 `i 308  ]
+[e $U 309  ]
 [e :U 308 ]
-[; ;main.c: 224: return;
-"224
-[e $UE 307  ]
-[; ;main.c: 225: }
-"225
+{
+[; ;main.c: 203: I2C_Master_Write(timeset[i]);
+"203
+[e ( _I2C_Master_Write (1 -> *U + &U _timeset * -> _i `ux -> -> # *U &U _timeset `ui `ux `ui ]
+"204
+}
+"202
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 7 `i 308  ]
+[e :U 309 ]
+"204
+}
+[; ;main.c: 204: }
+[; ;main.c: 205: I2C_Master_Stop();
+"205
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 206: }
+"206
 [e :UE 307 ]
 }
+"208
+[v _date_time `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 208: void date_time(void){
+[e :U _date_time ]
+[f ]
+[; ;main.c: 210: I2C_Master_Start();
+"210
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 211: I2C_Master_Write(0b11010000);
+"211
+[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
+[; ;main.c: 212: I2C_Master_Write(0x00);
+"212
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+[; ;main.c: 213: I2C_Master_Stop();
+"213
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 216: I2C_Master_Start();
+"216
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 217: I2C_Master_Write(0b11010001);
+"217
+[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
+[; ;main.c: 218: for(unsigned char i=0;i<0x06;i++){
+"218
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 6 `i 312  ]
+[e $U 313  ]
+[e :U 312 ]
+{
+[; ;main.c: 219: time[i] = I2C_Master_Read(1);
+"219
+[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+"220
+}
+"218
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 312  ]
+[e :U 313 ]
+"220
+}
+[; ;main.c: 220: }
+[; ;main.c: 221: time[6] = I2C_Master_Read(0);
+"221
+[e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
+[; ;main.c: 222: I2C_Master_Stop();
+"222
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 225: lcdInst(0b10000000);
+"225
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 226: printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);
+"226
+[e ( _printf , , , (. :s 4C -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
+[; ;main.c: 227: lcdInst(0b11000000);
 "227
-[v _bottle_time `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 227: void bottle_time(void){
-[e :U _bottle_time ]
-[f ]
-[; ;main.c: 228: lcdInst(0b10000000);
-"228
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 229: printf("Total Operation       ");
-"229
-[e ( _printf :s 17C ]
-[; ;main.c: 230: lcdInst(0b11000000);
-"230
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 231: printf("Time: 92s             ");
+[; ;main.c: 228: printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);
+"228
+[e ( _printf , , , (. :s 5C -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
+[; ;main.c: 230: return;
+"230
+[e $UE 311  ]
+[; ;main.c: 231: }
 "231
-[e ( _printf :s 18C ]
-[; ;main.c: 232: return;
-"232
-[e $UE 319  ]
-[; ;main.c: 233: }
+[e :UE 311 ]
+}
 "233
-[e :UE 319 ]
-}
-"235
-[v _operation `(v ~T0 @X0 1 ef ]
+[v _read_time `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 235: void operation(void){
-[e :U _operation ]
+[; ;main.c: 233: void read_time(void){
+[e :U _read_time ]
 [f ]
-[; ;main.c: 236: switch(operation_disp){
+[; ;main.c: 235: I2C_Master_Start();
+"235
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 236: I2C_Master_Write(0b11010000);
 "236
-[e $U 322  ]
-{
-[; ;main.c: 237: case 0:
+[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
+[; ;main.c: 237: I2C_Master_Write(0x00);
 "237
-[e :U 323 ]
-[; ;main.c: 238: lcdInst(0b10000000);
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+[; ;main.c: 238: I2C_Master_Stop();
 "238
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 239: printf("Running~              ");
-"239
-[e ( _printf :s 19C ]
-[; ;main.c: 240: operation_disp = 1;
-"240
-[e = _operation_disp -> 1 `i ]
-[; ;main.c: 241: break;
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 241: I2C_Master_Start();
 "241
-[e $U 321  ]
-[; ;main.c: 242: case 1:
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 242: I2C_Master_Write(0b11010001);
 "242
-[e :U 324 ]
-[; ;main.c: 243: lcdInst(0b10000000);
+[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
+[; ;main.c: 243: for(unsigned char i=0;i<0x06;i++){
 "243
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 244: printf("Running~~              ");
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 6 `i 316  ]
+[e $U 317  ]
+[e :U 316 ]
+{
+[; ;main.c: 244: time[i] = I2C_Master_Read(1);
 "244
-[e ( _printf :s 20C ]
-[; ;main.c: 245: operation_disp = 2;
+[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
 "245
-[e = _operation_disp -> 2 `i ]
-[; ;main.c: 246: break;
-"246
-[e $U 321  ]
-[; ;main.c: 247: case 2:
-"247
-[e :U 325 ]
-[; ;main.c: 248: lcdInst(0b10000000);
-"248
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 249: printf("Running~~~              ");
-"249
-[e ( _printf :s 21C ]
-[; ;main.c: 250: operation_disp = 0;
-"250
-[e = _operation_disp -> 0 `i ]
-[; ;main.c: 251: break;
-"251
-[e $U 321  ]
-"252
 }
-[; ;main.c: 252: }
+"243
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 316  ]
+[e :U 317 ]
+"245
+}
+[; ;main.c: 245: }
+[; ;main.c: 246: time[6] = I2C_Master_Read(0);
+"246
+[e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
+[; ;main.c: 247: I2C_Master_Stop();
+"247
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 248: return;
+"248
+[e $UE 315  ]
+[; ;main.c: 249: }
+"249
+[e :UE 315 ]
+}
+"251
+[v _bottle_count `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 251: void bottle_count(void){
+[e :U _bottle_count ]
+[f ]
+[; ;main.c: 252: switch(bottle_count_disp % 5){
+"252
 [e $U 321  ]
-"236
+{
+[; ;main.c: 253: case 0:
+"253
 [e :U 322 ]
-[e [\ _operation_disp , $ -> 0 `i 323
- , $ -> 1 `i 324
- , $ -> 2 `i 325
- 321 ]
+[; ;main.c: 254: lcdInst(0b10000000);
+"254
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 255: printf("Bottle Count    ");
+"255
+[e ( _printf :s 6C ]
+[; ;main.c: 256: lcdInst(0b11000000);
+"256
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 257: printf("Total: 10       ");
+"257
+[e ( _printf :s 7C ]
+[; ;main.c: 258: break;
+"258
+[e $U 320  ]
+[; ;main.c: 259: case 1:
+"259
+[e :U 323 ]
+[; ;main.c: 260: lcdInst(0b10000000);
+"260
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 261: printf("YOP+CAP+LBL: 3  ");
+"261
+[e ( _printf :s 8C ]
+[; ;main.c: 262: lcdInst(0b11000000);
+"262
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 263: printf("YOP+CAP-LBL: 1  ");
+"263
+[e ( _printf :s 9C ]
+[; ;main.c: 264: break;
+"264
+[e $U 320  ]
+[; ;main.c: 265: case 2:
+"265
+[e :U 324 ]
+[; ;main.c: 266: lcdInst(0b10000000);
+"266
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 267: printf("YOP-CAP+LBL: 1  ");
+"267
+[e ( _printf :s 10C ]
+[; ;main.c: 268: lcdInst(0b11000000);
+"268
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 269: printf("YOP-CAP-LBL: 0  ");
+"269
+[e ( _printf :s 11C ]
+[; ;main.c: 270: break;
+"270
+[e $U 320  ]
+[; ;main.c: 271: case 3:
+"271
+[e :U 325 ]
+[; ;main.c: 272: lcdInst(0b10000000);
+"272
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 273: printf("ESKA+CAP+LBL: 1 ");
+"273
+[e ( _printf :s 12C ]
+[; ;main.c: 274: lcdInst(0b11000000);
+"274
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 275: printf("ESKA+CAP-LBL: 1 ");
+"275
+[e ( _printf :s 13C ]
+[; ;main.c: 276: break;
+"276
+[e $U 320  ]
+[; ;main.c: 277: case 4:
+"277
+[e :U 326 ]
+[; ;main.c: 278: lcdInst(0b10000000);
+"278
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 279: printf("ESKA-CAP+LBL: 1 ");
+"279
+[e ( _printf :s 14C ]
+[; ;main.c: 280: lcdInst(0b11000000);
+"280
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 281: printf("ESKA-CAP-LBL: 2 ");
+"281
+[e ( _printf :s 15C ]
+[; ;main.c: 282: break;
+"282
+[e $U 320  ]
+[; ;main.c: 283: default:
+"283
+[e :U 327 ]
+[; ;main.c: 284: while(1){
+"284
+[e :U 329 ]
+{
+[; ;main.c: 285: lcdInst(0b10000000);
+"285
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 286: printf("ERROR: %d", bottle_count_disp);
+"286
+[e ( _printf , (. :s 16C _bottle_count_disp ]
+"287
+}
+[e :U 328 ]
+"284
+[e $U 329  ]
+[e :U 330 ]
+[; ;main.c: 287: }
+[; ;main.c: 288: break;
+"288
+[e $U 320  ]
+"289
+}
+[; ;main.c: 289: }
+[e $U 320  ]
 "252
 [e :U 321 ]
-[; ;main.c: 253: return;
-"253
-[e $UE 320  ]
-[; ;main.c: 254: }
-"254
-[e :UE 320 ]
+[e [\ % _bottle_count_disp -> 5 `i , $ -> 0 `i 322
+ , $ -> 1 `i 323
+ , $ -> 2 `i 324
+ , $ -> 3 `i 325
+ , $ -> 4 `i 326
+ 327 ]
+"289
+[e :U 320 ]
+[; ;main.c: 290: return;
+"290
+[e $UE 319  ]
+[; ;main.c: 291: }
+"291
+[e :UE 319 ]
 }
-"256
+"293
+[v _bottle_time `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 293: void bottle_time(void){
+[e :U _bottle_time ]
+[f ]
+[; ;main.c: 296: lcdInst(0b10000000);
+"296
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 297: printf("Total Operation       ");
+"297
+[e ( _printf :s 17C ]
+[; ;main.c: 298: lcdInst(0b11000000);
+"298
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 300: printf("Time: 7s             ");
+"300
+[e ( _printf :s 18C ]
+[; ;main.c: 301: return;
+"301
+[e $UE 331  ]
+[; ;main.c: 302: }
+"302
+[e :UE 331 ]
+}
+"304
+[v _operation `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 304: void operation(void){
+[e :U _operation ]
+[f ]
+[; ;main.c: 305: switch(operation_disp){
+"305
+[e $U 334  ]
+{
+[; ;main.c: 306: case 0:
+"306
+[e :U 335 ]
+[; ;main.c: 307: lcdInst(0b10000000);
+"307
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 308: printf("Running~              ");
+"308
+[e ( _printf :s 19C ]
+[; ;main.c: 309: operation_disp = 1;
+"309
+[e = _operation_disp -> 1 `i ]
+[; ;main.c: 310: break;
+"310
+[e $U 333  ]
+[; ;main.c: 311: case 1:
+"311
+[e :U 336 ]
+[; ;main.c: 312: lcdInst(0b10000000);
+"312
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 313: printf("Running~~              ");
+"313
+[e ( _printf :s 20C ]
+[; ;main.c: 314: operation_disp = 2;
+"314
+[e = _operation_disp -> 2 `i ]
+[; ;main.c: 315: break;
+"315
+[e $U 333  ]
+[; ;main.c: 316: case 2:
+"316
+[e :U 337 ]
+[; ;main.c: 317: lcdInst(0b10000000);
+"317
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 318: printf("Running~~~              ");
+"318
+[e ( _printf :s 21C ]
+[; ;main.c: 319: operation_disp = 0;
+"319
+[e = _operation_disp -> 0 `i ]
+[; ;main.c: 320: break;
+"320
+[e $U 333  ]
+"321
+}
+[; ;main.c: 321: }
+[e $U 333  ]
+"305
+[e :U 334 ]
+[e [\ _operation_disp , $ -> 0 `i 335
+ , $ -> 1 `i 336
+ , $ -> 2 `i 337
+ 333 ]
+"321
+[e :U 333 ]
+[; ;main.c: 322: return;
+"322
+[e $UE 332  ]
+[; ;main.c: 323: }
+"323
+[e :UE 332 ]
+}
+"325
 [v _operationend `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 256: void operationend(void){
+[; ;main.c: 325: void operationend(void){
 [e :U _operationend ]
 [f ]
-[; ;main.c: 257: lcdInst(0b10000000);
-"257
+[; ;main.c: 326: lcdInst(0b10000000);
+"326
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 258: printf("Operation Done!");
-"258
+[; ;main.c: 327: printf("Operation Done!");
+"327
 [e ( _printf :s 22C ]
-[; ;main.c: 259: return;
-"259
-[e $UE 326  ]
-[; ;main.c: 260: }
-"260
-[e :UE 326 ]
+[; ;main.c: 328: return;
+"328
+[e $UE 338  ]
+[; ;main.c: 329: }
+"329
+[e :UE 338 ]
+}
+"331
+[v _emergencystop `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 331: void emergencystop(void){
+[e :U _emergencystop ]
+[f ]
+[; ;main.c: 332: lcdInst(0b10000000);
+"332
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 333: printf("EMERGENCY STOP");
+"333
+[e ( _printf :s 23C ]
+[; ;main.c: 334: (INTCONbits.GIE = 0);
+"334
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[; ;main.c: 335: while(1){}
+"335
+[e :U 341 ]
+{
+}
+[e :U 340 ]
+[e $U 341  ]
+[e :U 342 ]
+[; ;main.c: 336: return;
+"336
+[e $UE 339  ]
+[; ;main.c: 337: }
+"337
+[e :UE 339 ]
 }
 [p f _printf 12615812 ]
 [a 1C 98 97 100 32 105 110 116 101 114 114 117 112 116 0 ]
 [a 16C 69 82 82 79 82 58 32 37 100 0 ]
+[a 23C 69 77 69 82 71 69 78 67 89 32 83 84 79 80 0 ]
 [a 22C 79 112 101 114 97 116 105 111 110 32 68 111 110 101 33 0 ]
 [a 15C 69 83 75 65 45 67 65 80 45 76 66 76 58 32 50 32 0 ]
 [a 13C 69 83 75 65 43 67 65 80 45 76 66 76 58 32 49 32 0 ]
@@ -3702,7 +4003,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 3C 80 79 82 84 66 58 32 37 100 32 32 32 32 32 32 32 0 ]
 [a 7C 84 111 116 97 108 58 32 49 48 32 32 32 32 32 32 32 0 ]
 [a 2C 115 116 97 110 100 98 121 32 32 32 32 32 32 32 32 32 0 ]
-[a 18C 84 105 109 101 58 32 57 50 115 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 18C 84 105 109 101 58 32 55 115 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 21C 82 117 110 110 105 110 103 126 126 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 20C 82 117 110 110 105 110 103 126 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 19C 82 117 110 110 105 110 103 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]

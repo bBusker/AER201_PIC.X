@@ -5,6 +5,7 @@
 
 #include <xc.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "configBits.h"
 #include "constants.h"
 #include "lcd.h"
@@ -13,11 +14,13 @@
 
 void set_time(void);
 void date_time(void);
+void read_time(void);
 void bottle_count(void);
 void bottle_time(void);
 void standby(void);
 void operation(void);
 void operationend(void);
+void emergencystop(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
@@ -29,6 +32,7 @@ const char timeset[7] = {   0x50, //Seconds
                             0x17};//Year, last two digits
 enum state {
         STANDBY,
+        EMERGENCYSTOP,
         OPERATION,
         OPERATIONEND,
         DATETIME,
@@ -39,6 +43,9 @@ enum state {
 enum state curr_state;
 
 unsigned char time[7];
+unsigned char start_time[2];
+unsigned char end_time[2];
+char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
 
@@ -67,6 +74,14 @@ void main(void) {
     
     initLCD();
     I2C_Master_Init(10000); //Initialize I2C Master with 100KHz clock
+    
+    TMR0 = 0;
+    T08BIT = 0;
+    T0CS = 0;
+    PSA = 0;
+    T0PS2 = 1;
+    T0PS1 = 1;
+    T0PS0 = 1;  
 
     //</editor-fold>
     
@@ -78,6 +93,9 @@ void main(void) {
         switch(curr_state){
             case STANDBY:
                 standby();
+                break;
+            case EMERGENCYSTOP:
+                emergencystop();
                 break;
             case OPERATION:
                 operation();
@@ -104,12 +122,20 @@ void main(void) {
 void interrupt isr(void){
     if (INT1IF) {
         switch(PORTB){
-            case 239:   //KP_*
+            case 239:   //KP_#
                 curr_state = STANDBY;
+                bottle_count_disp = 0;
                 break;
             case 15:    //KP_1
+                TMR0IE = 1;
+                TMR0ON = 1;
+                TMR0 = 0;
+                read_time();
+                start_time[1] = time[1];
+                start_time[0] = time[0];
                 __lcd_clear();
                 curr_state = OPERATION;
+                bottle_count_disp = -1;
                 break;
             case 31:    //KP_2
                 curr_state = BOTTLECOUNT;
@@ -118,15 +144,38 @@ void interrupt isr(void){
                 break;
             case 47:    //KP_3
                 curr_state = BOTTLETIME;
+                bottle_count_disp = -1;
                 break;
             case 63:    //KP_A
                 curr_state = DATETIME;
+                bottle_count_disp = -1;
                 break;
-            case 79:
+            case 79:    //KP_4
+                read_time();
+                end_time[1] = time[1];
+                end_time[0] = time[0];
                 __lcd_clear();
                 curr_state = OPERATIONEND;
+                bottle_count_disp = -1;
+                break;
+            case 207:   //KP_*
+                __lcd_clear();
+                curr_state = EMERGENCYSTOP;
+                bottle_count_disp = -1;
+                TMR0ON = 0;
                 break;
         }
+        INT1IF = 0;
+    }
+    else if (TMR0IF) {
+        TMR0ON = 0;
+        read_time();
+        end_time[1] = time[1];
+        end_time[0] = time[0];
+        __lcd_clear();
+        curr_state = OPERATIONEND;
+        bottle_count_disp = -1;
+        TMR0IF = 0;
     }
     else{
         while(1){
@@ -135,7 +184,6 @@ void interrupt isr(void){
             __delay_1s();
         }
     }
-    INT1IF = 0;
     return;
 }
 
@@ -182,6 +230,24 @@ void date_time(void){
     return;
 }
 
+void read_time(void){
+    //Reset RTC memory pointer 
+    I2C_Master_Start(); //Start condition
+    I2C_Master_Write(0b11010000); //7 bit RTC address + Write
+    I2C_Master_Write(0x00); //Set memory pointer to seconds
+    I2C_Master_Stop(); //Stop condition
+
+    //Read Current Time
+    I2C_Master_Start();
+    I2C_Master_Write(0b11010001); //7 bit RTC address + Read
+    for(unsigned char i=0;i<0x06;i++){
+        time[i] = I2C_Master_Read(1);
+    }
+    time[6] = I2C_Master_Read(0);       //Final Read without ack
+    I2C_Master_Stop();
+    return;
+}
+
 void bottle_count(void){
     switch(bottle_count_disp % 5){
         case 0:
@@ -225,10 +291,13 @@ void bottle_count(void){
 }
 
 void bottle_time(void){
+    //long stime = 60*strtoul(start_time[1], &ptr, 16)+strtoul(start_time[0], &ptr, 16);
+    //long etime = 60*strtoul(end_time[1], &ptr, 16)+strtoul(end_time[0], &ptr, 16);
     __lcd_home();
     printf("Total Operation       ");
     __lcd_newline();
-    printf("Time: 92s             ");
+    //printf("Time: %d s       ", etime-stime);
+    printf("Time: 7s             ");
     return;
 }
 
@@ -256,5 +325,13 @@ void operation(void){
 void operationend(void){
     __lcd_home();
     printf("Operation Done!");
+    return;
+}
+
+void emergencystop(void){
+    __lcd_home();
+    printf("EMERGENCY STOP");
+    di();
+    while(1){}
     return;
 }
