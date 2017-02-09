@@ -3897,6 +3897,7 @@ unsigned char I2C_Master_Read(unsigned char a);
 
 # 16 "main.c"
 void set_time(void);
+int dec_to_hex(int num);
 void date_time(void);
 void read_time(void);
 void bottle_count(void);
@@ -3905,7 +3906,7 @@ void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
-int dec_to_hex(int num);
+void servo_rotate(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
@@ -4053,6 +4054,9 @@ curr_state = EMERGENCYSTOP;
 bottle_count_disp = -1;
 TMR0ON = 0;
 break;
+case 127:
+servo_rotate();
+break;
 }
 INT1IF = 0;
 }
@@ -4080,8 +4084,7 @@ void standby(void){
 lcdInst(0b10000000);
 printf("standby         ");
 lcdInst(0b11000000);
-read_time();
-printf("Sec: %02x %c %d     ", time[0], time[0], time[0]);
+printf("PORTB: %d", PORTB);
 return;
 }
 
@@ -4093,6 +4096,20 @@ for(char i=0; i<7; i++){
 I2C_Master_Write(timeset[i]);
 }
 I2C_Master_Stop();
+}
+
+int dec_to_hex(int num) {
+int i = 0, quotient = num, temp, hexnum = 0;
+
+while (quotient != 0) {
+temp = quotient % 16;
+
+hexnum += temp*pow(10,i);
+
+quotient = quotient / 16;
+i += 1;
+}
+return hexnum;
 }
 
 void date_time(void){
@@ -4184,7 +4201,7 @@ void bottle_time(int time){
 lcdInst(0b10000000);
 printf("Total Operation       ");
 lcdInst(0b11000000);
-printf("Time: %d" + "s       ", time);
+printf("Time: %d s       ", time);
 return;
 }
 
@@ -4223,16 +4240,13 @@ while(1){}
 return;
 }
 
-int dec_to_hex(int num) {
-int i = 0, quotient = num, temp, hexnum = 0;
-
-while (quotient != 0) {
-temp = quotient % 16;
-
-hexnum += temp*pow(10,i);
-
-quotient = quotient / 16;
-i += 1;
+void servo_rotate(void){
+unsigned int i;
+for (i=0; i<50; i++) {
+PORTEbits.RE0 = 1;
+_delay((unsigned long)((1500)*(10000000/4000000.0)));
+PORTEbits.RE0 =0;
+_delay((unsigned long)((18500)*(10000000/4000000.0)));
 }
-return hexnum;
+return;
 }

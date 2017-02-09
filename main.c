@@ -14,6 +14,7 @@
 #include "macros.h"
 
 void set_time(void);
+int dec_to_hex(int num);
 void date_time(void);
 void read_time(void);
 void bottle_count(void);
@@ -22,7 +23,7 @@ void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
-int dec_to_hex(int num);
+void servo_rotate(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
@@ -170,6 +171,9 @@ void interrupt isr(void){
                 bottle_count_disp = -1;
                 TMR0ON = 0;
                 break;
+            case 127:   //KP_B
+                servo_rotate();
+                break;
         }
         INT1IF = 0;
     }
@@ -197,8 +201,7 @@ void standby(void){
     __lcd_home();
     printf("standby         ");
     __lcd_newline();
-    read_time();
-    printf("Sec: %02x %c %d     ", time[0], time[0], time[0]);
+    printf("PORTB: %d", PORTB);
     return;
 }
 
@@ -351,5 +354,16 @@ void emergencystop(void){
     printf("EMERGENCY STOP");
     di();
     while(1){}
+    return;
+}
+
+void servo_rotate(void){
+    unsigned int i;
+    for (i=0; i<50; i++) {
+        PORTEbits.RE0 = 1;
+        __delay_us(1500);
+        PORTEbits.RE0 =0;
+        __delay_us(18500);
+    }
     return;
 }
