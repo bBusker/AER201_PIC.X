@@ -23,7 +23,8 @@ void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
-void servo_rotate(void);
+void servo_rotate(int);
+void test(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
@@ -172,7 +173,13 @@ void interrupt isr(void){
                 TMR0ON = 0;
                 break;
             case 127:   //KP_B
-                servo_rotate();
+                servo_rotate(90);
+                break;
+            case 191:   //KP_C
+                servo_rotate(-90);
+                break;
+            case 175:
+                test();
                 break;
         }
         INT1IF = 0;
@@ -357,13 +364,30 @@ void emergencystop(void){
     return;
 }
 
-void servo_rotate(void){
+void servo_rotate(int degree){
     unsigned int i;
-    for (i=0; i<50; i++) {
-        PORTEbits.RE0 = 1;
-        __delay_us(1500);
-        PORTEbits.RE0 =0;
-        __delay_us(18500);
+    switch(degree){
+        case 90:
+            for (i=0; i<50; i++) {
+                PORTEbits.RE1 = 1;
+                __delay_us(800);
+                PORTEbits.RE1 = 0;
+                __delay_us(19200);
+            }
+            break;
+        case -90:
+            for (i=0; i<50; i++) {
+                PORTEbits.RE1 = 1;
+                __delay_us(1500);
+                PORTEbits.RE1 = 0;
+                __delay_us(18500);
+            }
+            break;
     }
+    return;
+}
+
+void test(void){
+    PORTAbits.RA0 = !PORTAbits.RA0;
     return;
 }

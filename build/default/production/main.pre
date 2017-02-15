@@ -3906,7 +3906,8 @@ void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
-void servo_rotate(void);
+void servo_rotate(int);
+void test(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
@@ -4055,7 +4056,13 @@ bottle_count_disp = -1;
 TMR0ON = 0;
 break;
 case 127:
-servo_rotate();
+servo_rotate(90);
+break;
+case 191:
+servo_rotate(-90);
+break;
+case 175:
+test();
 break;
 }
 INT1IF = 0;
@@ -4240,13 +4247,30 @@ while(1){}
 return;
 }
 
-void servo_rotate(void){
+void servo_rotate(int degree){
 unsigned int i;
+switch(degree){
+case 90:
 for (i=0; i<50; i++) {
-PORTEbits.RE0 = 1;
+PORTEbits.RE1 = 1;
+_delay((unsigned long)((800)*(10000000/4000000.0)));
+PORTEbits.RE1 = 0;
+_delay((unsigned long)((19200)*(10000000/4000000.0)));
+}
+break;
+case -90:
+for (i=0; i<50; i++) {
+PORTEbits.RE1 = 1;
 _delay((unsigned long)((1500)*(10000000/4000000.0)));
-PORTEbits.RE0 =0;
+PORTEbits.RE1 = 0;
 _delay((unsigned long)((18500)*(10000000/4000000.0)));
 }
+break;
+}
+return;
+}
+
+void test(void){
+PORTAbits.RA0 = !PORTAbits.RA0;
 return;
 }
