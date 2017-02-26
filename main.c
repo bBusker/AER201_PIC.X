@@ -413,10 +413,10 @@ void read_colorsensor(void){
         I2C_Master_Start();
         I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
         I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
-        I2C_Master_Start();
+        I2C_Master_Start();             //Repeated start command for combined I2C
         I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
         c_clear_l = I2C_Master_Read(1); //Read with acknowledge
-        c_clear_h = I2C_Master_Read(0); 
+        c_clear_h = I2C_Master_Read(0); //Final read, no ack
         I2C_Master_Stop();              //Stop condition
         //Print for Debugging
         __lcd_home();
