@@ -24,6 +24,7 @@ void operation(void);
 void operationend(void);
 void emergencystop(void);
 void servo_rotate(int);
+void read_colorsensor(void);
 void test(void);
 
 const char keys[] = "123A456B789C*0#D";
@@ -59,9 +60,12 @@ void main(void) {
     
     // <editor-fold defaultstate="collapsed" desc=" STARTUP SEQUENCE ">
     
+    //TRIS Sets Input/Output
+    //0 = output
+    //1 = input
     TRISA = 0xFF; // Set Port A as all input
     TRISB = 0xFF; 
-    TRISC = 0x00;
+    TRISC = 0b00011000;     //RC3 and RC4 for I2C
     TRISD = 0x00; //All output mode for LCD
     TRISE = 0x00;    
 
@@ -81,6 +85,7 @@ void main(void) {
     initLCD();
     I2C_Master_Init(10000); //Initialize I2C Master with 100KHz clock
     
+    //Set Timer Properties
     TMR0 = 0;
     T08BIT = 0;
     T0CS = 0;
@@ -178,8 +183,8 @@ void interrupt isr(void){
             case 191:   //KP_C
                 servo_rotate(-90);
                 break;
-            case 175:
-                test();
+            case 175:   //KP_9
+                read_colorsensor();
                 break;
         }
         INT1IF = 0;
@@ -272,7 +277,7 @@ void read_time(void){
     I2C_Master_Start();
     I2C_Master_Write(0b11010001); //7 bit RTC address + Read
     for(unsigned char i=0;i<0x06;i++){
-        time[i] = I2C_Master_Read(1);
+        time[i] = I2C_Master_Read(1);   //Read with ack
     }
     time[6] = I2C_Master_Read(0);       //Final Read without ack
     I2C_Master_Stop();
@@ -389,5 +394,36 @@ void servo_rotate(int degree){
 
 void test(void){
     PORTAbits.RA0 = !PORTAbits.RA0;
+    return;
+}
+
+void read_colorsensor(void){
+    int c_clear_l;
+    int c_clear_h;
+    __lcd_clear();
+    //Write Start Condition
+    I2C_Master_Start();
+    I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
+    I2C_Master_Write(0b10000000);   //Write to cmdreg + access enable reg
+    I2C_Master_Write(0b00000011);   //Start RGBC and POWER 
+    I2C_Master_Stop();
+    
+    while(1){
+        //Reading Color
+        I2C_Master_Start();
+        I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
+        I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
+        I2C_Master_Start();
+        I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
+        c_clear_l = I2C_Master_Read(1); //Read with acknowledge
+        c_clear_h = I2C_Master_Read(0); 
+        I2C_Master_Stop();              //Stop condition
+        //Print for Debugging
+        __lcd_home();
+        printf("%x             ", c_clear_h);
+        __lcd_newline();
+        printf("%x             ", c_clear_l);
+        __delay_ms(500);
+    }
     return;
 }
