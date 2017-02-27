@@ -27,7 +27,6 @@ void servo_rotate0(int);
 void servo_rotate1(int);
 void servo_rotate2(int);
 void read_colorsensor(void);
-void test(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
@@ -37,6 +36,7 @@ const char timeset[7] = {   0x50, //Seconds
                             0x05, //Day/Date
                             0x02, //Month
                             0x17};//Year, last two digits
+
 enum state {
         STANDBY,
         EMERGENCYSTOP,
@@ -46,7 +46,6 @@ enum state {
         BOTTLECOUNT,
         BOTTLETIME
     };
-    
 enum state curr_state;
 
 unsigned char time[7];
@@ -57,6 +56,7 @@ int etime;
 char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
+int color[4];                           //Stores TCS data in form clear, red, green, blue
 
 void main(void) {
     
@@ -65,10 +65,10 @@ void main(void) {
     //TRIS Sets Input/Output
     //0 = output
     //1 = input
-    TRISA = 0xFF; // Set Port A as all input
+    TRISA = 0xFF;           // Set Port A as all input
     TRISB = 0xFF; 
     TRISC = 0b00011000;     //RC3 and RC4 for I2C
-    TRISD = 0x00; //All output mode for LCD
+    TRISD = 0x00;           //All output mode for LCD
     TRISE = 0x00;    
 
     LATA = 0x00;
@@ -77,8 +77,8 @@ void main(void) {
     LATD = 0x00;
     LATE = 0x00;
     
-    ADCON0 = 0x00;  //Disable ADC
-    ADCON1 = 0xFF;  //Set PORTB to be digital instead of analog default  
+    ADCON0 = 0x00;          //Disable ADC
+    ADCON1 = 0xFF;          //Set PORTB to be digital instead of analog default  
     
     INT1IE = 1;
     
@@ -86,6 +86,7 @@ void main(void) {
     
     initLCD();
     I2C_Master_Init(10000); //Initialize I2C Master with 100KHz clock
+    I2C_ColorSens_Init();   //Initialize TCS34725 Color Sensor
     
     //Set Timer Properties
     TMR0 = 0;
@@ -215,7 +216,7 @@ void standby(void){
     __lcd_home();
     printf("standby         ");
     __lcd_newline();
-    printf("PORTB: %d", PORTB);
+    printf("CLEAR: %d", color[0]);
     return;
 }
 
@@ -407,38 +408,24 @@ void servo_rotate2(int degree){
     return;
 }
 
-void test(void){
-    PORTAbits.RA0 = !PORTAbits.RA0;
-    return;
-}
-
 void read_colorsensor(void){
-    int c_clear_l;
-    int c_clear_h;
-    __lcd_clear();
-    //Write Start Condition
+    unsigned short color_low;
+    unsigned short color_high;
+    unsigned short color_comb;
+    short i;
+    
+    //Reading Color
     I2C_Master_Start();
     I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
-    I2C_Master_Write(0b10000000);   //Write to cmdreg + access enable reg
-    I2C_Master_Write(0b00000011);   //Start RGBC and POWER 
-    I2C_Master_Stop();
-    
-    while(1){
-        //Reading Color
-        I2C_Master_Start();
-        I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
-        I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
-        I2C_Master_Start();             //Repeated start command for combined I2C
-        I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
-        c_clear_l = I2C_Master_Read(1); //Read with acknowledge
-        c_clear_h = I2C_Master_Read(0); //Final read, no ack
-        I2C_Master_Stop();              //Stop condition
-        //Print for Debugging
-        __lcd_home();
-        printf("%x             ", c_clear_h);
-        __lcd_newline();
-        printf("%x             ", c_clear_l);
-        __delay_ms(500);
-    }
+    I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
+    I2C_Master_Start();             //Repeated start command for combined I2C
+    I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
+    for(i=0; i<4; i++){
+        color_low = I2C_Master_Read(1); //Reading with acknowledge, continuous
+        color_high = I2C_Master_Read(1); 
+        color_comb = (color_high << 8)||(color_low & 0xFF);
+        color[i] = color_comb;
+    }    
+    I2C_Master_Stop();              //Stop condition
     return;
 }

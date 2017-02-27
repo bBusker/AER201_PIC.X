@@ -3892,6 +3892,7 @@ void initLCD(void);
 
 # 1 "I2C.h"
 void I2C_Master_Init(const unsigned long c);
+void I2C_ColorSens_Init(void);
 void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 
@@ -3906,9 +3907,10 @@ void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
-void servo_rotate(int);
+void servo_rotate0(int);
+void servo_rotate1(int);
+void servo_rotate2(int);
 void read_colorsensor(void);
-void test(void);
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
@@ -3918,6 +3920,7 @@ const char timeset[7] = { 0x50,
 0x05,
 0x02,
 0x17};
+
 enum state {
 STANDBY,
 EMERGENCYSTOP,
@@ -3927,7 +3930,6 @@ DATETIME,
 BOTTLECOUNT,
 BOTTLETIME
 };
-
 enum state curr_state;
 
 unsigned char time[7];
@@ -3938,10 +3940,11 @@ int etime;
 char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
+int color[4];
 
 void main(void) {
 
-# 66
+# 68
 TRISA = 0xFF;
 TRISB = 0xFF;
 TRISC = 0b00011000;
@@ -3963,6 +3966,7 @@ nRBPU = 0;
 
 initLCD();
 I2C_Master_Init(10000);
+I2C_ColorSens_Init();
 
 
 TMR0 = 0;
@@ -4057,10 +4061,10 @@ bottle_count_disp = -1;
 TMR0ON = 0;
 break;
 case 127:
-servo_rotate(90);
+servo_rotate0(90);
 break;
 case 191:
-servo_rotate(-90);
+servo_rotate0(180);
 break;
 case 175:
 read_colorsensor();
@@ -4092,7 +4096,7 @@ void standby(void){
 lcdInst(0b10000000);
 printf("standby         ");
 lcdInst(0b11000000);
-printf("PORTB: %d", PORTB);
+printf("CLEAR: %d", color[0]);
 return;
 }
 
@@ -4248,61 +4252,60 @@ while(1){}
 return;
 }
 
-void servo_rotate(int degree){
+void servo_rotate0(int degree){
 unsigned int i;
-switch(degree){
-case 90:
+int delay = degree*1000/90;
 for (i=0; i<50; i++) {
-PORTEbits.RE1 = 1;
-_delay((unsigned long)((800)*(10000000/4000000.0)));
-PORTEbits.RE1 = 0;
-_delay((unsigned long)((19200)*(10000000/4000000.0)));
-}
-break;
-case -90:
-for (i=0; i<50; i++) {
-PORTEbits.RE1 = 1;
-_delay((unsigned long)((1500)*(10000000/4000000.0)));
-PORTEbits.RE1 = 0;
-_delay((unsigned long)((18500)*(10000000/4000000.0)));
-}
-break;
+PORTCbits.RC0 = 1;
+_delay((unsigned long)((delay)*(10000000/4000000.0)));
+PORTCbits.RC0 = 0;
+_delay((unsigned long)((20000-delay)*(10000000/4000000.0)));
 }
 return;
 }
 
-void test(void){
-PORTAbits.RA0 = !PORTAbits.RA0;
+void servo_rotate1(int degree){
+unsigned int i;
+int delay = degree*1000/90;
+for (i=0; i<50; i++) {
+PORTCbits.RC1 = 1;
+_delay((unsigned long)((delay)*(10000000/4000000.0)));
+PORTCbits.RC1 = 0;
+_delay((unsigned long)((20000-delay)*(10000000/4000000.0)));
+}
+return;
+}
+
+void servo_rotate2(int degree){
+unsigned int i;
+int delay = degree*1000/90;
+for (i=0; i<50; i++) {
+PORTCbits.RC2 = 1;
+_delay((unsigned long)((delay)*(10000000/4000000.0)));
+PORTCbits.RC2 = 0;
+_delay((unsigned long)((20000-delay)*(10000000/4000000.0)));
+}
 return;
 }
 
 void read_colorsensor(void){
-int c_clear_l;
-int c_clear_h;
-lcdInst(0b00000001);
+unsigned short color_low;
+unsigned short color_high;
+unsigned short color_comb;
+short i;
 
-I2C_Master_Start();
-I2C_Master_Write(0b01010010);
-I2C_Master_Write(0b10000000);
-I2C_Master_Write(0b00000011);
-I2C_Master_Stop();
-
-while(1){
 
 I2C_Master_Start();
 I2C_Master_Write(0b01010010);
 I2C_Master_Write(0b10110100);
 I2C_Master_Start();
 I2C_Master_Write(0b01010011);
-c_clear_l = I2C_Master_Read(1);
-c_clear_h = I2C_Master_Read(0);
-I2C_Master_Stop();
-
-lcdInst(0b10000000);
-printf("%x             ", c_clear_h);
-lcdInst(0b11000000);
-printf("%x             ", c_clear_l);
-_delay((unsigned long)((500)*(10000000/4000.0)));
+for(i=0; i<4; i++){
+color_low = I2C_Master_Read(1);
+color_high = I2C_Master_Read(1);
+color_comb = (color_high << 8)||(color_low & 0xFF);
+color[i] = color_comb;
 }
+I2C_Master_Stop();
 return;
 }

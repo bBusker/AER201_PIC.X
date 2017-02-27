@@ -3639,6 +3639,7 @@ extern __nonreentrant void _delay3(unsigned char);
 
 # 1 "I2C.h"
 void I2C_Master_Init(const unsigned long c);
+void I2C_ColorSens_Init(void);
 void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 

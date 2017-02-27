@@ -2711,8 +2711,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 161: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 163: extern __nonreentrant void _delay3(unsigned char);
 [; ;I2C.h: 1: void I2C_Master_Init(const unsigned long c);
-[; ;I2C.h: 2: void I2C_Master_Write(unsigned d);
-[; ;I2C.h: 3: unsigned char I2C_Master_Read(unsigned char a);
+[; ;I2C.h: 2: void I2C_ColorSens_Init(void);
+[; ;I2C.h: 3: void I2C_Master_Write(unsigned d);
+[; ;I2C.h: 4: unsigned char I2C_Master_Read(unsigned char a);
 "9 configBits.h
 [p x OSC=HS ]
 "10
