@@ -23,7 +23,9 @@ void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
-void servo_rotate(int);
+void servo_rotate0(int);
+void servo_rotate1(int);
+void servo_rotate2(int);
 void read_colorsensor(void);
 void test(void);
 
@@ -178,10 +180,10 @@ void interrupt isr(void){
                 TMR0ON = 0;
                 break;
             case 127:   //KP_B
-                servo_rotate(90);
+                servo_rotate0(90);
                 break;
             case 191:   //KP_C
-                servo_rotate(-90);
+                servo_rotate0(180);
                 break;
             case 175:   //KP_9
                 read_colorsensor();
@@ -369,25 +371,38 @@ void emergencystop(void){
     return;
 }
 
-void servo_rotate(int degree){
+void servo_rotate0(int degree){
     unsigned int i;
-    switch(degree){
-        case 90:
-            for (i=0; i<50; i++) {
-                PORTEbits.RE1 = 1;
-                __delay_us(800);
-                PORTEbits.RE1 = 0;
-                __delay_us(19200);
-            }
-            break;
-        case -90:
-            for (i=0; i<50; i++) {
-                PORTEbits.RE1 = 1;
-                __delay_us(1500);
-                PORTEbits.RE1 = 0;
-                __delay_us(18500);
-            }
-            break;
+    int delay = degree*1000/90;
+    for (i=0; i<50; i++) {
+        PORTCbits.RC0 = 1;
+        __delay_us(delay);
+        PORTCbits.RC0 = 0;
+        __delay_us(20000-delay);
+    }
+    return;
+}
+
+void servo_rotate1(int degree){
+    unsigned int i;
+    int delay = degree*1000/90;
+    for (i=0; i<50; i++) {
+        PORTCbits.RC1 = 1;
+        __delay_us(delay);
+        PORTCbits.RC1 = 0;
+        __delay_us(20000-delay);
+    }
+    return;
+}
+
+void servo_rotate2(int degree){
+    unsigned int i;
+    int delay = degree*1000/90;
+    for (i=0; i<50; i++) {
+        PORTCbits.RC2 = 1;
+        __delay_us(delay);
+        PORTCbits.RC2 = 0;
+        __delay_us(20000-delay);
     }
     return;
 }

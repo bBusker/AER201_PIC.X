@@ -15,5 +15,7 @@
 #define __lcd_clear() lcdInst(0b00000001)
 #define __lcd_home() lcdInst(0b10000000)
 
+#define 
+
 #endif	/* MACROS_H */
 
