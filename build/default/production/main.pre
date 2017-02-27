@@ -3892,7 +3892,7 @@ void initLCD(void);
 
 # 1 "I2C.h"
 void I2C_Master_Init(const unsigned long c);
-void I2C_ColorSens_Init(void);
+
 void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 
@@ -3907,9 +3907,9 @@ void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
-void servo_rotate0(int);
-void servo_rotate1(int);
-void servo_rotate2(int);
+void servo_rotate0(int degree);
+void servo_rotate1(int degree);
+void servo_rotate2(int degree);
 void read_colorsensor(void);
 
 const char keys[] = "123A456B789C*0#D";
@@ -3940,7 +3940,7 @@ int etime;
 char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
-int color[4];
+unsigned short color[4];
 
 void main(void) {
 
@@ -4061,7 +4061,7 @@ bottle_count_disp = -1;
 TMR0ON = 0;
 break;
 case 127:
-servo_rotate0(90);
+servo_rotate0(1);
 break;
 case 191:
 servo_rotate0(180);
@@ -4096,7 +4096,7 @@ void standby(void){
 lcdInst(0b10000000);
 printf("standby         ");
 lcdInst(0b11000000);
-printf("CLEAR: %d", color[0]);
+printf("PORTB: ", PORTB);
 return;
 }
 
@@ -4222,6 +4222,9 @@ switch(operation_disp){
 case 0:
 lcdInst(0b10000000);
 printf("Running~              ");
+lcdInst(0b11000000);
+read_colorsensor();
+printf("C: %d                ", color[0]);
 operation_disp = 1;
 break;
 case 1:
@@ -4254,36 +4257,39 @@ return;
 
 void servo_rotate0(int degree){
 unsigned int i;
-int delay = degree*1000/90;
+unsigned int j;
+int duty = degree*10/90;
 for (i=0; i<50; i++) {
 PORTCbits.RC0 = 1;
-_delay((unsigned long)((delay)*(10000000/4000000.0)));
+for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
 PORTCbits.RC0 = 0;
-_delay((unsigned long)((20000-delay)*(10000000/4000000.0)));
+for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
 }
 return;
 }
 
 void servo_rotate1(int degree){
 unsigned int i;
-int delay = degree*1000/90;
+unsigned int j;
+int duty = degree*10/90;
 for (i=0; i<50; i++) {
 PORTCbits.RC1 = 1;
-_delay((unsigned long)((delay)*(10000000/4000000.0)));
+for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
 PORTCbits.RC1 = 0;
-_delay((unsigned long)((20000-delay)*(10000000/4000000.0)));
+for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
 }
 return;
 }
 
 void servo_rotate2(int degree){
 unsigned int i;
-int delay = degree*1000/90;
+unsigned int j;
+int duty = degree*10/90;
 for (i=0; i<50; i++) {
 PORTCbits.RC2 = 1;
-_delay((unsigned long)((delay)*(10000000/4000000.0)));
+for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
 PORTCbits.RC2 = 0;
-_delay((unsigned long)((20000-delay)*(10000000/4000000.0)));
+for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
 }
 return;
 }

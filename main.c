@@ -23,9 +23,9 @@ void standby(void);
 void operation(void);
 void operationend(void);
 void emergencystop(void);
-void servo_rotate0(int);
-void servo_rotate1(int);
-void servo_rotate2(int);
+void servo_rotate0(int degree);
+void servo_rotate1(int degree);
+void servo_rotate2(int degree);
 void read_colorsensor(void);
 
 const char keys[] = "123A456B789C*0#D";
@@ -56,7 +56,7 @@ int etime;
 char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
-int color[4];                           //Stores TCS data in form clear, red, green, blue
+unsigned short color[4];                           //Stores TCS data in form clear, red, green, blue
 
 void main(void) {
     
@@ -181,7 +181,7 @@ void interrupt isr(void){
                 TMR0ON = 0;
                 break;
             case 127:   //KP_B
-                servo_rotate0(90);
+                servo_rotate0(1);
                 break;
             case 191:   //KP_C
                 servo_rotate0(180);
@@ -216,7 +216,7 @@ void standby(void){
     __lcd_home();
     printf("standby         ");
     __lcd_newline();
-    printf("CLEAR: %d", color[0]);
+    printf("PORTB: ", PORTB);
     return;
 }
 
@@ -342,6 +342,9 @@ void operation(void){
         case 0:
             __lcd_home();
             printf("Running~              ");
+            __lcd_newline();
+            read_colorsensor();
+            printf("C: %d                ", color[0]);
             operation_disp = 1;
             break;
         case 1:
@@ -374,36 +377,39 @@ void emergencystop(void){
 
 void servo_rotate0(int degree){
     unsigned int i;
-    int delay = degree*1000/90;
+    unsigned int j;
+    int duty = degree*10/90;
     for (i=0; i<50; i++) {
         PORTCbits.RC0 = 1;
-        __delay_us(delay);
+        for(j=0; j<duty; j++) __delay_us(100);
         PORTCbits.RC0 = 0;
-        __delay_us(20000-delay);
+        for(j=0; j<(200 - duty); j++) __delay_us(100);
     }
     return;
 }
 
 void servo_rotate1(int degree){
     unsigned int i;
-    int delay = degree*1000/90;
+    unsigned int j;
+    int duty = degree*10/90;
     for (i=0; i<50; i++) {
         PORTCbits.RC1 = 1;
-        __delay_us(delay);
+        for(j=0; j<duty; j++) __delay_us(100);
         PORTCbits.RC1 = 0;
-        __delay_us(20000-delay);
+        for(j=0; j<(200 - duty); j++) __delay_us(100);
     }
     return;
 }
 
 void servo_rotate2(int degree){
     unsigned int i;
-    int delay = degree*1000/90;
+    unsigned int j;
+    int duty = degree*10/90;
     for (i=0; i<50; i++) {
         PORTCbits.RC2 = 1;
-        __delay_us(delay);
+        for(j=0; j<duty; j++) __delay_us(100);
         PORTCbits.RC2 = 0;
-        __delay_us(20000-delay);
+        for(j=0; j<(200 - duty); j++) __delay_us(100);
     }
     return;
 }
