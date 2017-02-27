@@ -3127,8 +3127,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;main.c: 58: int operation_disp = 0;
 "59
-[v _color `us ~T0 @X0 -> 4 `i e ]
-[; ;main.c: 59: unsigned short color[4];
+[v _color `i ~T0 @X0 -> 4 `i e ]
+[; ;main.c: 59: int color[4];
 "61
 [v _main `(v ~T0 @X0 1 ef ]
 {
@@ -3619,7 +3619,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 218: lcdInst(0b11000000);
 "218
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 219: printf("PORTB: ", PORTB);
+[; ;main.c: 219: printf("PORTB: %d", PORTB);
 "219
 [e ( _printf , (. :s 3C -> _PORTB `i ]
 [; ;main.c: 220: return;
@@ -4045,7 +4045,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _read_colorsensor ..  ]
 [; ;main.c: 347: printf("C: %d                ", color[0]);
 "347
-[e ( _printf , (. :s 20C -> *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux `i ]
+[e ( _printf , (. :s 20C *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux ]
 [; ;main.c: 348: operation_disp = 1;
 "348
 [e = _operation_disp -> 1 `i ]
@@ -4370,17 +4370,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _read_colorsensor ]
 [f ]
 "418
-[v _color_low `us ~T0 @X0 1 a ]
+[v _color_low `i ~T0 @X0 1 a ]
 "419
-[v _color_high `us ~T0 @X0 1 a ]
+[v _color_high `i ~T0 @X0 1 a ]
 "420
-[v _color_comb `us ~T0 @X0 1 a ]
+[v _color_comb `i ~T0 @X0 1 a ]
 "421
-[v _i `s ~T0 @X0 1 a ]
-[; ;main.c: 418: unsigned short color_low;
-[; ;main.c: 419: unsigned short color_high;
-[; ;main.c: 420: unsigned short color_comb;
-[; ;main.c: 421: short i;
+[v _i `i ~T0 @X0 1 a ]
+[; ;main.c: 418: int color_low;
+[; ;main.c: 419: int color_high;
+[; ;main.c: 420: int color_comb;
+[; ;main.c: 421: int i;
 [; ;main.c: 424: I2C_Master_Start();
 "424
 [e ( _I2C_Master_Start ..  ]
@@ -4396,51 +4396,63 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 428: I2C_Master_Write(0b01010011);
 "428
 [e ( _I2C_Master_Write (1 -> -> 83 `i `ui ]
-[; ;main.c: 429: for(i=0; i<4; i++){
+[; ;main.c: 429: for(i=0; i<3; i++){
 "429
 {
-[e = _i -> -> 0 `i `s ]
-[e $ < -> _i `i -> 4 `i 387  ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 3 `i 387  ]
 [e $U 388  ]
 [e :U 387 ]
 {
 [; ;main.c: 430: color_low = I2C_Master_Read(1);
 "430
-[e = _color_low -> ( _I2C_Master_Read (1 -> -> 1 `i `uc `us ]
+[e = _color_low -> ( _I2C_Master_Read (1 -> -> 1 `i `uc `i ]
 [; ;main.c: 431: color_high = I2C_Master_Read(1);
 "431
-[e = _color_high -> ( _I2C_Master_Read (1 -> -> 1 `i `uc `us ]
-[; ;main.c: 432: color_comb = (color_high << 8)||(color_low & 0xFF);
+[e = _color_high -> ( _I2C_Master_Read (1 -> -> 1 `i `uc `i ]
+[; ;main.c: 432: color_comb = (color_high << 8)|(color_low & 0xFF);
 "432
-[e = _color_comb -> -> || != << -> _color_high `ui -> 8 `i -> -> 0 `i `ui != & -> _color_low `ui -> -> 255 `i `ui -> -> 0 `i `ui `i `us ]
+[e = _color_comb | << _color_high -> 8 `i & _color_low -> 255 `i ]
 [; ;main.c: 433: color[i] = color_comb;
 "433
-[e = *U + &U _color * -> -> _i `us `ux -> -> # *U &U _color `ui `ux _color_comb ]
+[e = *U + &U _color * -> -> _i `ui `ux -> -> # *U &U _color `ui `ux _color_comb ]
 "434
 }
 "429
-[e ++ _i -> -> 1 `i `s ]
-[e $ < -> _i `i -> 4 `i 387  ]
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 3 `i 387  ]
 [e :U 388 ]
 "434
 }
 [; ;main.c: 434: }
-[; ;main.c: 435: I2C_Master_Stop();
+[; ;main.c: 435: color_low = I2C_Master_Read(1);
 "435
-[e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 436: return;
+[e = _color_low -> ( _I2C_Master_Read (1 -> -> 1 `i `uc `i ]
+[; ;main.c: 436: color_high = I2C_Master_Read(0);
 "436
-[e $UE 386  ]
-[; ;main.c: 437: }
+[e = _color_high -> ( _I2C_Master_Read (1 -> -> 0 `i `uc `i ]
+[; ;main.c: 437: color_comb = (color_high << 8)|(color_low & 0xFF);
 "437
+[e = _color_comb | << _color_high -> 8 `i & _color_low -> 255 `i ]
+[; ;main.c: 438: color[3] = color_comb;
+"438
+[e = *U + &U _color * -> -> -> 3 `i `ui `ux -> -> # *U &U _color `ui `ux _color_comb ]
+[; ;main.c: 439: I2C_Master_Stop();
+"439
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 440: return;
+"440
+[e $UE 386  ]
+[; ;main.c: 441: }
+"441
 [e :UE 386 ]
 }
-[p f _printf 15435181 ]
+[p f _printf 12615812 ]
 [a 1C 98 97 100 32 105 110 116 101 114 114 117 112 116 0 ]
 [a 16C 69 82 82 79 82 58 32 37 100 0 ]
+[a 3C 80 79 82 84 66 58 32 37 100 0 ]
 [a 24C 69 77 69 82 71 69 78 67 89 32 83 84 79 80 0 ]
 [a 23C 79 112 101 114 97 116 105 111 110 32 68 111 110 101 33 0 ]
-[a 3C 80 79 82 84 66 58 32 0 ]
 [a 15C 69 83 75 65 45 67 65 80 45 76 66 76 58 32 50 32 0 ]
 [a 13C 69 83 75 65 43 67 65 80 45 76 66 76 58 32 49 32 0 ]
 [a 14C 69 83 75 65 45 67 65 80 43 76 66 76 58 32 49 32 0 ]

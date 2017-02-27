@@ -3940,7 +3940,7 @@ int etime;
 char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
-unsigned short color[4];
+int color[4];
 
 void main(void) {
 
@@ -4096,7 +4096,7 @@ void standby(void){
 lcdInst(0b10000000);
 printf("standby         ");
 lcdInst(0b11000000);
-printf("PORTB: ", PORTB);
+printf("PORTB: %d", PORTB);
 return;
 }
 
@@ -4295,10 +4295,10 @@ return;
 }
 
 void read_colorsensor(void){
-unsigned short color_low;
-unsigned short color_high;
-unsigned short color_comb;
-short i;
+int color_low;
+int color_high;
+int color_comb;
+int i;
 
 
 I2C_Master_Start();
@@ -4306,12 +4306,16 @@ I2C_Master_Write(0b01010010);
 I2C_Master_Write(0b10110100);
 I2C_Master_Start();
 I2C_Master_Write(0b01010011);
-for(i=0; i<4; i++){
+for(i=0; i<3; i++){
 color_low = I2C_Master_Read(1);
 color_high = I2C_Master_Read(1);
-color_comb = (color_high << 8)||(color_low & 0xFF);
+color_comb = (color_high << 8)|(color_low & 0xFF);
 color[i] = color_comb;
 }
+color_low = I2C_Master_Read(1);
+color_high = I2C_Master_Read(0);
+color_comb = (color_high << 8)|(color_low & 0xFF);
+color[3] = color_comb;
 I2C_Master_Stop();
 return;
 }

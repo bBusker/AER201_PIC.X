@@ -301,8 +301,6 @@ BOTTLETIME 6
 [v _dpowers dpowers `C[5]ui  1 s 10 dpowers ]
 "362
 [v _hexpowers hexpowers `C[4]ui  1 s 8 hexpowers ]
-"369
-[v _octpowers octpowers `C[6]ui  1 s 12 octpowers ]
 "3 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\errno.c
 [v _errno errno `i  1 e 2 0 ]
 "32 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
@@ -324,7 +322,7 @@ BOTTLETIME 6
 "58
 [v _operation_disp operation_disp `i  1 e 2 0 ]
 "59
-[v _color color `[4]us  1 e 8 0 ]
+[v _color color `[4]i  1 e 8 0 ]
 "61
 [v _main main `(v  1 e 1 0 ]
 {
@@ -349,14 +347,14 @@ BOTTLETIME 6
 [v _read_colorsensor read_colorsensor `(v  1 e 1 0 ]
 {
 "421
-[v read_colorsensor@i i `s  1 a 2 28 ]
+[v read_colorsensor@i i `i  1 a 2 27 ]
 "420
-[v read_colorsensor@color_comb color_comb `us  1 a 2 25 ]
+[v read_colorsensor@color_comb color_comb `i  1 a 2 25 ]
 "419
-[v read_colorsensor@color_high color_high `us  1 a 2 23 ]
+[v read_colorsensor@color_high color_high `i  1 a 2 23 ]
 "418
-[v read_colorsensor@color_low color_low `us  1 a 2 21 ]
-"437
+[v read_colorsensor@color_low color_low `i  1 a 2 21 ]
+"441
 } 0
 "14 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\lcd.c
 [v _initLCD initLCD `(v  1 e 1 0 ]
@@ -372,7 +370,7 @@ BOTTLETIME 6
 [v _date_time date_time `(v  1 e 1 0 ]
 {
 "257
-[v date_time@i i `uc  1 a 1 61 ]
+[v date_time@i i `uc  1 a 1 50 ]
 "270
 } 0
 "61 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\I2C.c
@@ -390,7 +388,7 @@ BOTTLETIME 6
 "332 D:\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
 [v _bottle_time bottle_time `(v  1 e 1 0 ]
 {
-[v bottle_time@time time `i  1 p 2 61 ]
+[v bottle_time@time time `i  1 p 2 50 ]
 "338
 } 0
 "290
@@ -402,23 +400,19 @@ BOTTLETIME 6
 [v _printf printf `(i  1 e 2 0 ]
 {
 "1500
-[v printf@idx idx `uc  1 a 1 48 ]
-"508
-[v printf@flag flag `us  1 a 2 59 ]
+[v printf@idx idx `uc  1 a 1 40 ]
 "501
-[v printf@width width `i  1 a 2 56 ]
+[v printf@width width `i  1 a 2 47 ]
 "528
-[v printf@val val `ui  1 a 2 53 ]
+[v printf@val val `ui  1 a 2 44 ]
 "466
-[v printf@ap ap `[1]*.39v  1 a 2 51 ]
-"529
-[v printf@len len `ui  1 a 2 49 ]
-"530
-[v printf@cp cp `*.39Cuc  1 a 2 40 ]
+[v printf@ap ap `[1]*.39v  1 a 2 41 ]
 "499
-[v printf@c c `c  1 a 1 58 ]
+[v printf@c c `c  1 a 1 49 ]
+"508
+[v printf@flag flag `uc  1 a 1 46 ]
 "506
-[v printf@prec prec `c  1 a 1 55 ]
+[v printf@prec prec `c  1 a 1 43 ]
 "464
 [v printf@f f `*.25Cuc  1 p 2 28 ]
 "1541
@@ -557,23 +551,21 @@ BOTTLETIME 6
 "417
 [v i2_read_colorsensor read_colorsensor `(v  1 e 1 0 ]
 {
-[v i2read_colorsensor@i read_colorsensor `s  1 a 2 12 ]
-[v i2read_colorsensor@color_comb read_colorsensor `us  1 a 2 9 ]
-[v i2read_colorsensor@color_high read_colorsensor `us  1 a 2 7 ]
-[v i2read_colorsensor@color_low read_colorsensor `us  1 a 2 5 ]
-"437
+[v i2read_colorsensor@i read_colorsensor `i  1 a 2 11 ]
+[v i2read_colorsensor@color_comb read_colorsensor `i  1 a 2 9 ]
+[v i2read_colorsensor@color_high read_colorsensor `i  1 a 2 7 ]
+[v i2read_colorsensor@color_low read_colorsensor `i  1 a 2 5 ]
+"441
 } 0
 "464 D:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
 [v i2_printf printf `(i  1 e 2 0 ]
 {
-[v i2printf@flag printf `us  1 a 2 37 ]
-[v i2printf@width printf `i  1 a 2 34 ]
-[v i2printf@val printf `ui  1 a 2 31 ]
-[v i2printf@ap printf `[1]*.39v  1 a 2 29 ]
-[v i2printf@len printf `ui  1 a 2 27 ]
-[v i2printf@cp printf `*.39Cuc  1 a 2 19 ]
-[v i2printf@c printf `c  1 a 1 36 ]
-[v i2printf@prec printf `c  1 a 1 33 ]
+[v i2printf@width printf `i  1 a 2 25 ]
+[v i2printf@val printf `ui  1 a 2 22 ]
+[v i2printf@ap printf `[1]*.39v  1 a 2 19 ]
+[v i2printf@c printf `c  1 a 1 27 ]
+[v i2printf@flag printf `uc  1 a 1 24 ]
+[v i2printf@prec printf `c  1 a 1 21 ]
 [v i2printf@idx printf `uc  1 a 1 18 ]
 [v i2printf@f f `*.25Cuc  1 p 2 12 ]
 "1541

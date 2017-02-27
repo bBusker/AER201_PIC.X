@@ -56,7 +56,7 @@ int etime;
 char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
-unsigned short color[4];                           //Stores TCS data in form clear, red, green, blue
+int color[4];                           //Stores TCS data in form clear, red, green, blue
 
 void main(void) {
     
@@ -216,7 +216,7 @@ void standby(void){
     __lcd_home();
     printf("standby         ");
     __lcd_newline();
-    printf("PORTB: ", PORTB);
+    printf("PORTB: %d", PORTB);
     return;
 }
 
@@ -415,10 +415,10 @@ void servo_rotate2(int degree){
 }
 
 void read_colorsensor(void){
-    unsigned short color_low;
-    unsigned short color_high;
-    unsigned short color_comb;
-    short i;
+    int color_low;
+    int color_high;
+    int color_comb;
+    int i;
     
     //Reading Color
     I2C_Master_Start();
@@ -426,12 +426,16 @@ void read_colorsensor(void){
     I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
     I2C_Master_Start();             //Repeated start command for combined I2C
     I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
-    for(i=0; i<4; i++){
+    for(i=0; i<3; i++){
         color_low = I2C_Master_Read(1); //Reading with acknowledge, continuous
         color_high = I2C_Master_Read(1); 
-        color_comb = (color_high << 8)||(color_low & 0xFF);
+        color_comb = (color_high << 8)|(color_low & 0xFF);
         color[i] = color_comb;
-    }    
+    }
+    color_low = I2C_Master_Read(1); 
+    color_high = I2C_Master_Read(0);    //Final read, no ack 
+    color_comb = (color_high << 8)|(color_low & 0xFF);
+    color[3] = color_comb;
     I2C_Master_Stop();              //Stop condition
     return;
 }

@@ -268,12 +268,6 @@ const static unsigned int hexpowers[] = {1, 0x10, 0x100, 0x1000,
 # 366
 };
 
-
-const static unsigned int octpowers[] = {1, 010, 0100, 01000, 010000, 0100000,
-
-# 375
-};
-
 # 455
 int
 
@@ -292,7 +286,7 @@ int width;
 
 signed char prec;
 
-unsigned short flag;
+unsigned char flag;
 
 # 523
 union {
@@ -325,25 +319,7 @@ flag = 0;
 for(;;) {
 switch(*f) {
 
-case '-':
-flag |= 0x08;
-f++;
-continue;
-
-
-
-case ' ':
-flag |= 0x01;
-f++;
-continue;
-
-# 573
-case '#':
-flag |= 0x800;
-f++;
-continue;
-
-
+# 579
 case '0':
 flag |= 0x04;
 f++;
@@ -353,11 +329,7 @@ continue;
 break;
 }
 
-# 593
-if(flag & 0x08)
-flag &= ~0x04;
-
-
+# 597
 if(isdigit((unsigned)*f)) {
 width = 0;
 do {
@@ -365,31 +337,7 @@ width *= 10;
 width += *f++ - '0';
 } while(isdigit((unsigned)*f));
 
-} else if(*f == '*') {
-width = (*(int *)__va_arg((*(int **)ap), (int)0));
-f++;
-
-}
-
-
-if(*f == '.') {
-flag |= 0x4000;
-f++;
-
-if(*f == '*') {
-prec = (*(int *)__va_arg((*(int **)ap), (int)0));
-f++;
-} else
-
-{
-prec = 0;
-while(isdigit((unsigned)*f))
-prec = prec*10 + *f++ - '0';
-}
-} else {
-prec = 0;
-
-# 630
+# 608
 }
 
 # 635
@@ -398,26 +346,12 @@ switch(c = *f++) {
 case 0:
 goto alldone;
 
-# 689
-case 'o':
-
-flag |= 0x40;
-
-break;
-
-
-
+# 697
 case 'd':
 case 'i':
 break;
 
-# 712
-case 'X':
-
-flag |= 0x20;
-
-
-
+# 718
 case 'x':
 
 
@@ -425,57 +359,17 @@ flag |= 0x80;
 
 break;
 
-# 750
-dostring:
-
-
-if(prec && prec < len)
-len = prec;
-
-
-if(width > len)
-width -= len;
-else
-width = 0;
-
-if(!(flag & 0x08))
-
-while(width--)
-(putch(' ') );
-
-while(len--)
-(putch(*cp++) );
-
-if(flag & 0x08)
-while(width--)
-(putch(' ') );
-
-continue;
-
-# 784
-case 'c':
-
-# 799
-c = (*(int *)__va_arg((*(int **)ap), (int)0));
-
-
+# 802
 default:
 
+# 813
+continue;
 
-cp = (char *)&c;
-len = 1;
-goto dostring;
-
-# 817
-case 'u':
-flag |= 0xC0;
-break;
-
-
+# 822
 }
 
 # 1251
-if((flag & (0xC0)) == 0x00)
+if((flag & 0x80) == 0x00)
 
 {
 
@@ -500,22 +394,15 @@ else
 val = (*(unsigned *)__va_arg((*(unsigned **)ap), (unsigned)0));
 }
 
-
-if(prec == 0 && val == 0)
-prec++;
-
-
-switch((unsigned char)(flag & (0xC0))) {
+# 1294
+switch((unsigned char)(flag & 0x80)) {
 
 
 
 
 case 0x00:
 
-
-case 0xC0:
-
-
+# 1305
 for(c = 1 ; c != sizeof dpowers/sizeof dpowers[0] ; c++)
 if(val < dpowers[c])
 break;
@@ -533,61 +420,14 @@ break;
 
 break;
 
-# 1326
-case 0x40:
-
-for(c = 1 ; c != sizeof octpowers/sizeof octpowers[0] ; c++)
-if(val < octpowers[c])
-break;
-
-break;
-
-
-
+# 1336
 }
 
-
-if(c < prec)
-c = prec;
-else if(prec < c)
-prec = c;
-
-
+# 1345
 if(width && flag & 0x03)
 width--;
 
-if(flag & 0x4000) {
-if(width > prec)
-width -= prec;
-else
-width = 0;
-}
-
-
-
-if((flag & (
-
-0x04|
-
-(0xC0)|0x800)) == (0x40|0x800)) {
-if(width)
-width--;
-} else
-
-
-
-if((flag & ((0xC0)|0x800)) == (0x80|0x800)) {
-
-# 1372
-if(width > 2)
-width -= 2;
-else
-width = 0;
-}
-
-
-
-
+# 1381
 if(width > c)
 width -= c;
 else
@@ -602,23 +442,7 @@ if(flag & 0x04) {
 if(flag & 0x03)
 (putch('-') );
 
-
-else
-
-
-if(flag & 0x01)
-(putch(' ') );
-
-
-else if((flag & ((0xC0)|0x800)) == (0x80|0x800)) {
-(putch('0') );
-
-(putch(flag & 0x20 ? 'X' : 'x') );
-
-# 1412
-}
-
-
+# 1415
 if(width)
 do
 (putch('0') );
@@ -630,8 +454,7 @@ while(--width);
 
 if(width
 
-&& !(flag & 0x08)
-
+# 1428
 )
 do
 (putch(' ') );
@@ -641,36 +464,15 @@ while(--width);
 if(flag & 0x03)
 (putch('-') );
 
-
-
-else if(flag & 0x01)
-(putch(' ') );
-
-
-
-if((flag & ((0xC0)|0x800)) == (0x40|0x800))
-(putch('0') );
-else
-
-
-
-if((flag & ((0xC0)|0x800)) == (0x80|0x800)) {
-
-# 1458
-(putch('0') );
-
-(putch(flag & 0x20 ? 'X' : 'x') );
-
-# 1466
+# 1469
 }
 
 
-}
+prec = c;
 
-# 1474
 while(prec--) {
 
-switch((unsigned char)(flag & (0xC0)))
+switch((unsigned char)(flag & 0x80))
 
 {
 
@@ -679,10 +481,7 @@ switch((unsigned char)(flag & (0xC0)))
 
 case 0x00:
 
-
-case 0xC0:
-
-
+# 1489
 c = (val / dpowers[prec]) % 10 + '0';
 
 break;
@@ -693,31 +492,19 @@ case 0x80:
 {
 unsigned char idx = (val / hexpowers[prec]) & 0xF;
 
-c = (flag & 0x20 ? "0123456789ABCDEF" : "0123456789abcdef")[idx];
+# 1506
+c = "0123456789abcdef"[idx];
 
-# 1508
 }
 
 break;
 
-# 1516
-case 0x40:
-
-c = ((val / octpowers[prec]) & 07) + '0';
-
-break;
-
-
+# 1523
 }
 (putch(c) );
 }
 
-
-if((flag & 0x08) && width > 0)
-do
-(putch(' ') );
-while(--width);
-
+# 1533
 }
 
 alldone:
