@@ -224,10 +224,10 @@ void interrupt isr(void){
                 curr_state = EMERGENCYSTOP;
                 break;
             case 127:   //KP_B
-                servo_rotate0(0);
+                servo_rotate0(1);
                 break;
             case 191:   //KP_C
-                servo_rotate0(120);
+                servo_rotate0(2);
                 break;
         }
         INT1IF = 0;
@@ -352,9 +352,6 @@ int dec_to_hex(int num) {                   //Convert decimal unsigned char to h
 }
 
 void date_time(void){
-    //Set correct TRISC bits for I2C
-//    TRISCbits.RC3 = 0;
-//    TRISCbits.RC4 = 0;
     //Reset RTC memory pointer 
     I2C_Master_Start(); //Start condition
     I2C_Master_Write(0b11010000); //7 bit RTC address + Write
@@ -380,9 +377,6 @@ void date_time(void){
 }
 
 void read_time(void){
-    //Set correct TRISC bits for I2C
-//    TRISCbits.RC3 = 0;
-//    TRISCbits.RC4 = 0;
     //Reset RTC memory pointer 
     I2C_Master_Start(); //Start condition
     I2C_Master_Write(0b11010000); //7 bit RTC address + Write
@@ -494,12 +488,12 @@ void emergencystop(void){
 void servo_rotate0(int degree){
     unsigned int i;
     unsigned int j;
-    int duty = ((degree+90)*5/90)+10;
+    int duty = degree;
     for (i=0; i<50; i++) {
         LATCbits.LATC0 = 1;
-        for(j=0; j<duty; j++) __delay_us(100);
+        for(j=0; j<duty; j++) __delay_ms(1);
         LATCbits.LATC0 = 0;
-        for(j=0; j<(200 - duty); j++) __delay_us(100);
+        for(j=0; j<(20 - duty); j++) __delay_ms(1);
     }
     return;
 }

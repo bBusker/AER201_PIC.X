@@ -4096,10 +4096,10 @@ lcdInst(0b00000001);
 curr_state = EMERGENCYSTOP;
 break;
 case 127:
-servo_rotate0(0);
+servo_rotate0(1);
 break;
 case 191:
-servo_rotate0(120);
+servo_rotate0(2);
 break;
 }
 INT1IF = 0;
@@ -4225,9 +4225,6 @@ return hexnum;
 
 void date_time(void){
 
-
-
-
 I2C_Master_Start();
 I2C_Master_Write(0b11010000);
 I2C_Master_Write(0x00);
@@ -4252,9 +4249,6 @@ return;
 }
 
 void read_time(void){
-
-
-
 
 I2C_Master_Start();
 I2C_Master_Write(0b11010000);
@@ -4366,12 +4360,12 @@ return;
 void servo_rotate0(int degree){
 unsigned int i;
 unsigned int j;
-int duty = ((degree+90)*5/90)+10;
+int duty = degree;
 for (i=0; i<50; i++) {
 LATCbits.LATC0 = 1;
-for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+for(j=0; j<duty; j++) _delay((unsigned long)((1)*(10000000/4000.0)));
 LATCbits.LATC0 = 0;
-for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+for(j=0; j<(20 - duty); j++) _delay((unsigned long)((1)*(10000000/4000.0)));
 }
 return;
 }

@@ -1,6 +1,6 @@
 
 Memory Summary:
-    Program space        used  2F50h ( 12112) of 10000h bytes   ( 18.5%)
+    Program space        used  2F2Ch ( 12076) of 10000h bytes   ( 18.4%)
     Data space           used    FAh (   250) of   F80h bytes   (  6.3%)
     Configuration bits   used     7h (     7) of     7h words   (100.0%)
     EEPROM space         used     0h (     0) of   400h bytes   (  0.0%)
