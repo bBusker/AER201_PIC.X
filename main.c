@@ -18,7 +18,7 @@ int dec_to_hex(int num);
 void date_time(void);
 void read_time(void);
 void bottle_count(void);
-void bottle_time(int time);
+void bottle_time(void);
 void standby(void);
 void operation(void);
 void operationend(void);
@@ -93,7 +93,7 @@ void main(void) {
     //1 = input
     TRISA = 0xFF;           //Set Port A as all input
     TRISB = 0xFF;           //Keypad
-    TRISC = 0b00011000;     //RC3 and RC4 for I2C
+    TRISC = 0x00;     
     TRISD = 0x00;           //All output mode for LCD
     TRISE = 0x00;    
 
@@ -106,7 +106,8 @@ void main(void) {
     ADCON0 = 0x00;          //Disable ADC
     ADCON1 = 0xFF;          //Set PORTB to be digital instead of analog default  
     
-    
+    //ei();                   //Global Interrupt Mask
+    GIE = 1;
     INT1IE = 1;             //Enable KP interrupts
     INT0IE = 0;             //Disable external interrupts
     INT2IE = 0;
@@ -151,7 +152,7 @@ void main(void) {
                 bottle_count();
                 break;
             case BOTTLETIME:
-                bottle_time(operation_time);
+                bottle_time();
                 break;
         }
         __delay_ms(200);
@@ -162,18 +163,19 @@ void main(void) {
 
 void interrupt isr(void){
     if (INT1IF) {
-        bottle_count_disp = -1;
         switch(PORTB){
             case 239:   //KP_#
+                bottle_count_disp = -1;
                 curr_state = STANDBY;
                 break;
             case 15:    //KP_1
-                PORTAbits.RA2 = 1; //Start centrifuge motor
+                LATAbits.LATA2 = 1; //Start centrifuge motor
                 INT0IE = 1;     //Enable external interrupts
                 INT2IE = 1;
                 TMR0IE = 1;     //Start timer with interrupts
                 TMR0ON = 1;
                 TMR0 = 0;
+                
                 read_time();
                 start_time[1] = time[1];
                 start_time[0] = time[0];
@@ -181,6 +183,7 @@ void interrupt isr(void){
                 bottlequeue_head = bottlequeue_tail = 0; //Initiate queue
                 
                 __lcd_clear();
+                bottle_count_disp = -1;
                 curr_state = OPERATION;
                 break;
             case 31:    //KP_2
@@ -190,34 +193,41 @@ void interrupt isr(void){
                 break;
             case 47:    //KP_3
                 operation_time = etime - stime;
+                bottle_count_disp = -1;
                 curr_state = BOTTLETIME;
                 break;
             case 63:    //KP_A
+                bottle_count_disp = -1;
                 curr_state = DATETIME;
                 break;
             case 79:    //KP_4
+                LATAbits.LATA2 = 0; //Stop centrifuge motor
+                INT0IE = 0;         //Disable external interrupts
+                INT2IE = 0;
+                TMR0IE = 0;         //Disable timer
+                TMR0ON = 0;
+                
                 read_time();
                 end_time[1] = time[1];
                 end_time[0] = time[0];
                 stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
                 etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
                 __lcd_clear();
+                bottle_count_disp = -1;
                 curr_state = OPERATIONEND;
                 break;
             case 207:   //KP_*
+                LATAbits.LATA2 = 0; //Stop centrifuge motor
+                di();               //Disable all interrupts
                 TMR0ON = 0;
-                INT0IE = 0;
                 __lcd_clear();
                 curr_state = EMERGENCYSTOP;
                 break;
             case 127:   //KP_B
-                servo_rotate0(1);
+                servo_rotate0(0);
                 break;
             case 191:   //KP_C
-                servo_rotate0(180);
-                break;
-            case 175:   //KP_9
-                read_colorsensor();
+                servo_rotate0(90);
                 break;
         }
         INT1IF = 0;
@@ -246,34 +256,42 @@ void interrupt isr(void){
                     servo_rotate0(0);
                     servo_rotate2(0);
                     yopcaplbl_count += 1;
+                    break;
                 case 1:
                     servo_rotate0(0);
                     servo_rotate2(0);
                     yopcap_count += 1;
+                    break;
                 case 2:
                     servo_rotate0(0);
                     servo_rotate2(120);
                     yoplbl_count += 1;
+                    break;
                 case 3:
                     servo_rotate0(0);
                     servo_rotate2(120);
                     yop_count += 1;
+                    break;
                 case 4:
                     servo_rotate0(120);
                     servo_rotate1(0);
                     eskacaplbl_count += 1;
+                    break;
                 case 5:
                     servo_rotate0(120);
                     servo_rotate1(0);
                     eskacap_count += 1;
+                    break;
                 case 6:
                     servo_rotate0(120);
                     servo_rotate1(120);
                     eskalbl_count += 1;
+                    break;
                 case 7:
                     servo_rotate0(120);
                     servo_rotate1(120);
                     eska_count += 1;
+                    break;
             }
         }
         INT2IF = 0;
@@ -283,6 +301,8 @@ void interrupt isr(void){
         read_time();
         end_time[1] = time[1];
         end_time[0] = time[0];
+        stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+        etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
         __lcd_clear();
         curr_state = OPERATIONEND;
         bottle_count_disp = -1;
@@ -331,6 +351,9 @@ int dec_to_hex(int num) {                   //Convert decimal unsigned char to h
 }
 
 void date_time(void){
+    //Set correct TRISC bits for I2C
+    TRISCbits.TRISC3 = 0;
+    TRISCbits.TRISC4 = 0;
     //Reset RTC memory pointer 
     I2C_Master_Start(); //Start condition
     I2C_Master_Write(0b11010000); //7 bit RTC address + Write
@@ -356,6 +379,9 @@ void date_time(void){
 }
 
 void read_time(void){
+    //Set correct TRISC bits for I2C
+    TRISCbits.TRISC3 = 0;
+    TRISCbits.TRISC4 = 0;
     //Reset RTC memory pointer 
     I2C_Master_Start(); //Start condition
     I2C_Master_Write(0b11010000); //7 bit RTC address + Write
@@ -379,7 +405,7 @@ void bottle_count(void){
             __lcd_home();
             printf("Bottle Count    ");
             __lcd_newline();
-            printf("Total: %d       ", bottle_count);
+            printf("Total: %d       ", total_bottle_count);
             break;
         case 1:
             __lcd_home();
@@ -415,11 +441,11 @@ void bottle_count(void){
     return;
 }
 
-void bottle_time(int time){
+void bottle_time(void){
     __lcd_home();
     printf("Total Operation       ");
     __lcd_newline();
-    printf("Time: %d s       ", time);
+    printf("Time: %d s       ", operation_time);
     return;
 }
 
@@ -467,11 +493,11 @@ void emergencystop(void){
 void servo_rotate0(int degree){
     unsigned int i;
     unsigned int j;
-    int duty = degree*10/90;
+    int duty = ((degree+90)*5/90)+10;
     for (i=0; i<50; i++) {
-        PORTCbits.RC0 = 1;
+        LATCbits.LATC0 = 1;
         for(j=0; j<duty; j++) __delay_us(100);
-        PORTCbits.RC0 = 0;
+        LATCbits.LATC0 = 0;
         for(j=0; j<(200 - duty); j++) __delay_us(100);
     }
     return;
@@ -480,11 +506,11 @@ void servo_rotate0(int degree){
 void servo_rotate1(int degree){
     unsigned int i;
     unsigned int j;
-    int duty = degree*10/90;
+    int duty = ((degree+90)*5/90)+10;
     for (i=0; i<50; i++) {
-        PORTCbits.RC1 = 1;
+        LATCbits.LATC1 = 1;
         for(j=0; j<duty; j++) __delay_us(100);
-        PORTCbits.RC1 = 0;
+        LATCbits.LATC1 = 0;
         for(j=0; j<(200 - duty); j++) __delay_us(100);
     }
     return;
@@ -493,17 +519,21 @@ void servo_rotate1(int degree){
 void servo_rotate2(int degree){
     unsigned int i;
     unsigned int j;
-    int duty = degree*10/90;
+    int duty = ((degree+90)*5/90)+10;
     for (i=0; i<50; i++) {
-        PORTCbits.RC2 = 1;
+        LATCbits.LATC2 = 1;
         for(j=0; j<duty; j++) __delay_us(100);
-        PORTCbits.RC2 = 0;
+        LATCbits.LATC2 = 0;
         for(j=0; j<(200 - duty); j++) __delay_us(100);
     }
     return;
 }
 
 void read_colorsensor(void){
+    //Set correct TRISC bits for TCS I2C
+    TRISCbits.TRISC3 = 1;
+    TRISCbits.TRISC4 = 1;
+    
     int color_low;
     int color_high;
     int color_comb;

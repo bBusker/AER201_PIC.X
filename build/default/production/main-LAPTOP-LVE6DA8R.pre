@@ -1,5 +1,5 @@
 
-# 1 "lcd.c"
+# 1 "main.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -3637,96 +3637,8 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-
-# 9 "configBits.h"
-#pragma config OSC = HS
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-
-#pragma config PWRT = OFF
-#pragma config BOREN = SBORDIS
-#pragma config BORV = 3
-
-
-#pragma config WDT = OFF
-#pragma config WDTPS = 32768
-
-
-#pragma config CCP2MX = PORTC
-#pragma config PBADEN = ON
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
-
-
-#pragma config STVREN = ON
-#pragma config LVP = OFF
-#pragma config XINST = OFF
-
-
-#pragma config CP0 = OFF
-#pragma config CP1 = OFF
-#pragma config CP2 = OFF
-#pragma config CP3 = OFF
-
-
-#pragma config CPB = OFF
-#pragma config CPD = OFF
-
-
-#pragma config WRT0 = OFF
-#pragma config WRT1 = OFF
-#pragma config WRT2 = OFF
-#pragma config WRT3 = OFF
-
-
-#pragma config WRTC = OFF
-#pragma config WRTB = OFF
-#pragma config WRTD = OFF
-
-
-#pragma config EBTR0 = OFF
-#pragma config EBTR1 = OFF
-#pragma config EBTR2 = OFF
-#pragma config EBTR3 = OFF
-
-
-#pragma config EBTRB = OFF
-
 # 4 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
 typedef unsigned size_t;
-
-# 14 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-# 34
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
 
 # 7 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdarg.h"
 typedef void * va_list[1];
@@ -3788,54 +3700,703 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
+# 7 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdlib.h"
+typedef unsigned short wchar_t;
+
+# 15
+typedef struct {
+int rem;
+int quot;
+} div_t;
+typedef struct {
+unsigned rem;
+unsigned quot;
+} udiv_t;
+typedef struct {
+long quot;
+long rem;
+} ldiv_t;
+typedef struct {
+unsigned long quot;
+unsigned long rem;
+} uldiv_t;
+
+# 53
+extern double atof(const char *);
+extern double strtod(const char *, const char **);
+extern int atoi(const char *);
+extern unsigned xtoi(const char *);
+extern long atol(const char *);
+extern long strtol(const char *, char **, int);
+
+extern int rand(void);
+extern void srand(unsigned int);
+extern void * calloc(size_t, size_t);
+extern div_t div(int numer, int denom);
+extern udiv_t udiv(unsigned numer, unsigned denom);
+extern ldiv_t ldiv(long numer, long denom);
+extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+extern unsigned int _rotl(unsigned int value, unsigned int shift);
+extern unsigned int _rotr(unsigned int value, unsigned int shift);
+
+
+
+
+extern void * malloc(size_t);
+extern void free(void *);
+extern void * realloc(void *, size_t);
+
+# 86
+extern int atexit(void (*)(void));
+extern char * getenv(const char *);
+extern char ** environ;
+extern int system(char *);
+extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+extern int abs(int);
+extern long labs(long);
+
+extern char * itoa(char * buf, int val, int base);
+extern char * utoa(char * buf, unsigned val, int base);
+
+
+
+
+extern char * ltoa(char * buf, long val, int base);
+extern char * ultoa(char * buf, unsigned long val, int base);
+
+extern char * ftoa(float f, int * status);
+
+# 30 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h"
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
+extern double atof(const char *);
+extern double sin(double) ;
+extern double cos(double) ;
+extern double tan(double) ;
+extern double asin(double) ;
+extern double acos(double) ;
+extern double atan(double);
+extern double atan2(double, double) ;
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double) ;
+extern double exp(double) ;
+extern double sinh(double) ;
+extern double cosh(double) ;
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
+
+
+# 9 "configBits.h"
+#pragma config OSC = HS
+#pragma config FCMEN = OFF
+#pragma config IESO = OFF
+
+
+#pragma config PWRT = OFF
+#pragma config BOREN = SBORDIS
+#pragma config BORV = 3
+
+
+#pragma config WDT = OFF
+#pragma config WDTPS = 32768
+
+
+#pragma config CCP2MX = PORTC
+#pragma config PBADEN = ON
+#pragma config LPT1OSC = OFF
+#pragma config MCLRE = ON
+
+
+#pragma config STVREN = ON
+#pragma config LVP = OFF
+#pragma config XINST = OFF
+
+
+#pragma config CP0 = OFF
+#pragma config CP1 = OFF
+#pragma config CP2 = OFF
+#pragma config CP3 = OFF
+
+
+#pragma config CPB = OFF
+#pragma config CPD = OFF
+
+
+#pragma config WRT0 = OFF
+#pragma config WRT1 = OFF
+#pragma config WRT2 = OFF
+#pragma config WRT3 = OFF
+
+
+#pragma config WRTC = OFF
+#pragma config WRTB = OFF
+#pragma config WRTD = OFF
+
+
+#pragma config EBTR0 = OFF
+#pragma config EBTR1 = OFF
+#pragma config EBTR2 = OFF
+#pragma config EBTR3 = OFF
+
+
+#pragma config EBTRB = OFF
+
+# 14 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+# 34
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
 # 11 "lcd.h"
 void lcdInst(char data);
 void lcdNibble(char data);
 void initLCD(void);
 
-# 14 "lcd.c"
-void initLCD(void) {
-_delay((unsigned long)((15)*(10000000/4000.0)));
-lcdInst(0b00110011);
-lcdInst(0b00110011);
-lcdInst(0b00110010);
-lcdInst(0b00101000);
-lcdInst(0b00001111);
-lcdInst(0b00000110);
+# 1 "I2C.h"
+void I2C_Master_Init(const unsigned long c);
+
+void I2C_Master_Write(unsigned d);
+unsigned char I2C_Master_Read(unsigned char a);
+
+# 16 "main.c"
+void set_time(void);
+int dec_to_hex(int num);
+void date_time(void);
+void read_time(void);
+void bottle_count(void);
+void bottle_time(int time);
+void standby(void);
+void operation(void);
+void operationend(void);
+void emergencystop(void);
+void servo_rotate0(int degree);
+void servo_rotate1(int degree);
+void servo_rotate2(int degree);
+void read_colorsensor(void);
+
+const char keys[] = "123A456B789C*0#D";
+const char timeset[7] = { 0x50,
+0x35,
+0x21,
+0x08,
+0x05,
+0x02,
+0x17};
+
+enum state {
+STANDBY,
+EMERGENCYSTOP,
+OPERATION,
+OPERATIONEND,
+DATETIME,
+BOTTLECOUNT,
+BOTTLETIME
+};
+enum state curr_state;
+
+unsigned char time[7];
+unsigned char start_time[2];
+unsigned char end_time[2];
+int stime;
+int etime;
+int operation_time;
+
+
+int bottle_count_disp = -1;
+int yopcaplbl_count = 0;
+int yopcap_count = 0;
+int yoplbl_count = 0;
+int yop_count = 0;
+int eskacaplbl_count = 0;
+int eskacap_count = 0;
+int eskalbl_count = 0;
+int eska_count = 0;
+int total_bottle_count = 0;
+
+int operation_disp = 0;
+int color[4];
+
+# 82
+int bottlequeue[11];
+int bottlequeue_tail;
+int bottlequeue_head;
+int nodedata;
+
+void main(void) {
+
+# 94
+TRISA = 0xFF;
+TRISB = 0xFF;
+TRISC = 0b00011000;
+TRISD = 0x00;
+TRISE = 0x00;
+
+LATA = 0x00;
+LATB = 0x00;
+LATC = 0x00;
+LATD = 0x00;
+LATE = 0x00;
+
+ADCON0 = 0x00;
+ADCON1 = 0xFF;
+
+
+INT1IE = 1;
+INT0IE = 0;
+INT2IE = 0;
+
+nRBPU = 0;
+
+initLCD();
+I2C_Master_Init(10000);
+I2C_ColorSens_Init();
+
+
+TMR0 = 0;
+T08BIT = 0;
+T0CS = 0;
+PSA = 0;
+T0PS2 = 1;
+T0PS1 = 1;
+T0PS0 = 1;
+
+
+
+curr_state = STANDBY;
+
+while(1){
+switch(curr_state){
+case STANDBY:
+standby();
+break;
+case EMERGENCYSTOP:
+emergencystop();
+break;
+case OPERATION:
+operation();
+break;
+case OPERATIONEND:
+operationend();
+break;
+case DATETIME:
+date_time();
+break;
+case BOTTLECOUNT:
+bottle_count();
+break;
+case BOTTLETIME:
+bottle_time(operation_time);
+break;
+}
+_delay((unsigned long)((200)*(10000000/4000.0)));
+}
+
+return;
+}
+
+void interrupt isr(void){
+if (INT1IF) {
+bottle_count_disp = -1;
+switch(PORTB){
+case 239:
+curr_state = STANDBY;
+break;
+case 15:
+PORTAbits.RA2 = 1;
+INT0IE = 1;
+INT2IE = 1;
+TMR0IE = 1;
+TMR0ON = 1;
+TMR0 = 0;
+read_time();
+start_time[1] = time[1];
+start_time[0] = time[0];
+
+bottlequeue_head = bottlequeue_tail = 0;
+
 lcdInst(0b00000001);
-_delay((unsigned long)((15)*(10000000/4000.0)));
+curr_state = OPERATION;
+break;
+case 31:
+bottle_count_disp += 1;
+curr_state = BOTTLECOUNT;
+while(PORTB == 31){}
+break;
+case 47:
+operation_time = etime - stime;
+curr_state = BOTTLETIME;
+break;
+case 63:
+curr_state = DATETIME;
+break;
+case 79:
+read_time();
+end_time[1] = time[1];
+end_time[0] = time[0];
+stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
+lcdInst(0b00000001);
+curr_state = OPERATIONEND;
+break;
+case 207:
+TMR0ON = 0;
+INT0IE = 0;
+lcdInst(0b00000001);
+curr_state = EMERGENCYSTOP;
+break;
+case 127:
+servo_rotate0(1);
+break;
+case 191:
+servo_rotate0(180);
+break;
+case 175:
+read_colorsensor();
+break;
+}
+INT1IF = 0;
+}
+else if (INT0IF){
+if(PORTAbits.RA3){
+read_colorsensor();
+if (color[0]>10000 && color[1]>10000 && color[2]>10000 && color[3]>10000) bottlequeue[bottlequeue_tail] = 2;
+else if (color[0]<3000 && color[1]<1100 && color[2]<1100 && color[3]<1200) bottlequeue[bottlequeue_tail] = 4;
+else if (color[0]<5200 && color[1]<3200 && color[3]<1400 && color[3]<1300) bottlequeue[bottlequeue_tail] = 0;
+else if (color[0]>10000 && color[1]>3600 && color[2]>3900 && color[3]>3400) bottlequeue[bottlequeue_tail] = 6;
+_delay((unsigned long)((150)*(10000000/4000.0)));
+read_colorsensor();
+if (color[0]>1000) bottlequeue[bottlequeue_tail] += 1;
+bottlequeue_tail += 1;
+}
+INT0IF = 0;
+}
+else if (INT2IF){
+if(PORTAbits.RA4){
+nodedata = bottlequeue[bottlequeue_head];
+bottlequeue_head += 1;
+total_bottle_count += 1;
+switch (nodedata){
+case 0:
+servo_rotate0(0);
+servo_rotate2(0);
+yopcaplbl_count += 1;
+case 1:
+servo_rotate0(0);
+servo_rotate2(0);
+yopcap_count += 1;
+case 2:
+servo_rotate0(0);
+servo_rotate2(120);
+yoplbl_count += 1;
+case 3:
+servo_rotate0(0);
+servo_rotate2(120);
+yop_count += 1;
+case 4:
+servo_rotate0(120);
+servo_rotate1(0);
+eskacaplbl_count += 1;
+case 5:
+servo_rotate0(120);
+servo_rotate1(0);
+eskacap_count += 1;
+case 6:
+servo_rotate0(120);
+servo_rotate1(120);
+eskalbl_count += 1;
+case 7:
+servo_rotate0(120);
+servo_rotate1(120);
+eska_count += 1;
+}
+}
+INT2IF = 0;
+}
+else if (TMR0IF){
+TMR0ON = 0;
+read_time();
+end_time[1] = time[1];
+end_time[0] = time[0];
+lcdInst(0b00000001);
+curr_state = OPERATIONEND;
+bottle_count_disp = -1;
+TMR0IF = 0;
+}
+else{
+while(1){
+lcdInst(0b10000000);
+printf("bad interrupt");
+for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
+}
+}
+return;
 }
 
-void lcdInst(char data) {
-LATDbits.LATD2 = 0;
-lcdNibble(data);
+void standby(void){
+lcdInst(0b10000000);
+printf("standby         ");
+lcdInst(0b11000000);
+printf("PORTB: %d", PORTB);
+return;
 }
 
-void putch(char data){
-LATDbits.LATD2 = 1;
-lcdNibble(data);
+void set_time(void){
+I2C_Master_Start();
+I2C_Master_Write(0b11010000);
+I2C_Master_Write(0x00);
+for(char i=0; i<7; i++){
+I2C_Master_Write(timeset[i]);
+}
+I2C_Master_Stop();
 }
 
-void lcdNibble(char data){
+int dec_to_hex(int num) {
+int i = 0, quotient = num, temp, hexnum = 0;
 
-char temp = data & 0xF0;
-LATD = LATD & 0x0F;
-LATD = temp | LATD;
+while (quotient != 0) {
+temp = quotient % 16;
 
-LATDbits.LATD3 = 0;
-_delay((unsigned long)((30)*(10000000/4000000.0)));
-LATDbits.LATD3 = 1;
-_delay((unsigned long)((30)*(10000000/4000000.0)));
+hexnum += temp*pow(10,i);
 
-data = data << 4;
-
-temp = data & 0xF0;
-LATD = LATD & 0x0F;
-LATD = temp | LATD;
-
-LATDbits.LATD3 = 0;
-_delay((unsigned long)((30)*(10000000/4000000.0)));
-LATDbits.LATD3 = 1;
-_delay((unsigned long)((30)*(10000000/4000000.0)));
+quotient = quotient / 16;
+i += 1;
+}
+return hexnum;
 }
 
+void date_time(void){
+
+I2C_Master_Start();
+I2C_Master_Write(0b11010000);
+I2C_Master_Write(0x00);
+I2C_Master_Stop();
+
+
+I2C_Master_Start();
+I2C_Master_Write(0b11010001);
+for(unsigned char i=0;i<0x06;i++){
+time[i] = I2C_Master_Read(1);
+}
+time[6] = I2C_Master_Read(0);
+I2C_Master_Stop();
+
+
+lcdInst(0b10000000);
+printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);
+lcdInst(0b11000000);
+printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);
+
+return;
+}
+
+void read_time(void){
+
+I2C_Master_Start();
+I2C_Master_Write(0b11010000);
+I2C_Master_Write(0x00);
+I2C_Master_Stop();
+
+
+I2C_Master_Start();
+I2C_Master_Write(0b11010001);
+for(unsigned char i=0;i<0x06;i++){
+time[i] = I2C_Master_Read(1);
+}
+time[6] = I2C_Master_Read(0);
+I2C_Master_Stop();
+return;
+}
+
+void bottle_count(void){
+switch(bottle_count_disp % 5){
+case 0:
+lcdInst(0b10000000);
+printf("Bottle Count    ");
+lcdInst(0b11000000);
+printf("Total: %d       ", bottle_count);
+break;
+case 1:
+lcdInst(0b10000000);
+printf("YOP+CAP+LBL: %d  ", yopcaplbl_count);
+lcdInst(0b11000000);
+printf("YOP+CAP-LBL: %d  ", yopcap_count);
+break;
+case 2:
+lcdInst(0b10000000);
+printf("YOP-CAP+LBL: %d  ", yoplbl_count);
+lcdInst(0b11000000);
+printf("YOP-CAP-LBL: %d  ", yop_count);
+break;
+case 3:
+lcdInst(0b10000000);
+printf("ESKA+CAP+LBL: %d ", eskacaplbl_count);
+lcdInst(0b11000000);
+printf("ESKA+CAP-LBL: %d ", eskacap_count);
+break;
+case 4:
+lcdInst(0b10000000);
+printf("ESKA-CAP+LBL: %d ", eskalbl_count);
+lcdInst(0b11000000);
+printf("ESKA-CAP-LBL: %d ", eska_count);
+break;
+default:
+while(1){
+lcdInst(0b10000000);
+printf("ERROR: %d", bottle_count_disp);
+}
+break;
+}
+return;
+}
+
+void bottle_time(int time){
+lcdInst(0b10000000);
+printf("Total Operation       ");
+lcdInst(0b11000000);
+printf("Time: %d s       ", time);
+return;
+}
+
+void operation(void){
+switch(operation_disp){
+case 0:
+lcdInst(0b10000000);
+printf("Running~              ");
+operation_disp = 1;
+break;
+case 1:
+lcdInst(0b10000000);
+printf("Running~~              ");
+operation_disp = 2;
+break;
+case 2:
+lcdInst(0b10000000);
+printf("Running~~~              ");
+operation_disp = 0;
+break;
+}
+
+lcdInst(0b11000000);
+read_colorsensor();
+printf("C: %d                ", color[0]);
+return;
+}
+
+void operationend(void){
+lcdInst(0b10000000);
+printf("Operation Done!");
+return;
+}
+
+void emergencystop(void){
+(INTCONbits.GIE = 0);
+PORTAbits.RA2 = 0;
+lcdInst(0b00000001);
+lcdInst(0b10000000);
+printf("EMERGENCY STOP");
+while(1){}
+return;
+}
+
+void servo_rotate0(int degree){
+unsigned int i;
+unsigned int j;
+int duty = degree*10/90;
+for (i=0; i<50; i++) {
+PORTCbits.RC0 = 1;
+for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+PORTCbits.RC0 = 0;
+for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+}
+return;
+}
+
+void servo_rotate1(int degree){
+unsigned int i;
+unsigned int j;
+int duty = degree*10/90;
+for (i=0; i<50; i++) {
+PORTCbits.RC1 = 1;
+for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+PORTCbits.RC1 = 0;
+for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+}
+return;
+}
+
+void servo_rotate2(int degree){
+unsigned int i;
+unsigned int j;
+int duty = degree*10/90;
+for (i=0; i<50; i++) {
+PORTCbits.RC2 = 1;
+for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+PORTCbits.RC2 = 0;
+for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+}
+return;
+}
+
+void read_colorsensor(void){
+int color_low;
+int color_high;
+int color_comb;
+int i;
+
+
+I2C_Master_Start();
+I2C_Master_Write(0b01010010);
+I2C_Master_Write(0b10110100);
+I2C_Master_Start();
+I2C_Master_Write(0b01010011);
+for(i=0; i<3; i++){
+color_low = I2C_Master_Read(1);
+color_high = I2C_Master_Read(1);
+color_comb = (color_high << 8)|(color_low & 0xFF);
+color[i] = color_comb;
+}
+color_low = I2C_Master_Read(1);
+color_high = I2C_Master_Read(0);
+color_comb = (color_high << 8)|(color_low & 0xFF);
+color[3] = color_comb;
+I2C_Master_Stop();
+return;
+}
