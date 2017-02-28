@@ -9,6 +9,7 @@
       <itemPath>constants.h</itemPath>
       <itemPath>lcd.h</itemPath>
       <itemPath>macros.h</itemPath>
+      <itemPath>queue.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -147,6 +148,10 @@
         <property key="stack-size-main" value="auto"/>
         <property key="stack-type" value="compiled"/>
       </XC8-config-global>
+      <item path="queue.c" ex="true" overriding="false">
+      </item>
+      <item path="queue.h" ex="true" overriding="false">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>

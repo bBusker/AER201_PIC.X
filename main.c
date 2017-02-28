@@ -54,10 +54,35 @@ unsigned char end_time[2];
 int stime;
 int etime;
 int operation_time;
-//char *ptr;
-int bottle_count_disp = -1;
-int operation_disp = 0;
+
+
+int bottle_count_disp = -1; //Data for bottle display screen
+int yopcaplbl_count = 0;
+int yopcap_count = 0;
+int yoplbl_count = 0;
+int yop_count = 0;
+int eskacaplbl_count = 0;
+int eskacap_count = 0;
+int eskalbl_count = 0;
+int eska_count = 0;
+int total_bottle_count = 0;
+
+int operation_disp = 0; //Data for operation running animation
 int color[4];       //Stores TCS data in form clear, red, green, blue
+
+
+//For queue       0 = YOP + CAP + LBL
+//                1 = YOP + CAP - LBL
+//                2 = YOP - CAP + LBL
+//                3 = YOP - CAP - LBL
+//                4 = ESKA + CAP + LBL
+//                5 = ESKA + CAP - LBL
+//                6 = ESKA - CAP + LBL
+//                7 = ESKA - CAP - LBL
+int bottlequeue[11];
+int bottlequeue_tail;
+int bottlequeue_head;
+int nodedata;
 
 void main(void) {
     
@@ -84,6 +109,7 @@ void main(void) {
     
     INT1IE = 1;             //Enable KP interrupts
     INT0IE = 0;             //Disable external interrupts
+    INT2IE = 0;
     
     nRBPU = 0;
     
@@ -102,8 +128,6 @@ void main(void) {
 
     //</editor-fold>
     
-    ei();
-
     curr_state = STANDBY;
     
     while(1){
@@ -144,13 +168,18 @@ void interrupt isr(void){
                 curr_state = STANDBY;
                 break;
             case 15:    //KP_1
+                PORTAbits.RA2 = 1; //Start centrifuge motor
                 INT0IE = 1;     //Enable external interrupts
+                INT2IE = 1;
                 TMR0IE = 1;     //Start timer with interrupts
                 TMR0ON = 1;
                 TMR0 = 0;
                 read_time();
                 start_time[1] = time[1];
                 start_time[0] = time[0];
+                
+                bottlequeue_head = bottlequeue_tail = 0; //Initiate queue
+                
                 __lcd_clear();
                 curr_state = OPERATION;
                 break;
@@ -193,14 +222,61 @@ void interrupt isr(void){
         }
         INT1IF = 0;
     }
-    else if (INT0IF){
+    else if (INT0IF){   //Interrupt for first laser sensor at RB0
         if(PORTAbits.RA3){
             read_colorsensor();
+            if (color[0]>10000 && color[1]>10000 && color[2]>10000 && color[3]>10000) bottlequeue[bottlequeue_tail] = 2;
+            else if (color[0]<3000 && color[1]<1100 && color[2]<1100 && color[3]<1200) bottlequeue[bottlequeue_tail] = 4;
+            else if (color[0]<5200 && color[1]<3200 && color[3]<1400 && color[3]<1300) bottlequeue[bottlequeue_tail] = 0;
+            else if (color[0]>10000 && color[1]>3600 && color[2]>3900 && color[3]>3400) bottlequeue[bottlequeue_tail] = 6;
+            __delay_ms(150);
+            read_colorsensor();
+            if (color[0]>1000) bottlequeue[bottlequeue_tail] += 1;
+            bottlequeue_tail += 1;
         }
-        else if(PORTAbits.RA4){
-             
-       }
         INT0IF = 0;
+    }
+    else if (INT2IF){   //Interrupt for second laser sensor at RB2
+        if(PORTAbits.RA4){
+            nodedata = bottlequeue[bottlequeue_head];
+            bottlequeue_head += 1;
+            total_bottle_count += 1;
+            switch (nodedata){
+                case 0:
+                    servo_rotate0(0);
+                    servo_rotate2(0);
+                    yopcaplbl_count += 1;
+                case 1:
+                    servo_rotate0(0);
+                    servo_rotate2(0);
+                    yopcap_count += 1;
+                case 2:
+                    servo_rotate0(0);
+                    servo_rotate2(120);
+                    yoplbl_count += 1;
+                case 3:
+                    servo_rotate0(0);
+                    servo_rotate2(120);
+                    yop_count += 1;
+                case 4:
+                    servo_rotate0(120);
+                    servo_rotate1(0);
+                    eskacaplbl_count += 1;
+                case 5:
+                    servo_rotate0(120);
+                    servo_rotate1(0);
+                    eskacap_count += 1;
+                case 6:
+                    servo_rotate0(120);
+                    servo_rotate1(120);
+                    eskalbl_count += 1;
+                case 7:
+                    servo_rotate0(120);
+                    servo_rotate1(120);
+                    eska_count += 1;
+            }
+        }
+        INT2IF = 0;
     }
     else if (TMR0IF){
         TMR0ON = 0;
@@ -303,31 +379,31 @@ void bottle_count(void){
             __lcd_home();
             printf("Bottle Count    ");
             __lcd_newline();
-            printf("Total: 10       ");
+            printf("Total: %d       ", bottle_count);
             break;
         case 1:
             __lcd_home();
-            printf("YOP+CAP+LBL: 3  ");
+            printf("YOP+CAP+LBL: %d  ", yopcaplbl_count);
             __lcd_newline();
-            printf("YOP+CAP-LBL: 1  ");
+            printf("YOP+CAP-LBL: %d  ", yopcap_count);
             break;
         case 2:
             __lcd_home();
-            printf("YOP-CAP+LBL: 1  ");
+            printf("YOP-CAP+LBL: %d  ", yoplbl_count);
             __lcd_newline();
-            printf("YOP-CAP-LBL: 0  ");
+            printf("YOP-CAP-LBL: %d  ", yop_count);
             break;
         case 3:
             __lcd_home();
-            printf("ESKA+CAP+LBL: 1 ");
+            printf("ESKA+CAP+LBL: %d ", eskacaplbl_count);
             __lcd_newline();
-            printf("ESKA+CAP-LBL: 1 ");
+            printf("ESKA+CAP-LBL: %d ", eskacap_count);
             break;
         case 4:
             __lcd_home();
-            printf("ESKA-CAP+LBL: 1 ");
+            printf("ESKA-CAP+LBL: %d ", eskalbl_count);
             __lcd_newline();
-            printf("ESKA-CAP-LBL: 2 ");
+            printf("ESKA-CAP-LBL: %d ", eska_count);
             break;
         default:
             while(1){
@@ -379,9 +455,11 @@ void operationend(void){
 }
 
 void emergencystop(void){
+    di();
+    PORTAbits.RA2 = 0;
+    __lcd_clear();
     __lcd_home();
     printf("EMERGENCY STOP");
-    di();
     while(1){}
     return;
 }
