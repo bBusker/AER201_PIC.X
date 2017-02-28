@@ -91,9 +91,9 @@ void main(void) {
     //TRIS Sets Input/Output
     //0 = output
     //1 = input
-    TRISA = 0xFF;           //Set Port A as all input
+    TRISA = 0b11111011;           //Set Port A as all input
     TRISB = 0xFF;           //Keypad
-    TRISC = 0x00;     
+    TRISC = 0x00;           //RC3 and RC4 output for I2C (?)
     TRISD = 0x00;           //All output mode for LCD
     TRISE = 0x00;    
 
@@ -227,7 +227,7 @@ void interrupt isr(void){
                 servo_rotate0(0);
                 break;
             case 191:   //KP_C
-                servo_rotate0(90);
+                servo_rotate0(120);
                 break;
         }
         INT1IF = 0;
@@ -297,6 +297,7 @@ void interrupt isr(void){
         INT2IF = 0;
     }
     else if (TMR0IF){
+        LATAbits.LATA2 = 0;
         TMR0ON = 0;
         read_time();
         end_time[1] = time[1];
@@ -352,8 +353,8 @@ int dec_to_hex(int num) {                   //Convert decimal unsigned char to h
 
 void date_time(void){
     //Set correct TRISC bits for I2C
-    TRISCbits.TRISC3 = 0;
-    TRISCbits.TRISC4 = 0;
+//    TRISCbits.RC3 = 0;
+//    TRISCbits.RC4 = 0;
     //Reset RTC memory pointer 
     I2C_Master_Start(); //Start condition
     I2C_Master_Write(0b11010000); //7 bit RTC address + Write
@@ -380,8 +381,8 @@ void date_time(void){
 
 void read_time(void){
     //Set correct TRISC bits for I2C
-    TRISCbits.TRISC3 = 0;
-    TRISCbits.TRISC4 = 0;
+//    TRISCbits.RC3 = 0;
+//    TRISCbits.RC4 = 0;
     //Reset RTC memory pointer 
     I2C_Master_Start(); //Start condition
     I2C_Master_Write(0b11010000); //7 bit RTC address + Write
@@ -470,7 +471,7 @@ void operation(void){
     
     __lcd_newline();
     read_colorsensor();
-    printf("C: %d                ", color[0]);
+    printf("R%d G%d B%d                ", color[1], color[2], color[3]);
     return;
 }
 
@@ -531,8 +532,8 @@ void servo_rotate2(int degree){
 
 void read_colorsensor(void){
     //Set correct TRISC bits for TCS I2C
-    TRISCbits.TRISC3 = 1;
-    TRISCbits.TRISC4 = 1;
+//    TRISCbits.RC3 = 1;
+//    TRISCbits.RC4 = 1;
     
     int color_low;
     int color_high;
