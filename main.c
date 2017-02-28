@@ -53,10 +53,11 @@ unsigned char start_time[2];
 unsigned char end_time[2];
 int stime;
 int etime;
-char *ptr;
+int operation_time;
+//char *ptr;
 int bottle_count_disp = -1;
 int operation_disp = 0;
-int color[4];                           //Stores TCS data in form clear, red, green, blue
+int color[4];       //Stores TCS data in form clear, red, green, blue
 
 void main(void) {
     
@@ -65,8 +66,8 @@ void main(void) {
     //TRIS Sets Input/Output
     //0 = output
     //1 = input
-    TRISA = 0xFF;           // Set Port A as all input
-    TRISB = 0xFF; 
+    TRISA = 0xFF;           //Set Port A as all input
+    TRISB = 0xFF;           //Keypad
     TRISC = 0b00011000;     //RC3 and RC4 for I2C
     TRISD = 0x00;           //All output mode for LCD
     TRISE = 0x00;    
@@ -80,7 +81,9 @@ void main(void) {
     ADCON0 = 0x00;          //Disable ADC
     ADCON1 = 0xFF;          //Set PORTB to be digital instead of analog default  
     
-    INT1IE = 1;
+    
+    INT1IE = 1;             //Enable KP interrupts
+    INT0IE = 0;             //Disable external interrupts
     
     nRBPU = 0;
     
@@ -124,7 +127,7 @@ void main(void) {
                 bottle_count();
                 break;
             case BOTTLETIME:
-                bottle_time(etime - stime);
+                bottle_time(operation_time);
                 break;
         }
         __delay_ms(200);
@@ -135,13 +138,14 @@ void main(void) {
 
 void interrupt isr(void){
     if (INT1IF) {
+        bottle_count_disp = -1;
         switch(PORTB){
             case 239:   //KP_#
                 curr_state = STANDBY;
-                bottle_count_disp = 0;
                 break;
             case 15:    //KP_1
-                TMR0IE = 1;
+                INT0IE = 1;     //Enable external interrupts
+                TMR0IE = 1;     //Start timer with interrupts
                 TMR0ON = 1;
                 TMR0 = 0;
                 read_time();
@@ -149,36 +153,33 @@ void interrupt isr(void){
                 start_time[0] = time[0];
                 __lcd_clear();
                 curr_state = OPERATION;
-                bottle_count_disp = -1;
                 break;
             case 31:    //KP_2
-                curr_state = BOTTLECOUNT;
                 bottle_count_disp += 1;
+                curr_state = BOTTLECOUNT;
                 while(PORTB == 31){}
                 break;
             case 47:    //KP_3
-                stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
-                etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
+                operation_time = etime - stime;
                 curr_state = BOTTLETIME;
-                bottle_count_disp = -1;
                 break;
             case 63:    //KP_A
                 curr_state = DATETIME;
-                bottle_count_disp = -1;
                 break;
             case 79:    //KP_4
                 read_time();
                 end_time[1] = time[1];
                 end_time[0] = time[0];
+                stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+                etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
                 __lcd_clear();
                 curr_state = OPERATIONEND;
-                bottle_count_disp = -1;
                 break;
             case 207:   //KP_*
+                TMR0ON = 0;
+                INT0IE = 0;
                 __lcd_clear();
                 curr_state = EMERGENCYSTOP;
-                bottle_count_disp = -1;
-                TMR0ON = 0;
                 break;
             case 127:   //KP_B
                 servo_rotate0(1);
@@ -192,7 +193,16 @@ void interrupt isr(void){
         }
         INT1IF = 0;
     }
-    else if (TMR0IF) {
+    else if (INT0IF){
+        if(PORTAbits.RA3){
+            read_colorsensor();
+        }
+        else if(PORTAbits.RA4){
+             
+       }
+        INT0IF = 0;
+    }
+    else if (TMR0IF){
         TMR0ON = 0;
         read_time();
         end_time[1] = time[1];
@@ -342,9 +352,6 @@ void operation(void){
         case 0:
             __lcd_home();
             printf("Running~              ");
-            __lcd_newline();
-            read_colorsensor();
-            printf("C: %d                ", color[0]);
             operation_disp = 1;
             break;
         case 1:
@@ -358,6 +365,10 @@ void operation(void){
             operation_disp = 0;
             break;
     }
+    
+    __lcd_newline();
+    read_colorsensor();
+    printf("C: %d                ", color[0]);
     return;
 }
 
