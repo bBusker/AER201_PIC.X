@@ -4088,6 +4088,13 @@ lcdInst(0b00000001);
 bottle_count_disp = -1;
 curr_state = OPERATIONEND;
 break;
+case 95:
+read_colorsensor();
+lcdInst(0b10000000);
+printf("C%u R%u                ", color[0], color[1]);
+lcdInst(0b11000000);
+printf("G%u B%u                ", color[2], color[3]);
+break;
 case 207:
 LATAbits.LATA2 = 0;
 (INTCONbits.GIE = 0);
@@ -4193,9 +4200,9 @@ return;
 
 void standby(void){
 lcdInst(0b10000000);
-printf("standby         ");
-lcdInst(0b11000000);
-printf("PORTB: %d", PORTB);
+
+
+
 return;
 }
 
@@ -4401,8 +4408,8 @@ void read_colorsensor(void){
 
 
 
-int color_low;
-int color_high;
+unsigned char color_low;
+unsigned char color_high;
 int color_comb;
 int i;
 
@@ -4410,17 +4417,17 @@ int i;
 I2C_Master_Start();
 I2C_Master_Write(0b01010010);
 I2C_Master_Write(0b10110100);
-I2C_Master_Start();
+I2C_Master_RepeatedStart();
 I2C_Master_Write(0b01010011);
 for(i=0; i<3; i++){
 color_low = I2C_Master_Read(1);
 color_high = I2C_Master_Read(1);
-color_comb = (color_high << 8)|(color_low & 0xFF);
+color_comb = (color_high << 8)|(color_low);
 color[i] = color_comb;
 }
 color_low = I2C_Master_Read(1);
 color_high = I2C_Master_Read(0);
-color_comb = (color_high << 8)|(color_low & 0xFF);
+color_comb = (color_high << 8)|(color_low);
 color[3] = color_comb;
 I2C_Master_Stop();
 return;

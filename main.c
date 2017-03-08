@@ -67,8 +67,8 @@ int eskalbl_count = 0;
 int eska_count = 0;
 int total_bottle_count = 0;
 
-int operation_disp = 0; //Data for operation running animation
-int color[4];       //Stores TCS data in form clear, red, green, blue
+int operation_disp = 0;         //Data for operation running animation
+int color[4];          //Stores TCS data in form clear, red, green, blue
 
 
 //For queue       0 = YOP + CAP + LBL
@@ -216,6 +216,13 @@ void interrupt isr(void){
                 bottle_count_disp = -1;
                 curr_state = OPERATIONEND;
                 break;
+            case 95:    //KP_5 -- TESTING
+                read_colorsensor();
+                __lcd_home();
+                printf("C%u R%u                ", color[0], color[1]);
+                __lcd_newline();
+                printf("G%u B%u                ", color[2], color[3]);
+                break;
             case 207:   //KP_*
                 LATAbits.LATA2 = 0; //Stop centrifuge motor
                 di();               //Disable all interrupts
@@ -321,9 +328,9 @@ void interrupt isr(void){
 
 void standby(void){
     __lcd_home();
-    printf("standby         ");
-    __lcd_newline();
-    printf("PORTB: %d", PORTB);
+    //printf("standby         ");
+    //__lcd_newline();
+    //printf("PORTB: %d", PORTB);
     return;
 }
 
@@ -529,8 +536,8 @@ void read_colorsensor(void){
 //    TRISCbits.RC3 = 1;
 //    TRISCbits.RC4 = 1;
     
-    int color_low;
-    int color_high;
+    unsigned char color_low;
+    unsigned char color_high;
     int color_comb;
     int i;
     
@@ -538,17 +545,17 @@ void read_colorsensor(void){
     I2C_Master_Start();
     I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
     I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
-    I2C_Master_Start();             //Repeated start command for combined I2C
+    I2C_Master_RepeatedStart();             //Repeated start command for combined I2C
     I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
     for(i=0; i<3; i++){
         color_low = I2C_Master_Read(1); //Reading with acknowledge, continuous
         color_high = I2C_Master_Read(1); 
-        color_comb = (color_high << 8)|(color_low & 0xFF);
+        color_comb = (color_high << 8)|(color_low);
         color[i] = color_comb;
     }
     color_low = I2C_Master_Read(1); 
     color_high = I2C_Master_Read(0);    //Final read, no ack 
-    color_comb = (color_high << 8)|(color_low & 0xFF);
+    color_comb = (color_high << 8)|(color_low);
     color[3] = color_comb;
     I2C_Master_Stop();              //Stop condition
     return;
