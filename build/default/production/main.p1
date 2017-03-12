@@ -3,7 +3,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [c E3251 0 1 2 3 4 5 6 .. ]
 [n E3251 state STANDBY EMERGENCYSTOP OPERATION OPERATIONEND DATETIME BOTTLECOUNT BOTTLETIME  ]
 [p mainexit ]
-"1367 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"1367 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "1588
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
@@ -43,7 +43,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _I2C_Master_Init `(v ~T0 @X0 0 ef1`Cul ]
 "119 main.c
 [v _I2C_ColorSens_Init `(i ~T0 @X0 0 ef ]
-"5857 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"5857 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TMR0 `Vus ~T0 @X0 0 e@4054 ]
 "7500
 [v _T08BIT `Vb ~T0 @X0 0 e@32430 ]
@@ -72,10 +72,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "21
 [v _bottle_time `(v ~T0 @X0 0 ef ]
 [v F2878 `(v ~T0 @X0 1 tf1`ul ]
-"159 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
+"159 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
-"6898 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"6898 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _INT1IF `Vb ~T0 @X0 0 e@32640 ]
 "878
 [s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -96,15 +96,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _read_time `(v ~T0 @X0 0 ef ]
 "11 lcd.h
 [v _lcdInst `(v ~T0 @X0 0 ef1`uc ]
-"185 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"185 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
 "17 main.c
 [v _dec_to_hex `(i ~T0 @X0 0 ef1`i ]
 "29
 [v _read_colorsensor `(v ~T0 @X0 0 ef ]
-"195 C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
+"195 D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"6272 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"6272 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [s S258 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S258 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
 "6282
@@ -120,7 +120,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS257 ~T0 @X0 0 e@4082 ]
 "26 main.c
 [v _servo_rotate0 `(v ~T0 @X0 0 ef1`i ]
-"6888 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"6888 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _INT0IF `Vb ~T0 @X0 0 e@32657 ]
 "55
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -157,7 +157,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _servo_rotate2 `(v ~T0 @X0 0 ef1`i ]
 "27
 [v _servo_rotate1 `(v ~T0 @X0 0 ef1`i ]
-"7564 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"7564 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TMR0IF `Vb ~T0 @X0 0 e@32658 ]
 "338 main.c
 [v _I2C_Master_Start `(i ~T0 @X0 0 ef ]
@@ -165,11 +165,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _I2C_Master_Write `(v ~T0 @X0 0 ef1`ui ]
 "344 main.c
 [v _I2C_Master_Stop `(i ~T0 @X0 0 ef ]
-"45 C:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h
+"45 D:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h
 [v _pow `(d ~T0 @X0 0 ef2`d`d ]
 "4 I2C.h
 [v _I2C_Master_Read `(uc ~T0 @X0 0 ef1`uc ]
-"1100 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"1100 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [s S44 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S44 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
 "1110
@@ -180,13 +180,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S43 . . . ]
 "1121
 [v _LATCbits `VS43 ~T0 @X0 0 e@3979 ]
-"548 main.c
-[v _I2C_Master_RepeatedStart `(i ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic18f4620.h: 49: extern volatile unsigned char PORTA @ 0xF80;
-"51 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"51 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [; ;pic18f4620.h: 51: asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
 [; ;pic18f4620.h: 54: typedef union {
@@ -4774,76 +4772,81 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _read_colorsensor ]
 [f ]
 "539
-[v _color_low `uc ~T0 @X0 1 a ]
+[v _color_low `uc ~T0 @X0 -> 4 `i a ]
 "540
-[v _color_high `uc ~T0 @X0 1 a ]
+[v _color_high `uc ~T0 @X0 -> 4 `i a ]
 "541
-[v _color_comb `i ~T0 @X0 1 a ]
-"542
 [v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 539: unsigned char color_low;
-[; ;main.c: 540: unsigned char color_high;
-[; ;main.c: 541: int color_comb;
-[; ;main.c: 542: int i;
-[; ;main.c: 545: I2C_Master_Start();
-"545
+[; ;main.c: 539: unsigned char color_low[4];
+[; ;main.c: 540: unsigned char color_high[4];
+[; ;main.c: 541: int i;
+[; ;main.c: 544: I2C_Master_Start();
+"544
 [e ( _I2C_Master_Start ..  ]
-[; ;main.c: 546: I2C_Master_Write(0b01010010);
-"546
+[; ;main.c: 545: I2C_Master_Write(0b01010010);
+"545
 [e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;main.c: 547: I2C_Master_Write(0b10110100);
-"547
+[; ;main.c: 546: I2C_Master_Write(0b10110100);
+"546
 [e ( _I2C_Master_Write (1 -> -> 180 `i `ui ]
-[; ;main.c: 548: I2C_Master_RepeatedStart();
+[; ;main.c: 547: I2C_Master_Start();
+"547
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 548: I2C_Master_Write(0b01010011);
 "548
-[e ( _I2C_Master_RepeatedStart ..  ]
-[; ;main.c: 549: I2C_Master_Write(0b01010011);
-"549
 [e ( _I2C_Master_Write (1 -> -> 83 `i `ui ]
-[; ;main.c: 550: for(i=0; i<3; i++){
-"550
+[; ;main.c: 549: for(i=0; i<3; i++){
+"549
 {
 [e = _i -> 0 `i ]
 [e $ < _i -> 3 `i 411  ]
 [e $U 412  ]
 [e :U 411 ]
 {
-[; ;main.c: 551: color_low = I2C_Master_Read(1);
-"551
-[e = _color_low ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-[; ;main.c: 552: color_high = I2C_Master_Read(1);
-"552
-[e = _color_high ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-[; ;main.c: 553: color_comb = (color_high << 8)|(color_low);
-"553
-[e = _color_comb | << -> _color_high `i -> 8 `i -> _color_low `i ]
-[; ;main.c: 554: color[i] = color_comb;
-"554
-[e = *U + &U _color * -> -> _i `ui `ux -> -> # *U &U _color `ui `ux _color_comb ]
-"555
-}
+[; ;main.c: 550: color_low[i] = I2C_Master_Read(1);
 "550
+[e = *U + &U _color_low * -> -> _i `ui `ux -> -> # *U &U _color_low `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+[; ;main.c: 551: color_high[i] = I2C_Master_Read(1);
+"551
+[e = *U + &U _color_high * -> -> _i `ui `ux -> -> # *U &U _color_high `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+"552
+}
+"549
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 3 `i 411  ]
 [e :U 412 ]
-"555
+"552
 }
-[; ;main.c: 555: }
-[; ;main.c: 556: color_low = I2C_Master_Read(1);
-"556
-[e = _color_low ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-[; ;main.c: 557: color_high = I2C_Master_Read(0);
-"557
-[e = _color_high ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
-[; ;main.c: 558: color_comb = (color_high << 8)|(color_low);
-"558
-[e = _color_comb | << -> _color_high `i -> 8 `i -> _color_low `i ]
-[; ;main.c: 559: color[3] = color_comb;
-"559
-[e = *U + &U _color * -> -> -> 3 `i `ui `ux -> -> # *U &U _color `ui `ux _color_comb ]
-[; ;main.c: 560: I2C_Master_Stop();
-"560
+[; ;main.c: 552: }
+[; ;main.c: 553: color_low[3] = I2C_Master_Read(1);
+"553
+[e = *U + &U _color_low * -> -> -> 3 `i `ui `ux -> -> # *U &U _color_low `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+[; ;main.c: 554: color_high[3] = I2C_Master_Read(0);
+"554
+[e = *U + &U _color_high * -> -> -> 3 `i `ui `ux -> -> # *U &U _color_high `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
+[; ;main.c: 555: I2C_Master_Stop();
+"555
 [e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 557: for(i=0; i<4; i++){
+"557
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 4 `i 414  ]
+[e $U 415  ]
+[e :U 414 ]
+{
+[; ;main.c: 558: color[i] = (color_high[i] << 8)|(color_low[i]);
+"558
+[e = *U + &U _color * -> -> _i `ui `ux -> -> # *U &U _color `ui `ux | << -> *U + &U _color_high * -> -> _i `ui `ux -> -> # *U &U _color_high `ui `ux `i -> 8 `i -> *U + &U _color_low * -> -> _i `ui `ux -> -> # *U &U _color_low `ui `ux `i ]
+"559
+}
+"557
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 4 `i 414  ]
+[e :U 415 ]
+"559
+}
+[; ;main.c: 559: }
 [; ;main.c: 561: return;
 "561
 [e $UE 410  ]

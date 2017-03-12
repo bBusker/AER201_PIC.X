@@ -536,27 +536,27 @@ void read_colorsensor(void){
 //    TRISCbits.RC3 = 1;
 //    TRISCbits.RC4 = 1;
     
-    unsigned char color_low;
-    unsigned char color_high;
-    int color_comb;
+    unsigned char color_low[4];
+    unsigned char color_high[4];
     int i;
     
     //Reading Color
     I2C_Master_Start();
     I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
     I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
-    I2C_Master_RepeatedStart();             //Repeated start command for combined I2C
+    I2C_Master_Start();     //Repeated start command for combined I2C
     I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
     for(i=0; i<3; i++){
-        color_low = I2C_Master_Read(1); //Reading with acknowledge, continuous
-        color_high = I2C_Master_Read(1); 
-        color_comb = (color_high << 8)|(color_low);
-        color[i] = color_comb;
+        color_low[i] = I2C_Master_Read(1); //Reading with acknowledge, continuous
+        color_high[i] = I2C_Master_Read(1); 
     }
-    color_low = I2C_Master_Read(1); 
-    color_high = I2C_Master_Read(0);    //Final read, no ack 
-    color_comb = (color_high << 8)|(color_low);
-    color[3] = color_comb;
+    color_low[3] = I2C_Master_Read(1); 
+    color_high[3] = I2C_Master_Read(0);    //Final read, no ack 
     I2C_Master_Stop();              //Stop condition
+    
+    for(i=0; i<4; i++){
+        color[i] = (color_high[i] << 8)|(color_low[i]);
+    }
+    
     return;
 }
