@@ -14,6 +14,9 @@
 #define	LCD_PORT    LATD   //On LATD[4,7] to be specific
 #define LCD_DELAY   30
 
+//PIC Constants
+#define TCSLOWINT   3000
+#define TCSHIGHINT  2000
 
 #endif	/* CONSTANTS_H */
 

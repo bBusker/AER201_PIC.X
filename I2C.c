@@ -9,6 +9,7 @@
 #include <xc.h>
 #include "I2C.h"
 #include "configBits.h"
+#include "constants.h"
 
 void I2C_Master_Init(const unsigned long c)
 {
@@ -54,14 +55,37 @@ void I2C_ColorSens_Init(void){
     I2C_Master_Start();             //Write Start condition
     I2C_Master_Write(0b01010010);   //7bit address for TCS (0x29) + Write
     I2C_Master_Write(0b10000000);   //Write to cmdreg + access enable reg
-    I2C_Master_Write(0b00000011);   //Start RGBC and POWER 
+    I2C_Master_Write(0b00010011);   //Start RGBC and POWER, enable interrupts
     I2C_Master_Stop();
+    
     I2C_Master_Start();             //Write Start condition
     I2C_Master_Write(0b01010010);   //7bit address for TCS (0x29) + Write
     I2C_Master_Write(0b10001111);   //Write to cmdreg + access control reg
     I2C_Master_Write(0b00000010);   //Set analog gain to 16
     I2C_Master_Stop();
     
+    I2C_Master_Start();             //Write Start condition
+    I2C_Master_Write(0b01010010);   //7bit address for TCS (0x29) + Write 
+    I2C_Master_Write(0b10100100);   //Write to cmdreg + access & increment interrupt threshold reg
+    I2C_Master_Write(TCSLOWINT & 0xFF);   //Write low and high interrupt values
+    I2C_Master_Write(TCSLOWINT >> 8);
+    I2C_Master_Write(TCSHIGHINT & 0xFF);
+    I2C_Master_Write(TCSHIGHINT >> 8);
+    I2C_Master_Stop();
+    
+    I2C_Master_Start();             //Write Start condition
+    I2C_Master_Write(0b01010010);   //7bit address for TCS (0x29) + Write
+    I2C_Master_Write(0b10001100);   //Write to cmdreg + access persistence reg
+    I2C_Master_Write(0b00000001);   //persistence of 1 value out of range
+    I2C_Master_Stop();
+    
+}
+
+void I2C_ColorSens_ClearInt(void){
+    I2C_Master_Start();             //Write Start condition
+    I2C_Master_Write(0b01010010);   //7bit address for TCS (0x29) + Write
+    I2C_Master_Write(0b11100110);   //Write to cmdreg + special func clear int
+    I2C_Master_Stop();
 }
 
 unsigned char I2C_Master_Read(unsigned char a)
