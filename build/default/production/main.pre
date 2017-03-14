@@ -3982,7 +3982,8 @@ ADCON1 = 0xFF;
 GIE = 1;
 INT1IE = 1;
 INT0IE = 0;
-INT2IE = 0;
+INTEDG2 = 1;
+INT2IE = 1;
 
 nRBPU = 0;
 
@@ -4039,10 +4040,11 @@ switch(PORTB){
 case 239:
 bottle_count_disp = -1;
 curr_state = STANDBY;
+I2C_ColorSens_Init();
 break;
 case 15:
 LATAbits.LATA2 = 1;
-INT0IE = 1;
+INT0IE = 0;
 INT2IE = 1;
 TMR0IE = 1;
 TMR0ON = 1;
@@ -4095,6 +4097,16 @@ printf("C%u R%u                ", color[0], color[1]);
 lcdInst(0b11000000);
 printf("G%u B%u                ", color[2], color[3]);
 break;
+case 91:
+read_colorsensor();
+lcdInst(0b10000000);
+printf("C%u R%u                ", color[0], color[1]);
+lcdInst(0b11000000);
+printf("G%u B%u                ", color[2], color[3]);
+break;
+case 235:
+I2C_ColorSens_ClearInt();
+break;
 case 207:
 LATAbits.LATA2 = 0;
 (INTCONbits.GIE = 0);
@@ -4111,70 +4123,17 @@ break;
 }
 INT1IF = 0;
 }
-else if (INT0IF){
-if(PORTAbits.RA3){
-read_colorsensor();
-if (color[0]>10000 && color[1]>10000 && color[2]>10000 && color[3]>10000) bottlequeue[bottlequeue_tail] = 2;
-else if (color[0]<3000 && color[1]<1100 && color[2]<1100 && color[3]<1200) bottlequeue[bottlequeue_tail] = 4;
-else if (color[0]<5200 && color[1]<3200 && color[3]<1400 && color[3]<1300) bottlequeue[bottlequeue_tail] = 0;
-else if (color[0]>10000 && color[1]>3600 && color[2]>3900 && color[3]>3400) bottlequeue[bottlequeue_tail] = 6;
-_delay((unsigned long)((150)*(10000000/4000.0)));
-read_colorsensor();
-if (color[0]>1000) bottlequeue[bottlequeue_tail] += 1;
-bottlequeue_tail += 1;
-}
-INT0IF = 0;
-}
 else if (INT2IF){
-if(PORTAbits.RA4){
-nodedata = bottlequeue[bottlequeue_head];
-bottlequeue_head += 1;
-total_bottle_count += 1;
-switch (nodedata){
-case 0:
-servo_rotate0(0);
-servo_rotate2(0);
-yopcaplbl_count += 1;
-break;
-case 1:
-servo_rotate0(0);
-servo_rotate2(0);
-yopcap_count += 1;
-break;
-case 2:
-servo_rotate0(0);
-servo_rotate2(120);
-yoplbl_count += 1;
-break;
-case 3:
-servo_rotate0(0);
-servo_rotate2(120);
-yop_count += 1;
-break;
-case 4:
-servo_rotate0(120);
-servo_rotate1(0);
-eskacaplbl_count += 1;
-break;
-case 5:
-servo_rotate0(120);
-servo_rotate1(0);
-eskacap_count += 1;
-break;
-case 6:
-servo_rotate0(120);
-servo_rotate1(120);
-eskalbl_count += 1;
-break;
-case 7:
-servo_rotate0(120);
-servo_rotate1(120);
-eska_count += 1;
-break;
-}
-}
+int tempcase;
+lcdInst(0b10000000);
+printf("INT2IF");
+
+# 297
 INT2IF = 0;
+
 }
+
+# 350
 else if (TMR0IF){
 LATAbits.LATA2 = 0;
 TMR0ON = 0;
@@ -4201,8 +4160,8 @@ return;
 void standby(void){
 lcdInst(0b10000000);
 
-
-
+lcdInst(0b11000000);
+printf("PORTB: %d", PORTB);
 return;
 }
 

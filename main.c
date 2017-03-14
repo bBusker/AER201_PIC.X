@@ -110,7 +110,8 @@ void main(void) {
     GIE = 1;
     INT1IE = 1;             //Enable KP interrupts
     INT0IE = 0;             //Disable external interrupts
-    INT2IE = 0;
+    INTEDG2 = 1;            // FOR TESTING
+    INT2IE = 1;
     
     nRBPU = 0;
     
@@ -167,11 +168,12 @@ void interrupt isr(void){
             case 239:   //KP_#
                 bottle_count_disp = -1;
                 curr_state = STANDBY;
+                I2C_ColorSens_Init();
                 break;
             case 15:    //KP_1
                 LATAbits.LATA2 = 1; //Start centrifuge motor
-                INT0IE = 1;     //Enable external interrupts
-                INT2IE = 1;
+                INT0IE = 0;     //Enable external interrupts -- 0 FOR TESTING
+                INT2IE = 1;     //Enable label detection interrupt -- 1 FOR TESTING
                 TMR0IE = 1;     //Start timer with interrupts
                 TMR0ON = 1;
                 TMR0 = 0;
@@ -223,6 +225,16 @@ void interrupt isr(void){
                 __lcd_newline();
                 printf("G%u B%u                ", color[2], color[3]);
                 break;
+            case 91:    //KP_5 -- TESTING
+                read_colorsensor();
+                __lcd_home();
+                printf("C%u R%u                ", color[0], color[1]);
+                __lcd_newline();
+                printf("G%u B%u                ", color[2], color[3]);
+                break;
+            case 235:   //KP_# -- TESTING
+                I2C_ColorSens_ClearInt();
+                break;
             case 207:   //KP_*
                 LATAbits.LATA2 = 0; //Stop centrifuge motor
                 di();               //Disable all interrupts
@@ -239,70 +251,102 @@ void interrupt isr(void){
         }
         INT1IF = 0;
     }
-    else if (INT0IF){   //Interrupt for first laser sensor at RB0
-        if(PORTAbits.RA3){
-            read_colorsensor();
-            if (color[0]>10000 && color[1]>10000 && color[2]>10000 && color[3]>10000) bottlequeue[bottlequeue_tail] = 2;
-            else if (color[0]<3000 && color[1]<1100 && color[2]<1100 && color[3]<1200) bottlequeue[bottlequeue_tail] = 4;
-            else if (color[0]<5200 && color[1]<3200 && color[3]<1400 && color[3]<1300) bottlequeue[bottlequeue_tail] = 0;
-            else if (color[0]>10000 && color[1]>3600 && color[2]>3900 && color[3]>3400) bottlequeue[bottlequeue_tail] = 6;
-            __delay_ms(150);
-            read_colorsensor();
-            if (color[0]>1000) bottlequeue[bottlequeue_tail] += 1;
-            bottlequeue_tail += 1;
-        }
-        INT0IF = 0;
-    }
-    else if (INT2IF){   //Interrupt for second laser sensor at RB2
-        if(PORTAbits.RA4){
-            nodedata = bottlequeue[bottlequeue_head];
-            bottlequeue_head += 1;
-            total_bottle_count += 1;
-            switch (nodedata){
-                case 0:
-                    servo_rotate0(0);
-                    servo_rotate2(0);
-                    yopcaplbl_count += 1;
-                    break;
-                case 1:
-                    servo_rotate0(0);
-                    servo_rotate2(0);
-                    yopcap_count += 1;
-                    break;
-                case 2:
-                    servo_rotate0(0);
-                    servo_rotate2(120);
-                    yoplbl_count += 1;
-                    break;
-                case 3:
-                    servo_rotate0(0);
-                    servo_rotate2(120);
-                    yop_count += 1;
-                    break;
-                case 4:
-                    servo_rotate0(120);
-                    servo_rotate1(0);
-                    eskacaplbl_count += 1;
-                    break;
-                case 5:
-                    servo_rotate0(120);
-                    servo_rotate1(0);
-                    eskacap_count += 1;
-                    break;
-                case 6:
-                    servo_rotate0(120);
-                    servo_rotate1(120);
-                    eskalbl_count += 1;
-                    break;
-                case 7:
-                    servo_rotate0(120);
-                    servo_rotate1(120);
-                    eska_count += 1;
-                    break;
-            }
-        }
+    else if (INT2IF){   //Temp using int2 b/c int0 was not working
+        int tempcase;
+        __lcd_home();
+        printf("INT2IF");
+//        read_colorsensor();
+//        if (color[0]>10000 && color[1]>10000 && color[2]>10000 && color[3]>10000) tempcase = 2;
+//        else if (color[0]<3000 && color[1]<1100 && color[2]<1100 && color[3]<1200) tempcase = 4;
+//        else if (color[0]<5200 && color[1]<3200 && color[3]<1400 && color[3]<1300) tempcase = 0;
+//        else if (color[0]>10000 && color[1]>3600 && color[2]>3900 && color[3]>3400) tempcase = 6;
+////        if(PORTAbits.RA3){
+////            read_colorsensor();
+////            if (color[0]>10000 && color[1]>10000 && color[2]>10000 && color[3]>10000) bottlequeue[bottlequeue_tail] = 2;
+////            else if (color[0]<3000 && color[1]<1100 && color[2]<1100 && color[3]<1200) bottlequeue[bottlequeue_tail] = 4;
+////            else if (color[0]<5200 && color[1]<3200 && color[3]<1400 && color[3]<1300) bottlequeue[bottlequeue_tail] = 0;
+////            else if (color[0]>10000 && color[1]>3600 && color[2]>3900 && color[3]>3400) bottlequeue[bottlequeue_tail] = 6;
+////            __delay_ms(150);
+////            read_colorsensor();
+////            if (color[0]>1000) bottlequeue[bottlequeue_tail] += 1;
+////            bottlequeue_tail += 1;
+////        }
+//        total_bottle_count += 1;
+//        switch (tempcase){
+//            case 0:
+//                servo_rotate0(0);
+//                servo_rotate2(0);
+//                yopcaplbl_count += 1;
+//                break;
+//            case 2:
+//                servo_rotate0(0);
+//                servo_rotate2(120);
+//                yoplbl_count += 1;
+//                break;
+//            case 4:
+//                servo_rotate0(120);
+//                servo_rotate1(0);
+//                eskacaplbl_count += 1;
+//                break;
+//            case 6:
+//                servo_rotate0(120);
+//                servo_rotate1(120);
+//                eskalbl_count += 1;
+//                break;
+//        }
         INT2IF = 0;
+        //I2C_ColorSens_ClearInt();
     }
+//    else if (INT2IF){   //Interrupt for second laser sensor at RB2
+//        if(PORTAbits.RA4){
+//            nodedata = bottlequeue[bottlequeue_head];
+//            bottlequeue_head += 1;
+//            total_bottle_count += 1;
+//            switch (nodedata){
+//                case 0:
+//                    servo_rotate0(0);
+//                    servo_rotate2(0);
+//                    yopcaplbl_count += 1;
+//                    break;
+//                case 1:
+//                    servo_rotate0(0);
+//                    servo_rotate2(0);
+//                    yopcap_count += 1;
+//                    break;
+//                case 2:
+//                    servo_rotate0(0);
+//                    servo_rotate2(120);
+//                    yoplbl_count += 1;
+//                    break;
+//                case 3:
+//                    servo_rotate0(0);
+//                    servo_rotate2(120);
+//                    yop_count += 1;
+//                    break;
+//                case 4:
+//                    servo_rotate0(120);
+//                    servo_rotate1(0);
+//                    eskacaplbl_count += 1;
+//                    break;
+//                case 5:
+//                    servo_rotate0(120);
+//                    servo_rotate1(0);
+//                    eskacap_count += 1;
+//                    break;
+//                case 6:
+//                    servo_rotate0(120);
+//                    servo_rotate1(120);
+//                    eskalbl_count += 1;
+//                    break;
+//                case 7:
+//                    servo_rotate0(120);
+//                    servo_rotate1(120);
+//                    eska_count += 1;
+//                    break;
+//            }
+//        }
+//        INT2IF = 0;
+//    }
     else if (TMR0IF){
         LATAbits.LATA2 = 0;
         TMR0ON = 0;
@@ -329,8 +373,8 @@ void interrupt isr(void){
 void standby(void){
     __lcd_home();
     //printf("standby         ");
-    //__lcd_newline();
-    //printf("PORTB: %d", PORTB);
+    __lcd_newline();
+    printf("PORTB: %d", PORTB);
     return;
 }
 

@@ -15,8 +15,8 @@
 #define LCD_DELAY   30
 
 //PIC Constants
-#define TCSLOWINT   3000
-#define TCSHIGHINT  2000
+#define TCSLOWINT   10000
+#define TCSHIGHINT  15000
 
 #endif	/* CONSTANTS_H */
 

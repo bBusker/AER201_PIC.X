@@ -3779,22 +3779,46 @@ void I2C_ColorSens_Init(void){
 I2C_Master_Start();
 I2C_Master_Write(0b01010010);
 I2C_Master_Write(0b10000000);
+I2C_Master_Write(0b00000001);
+I2C_Master_Stop();
+
+_delay((unsigned long)((3)*(10000000/4000.0)));
+
+I2C_Master_Start();
+I2C_Master_Write(0b01010010);
+I2C_Master_Write(0b10000000);
 I2C_Master_Write(0b00010011);
 I2C_Master_Stop();
+
 I2C_Master_Start();
 I2C_Master_Write(0b01010010);
 I2C_Master_Write(0b10001111);
 I2C_Master_Write(0b00000010);
 I2C_Master_Stop();
+
 I2C_Master_Start();
 I2C_Master_Write(0b01010010);
 I2C_Master_Write(0b10100100);
-I2C_Master_Write(3000 & 0xFF);
-I2C_Master_Write(3000 >> 8);
-I2C_Master_Write(2000 & 0xFF);
-I2C_Master_Write(2000 >> 8);
+I2C_Master_Write(0x00);
+I2C_Master_Write(0x00);
+I2C_Master_Write(0x00);
+I2C_Master_Write(0b01001010);
 I2C_Master_Stop();
 
+I2C_Master_Start();
+I2C_Master_Write(0b01010010);
+I2C_Master_Write(0b10001100);
+I2C_Master_Write(0b00000001);
+I2C_Master_Stop();
+
+}
+
+void I2C_ColorSens_ClearInt(void){
+I2C_Master_Start();
+I2C_Master_Write(0b01010010);
+I2C_Master_Write(0b11100110);
+I2C_Master_Write(0b11100110);
+I2C_Master_Stop();
 }
 
 unsigned char I2C_Master_Read(unsigned char a)
