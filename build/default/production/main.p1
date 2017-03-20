@@ -3,7 +3,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [c E3251 0 1 2 3 4 5 6 .. ]
 [n E3251 state STANDBY EMERGENCYSTOP OPERATION OPERATIONEND DATETIME BOTTLECOUNT BOTTLETIME  ]
 [p mainexit ]
-"1367 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"1367 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "1588
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
@@ -33,8 +33,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INT1IE `Vb ~T0 @X0 0 e@32643 ]
 "6886
 [v _INT0IE `Vb ~T0 @X0 0 e@32660 ]
-"6922
-[v _INTEDG2 `Vb ~T0 @X0 0 e@32652 ]
 "6910
 [v _INT2IE `Vb ~T0 @X0 0 e@32644 ]
 "7772
@@ -43,9 +41,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _initLCD `(v ~T0 @X0 0 ef ]
 "1 I2C.h
 [v _I2C_Master_Init `(v ~T0 @X0 0 ef1`Cul ]
-"120 main.c
+"123 main.c
 [v _I2C_ColorSens_Init `(i ~T0 @X0 0 ef ]
-"5857 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"5857 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TMR0 `Vus ~T0 @X0 0 e@4054 ]
 "7500
 [v _T08BIT `Vb ~T0 @X0 0 e@32430 ]
@@ -74,10 +72,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "21
 [v _bottle_time `(v ~T0 @X0 0 ef ]
 [v F2878 `(v ~T0 @X0 1 tf1`ul ]
-"159 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
+"159 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
-"6898 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"6898 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _INT1IF `Vb ~T0 @X0 0 e@32640 ]
 "878
 [s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -98,17 +96,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _read_time `(v ~T0 @X0 0 ef ]
 "11 lcd.h
 [v _lcdInst `(v ~T0 @X0 0 ef1`uc ]
-"185 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"185 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
 "17 main.c
 [v _dec_to_hex `(i ~T0 @X0 0 ef1`i ]
 "29
 [v _read_colorsensor `(v ~T0 @X0 0 ef ]
-"195 D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
+"195 C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"236 main.c
-[v _I2C_ColorSens_ClearInt `(i ~T0 @X0 0 ef ]
-"6272 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"6272 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [s S258 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S258 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
 "6282
@@ -124,21 +120,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS257 ~T0 @X0 0 e@4082 ]
 "26 main.c
 [v _servo_rotate0 `(v ~T0 @X0 0 ef1`i ]
-"6912 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
-[v _INT2IF `Vb ~T0 @X0 0 e@32641 ]
-"7564
+"7564 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TMR0IF `Vb ~T0 @X0 0 e@32658 ]
-"382 main.c
+"406 main.c
 [v _I2C_Master_Start `(i ~T0 @X0 0 ef ]
 "3 I2C.h
 [v _I2C_Master_Write `(v ~T0 @X0 0 ef1`ui ]
-"388 main.c
+"412 main.c
 [v _I2C_Master_Stop `(i ~T0 @X0 0 ef ]
-"45 D:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h
+"45 C:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h
 [v _pow `(d ~T0 @X0 0 ef2`d`d ]
 "4 I2C.h
 [v _I2C_Master_Read `(uc ~T0 @X0 0 ef1`uc ]
-"55 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"55 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
 "65
@@ -182,7 +176,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic18f4620.h: 49: extern volatile unsigned char PORTA @ 0xF80;
-"51 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"51 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [; ;pic18f4620.h: 51: asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
 [; ;pic18f4620.h: 54: typedef union {
@@ -3239,174 +3233,180 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _nodedata `i ~T0 @X0 1 e ]
 [; ;main.c: 85: int nodedata;
 "87
+[v _testint `i ~T0 @X0 -> 2 `i e ]
+[; ;main.c: 87: int testint[2];
+"88
+[v _testflag `i ~T0 @X0 1 e ]
+[i _testflag
+-> 0 `i
+]
+[; ;main.c: 88: int testflag = 0;
+"90
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 87: void main(void) {
+[; ;main.c: 90: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 94: TRISA = 0b11111011;
-"94
-[e = _TRISA -> -> 251 `i `uc ]
-[; ;main.c: 95: TRISB = 0xFF;
-"95
-[e = _TRISB -> -> 255 `i `uc ]
-[; ;main.c: 96: TRISC = 0x00;
-"96
-[e = _TRISC -> -> 0 `i `uc ]
-[; ;main.c: 97: TRISD = 0x00;
+[; ;main.c: 97: TRISA = 0b11111011;
 "97
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;main.c: 98: TRISE = 0x00;
+[e = _TRISA -> -> 251 `i `uc ]
+[; ;main.c: 98: TRISB = 0xFF;
 "98
-[e = _TRISE -> -> 0 `i `uc ]
-[; ;main.c: 100: LATA = 0x00;
+[e = _TRISB -> -> 255 `i `uc ]
+[; ;main.c: 99: TRISC = 0x00;
+"99
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;main.c: 100: TRISD = 0x00;
 "100
-[e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 101: LATB = 0x00;
+[e = _TRISD -> -> 0 `i `uc ]
+[; ;main.c: 101: TRISE = 0x00;
 "101
-[e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 102: LATC = 0x00;
-"102
-[e = _LATC -> -> 0 `i `uc ]
-[; ;main.c: 103: LATD = 0x00;
+[e = _TRISE -> -> 0 `i `uc ]
+[; ;main.c: 103: LATA = 0x00;
 "103
-[e = _LATD -> -> 0 `i `uc ]
-[; ;main.c: 104: LATE = 0x00;
+[e = _LATA -> -> 0 `i `uc ]
+[; ;main.c: 104: LATB = 0x00;
 "104
-[e = _LATE -> -> 0 `i `uc ]
-[; ;main.c: 106: ADCON0 = 0x00;
+[e = _LATB -> -> 0 `i `uc ]
+[; ;main.c: 105: LATC = 0x00;
+"105
+[e = _LATC -> -> 0 `i `uc ]
+[; ;main.c: 106: LATD = 0x00;
 "106
-[e = _ADCON0 -> -> 0 `i `uc ]
-[; ;main.c: 107: ADCON1 = 0xFF;
+[e = _LATD -> -> 0 `i `uc ]
+[; ;main.c: 107: LATE = 0x00;
 "107
-[e = _ADCON1 -> -> 255 `i `uc ]
-[; ;main.c: 110: GIE = 1;
+[e = _LATE -> -> 0 `i `uc ]
+[; ;main.c: 109: ADCON0 = 0x00;
+"109
+[e = _ADCON0 -> -> 0 `i `uc ]
+[; ;main.c: 110: ADCON1 = 0xFF;
 "110
-[e = _GIE -> -> 1 `i `b ]
-[; ;main.c: 111: INT1IE = 1;
-"111
-[e = _INT1IE -> -> 1 `i `b ]
-[; ;main.c: 112: INT0IE = 0;
-"112
-[e = _INT0IE -> -> 0 `i `b ]
-[; ;main.c: 113: INTEDG2 = 1;
+[e = _ADCON1 -> -> 255 `i `uc ]
+[; ;main.c: 113: GIE = 1;
 "113
-[e = _INTEDG2 -> -> 1 `i `b ]
-[; ;main.c: 114: INT2IE = 1;
+[e = _GIE -> -> 1 `i `b ]
+[; ;main.c: 114: INT1IE = 1;
 "114
-[e = _INT2IE -> -> 1 `i `b ]
-[; ;main.c: 116: nRBPU = 0;
-"116
-[e = _nRBPU -> -> 0 `i `b ]
-[; ;main.c: 118: initLCD();
-"118
-[e ( _initLCD ..  ]
-[; ;main.c: 119: I2C_Master_Init(10000);
+[e = _INT1IE -> -> 1 `i `b ]
+[; ;main.c: 115: INT0IE = 0;
+"115
+[e = _INT0IE -> -> 0 `i `b ]
+[; ;main.c: 117: INT2IE = 0;
+"117
+[e = _INT2IE -> -> 0 `i `b ]
+[; ;main.c: 119: nRBPU = 0;
 "119
+[e = _nRBPU -> -> 0 `i `b ]
+[; ;main.c: 121: initLCD();
+"121
+[e ( _initLCD ..  ]
+[; ;main.c: 122: I2C_Master_Init(10000);
+"122
 [e ( _I2C_Master_Init (1 -> -> -> 10000 `i `l `ul ]
-[; ;main.c: 120: I2C_ColorSens_Init();
-"120
-[e ( _I2C_ColorSens_Init ..  ]
-[; ;main.c: 123: TMR0 = 0;
+[; ;main.c: 123: I2C_ColorSens_Init();
 "123
-[e = _TMR0 -> -> 0 `i `us ]
-[; ;main.c: 124: T08BIT = 0;
-"124
-[e = _T08BIT -> -> 0 `i `b ]
-[; ;main.c: 125: T0CS = 0;
-"125
-[e = _T0CS -> -> 0 `i `b ]
-[; ;main.c: 126: PSA = 0;
+[e ( _I2C_ColorSens_Init ..  ]
+[; ;main.c: 126: TMR0 = 0;
 "126
-[e = _PSA -> -> 0 `i `b ]
-[; ;main.c: 127: T0PS2 = 1;
+[e = _TMR0 -> -> 0 `i `us ]
+[; ;main.c: 127: T08BIT = 0;
 "127
-[e = _T0PS2 -> -> 1 `i `b ]
-[; ;main.c: 128: T0PS1 = 1;
+[e = _T08BIT -> -> 0 `i `b ]
+[; ;main.c: 128: T0CS = 0;
 "128
-[e = _T0PS1 -> -> 1 `i `b ]
-[; ;main.c: 129: T0PS0 = 1;
+[e = _T0CS -> -> 0 `i `b ]
+[; ;main.c: 129: PSA = 0;
 "129
+[e = _PSA -> -> 0 `i `b ]
+[; ;main.c: 130: T0PS2 = 1;
+"130
+[e = _T0PS2 -> -> 1 `i `b ]
+[; ;main.c: 131: T0PS1 = 1;
+"131
+[e = _T0PS1 -> -> 1 `i `b ]
+[; ;main.c: 132: T0PS0 = 1;
+"132
 [e = _T0PS0 -> -> 1 `i `b ]
-[; ;main.c: 133: curr_state = STANDBY;
-"133
+[; ;main.c: 136: curr_state = STANDBY;
+"136
 [e = _curr_state . `E3251 0 ]
-[; ;main.c: 135: while(1){
-"135
+[; ;main.c: 138: while(1){
+"138
 [e :U 272 ]
 {
-[; ;main.c: 136: switch(curr_state){
-"136
+[; ;main.c: 139: switch(curr_state){
+"139
 [e $U 275  ]
 {
-[; ;main.c: 137: case STANDBY:
-"137
-[e :U 276 ]
-[; ;main.c: 138: standby();
-"138
-[e ( _standby ..  ]
-[; ;main.c: 139: break;
-"139
-[e $U 274  ]
-[; ;main.c: 140: case EMERGENCYSTOP:
+[; ;main.c: 140: case STANDBY:
 "140
-[e :U 277 ]
-[; ;main.c: 141: emergencystop();
+[e :U 276 ]
+[; ;main.c: 141: standby();
 "141
-[e ( _emergencystop ..  ]
+[e ( _standby ..  ]
 [; ;main.c: 142: break;
 "142
 [e $U 274  ]
-[; ;main.c: 143: case OPERATION:
+[; ;main.c: 143: case EMERGENCYSTOP:
 "143
-[e :U 278 ]
-[; ;main.c: 144: operation();
+[e :U 277 ]
+[; ;main.c: 144: emergencystop();
 "144
-[e ( _operation ..  ]
+[e ( _emergencystop ..  ]
 [; ;main.c: 145: break;
 "145
 [e $U 274  ]
-[; ;main.c: 146: case OPERATIONEND:
+[; ;main.c: 146: case OPERATION:
 "146
-[e :U 279 ]
-[; ;main.c: 147: operationend();
+[e :U 278 ]
+[; ;main.c: 147: operation();
 "147
-[e ( _operationend ..  ]
+[e ( _operation ..  ]
 [; ;main.c: 148: break;
 "148
 [e $U 274  ]
-[; ;main.c: 149: case DATETIME:
+[; ;main.c: 149: case OPERATIONEND:
 "149
-[e :U 280 ]
-[; ;main.c: 150: date_time();
+[e :U 279 ]
+[; ;main.c: 150: operationend();
 "150
-[e ( _date_time ..  ]
+[e ( _operationend ..  ]
 [; ;main.c: 151: break;
 "151
 [e $U 274  ]
-[; ;main.c: 152: case BOTTLECOUNT:
+[; ;main.c: 152: case DATETIME:
 "152
-[e :U 281 ]
-[; ;main.c: 153: bottle_count();
+[e :U 280 ]
+[; ;main.c: 153: date_time();
 "153
-[e ( _bottle_count ..  ]
+[e ( _date_time ..  ]
 [; ;main.c: 154: break;
 "154
 [e $U 274  ]
-[; ;main.c: 155: case BOTTLETIME:
+[; ;main.c: 155: case BOTTLECOUNT:
 "155
-[e :U 282 ]
-[; ;main.c: 156: bottle_time();
+[e :U 281 ]
+[; ;main.c: 156: bottle_count();
 "156
-[e ( _bottle_time ..  ]
+[e ( _bottle_count ..  ]
 [; ;main.c: 157: break;
 "157
 [e $U 274  ]
+[; ;main.c: 158: case BOTTLETIME:
 "158
-}
-[; ;main.c: 158: }
+[e :U 282 ]
+[; ;main.c: 159: bottle_time();
+"159
+[e ( _bottle_time ..  ]
+[; ;main.c: 160: break;
+"160
 [e $U 274  ]
-"136
+"161
+}
+[; ;main.c: 161: }
+[e $U 274  ]
+"139
 [e :U 275 ]
 [e [\ _curr_state , $ . `E3251 0 276
  , $ . `E3251 1 277
@@ -3416,111 +3416,105 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ . `E3251 5 281
  , $ . `E3251 6 282
  274 ]
-"158
+"161
 [e :U 274 ]
-[; ;main.c: 159: _delay((unsigned long)((200)*(10000000/4000.0)));
-"159
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
-"160
+[; ;main.c: 162: _delay((unsigned long)((10)*(10000000/4000.0)));
+"162
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
+"163
 }
 [e :U 271 ]
-"135
+"138
 [e $U 272  ]
 [e :U 273 ]
-[; ;main.c: 160: }
-[; ;main.c: 162: return;
-"162
-[e $UE 270  ]
 [; ;main.c: 163: }
-"163
+[; ;main.c: 165: return;
+"165
+[e $UE 270  ]
+[; ;main.c: 166: }
+"166
 [e :UE 270 ]
 }
-[v F3288 `(v ~T0 @X0 1 tf ]
-"165
-[v _isr `IF3288 ~T0 @X0 1 e ]
+[v F3290 `(v ~T0 @X0 1 tf ]
+"168
+[v _isr `IF3290 ~T0 @X0 1 e ]
 {
-[; ;main.c: 165: void interrupt isr(void){
+[; ;main.c: 168: void interrupt isr(void){
 [e :U _isr ]
 [f ]
-[; ;main.c: 166: if (INT1IF) {
-"166
+[; ;main.c: 169: if (INT1IF) {
+"169
 [e $ ! _INT1IF 284  ]
 {
-[; ;main.c: 167: switch(PORTB){
-"167
+[; ;main.c: 170: switch(PORTB){
+"170
 [e $U 286  ]
 {
-[; ;main.c: 168: case 239:
-"168
-[e :U 287 ]
-[; ;main.c: 169: bottle_count_disp = -1;
-"169
-[e = _bottle_count_disp -U -> 1 `i ]
-[; ;main.c: 170: curr_state = STANDBY;
-"170
-[e = _curr_state . `E3251 0 ]
-[; ;main.c: 171: I2C_ColorSens_Init();
+[; ;main.c: 171: case 239:
 "171
-[e ( _I2C_ColorSens_Init ..  ]
-[; ;main.c: 172: break;
+[e :U 287 ]
+[; ;main.c: 172: bottle_count_disp = -1;
 "172
-[e $U 285  ]
-[; ;main.c: 173: case 15:
-"173
-[e :U 288 ]
-[; ;main.c: 174: LATAbits.LATA2 = 1;
-"174
-[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 175: INT0IE = 0;
-"175
-[e = _INT0IE -> -> 0 `i `b ]
-[; ;main.c: 176: INT2IE = 1;
-"176
-[e = _INT2IE -> -> 1 `i `b ]
-[; ;main.c: 177: TMR0IE = 1;
-"177
-[e = _TMR0IE -> -> 1 `i `b ]
-[; ;main.c: 178: TMR0ON = 1;
-"178
-[e = _TMR0ON -> -> 1 `i `b ]
-[; ;main.c: 179: TMR0 = 0;
-"179
-[e = _TMR0 -> -> 0 `i `us ]
-[; ;main.c: 181: read_time();
-"181
-[e ( _read_time ..  ]
-[; ;main.c: 182: start_time[1] = time[1];
-"182
-[e = *U + &U _start_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _start_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
-[; ;main.c: 183: start_time[0] = time[0];
-"183
-[e = *U + &U _start_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _start_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
-[; ;main.c: 185: bottlequeue_head = bottlequeue_tail = 0;
-"185
-[e = _bottlequeue_head = _bottlequeue_tail -> 0 `i ]
-[; ;main.c: 187: lcdInst(0b00000001);
-"187
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[; ;main.c: 188: bottle_count_disp = -1;
-"188
 [e = _bottle_count_disp -U -> 1 `i ]
-[; ;main.c: 189: curr_state = OPERATION;
-"189
-[e = _curr_state . `E3251 2 ]
-[; ;main.c: 190: break;
-"190
+[; ;main.c: 173: curr_state = STANDBY;
+"173
+[e = _curr_state . `E3251 0 ]
+[; ;main.c: 174: I2C_ColorSens_Init();
+"174
+[e ( _I2C_ColorSens_Init ..  ]
+[; ;main.c: 175: break;
+"175
 [e $U 285  ]
-[; ;main.c: 191: case 31:
+[; ;main.c: 176: case 15:
+"176
+[e :U 288 ]
+[; ;main.c: 177: LATAbits.LATA2 = 1;
+"177
+[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 180: TMR0IE = 1;
+"180
+[e = _TMR0IE -> -> 1 `i `b ]
+[; ;main.c: 181: TMR0ON = 1;
+"181
+[e = _TMR0ON -> -> 1 `i `b ]
+[; ;main.c: 182: TMR0 = 0;
+"182
+[e = _TMR0 -> -> 0 `i `us ]
+[; ;main.c: 184: read_time();
+"184
+[e ( _read_time ..  ]
+[; ;main.c: 185: start_time[1] = time[1];
+"185
+[e = *U + &U _start_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _start_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 186: start_time[0] = time[0];
+"186
+[e = *U + &U _start_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _start_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 188: bottlequeue_head = bottlequeue_tail = 0;
+"188
+[e = _bottlequeue_head = _bottlequeue_tail -> 0 `i ]
+[; ;main.c: 190: lcdInst(0b00000001);
+"190
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[; ;main.c: 191: bottle_count_disp = -1;
 "191
-[e :U 289 ]
-[; ;main.c: 192: bottle_count_disp += 1;
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 192: curr_state = OPERATION;
 "192
-[e =+ _bottle_count_disp -> 1 `i ]
-[; ;main.c: 193: curr_state = BOTTLECOUNT;
+[e = _curr_state . `E3251 2 ]
+[; ;main.c: 193: break;
 "193
-[e = _curr_state . `E3251 5 ]
-[; ;main.c: 194: while(PORTB == 31){}
+[e $U 285  ]
+[; ;main.c: 194: case 31:
 "194
+[e :U 289 ]
+[; ;main.c: 195: bottle_count_disp += 1;
+"195
+[e =+ _bottle_count_disp -> 1 `i ]
+[; ;main.c: 196: curr_state = BOTTLECOUNT;
+"196
+[e = _curr_state . `E3251 5 ]
+[; ;main.c: 197: while(PORTB == 31){}
+"197
 [e $U 290  ]
 [e :U 291 ]
 {
@@ -3528,176 +3522,176 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 290 ]
 [e $ == -> _PORTB `i -> 31 `i 291  ]
 [e :U 292 ]
-[; ;main.c: 195: break;
-"195
-[e $U 285  ]
-[; ;main.c: 196: case 47:
-"196
-[e :U 293 ]
-[; ;main.c: 197: operation_time = etime - stime;
-"197
-[e = _operation_time - _etime _stime ]
-[; ;main.c: 198: bottle_count_disp = -1;
+[; ;main.c: 198: break;
 "198
-[e = _bottle_count_disp -U -> 1 `i ]
-[; ;main.c: 199: curr_state = BOTTLETIME;
+[e $U 285  ]
+[; ;main.c: 199: case 47:
 "199
-[e = _curr_state . `E3251 6 ]
-[; ;main.c: 200: break;
+[e :U 293 ]
+[; ;main.c: 200: operation_time = etime - stime;
 "200
-[e $U 285  ]
-[; ;main.c: 201: case 63:
+[e = _operation_time - _etime _stime ]
+[; ;main.c: 201: bottle_count_disp = -1;
 "201
-[e :U 294 ]
-[; ;main.c: 202: bottle_count_disp = -1;
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 202: curr_state = BOTTLETIME;
 "202
-[e = _bottle_count_disp -U -> 1 `i ]
-[; ;main.c: 203: curr_state = DATETIME;
+[e = _curr_state . `E3251 6 ]
+[; ;main.c: 203: break;
 "203
-[e = _curr_state . `E3251 4 ]
-[; ;main.c: 204: break;
+[e $U 285  ]
+[; ;main.c: 204: case 63:
 "204
-[e $U 285  ]
-[; ;main.c: 205: case 79:
+[e :U 294 ]
+[; ;main.c: 205: bottle_count_disp = -1;
 "205
-[e :U 295 ]
-[; ;main.c: 206: LATAbits.LATA2 = 0;
-"206
-[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 207: INT0IE = 0;
-"207
-[e = _INT0IE -> -> 0 `i `b ]
-[; ;main.c: 208: INT2IE = 0;
-"208
-[e = _INT2IE -> -> 0 `i `b ]
-[; ;main.c: 209: TMR0IE = 0;
-"209
-[e = _TMR0IE -> -> 0 `i `b ]
-[; ;main.c: 210: TMR0ON = 0;
-"210
-[e = _TMR0ON -> -> 0 `i `b ]
-[; ;main.c: 212: read_time();
-"212
-[e ( _read_time ..  ]
-[; ;main.c: 213: end_time[1] = time[1];
-"213
-[e = *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
-[; ;main.c: 214: end_time[0] = time[0];
-"214
-[e = *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
-[; ;main.c: 215: stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
-"215
-[e = _stime + * -> 60 `i ( _dec_to_hex (1 -> *U + &U _start_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _start_time `ui `ux `i ( _dec_to_hex (1 -> *U + &U _start_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _start_time `ui `ux `i ]
-[; ;main.c: 216: etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
-"216
-[e = _etime + * -> 60 `i ( _dec_to_hex (1 -> *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux `i ( _dec_to_hex (1 -> *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux `i ]
-[; ;main.c: 217: lcdInst(0b00000001);
-"217
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[; ;main.c: 218: bottle_count_disp = -1;
-"218
 [e = _bottle_count_disp -U -> 1 `i ]
-[; ;main.c: 219: curr_state = OPERATIONEND;
+[; ;main.c: 206: curr_state = DATETIME;
+"206
+[e = _curr_state . `E3251 4 ]
+[; ;main.c: 207: break;
+"207
+[e $U 285  ]
+[; ;main.c: 208: case 79:
+"208
+[e :U 295 ]
+[; ;main.c: 209: LATAbits.LATA2 = 0;
+"209
+[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 210: INT0IE = 0;
+"210
+[e = _INT0IE -> -> 0 `i `b ]
+[; ;main.c: 211: INT2IE = 0;
+"211
+[e = _INT2IE -> -> 0 `i `b ]
+[; ;main.c: 212: TMR0IE = 0;
+"212
+[e = _TMR0IE -> -> 0 `i `b ]
+[; ;main.c: 213: TMR0ON = 0;
+"213
+[e = _TMR0ON -> -> 0 `i `b ]
+[; ;main.c: 215: read_time();
+"215
+[e ( _read_time ..  ]
+[; ;main.c: 216: end_time[1] = time[1];
+"216
+[e = *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 217: end_time[0] = time[0];
+"217
+[e = *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 218: stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+"218
+[e = _stime + * -> 60 `i ( _dec_to_hex (1 -> *U + &U _start_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _start_time `ui `ux `i ( _dec_to_hex (1 -> *U + &U _start_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _start_time `ui `ux `i ]
+[; ;main.c: 219: etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
 "219
-[e = _curr_state . `E3251 3 ]
-[; ;main.c: 220: break;
+[e = _etime + * -> 60 `i ( _dec_to_hex (1 -> *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux `i ( _dec_to_hex (1 -> *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux `i ]
+[; ;main.c: 220: lcdInst(0b00000001);
 "220
-[e $U 285  ]
-[; ;main.c: 221: case 95:
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[; ;main.c: 221: bottle_count_disp = -1;
 "221
-[e :U 296 ]
-[; ;main.c: 222: read_colorsensor();
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 222: curr_state = OPERATIONEND;
 "222
-[e ( _read_colorsensor ..  ]
-[; ;main.c: 223: lcdInst(0b10000000);
+[e = _curr_state . `E3251 3 ]
+[; ;main.c: 223: break;
 "223
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 224: printf("C%u R%u                ", color[0], color[1]);
+[e $U 285  ]
+[; ;main.c: 224: case 95:
 "224
-[e ( _printf , , (. :s 1C *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux ]
-[; ;main.c: 225: lcdInst(0b11000000);
+[e :U 296 ]
+[; ;main.c: 225: read_colorsensor();
 "225
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 226: printf("G%u B%u                ", color[2], color[3]);
-"226
-[e ( _printf , , (. :s 2C *U + &U _color * -> -> -> 2 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 3 `i `ui `ux -> -> # *U &U _color `ui `ux ]
-[; ;main.c: 227: break;
-"227
-[e $U 285  ]
-[; ;main.c: 228: case 91:
-"228
-[e :U 297 ]
-[; ;main.c: 229: read_colorsensor();
-"229
 [e ( _read_colorsensor ..  ]
-[; ;main.c: 230: lcdInst(0b10000000);
-"230
+[; ;main.c: 226: lcdInst(0b10000000);
+"226
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 231: printf("C%u R%u                ", color[0], color[1]);
-"231
-[e ( _printf , , (. :s 3C *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux ]
-[; ;main.c: 232: lcdInst(0b11000000);
-"232
+[; ;main.c: 227: printf("C%u R%u                ", color[0], color[1]);
+"227
+[e ( _printf , , (. :s 1C *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux ]
+[; ;main.c: 228: lcdInst(0b11000000);
+"228
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 233: printf("G%u B%u                ", color[2], color[3]);
-"233
-[e ( _printf , , (. :s 4C *U + &U _color * -> -> -> 2 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 3 `i `ui `ux -> -> # *U &U _color `ui `ux ]
-[; ;main.c: 234: break;
-"234
+[; ;main.c: 229: printf("G%u B%u                ", color[2], color[3]);
+"229
+[e ( _printf , , (. :s 2C *U + &U _color * -> -> -> 2 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 3 `i `ui `ux -> -> # *U &U _color `ui `ux ]
+[; ;main.c: 230: break;
+"230
 [e $U 285  ]
-[; ;main.c: 235: case 235:
+[; ;main.c: 231: case 91:
+"231
+[e :U 297 ]
+[; ;main.c: 232: read_colorsensor();
+"232
+[e ( _read_colorsensor ..  ]
+[; ;main.c: 233: lcdInst(0b10000000);
+"233
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 234: printf("C%u R%u                ", color[0], color[1]);
+"234
+[e ( _printf , , (. :s 3C *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux ]
+[; ;main.c: 235: lcdInst(0b11000000);
 "235
-[e :U 298 ]
-[; ;main.c: 236: I2C_ColorSens_ClearInt();
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 236: printf("G%u B%u                ", color[2], color[3]);
 "236
-[e ( _I2C_ColorSens_ClearInt ..  ]
+[e ( _printf , , (. :s 4C *U + &U _color * -> -> -> 2 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 3 `i `ui `ux -> -> # *U &U _color `ui `ux ]
 [; ;main.c: 237: break;
 "237
 [e $U 285  ]
-[; ;main.c: 238: case 207:
+[; ;main.c: 238: case 235:
 "238
-[e :U 299 ]
-[; ;main.c: 239: LATAbits.LATA2 = 0;
+[e :U 298 ]
+[; ;main.c: 239: curr_state = STANDBY;
 "239
-[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 240: (INTCONbits.GIE = 0);
+[e = _curr_state . `E3251 0 ]
+[; ;main.c: 240: break;
 "240
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[; ;main.c: 241: TMR0ON = 0;
-"241
-[e = _TMR0ON -> -> 0 `i `b ]
-[; ;main.c: 242: lcdInst(0b00000001);
-"242
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[; ;main.c: 243: curr_state = EMERGENCYSTOP;
-"243
-[e = _curr_state . `E3251 1 ]
-[; ;main.c: 244: break;
-"244
 [e $U 285  ]
-[; ;main.c: 245: case 127:
+[; ;main.c: 241: case 207:
+"241
+[e :U 299 ]
+[; ;main.c: 242: LATAbits.LATA2 = 0;
+"242
+[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 243: (INTCONbits.GIE = 0);
+"243
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+[; ;main.c: 244: TMR0ON = 0;
+"244
+[e = _TMR0ON -> -> 0 `i `b ]
+[; ;main.c: 245: lcdInst(0b00000001);
 "245
-[e :U 300 ]
-[; ;main.c: 246: servo_rotate0(1);
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[; ;main.c: 246: curr_state = EMERGENCYSTOP;
 "246
-[e ( _servo_rotate0 (1 -> 1 `i ]
+[e = _curr_state . `E3251 1 ]
 [; ;main.c: 247: break;
 "247
 [e $U 285  ]
-[; ;main.c: 248: case 191:
+[; ;main.c: 248: case 127:
 "248
-[e :U 301 ]
-[; ;main.c: 249: servo_rotate0(2);
+[e :U 300 ]
+[; ;main.c: 249: servo_rotate0(1);
 "249
-[e ( _servo_rotate0 (1 -> 2 `i ]
+[e ( _servo_rotate0 (1 -> 1 `i ]
 [; ;main.c: 250: break;
 "250
 [e $U 285  ]
+[; ;main.c: 251: case 191:
 "251
-}
-[; ;main.c: 251: }
+[e :U 301 ]
+[; ;main.c: 252: servo_rotate0(2);
+"252
+[e ( _servo_rotate0 (1 -> 2 `i ]
+[; ;main.c: 253: break;
+"253
 [e $U 285  ]
-"167
+"254
+}
+[; ;main.c: 254: }
+[e $U 285  ]
+"170
 [e :U 286 ]
 [e [\ _PORTB , $ -> -> 239 `i `uc 287
  , $ -> -> 15 `i `uc 288
@@ -3712,336 +3706,322 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 127 `i `uc 300
  , $ -> -> 191 `i `uc 301
  285 ]
-"251
-[e :U 285 ]
-[; ;main.c: 252: INT1IF = 0;
-"252
-[e = _INT1IF -> -> 0 `i `b ]
-"253
-}
-[; ;main.c: 253: }
-[e $U 302  ]
 "254
-[e :U 284 ]
-[; ;main.c: 254: else if (INT2IF){
-[e $ ! _INT2IF 303  ]
-{
+[e :U 285 ]
+[; ;main.c: 255: INT1IF = 0;
 "255
-[v _tempcase `i ~T0 @X0 1 a ]
-[; ;main.c: 255: int tempcase;
-[; ;main.c: 256: lcdInst(0b10000000);
+[e = _INT1IF -> -> 0 `i `b ]
 "256
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 257: printf("INT2IF");
-"257
-[e ( _printf :s 5C ]
-[; ;main.c: 297: INT2IF = 0;
-"297
-[e = _INT2IF -> -> 0 `i `b ]
-"299
 }
-[; ;main.c: 299: }
-[e $U 304  ]
-"350
-[e :U 303 ]
-[; ;main.c: 350: else if (TMR0IF){
-[e $ ! _TMR0IF 305  ]
-{
-[; ;main.c: 351: LATAbits.LATA2 = 0;
-"351
-[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 352: TMR0ON = 0;
-"352
-[e = _TMR0ON -> -> 0 `i `b ]
-[; ;main.c: 353: read_time();
+[; ;main.c: 256: }
+[e $U 302  ]
 "353
-[e ( _read_time ..  ]
-[; ;main.c: 354: end_time[1] = time[1];
+[e :U 284 ]
+[; ;main.c: 353: else if (TMR0IF){
+[e $ ! _TMR0IF 303  ]
+{
+[; ;main.c: 354: LATAbits.LATA2 = 0;
 "354
-[e = *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
-[; ;main.c: 355: end_time[0] = time[0];
+[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 355: TMR0ON = 0;
 "355
-[e = *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
-[; ;main.c: 356: stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+[e = _TMR0ON -> -> 0 `i `b ]
+[; ;main.c: 356: read_time();
 "356
-[e = _stime + * -> 60 `i ( _dec_to_hex (1 -> *U + &U _start_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _start_time `ui `ux `i ( _dec_to_hex (1 -> *U + &U _start_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _start_time `ui `ux `i ]
-[; ;main.c: 357: etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
+[e ( _read_time ..  ]
+[; ;main.c: 357: end_time[1] = time[1];
 "357
-[e = _etime + * -> 60 `i ( _dec_to_hex (1 -> *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux `i ( _dec_to_hex (1 -> *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux `i ]
-[; ;main.c: 358: lcdInst(0b00000001);
+[e = *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 358: end_time[0] = time[0];
 "358
-[e ( _lcdInst (1 -> -> 1 `i `uc ]
-[; ;main.c: 359: curr_state = OPERATIONEND;
+[e = *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux ]
+[; ;main.c: 359: stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
 "359
-[e = _curr_state . `E3251 3 ]
-[; ;main.c: 360: bottle_count_disp = -1;
+[e = _stime + * -> 60 `i ( _dec_to_hex (1 -> *U + &U _start_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _start_time `ui `ux `i ( _dec_to_hex (1 -> *U + &U _start_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _start_time `ui `ux `i ]
+[; ;main.c: 360: etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
 "360
-[e = _bottle_count_disp -U -> 1 `i ]
-[; ;main.c: 361: TMR0IF = 0;
+[e = _etime + * -> 60 `i ( _dec_to_hex (1 -> *U + &U _end_time * -> -> -> 1 `i `ui `ux -> -> # *U &U _end_time `ui `ux `i ( _dec_to_hex (1 -> *U + &U _end_time * -> -> -> 0 `i `ui `ux -> -> # *U &U _end_time `ui `ux `i ]
+[; ;main.c: 361: lcdInst(0b00000001);
 "361
-[e = _TMR0IF -> -> 0 `i `b ]
+[e ( _lcdInst (1 -> -> 1 `i `uc ]
+[; ;main.c: 362: curr_state = OPERATIONEND;
 "362
-}
-[; ;main.c: 362: }
-[e $U 306  ]
+[e = _curr_state . `E3251 3 ]
+[; ;main.c: 363: bottle_count_disp = -1;
 "363
-[e :U 305 ]
-[; ;main.c: 363: else{
-{
-[; ;main.c: 364: while(1){
+[e = _bottle_count_disp -U -> 1 `i ]
+[; ;main.c: 364: TMR0IF = 0;
 "364
-[e :U 308 ]
-{
-[; ;main.c: 365: lcdInst(0b10000000);
+[e = _TMR0IF -> -> 0 `i `b ]
 "365
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 366: printf("bad interrupt");
+}
+[; ;main.c: 365: }
+[e $U 304  ]
 "366
-[e ( _printf :s 6C ]
-[; ;main.c: 367: for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
+[e :U 303 ]
+[; ;main.c: 366: else{
+{
+[; ;main.c: 367: while(1){
 "367
+[e :U 306 ]
+{
+[; ;main.c: 368: lcdInst(0b10000000);
+"368
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 369: printf("bad interrupt");
+"369
+[e ( _printf :s 5C ]
+[; ;main.c: 370: for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
+"370
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 100 `i 310  ]
-[e $U 311  ]
-[e :U 310 ]
+[e $ < -> _i `i -> 100 `i 308  ]
+[e $U 309  ]
+[e :U 308 ]
 {
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 100 `i 310  ]
-[e :U 311 ]
-}
-"368
-}
-[e :U 307 ]
-"364
-[e $U 308  ]
+[e $ < -> _i `i -> 100 `i 308  ]
 [e :U 309 ]
-"369
 }
-[e :U 306 ]
+"371
+}
+[e :U 305 ]
+"367
+[e $U 306  ]
+[e :U 307 ]
+"372
+}
 [e :U 304 ]
 [e :U 302 ]
-[; ;main.c: 368: }
-[; ;main.c: 369: }
-[; ;main.c: 370: return;
-"370
-[e $UE 283  ]
 [; ;main.c: 371: }
-"371
+[; ;main.c: 372: }
+[; ;main.c: 373: return;
+"373
+[e $UE 283  ]
+[; ;main.c: 374: }
+"374
 [e :UE 283 ]
 }
-"373
+"376
 [v _standby `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 373: void standby(void){
+[; ;main.c: 376: void standby(void){
 [e :U _standby ]
 [f ]
-[; ;main.c: 374: lcdInst(0b10000000);
-"374
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 376: lcdInst(0b11000000);
-"376
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 377: printf("PORTB: %d", PORTB);
+[; ;main.c: 377: read_colorsensor();
 "377
-[e ( _printf , (. :s 7C -> _PORTB `i ]
-[; ;main.c: 378: return;
+[e ( _read_colorsensor ..  ]
+[; ;main.c: 378: if(color[0]>20){
 "378
-[e $UE 313  ]
-[; ;main.c: 379: }
+[e $ ! > *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux -> 20 `i 312  ]
+{
+[; ;main.c: 379: if(!testflag){
 "379
-[e :UE 313 ]
-}
+[e $ ! ! != _testflag -> 0 `i 313  ]
+{
+[; ;main.c: 380: testint[0] = color[1];
+"380
+[e = *U + &U _testint * -> -> -> 0 `i `ui `ux -> -> # *U &U _testint `ui `ux *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux ]
+[; ;main.c: 381: testflag = 1;
 "381
+[e = _testflag -> 1 `i ]
+"382
+}
+[; ;main.c: 382: }
+[e $U 314  ]
+"383
+[e :U 313 ]
+[; ;main.c: 383: else{
+{
+[; ;main.c: 384: lcdInst(0b10000000);
+"384
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 385: printf("reading      ");
+"385
+[e ( _printf :s 6C ]
+[; ;main.c: 386: lcdInst(0b11000000);
+"386
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 387: printf("%d, %d", color[0], color[1]);
+"387
+[e ( _printf , , (. :s 7C *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux ]
+"388
+}
+[e :U 314 ]
+"389
+}
+[; ;main.c: 388: }
+[; ;main.c: 389: }
+[e $U 315  ]
+"390
+[e :U 312 ]
+[; ;main.c: 390: else{
+{
+[; ;main.c: 391: if(testflag){
+"391
+[e $ ! != _testflag -> 0 `i 316  ]
+{
+[; ;main.c: 392: testint[1] = color[1];
+"392
+[e = *U + &U _testint * -> -> -> 1 `i `ui `ux -> -> # *U &U _testint `ui `ux *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux ]
+[; ;main.c: 393: testflag = 0;
+"393
+[e = _testflag -> 0 `i ]
+"394
+}
+[; ;main.c: 394: }
+[e $U 317  ]
+"395
+[e :U 316 ]
+[; ;main.c: 395: else{
+{
+[; ;main.c: 396: lcdInst(0b10000000);
+"396
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 397: printf("%d, %d", testint[0], testint[1]);
+"397
+[e ( _printf , , (. :s 8C *U + &U _testint * -> -> -> 0 `i `ui `ux -> -> # *U &U _testint `ui `ux *U + &U _testint * -> -> -> 1 `i `ui `ux -> -> # *U &U _testint `ui `ux ]
+[; ;main.c: 398: lcdInst(0b11000000);
+"398
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 399: printf("%d, %d", color[0], color[1]);
+"399
+[e ( _printf , , (. :s 9C *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux ]
+"400
+}
+[e :U 317 ]
+"401
+}
+[e :U 315 ]
+[; ;main.c: 400: }
+[; ;main.c: 401: }
+[; ;main.c: 402: return;
+"402
+[e $UE 311  ]
+[; ;main.c: 403: }
+"403
+[e :UE 311 ]
+}
+"405
 [v _set_time `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 381: void set_time(void){
+[; ;main.c: 405: void set_time(void){
 [e :U _set_time ]
 [f ]
-[; ;main.c: 382: I2C_Master_Start();
-"382
+[; ;main.c: 406: I2C_Master_Start();
+"406
 [e ( _I2C_Master_Start ..  ]
-[; ;main.c: 383: I2C_Master_Write(0b11010000);
-"383
+[; ;main.c: 407: I2C_Master_Write(0b11010000);
+"407
 [e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
-[; ;main.c: 384: I2C_Master_Write(0x00);
-"384
+[; ;main.c: 408: I2C_Master_Write(0x00);
+"408
 [e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;main.c: 385: for(char i=0; i<7; i++){
-"385
+[; ;main.c: 409: for(char i=0; i<7; i++){
+"409
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 7 `i 315  ]
-[e $U 316  ]
-[e :U 315 ]
+[e $ < -> _i `i -> 7 `i 319  ]
+[e $U 320  ]
+[e :U 319 ]
 {
-[; ;main.c: 386: I2C_Master_Write(timeset[i]);
-"386
+[; ;main.c: 410: I2C_Master_Write(timeset[i]);
+"410
 [e ( _I2C_Master_Write (1 -> *U + &U _timeset * -> _i `ux -> -> # *U &U _timeset `ui `ux `ui ]
-"387
+"411
 }
-"385
+"409
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 7 `i 315  ]
-[e :U 316 ]
-"387
+[e $ < -> _i `i -> 7 `i 319  ]
+[e :U 320 ]
+"411
 }
-[; ;main.c: 387: }
-[; ;main.c: 388: I2C_Master_Stop();
-"388
+[; ;main.c: 411: }
+[; ;main.c: 412: I2C_Master_Stop();
+"412
 [e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 389: }
-"389
-[e :UE 314 ]
+[; ;main.c: 413: }
+"413
+[e :UE 318 ]
 }
-"391
+"415
 [v _dec_to_hex `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 391: int dec_to_hex(int num) {
+[; ;main.c: 415: int dec_to_hex(int num) {
 [e :U _dec_to_hex ]
 [v _num `i ~T0 @X0 1 r1 ]
 [f ]
-"392
+"416
 [v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 392: int i = 0, quotient = num, temp, hexnum = 0;
+[; ;main.c: 416: int i = 0, quotient = num, temp, hexnum = 0;
 [e = _i -> 0 `i ]
 [v _quotient `i ~T0 @X0 1 a ]
 [e = _quotient _num ]
 [v _temp `i ~T0 @X0 1 a ]
 [v _hexnum `i ~T0 @X0 1 a ]
 [e = _hexnum -> 0 `i ]
-[; ;main.c: 394: while (quotient != 0) {
-"394
-[e $U 319  ]
-[e :U 320 ]
-{
-[; ;main.c: 395: temp = quotient % 16;
-"395
-[e = _temp % _quotient -> 16 `i ]
-[; ;main.c: 397: hexnum += temp*pow(10,i);
-"397
-[e =+ _hexnum * -> _temp `d ( _pow (2 , -> -> 10 `i `d -> _i `d ]
-[; ;main.c: 399: quotient = quotient / 16;
-"399
-[e = _quotient / _quotient -> 16 `i ]
-[; ;main.c: 400: i += 1;
-"400
-[e =+ _i -> 1 `i ]
-"401
-}
-[e :U 319 ]
-"394
-[e $ != _quotient -> 0 `i 320  ]
-[e :U 321 ]
-[; ;main.c: 401: }
-[; ;main.c: 402: return hexnum;
-"402
-[e ) _hexnum ]
-[e $UE 318  ]
-[; ;main.c: 403: }
-"403
-[e :UE 318 ]
-}
-"405
-[v _date_time `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 405: void date_time(void){
-[e :U _date_time ]
-[f ]
-[; ;main.c: 407: I2C_Master_Start();
-"407
-[e ( _I2C_Master_Start ..  ]
-[; ;main.c: 408: I2C_Master_Write(0b11010000);
-"408
-[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
-[; ;main.c: 409: I2C_Master_Write(0x00);
-"409
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;main.c: 410: I2C_Master_Stop();
-"410
-[e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 413: I2C_Master_Start();
-"413
-[e ( _I2C_Master_Start ..  ]
-[; ;main.c: 414: I2C_Master_Write(0b11010001);
-"414
-[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
-[; ;main.c: 415: for(unsigned char i=0;i<0x06;i++){
-"415
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 6 `i 323  ]
-[e $U 324  ]
-[e :U 323 ]
-{
-[; ;main.c: 416: time[i] = I2C_Master_Read(1);
-"416
-[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-"417
-}
-"415
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 6 `i 323  ]
-[e :U 324 ]
-"417
-}
-[; ;main.c: 417: }
-[; ;main.c: 418: time[6] = I2C_Master_Read(0);
+[; ;main.c: 418: while (quotient != 0) {
 "418
-[e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
-[; ;main.c: 419: I2C_Master_Stop();
+[e $U 323  ]
+[e :U 324 ]
+{
+[; ;main.c: 419: temp = quotient % 16;
 "419
-[e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 422: lcdInst(0b10000000);
-"422
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 423: printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);
+[e = _temp % _quotient -> 16 `i ]
+[; ;main.c: 421: hexnum += temp*pow(10,i);
+"421
+[e =+ _hexnum * -> _temp `d ( _pow (2 , -> -> 10 `i `d -> _i `d ]
+[; ;main.c: 423: quotient = quotient / 16;
 "423
-[e ( _printf , , , (. :s 8C -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
-[; ;main.c: 424: lcdInst(0b11000000);
+[e = _quotient / _quotient -> 16 `i ]
+[; ;main.c: 424: i += 1;
 "424
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 425: printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);
+[e =+ _i -> 1 `i ]
 "425
-[e ( _printf , , , (. :s 9C -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
-[; ;main.c: 427: return;
-"427
+}
+[e :U 323 ]
+"418
+[e $ != _quotient -> 0 `i 324  ]
+[e :U 325 ]
+[; ;main.c: 425: }
+[; ;main.c: 426: return hexnum;
+"426
+[e ) _hexnum ]
 [e $UE 322  ]
-[; ;main.c: 428: }
-"428
+[; ;main.c: 427: }
+"427
 [e :UE 322 ]
 }
-"430
-[v _read_time `(v ~T0 @X0 1 ef ]
+"429
+[v _date_time `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 430: void read_time(void){
-[e :U _read_time ]
+[; ;main.c: 429: void date_time(void){
+[e :U _date_time ]
 [f ]
-[; ;main.c: 432: I2C_Master_Start();
+[; ;main.c: 431: I2C_Master_Start();
+"431
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 432: I2C_Master_Write(0b11010000);
 "432
-[e ( _I2C_Master_Start ..  ]
-[; ;main.c: 433: I2C_Master_Write(0b11010000);
-"433
 [e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
-[; ;main.c: 434: I2C_Master_Write(0x00);
-"434
+[; ;main.c: 433: I2C_Master_Write(0x00);
+"433
 [e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;main.c: 435: I2C_Master_Stop();
-"435
+[; ;main.c: 434: I2C_Master_Stop();
+"434
 [e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 438: I2C_Master_Start();
-"438
+[; ;main.c: 437: I2C_Master_Start();
+"437
 [e ( _I2C_Master_Start ..  ]
-[; ;main.c: 439: I2C_Master_Write(0b11010001);
-"439
+[; ;main.c: 438: I2C_Master_Write(0b11010001);
+"438
 [e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
-[; ;main.c: 440: for(unsigned char i=0;i<0x06;i++){
-"440
+[; ;main.c: 439: for(unsigned char i=0;i<0x06;i++){
+"439
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
@@ -4049,383 +4029,438 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 328  ]
 [e :U 327 ]
 {
-[; ;main.c: 441: time[i] = I2C_Master_Read(1);
-"441
-[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-"442
-}
+[; ;main.c: 440: time[i] = I2C_Master_Read(1);
 "440
+[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+"441
+}
+"439
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 6 `i 327  ]
 [e :U 328 ]
-"442
+"441
 }
-[; ;main.c: 442: }
-[; ;main.c: 443: time[6] = I2C_Master_Read(0);
-"443
+[; ;main.c: 441: }
+[; ;main.c: 442: time[6] = I2C_Master_Read(0);
+"442
 [e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
-[; ;main.c: 444: I2C_Master_Stop();
-"444
+[; ;main.c: 443: I2C_Master_Stop();
+"443
 [e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 445: return;
-"445
-[e $UE 326  ]
-[; ;main.c: 446: }
+[; ;main.c: 446: lcdInst(0b10000000);
 "446
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 447: printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);
+"447
+[e ( _printf , , , (. :s 10C -> *U + &U _time * -> -> -> 5 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 4 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
+[; ;main.c: 448: lcdInst(0b11000000);
+"448
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 449: printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);
+"449
+[e ( _printf , , , (. :s 11C -> *U + &U _time * -> -> -> 2 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 1 `i `ui `ux -> -> # *U &U _time `ui `ux `i -> *U + &U _time * -> -> -> 0 `i `ui `ux -> -> # *U &U _time `ui `ux `i ]
+[; ;main.c: 451: return;
+"451
+[e $UE 326  ]
+[; ;main.c: 452: }
+"452
 [e :UE 326 ]
 }
-"448
+"454
+[v _read_time `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 454: void read_time(void){
+[e :U _read_time ]
+[f ]
+[; ;main.c: 456: I2C_Master_Start();
+"456
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 457: I2C_Master_Write(0b11010000);
+"457
+[e ( _I2C_Master_Write (1 -> -> 208 `i `ui ]
+[; ;main.c: 458: I2C_Master_Write(0x00);
+"458
+[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
+[; ;main.c: 459: I2C_Master_Stop();
+"459
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 462: I2C_Master_Start();
+"462
+[e ( _I2C_Master_Start ..  ]
+[; ;main.c: 463: I2C_Master_Write(0b11010001);
+"463
+[e ( _I2C_Master_Write (1 -> -> 209 `i `ui ]
+[; ;main.c: 464: for(unsigned char i=0;i<0x06;i++){
+"464
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 6 `i 331  ]
+[e $U 332  ]
+[e :U 331 ]
+{
+[; ;main.c: 465: time[i] = I2C_Master_Read(1);
+"465
+[e = *U + &U _time * -> _i `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+"466
+}
+"464
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 331  ]
+[e :U 332 ]
+"466
+}
+[; ;main.c: 466: }
+[; ;main.c: 467: time[6] = I2C_Master_Read(0);
+"467
+[e = *U + &U _time * -> -> -> 6 `i `ui `ux -> -> # *U &U _time `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
+[; ;main.c: 468: I2C_Master_Stop();
+"468
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 469: return;
+"469
+[e $UE 330  ]
+[; ;main.c: 470: }
+"470
+[e :UE 330 ]
+}
+"472
 [v _bottle_count `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 448: void bottle_count(void){
+[; ;main.c: 472: void bottle_count(void){
 [e :U _bottle_count ]
 [f ]
-[; ;main.c: 449: switch(bottle_count_disp % 5){
-"449
-[e $U 332  ]
-{
-[; ;main.c: 450: case 0:
-"450
-[e :U 333 ]
-[; ;main.c: 451: lcdInst(0b10000000);
-"451
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 452: printf("Bottle Count    ");
-"452
-[e ( _printf :s 10C ]
-[; ;main.c: 453: lcdInst(0b11000000);
-"453
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 454: printf("Total: %d       ", total_bottle_count);
-"454
-[e ( _printf , (. :s 11C _total_bottle_count ]
-[; ;main.c: 455: break;
-"455
-[e $U 331  ]
-[; ;main.c: 456: case 1:
-"456
-[e :U 334 ]
-[; ;main.c: 457: lcdInst(0b10000000);
-"457
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 458: printf("YOP+CAP+LBL: %d  ", yopcaplbl_count);
-"458
-[e ( _printf , (. :s 12C _yopcaplbl_count ]
-[; ;main.c: 459: lcdInst(0b11000000);
-"459
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 460: printf("YOP+CAP-LBL: %d  ", yopcap_count);
-"460
-[e ( _printf , (. :s 13C _yopcap_count ]
-[; ;main.c: 461: break;
-"461
-[e $U 331  ]
-[; ;main.c: 462: case 2:
-"462
-[e :U 335 ]
-[; ;main.c: 463: lcdInst(0b10000000);
-"463
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 464: printf("YOP-CAP+LBL: %d  ", yoplbl_count);
-"464
-[e ( _printf , (. :s 14C _yoplbl_count ]
-[; ;main.c: 465: lcdInst(0b11000000);
-"465
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 466: printf("YOP-CAP-LBL: %d  ", yop_count);
-"466
-[e ( _printf , (. :s 15C _yop_count ]
-[; ;main.c: 467: break;
-"467
-[e $U 331  ]
-[; ;main.c: 468: case 3:
-"468
-[e :U 336 ]
-[; ;main.c: 469: lcdInst(0b10000000);
-"469
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 470: printf("ESKA+CAP+LBL: %d ", eskacaplbl_count);
-"470
-[e ( _printf , (. :s 16C _eskacaplbl_count ]
-[; ;main.c: 471: lcdInst(0b11000000);
-"471
-[e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 472: printf("ESKA+CAP-LBL: %d ", eskacap_count);
-"472
-[e ( _printf , (. :s 17C _eskacap_count ]
-[; ;main.c: 473: break;
+[; ;main.c: 473: switch(bottle_count_disp % 5){
 "473
-[e $U 331  ]
-[; ;main.c: 474: case 4:
+[e $U 336  ]
+{
+[; ;main.c: 474: case 0:
 "474
 [e :U 337 ]
 [; ;main.c: 475: lcdInst(0b10000000);
 "475
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 476: printf("ESKA-CAP+LBL: %d ", eskalbl_count);
+[; ;main.c: 476: printf("Bottle Count    ");
 "476
-[e ( _printf , (. :s 18C _eskalbl_count ]
+[e ( _printf :s 12C ]
 [; ;main.c: 477: lcdInst(0b11000000);
 "477
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 478: printf("ESKA-CAP-LBL: %d ", eska_count);
+[; ;main.c: 478: printf("Total: %d       ", total_bottle_count);
 "478
-[e ( _printf , (. :s 19C _eska_count ]
+[e ( _printf , (. :s 13C _total_bottle_count ]
 [; ;main.c: 479: break;
 "479
-[e $U 331  ]
-[; ;main.c: 480: default:
+[e $U 335  ]
+[; ;main.c: 480: case 1:
 "480
 [e :U 338 ]
-[; ;main.c: 481: while(1){
+[; ;main.c: 481: lcdInst(0b10000000);
 "481
-[e :U 340 ]
-{
-[; ;main.c: 482: lcdInst(0b10000000);
-"482
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 483: printf("ERROR: %d", bottle_count_disp);
+[; ;main.c: 482: printf("YOP+CAP+LBL: %d  ", yopcaplbl_count);
+"482
+[e ( _printf , (. :s 14C _yopcaplbl_count ]
+[; ;main.c: 483: lcdInst(0b11000000);
 "483
-[e ( _printf , (. :s 20C _bottle_count_disp ]
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 484: printf("YOP+CAP-LBL: %d  ", yopcap_count);
 "484
-}
-[e :U 339 ]
-"481
-[e $U 340  ]
-[e :U 341 ]
-[; ;main.c: 484: }
+[e ( _printf , (. :s 15C _yopcap_count ]
 [; ;main.c: 485: break;
 "485
-[e $U 331  ]
+[e $U 335  ]
+[; ;main.c: 486: case 2:
 "486
-}
-[; ;main.c: 486: }
-[e $U 331  ]
-"449
-[e :U 332 ]
-[e [\ % _bottle_count_disp -> 5 `i , $ -> 0 `i 333
- , $ -> 1 `i 334
- , $ -> 2 `i 335
- , $ -> 3 `i 336
- , $ -> 4 `i 337
- 338 ]
-"486
-[e :U 331 ]
-[; ;main.c: 487: return;
+[e :U 339 ]
+[; ;main.c: 487: lcdInst(0b10000000);
 "487
-[e $UE 330  ]
-[; ;main.c: 488: }
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 488: printf("YOP-CAP+LBL: %d  ", yoplbl_count);
 "488
-[e :UE 330 ]
-}
-"490
-[v _bottle_time `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 490: void bottle_time(void){
-[e :U _bottle_time ]
-[f ]
-[; ;main.c: 491: lcdInst(0b10000000);
-"491
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 492: printf("Total Operation       ");
-"492
-[e ( _printf :s 21C ]
-[; ;main.c: 493: lcdInst(0b11000000);
-"493
+[e ( _printf , (. :s 16C _yoplbl_count ]
+[; ;main.c: 489: lcdInst(0b11000000);
+"489
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 494: printf("Time: %d s       ", operation_time);
-"494
-[e ( _printf , (. :s 22C _operation_time ]
-[; ;main.c: 495: return;
-"495
-[e $UE 342  ]
-[; ;main.c: 496: }
-"496
-[e :UE 342 ]
-}
-"498
-[v _operation `(v ~T0 @X0 1 ef ]
-{
-[; ;main.c: 498: void operation(void){
-[e :U _operation ]
-[f ]
-[; ;main.c: 499: switch(operation_disp){
-"499
-[e $U 345  ]
-{
-[; ;main.c: 500: case 0:
-"500
-[e :U 346 ]
-[; ;main.c: 501: lcdInst(0b10000000);
-"501
+[; ;main.c: 490: printf("YOP-CAP-LBL: %d  ", yop_count);
+"490
+[e ( _printf , (. :s 17C _yop_count ]
+[; ;main.c: 491: break;
+"491
+[e $U 335  ]
+[; ;main.c: 492: case 3:
+"492
+[e :U 340 ]
+[; ;main.c: 493: lcdInst(0b10000000);
+"493
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 502: printf("Running~              ");
+[; ;main.c: 494: printf("ESKA+CAP+LBL: %d ", eskacaplbl_count);
+"494
+[e ( _printf , (. :s 18C _eskacaplbl_count ]
+[; ;main.c: 495: lcdInst(0b11000000);
+"495
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 496: printf("ESKA+CAP-LBL: %d ", eskacap_count);
+"496
+[e ( _printf , (. :s 19C _eskacap_count ]
+[; ;main.c: 497: break;
+"497
+[e $U 335  ]
+[; ;main.c: 498: case 4:
+"498
+[e :U 341 ]
+[; ;main.c: 499: lcdInst(0b10000000);
+"499
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 500: printf("ESKA-CAP+LBL: %d ", eskalbl_count);
+"500
+[e ( _printf , (. :s 20C _eskalbl_count ]
+[; ;main.c: 501: lcdInst(0b11000000);
+"501
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 502: printf("ESKA-CAP-LBL: %d ", eska_count);
 "502
-[e ( _printf :s 23C ]
-[; ;main.c: 503: operation_disp = 1;
+[e ( _printf , (. :s 21C _eska_count ]
+[; ;main.c: 503: break;
 "503
-[e = _operation_disp -> 1 `i ]
-[; ;main.c: 504: break;
+[e $U 335  ]
+[; ;main.c: 504: default:
 "504
-[e $U 344  ]
-[; ;main.c: 505: case 1:
+[e :U 342 ]
+[; ;main.c: 505: while(1){
 "505
-[e :U 347 ]
+[e :U 344 ]
+{
 [; ;main.c: 506: lcdInst(0b10000000);
 "506
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 507: printf("Running~~              ");
+[; ;main.c: 507: printf("ERROR: %d", bottle_count_disp);
 "507
-[e ( _printf :s 24C ]
-[; ;main.c: 508: operation_disp = 2;
+[e ( _printf , (. :s 22C _bottle_count_disp ]
 "508
-[e = _operation_disp -> 2 `i ]
+}
+[e :U 343 ]
+"505
+[e $U 344  ]
+[e :U 345 ]
+[; ;main.c: 508: }
 [; ;main.c: 509: break;
 "509
-[e $U 344  ]
-[; ;main.c: 510: case 2:
+[e $U 335  ]
 "510
-[e :U 348 ]
-[; ;main.c: 511: lcdInst(0b10000000);
-"511
-[e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 512: printf("Running~~~              ");
-"512
-[e ( _printf :s 25C ]
-[; ;main.c: 513: operation_disp = 0;
-"513
-[e = _operation_disp -> 0 `i ]
-[; ;main.c: 514: break;
-"514
-[e $U 344  ]
-"515
 }
-[; ;main.c: 515: }
-[e $U 344  ]
-"499
-[e :U 345 ]
-[e [\ _operation_disp , $ -> 0 `i 346
- , $ -> 1 `i 347
- , $ -> 2 `i 348
- 344 ]
+[; ;main.c: 510: }
+[e $U 335  ]
+"473
+[e :U 336 ]
+[e [\ % _bottle_count_disp -> 5 `i , $ -> 0 `i 337
+ , $ -> 1 `i 338
+ , $ -> 2 `i 339
+ , $ -> 3 `i 340
+ , $ -> 4 `i 341
+ 342 ]
+"510
+[e :U 335 ]
+[; ;main.c: 511: return;
+"511
+[e $UE 334  ]
+[; ;main.c: 512: }
+"512
+[e :UE 334 ]
+}
+"514
+[v _bottle_time `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 514: void bottle_time(void){
+[e :U _bottle_time ]
+[f ]
+[; ;main.c: 515: lcdInst(0b10000000);
 "515
-[e :U 344 ]
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 516: printf("Total Operation       ");
+"516
+[e ( _printf :s 23C ]
 [; ;main.c: 517: lcdInst(0b11000000);
 "517
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 518: read_colorsensor();
+[; ;main.c: 518: printf("Time: %d s       ", operation_time);
 "518
-[e ( _read_colorsensor ..  ]
-[; ;main.c: 519: printf("R%d G%d B%d                ", color[1], color[2], color[3]);
+[e ( _printf , (. :s 24C _operation_time ]
+[; ;main.c: 519: return;
 "519
-[e ( _printf , , , (. :s 26C *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 2 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 3 `i `ui `ux -> -> # *U &U _color `ui `ux ]
-[; ;main.c: 520: return;
+[e $UE 346  ]
+[; ;main.c: 520: }
 "520
-[e $UE 343  ]
-[; ;main.c: 521: }
-"521
-[e :UE 343 ]
+[e :UE 346 ]
 }
+"522
+[v _operation `(v ~T0 @X0 1 ef ]
+{
+[; ;main.c: 522: void operation(void){
+[e :U _operation ]
+[f ]
+[; ;main.c: 523: switch(operation_disp){
 "523
+[e $U 349  ]
+{
+[; ;main.c: 524: case 0:
+"524
+[e :U 350 ]
+[; ;main.c: 525: lcdInst(0b10000000);
+"525
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 526: printf("Running~              ");
+"526
+[e ( _printf :s 25C ]
+[; ;main.c: 527: operation_disp = 1;
+"527
+[e = _operation_disp -> 1 `i ]
+[; ;main.c: 528: break;
+"528
+[e $U 348  ]
+[; ;main.c: 529: case 1:
+"529
+[e :U 351 ]
+[; ;main.c: 530: lcdInst(0b10000000);
+"530
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 531: printf("Running~~              ");
+"531
+[e ( _printf :s 26C ]
+[; ;main.c: 532: operation_disp = 2;
+"532
+[e = _operation_disp -> 2 `i ]
+[; ;main.c: 533: break;
+"533
+[e $U 348  ]
+[; ;main.c: 534: case 2:
+"534
+[e :U 352 ]
+[; ;main.c: 535: lcdInst(0b10000000);
+"535
+[e ( _lcdInst (1 -> -> 128 `i `uc ]
+[; ;main.c: 536: printf("Running~~~              ");
+"536
+[e ( _printf :s 27C ]
+[; ;main.c: 537: operation_disp = 0;
+"537
+[e = _operation_disp -> 0 `i ]
+[; ;main.c: 538: break;
+"538
+[e $U 348  ]
+"539
+}
+[; ;main.c: 539: }
+[e $U 348  ]
+"523
+[e :U 349 ]
+[e [\ _operation_disp , $ -> 0 `i 350
+ , $ -> 1 `i 351
+ , $ -> 2 `i 352
+ 348 ]
+"539
+[e :U 348 ]
+[; ;main.c: 541: lcdInst(0b11000000);
+"541
+[e ( _lcdInst (1 -> -> 192 `i `uc ]
+[; ;main.c: 542: read_colorsensor();
+"542
+[e ( _read_colorsensor ..  ]
+[; ;main.c: 543: printf("R%d G%d B%d                ", color[1], color[2], color[3]);
+"543
+[e ( _printf , , , (. :s 28C *U + &U _color * -> -> -> 1 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 2 `i `ui `ux -> -> # *U &U _color `ui `ux *U + &U _color * -> -> -> 3 `i `ui `ux -> -> # *U &U _color `ui `ux ]
+[; ;main.c: 544: return;
+"544
+[e $UE 347  ]
+[; ;main.c: 545: }
+"545
+[e :UE 347 ]
+}
+"547
 [v _operationend `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 523: void operationend(void){
+[; ;main.c: 547: void operationend(void){
 [e :U _operationend ]
 [f ]
-[; ;main.c: 524: lcdInst(0b10000000);
-"524
+[; ;main.c: 548: lcdInst(0b10000000);
+"548
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 525: printf("Operation Done!");
-"525
-[e ( _printf :s 27C ]
-[; ;main.c: 526: return;
-"526
-[e $UE 349  ]
-[; ;main.c: 527: }
-"527
-[e :UE 349 ]
+[; ;main.c: 549: printf("Operation Done!");
+"549
+[e ( _printf :s 29C ]
+[; ;main.c: 550: return;
+"550
+[e $UE 353  ]
+[; ;main.c: 551: }
+"551
+[e :UE 353 ]
 }
-"529
+"553
 [v _emergencystop `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 529: void emergencystop(void){
+[; ;main.c: 553: void emergencystop(void){
 [e :U _emergencystop ]
 [f ]
-[; ;main.c: 530: (INTCONbits.GIE = 0);
-"530
+[; ;main.c: 554: (INTCONbits.GIE = 0);
+"554
 [e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-[; ;main.c: 531: PORTAbits.RA2 = 0;
-"531
+[; ;main.c: 555: PORTAbits.RA2 = 0;
+"555
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 532: lcdInst(0b00000001);
-"532
+[; ;main.c: 556: lcdInst(0b00000001);
+"556
 [e ( _lcdInst (1 -> -> 1 `i `uc ]
-[; ;main.c: 533: lcdInst(0b10000000);
-"533
+[; ;main.c: 557: lcdInst(0b10000000);
+"557
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 534: printf("EMERGENCY STOP");
-"534
-[e ( _printf :s 28C ]
-[; ;main.c: 535: while(1){}
-"535
-[e :U 352 ]
+[; ;main.c: 558: printf("EMERGENCY STOP");
+"558
+[e ( _printf :s 30C ]
+[; ;main.c: 559: while(1){}
+"559
+[e :U 356 ]
 {
 }
-[e :U 351 ]
-[e $U 352  ]
-[e :U 353 ]
-[; ;main.c: 536: return;
-"536
-[e $UE 350  ]
-[; ;main.c: 537: }
-"537
-[e :UE 350 ]
+[e :U 355 ]
+[e $U 356  ]
+[e :U 357 ]
+[; ;main.c: 560: return;
+"560
+[e $UE 354  ]
+[; ;main.c: 561: }
+"561
+[e :UE 354 ]
 }
-"539
+"563
 [v _servo_rotate0 `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 539: void servo_rotate0(int degree){
+[; ;main.c: 563: void servo_rotate0(int degree){
 [e :U _servo_rotate0 ]
 [v _degree `i ~T0 @X0 1 r1 ]
 [f ]
-"540
+"564
 [v _i `ui ~T0 @X0 1 a ]
-"541
+"565
 [v _j `ui ~T0 @X0 1 a ]
-"542
+"566
 [v _duty `i ~T0 @X0 1 a ]
-[; ;main.c: 540: unsigned int i;
-[; ;main.c: 541: unsigned int j;
-[; ;main.c: 542: int duty = degree;
+[; ;main.c: 564: unsigned int i;
+[; ;main.c: 565: unsigned int j;
+[; ;main.c: 566: int duty = degree;
 [e = _duty _degree ]
-[; ;main.c: 543: for (i=0; i<50; i++) {
-"543
+[; ;main.c: 567: for (i=0; i<50; i++) {
+"567
 {
 [e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 50 `i `ui 355  ]
-[e $U 356  ]
-[e :U 355 ]
-{
-[; ;main.c: 544: LATCbits.LATC0 = 1;
-"544
-[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 545: for(j=0; j<duty; j++) _delay((unsigned long)((1)*(10000000/4000.0)));
-"545
-{
-[e = _j -> -> 0 `i `ui ]
-[e $U 361  ]
-[e :U 358 ]
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
-[e ++ _j -> -> 1 `i `ui ]
-[e :U 361 ]
-[e $ < _j -> _duty `ui 358  ]
+[e $ < _i -> -> 50 `i `ui 359  ]
+[e $U 360  ]
 [e :U 359 ]
-}
-[; ;main.c: 546: LATCbits.LATC0 = 0;
-"546
-[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 547: for(j=0; j<(20 - duty); j++) _delay((unsigned long)((1)*(10000000/4000.0)));
-"547
+{
+[; ;main.c: 568: LATCbits.LATC0 = 1;
+"568
+[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 569: for(j=0; j<duty; j++) _delay((unsigned long)((1)*(10000000/4000.0)));
+"569
 {
 [e = _j -> -> 0 `i `ui ]
 [e $U 365  ]
@@ -4433,70 +4468,70 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
 [e ++ _j -> -> 1 `i `ui ]
 [e :U 365 ]
-[e $ < _j -> - -> 20 `i _duty `ui 362  ]
+[e $ < _j -> _duty `ui 362  ]
 [e :U 363 ]
 }
-"548
+[; ;main.c: 570: LATCbits.LATC0 = 0;
+"570
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 571: for(j=0; j<(20 - duty); j++) _delay((unsigned long)((1)*(10000000/4000.0)));
+"571
+{
+[e = _j -> -> 0 `i `ui ]
+[e $U 369  ]
+[e :U 366 ]
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
+[e ++ _j -> -> 1 `i `ui ]
+[e :U 369 ]
+[e $ < _j -> - -> 20 `i _duty `ui 366  ]
+[e :U 367 ]
 }
-"543
+"572
+}
+"567
 [e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 50 `i `ui 355  ]
-[e :U 356 ]
-"548
+[e $ < _i -> -> 50 `i `ui 359  ]
+[e :U 360 ]
+"572
 }
-[; ;main.c: 548: }
-[; ;main.c: 549: return;
-"549
-[e $UE 354  ]
-[; ;main.c: 550: }
-"550
-[e :UE 354 ]
+[; ;main.c: 572: }
+[; ;main.c: 573: return;
+"573
+[e $UE 358  ]
+[; ;main.c: 574: }
+"574
+[e :UE 358 ]
 }
-"552
+"576
 [v _servo_rotate1 `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 552: void servo_rotate1(int degree){
+[; ;main.c: 576: void servo_rotate1(int degree){
 [e :U _servo_rotate1 ]
 [v _degree `i ~T0 @X0 1 r1 ]
 [f ]
-"553
+"577
 [v _i `ui ~T0 @X0 1 a ]
-"554
+"578
 [v _j `ui ~T0 @X0 1 a ]
-"555
+"579
 [v _duty `i ~T0 @X0 1 a ]
-[; ;main.c: 553: unsigned int i;
-[; ;main.c: 554: unsigned int j;
-[; ;main.c: 555: int duty = ((degree+90)*5/90)+10;
+[; ;main.c: 577: unsigned int i;
+[; ;main.c: 578: unsigned int j;
+[; ;main.c: 579: int duty = ((degree+90)*5/90)+10;
 [e = _duty + / * + _degree -> 90 `i -> 5 `i -> 90 `i -> 10 `i ]
-[; ;main.c: 556: for (i=0; i<50; i++) {
-"556
+[; ;main.c: 580: for (i=0; i<50; i++) {
+"580
 {
 [e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 50 `i `ui 367  ]
-[e $U 368  ]
-[e :U 367 ]
-{
-[; ;main.c: 557: LATCbits.LATC1 = 1;
-"557
-[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 558: for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
-"558
-{
-[e = _j -> -> 0 `i `ui ]
-[e $U 373  ]
-[e :U 370 ]
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 10000000 `l `d .4000000.0 `ul ]
-[e ++ _j -> -> 1 `i `ui ]
-[e :U 373 ]
-[e $ < _j -> _duty `ui 370  ]
+[e $ < _i -> -> 50 `i `ui 371  ]
+[e $U 372  ]
 [e :U 371 ]
-}
-[; ;main.c: 559: LATCbits.LATC1 = 0;
-"559
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 560: for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
-"560
+{
+[; ;main.c: 581: LATCbits.LATC1 = 1;
+"581
+[e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 582: for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+"582
 {
 [e = _j -> -> 0 `i `ui ]
 [e $U 377  ]
@@ -4504,70 +4539,70 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 10000000 `l `d .4000000.0 `ul ]
 [e ++ _j -> -> 1 `i `ui ]
 [e :U 377 ]
-[e $ < _j -> - -> 200 `i _duty `ui 374  ]
+[e $ < _j -> _duty `ui 374  ]
 [e :U 375 ]
 }
-"561
+[; ;main.c: 583: LATCbits.LATC1 = 0;
+"583
+[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 584: for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+"584
+{
+[e = _j -> -> 0 `i `ui ]
+[e $U 381  ]
+[e :U 378 ]
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 10000000 `l `d .4000000.0 `ul ]
+[e ++ _j -> -> 1 `i `ui ]
+[e :U 381 ]
+[e $ < _j -> - -> 200 `i _duty `ui 378  ]
+[e :U 379 ]
 }
-"556
+"585
+}
+"580
 [e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 50 `i `ui 367  ]
-[e :U 368 ]
-"561
+[e $ < _i -> -> 50 `i `ui 371  ]
+[e :U 372 ]
+"585
 }
-[; ;main.c: 561: }
-[; ;main.c: 562: return;
-"562
-[e $UE 366  ]
-[; ;main.c: 563: }
-"563
-[e :UE 366 ]
+[; ;main.c: 585: }
+[; ;main.c: 586: return;
+"586
+[e $UE 370  ]
+[; ;main.c: 587: }
+"587
+[e :UE 370 ]
 }
-"565
+"589
 [v _servo_rotate2 `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 565: void servo_rotate2(int degree){
+[; ;main.c: 589: void servo_rotate2(int degree){
 [e :U _servo_rotate2 ]
 [v _degree `i ~T0 @X0 1 r1 ]
 [f ]
-"566
+"590
 [v _i `ui ~T0 @X0 1 a ]
-"567
+"591
 [v _j `ui ~T0 @X0 1 a ]
-"568
+"592
 [v _duty `i ~T0 @X0 1 a ]
-[; ;main.c: 566: unsigned int i;
-[; ;main.c: 567: unsigned int j;
-[; ;main.c: 568: int duty = ((degree+90)*5/90)+10;
+[; ;main.c: 590: unsigned int i;
+[; ;main.c: 591: unsigned int j;
+[; ;main.c: 592: int duty = ((degree+90)*5/90)+10;
 [e = _duty + / * + _degree -> 90 `i -> 5 `i -> 90 `i -> 10 `i ]
-[; ;main.c: 569: for (i=0; i<50; i++) {
-"569
+[; ;main.c: 593: for (i=0; i<50; i++) {
+"593
 {
 [e = _i -> -> 0 `i `ui ]
-[e $ < _i -> -> 50 `i `ui 379  ]
-[e $U 380  ]
-[e :U 379 ]
-{
-[; ;main.c: 570: LATCbits.LATC2 = 1;
-"570
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 571: for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
-"571
-{
-[e = _j -> -> 0 `i `ui ]
-[e $U 385  ]
-[e :U 382 ]
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 10000000 `l `d .4000000.0 `ul ]
-[e ++ _j -> -> 1 `i `ui ]
-[e :U 385 ]
-[e $ < _j -> _duty `ui 382  ]
+[e $ < _i -> -> 50 `i `ui 383  ]
+[e $U 384  ]
 [e :U 383 ]
-}
-[; ;main.c: 572: LATCbits.LATC2 = 0;
-"572
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 573: for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
-"573
+{
+[; ;main.c: 594: LATCbits.LATC2 = 1;
+"594
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 595: for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+"595
 {
 [e = _j -> -> 0 `i `ui ]
 [e $U 389  ]
@@ -4575,140 +4610,157 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 10000000 `l `d .4000000.0 `ul ]
 [e ++ _j -> -> 1 `i `ui ]
 [e :U 389 ]
-[e $ < _j -> - -> 200 `i _duty `ui 386  ]
+[e $ < _j -> _duty `ui 386  ]
 [e :U 387 ]
 }
-"574
+[; ;main.c: 596: LATCbits.LATC2 = 0;
+"596
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 597: for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+"597
+{
+[e = _j -> -> 0 `i `ui ]
+[e $U 393  ]
+[e :U 390 ]
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 10000000 `l `d .4000000.0 `ul ]
+[e ++ _j -> -> 1 `i `ui ]
+[e :U 393 ]
+[e $ < _j -> - -> 200 `i _duty `ui 390  ]
+[e :U 391 ]
 }
-"569
+"598
+}
+"593
 [e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 50 `i `ui 379  ]
-[e :U 380 ]
-"574
+[e $ < _i -> -> 50 `i `ui 383  ]
+[e :U 384 ]
+"598
 }
-[; ;main.c: 574: }
-[; ;main.c: 575: return;
-"575
-[e $UE 378  ]
-[; ;main.c: 576: }
-"576
-[e :UE 378 ]
+[; ;main.c: 598: }
+[; ;main.c: 599: return;
+"599
+[e $UE 382  ]
+[; ;main.c: 600: }
+"600
+[e :UE 382 ]
 }
-"578
+"602
 [v _read_colorsensor `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 578: void read_colorsensor(void){
+[; ;main.c: 602: void read_colorsensor(void){
 [e :U _read_colorsensor ]
 [f ]
-"583
+"607
 [v _color_low `uc ~T0 @X0 -> 4 `i a ]
-"584
+"608
 [v _color_high `uc ~T0 @X0 -> 4 `i a ]
-"585
+"609
 [v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 583: unsigned char color_low[4];
-[; ;main.c: 584: unsigned char color_high[4];
-[; ;main.c: 585: int i;
-[; ;main.c: 588: I2C_Master_Start();
-"588
+[; ;main.c: 607: unsigned char color_low[4];
+[; ;main.c: 608: unsigned char color_high[4];
+[; ;main.c: 609: int i;
+[; ;main.c: 612: I2C_Master_Start();
+"612
 [e ( _I2C_Master_Start ..  ]
-[; ;main.c: 589: I2C_Master_Write(0b01010010);
-"589
+[; ;main.c: 613: I2C_Master_Write(0b01010010);
+"613
 [e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;main.c: 590: I2C_Master_Write(0b10110100);
-"590
+[; ;main.c: 614: I2C_Master_Write(0b10110100);
+"614
 [e ( _I2C_Master_Write (1 -> -> 180 `i `ui ]
-[; ;main.c: 591: I2C_Master_Start();
-"591
+[; ;main.c: 615: I2C_Master_Start();
+"615
 [e ( _I2C_Master_Start ..  ]
-[; ;main.c: 592: I2C_Master_Write(0b01010011);
-"592
+[; ;main.c: 616: I2C_Master_Write(0b01010011);
+"616
 [e ( _I2C_Master_Write (1 -> -> 83 `i `ui ]
-[; ;main.c: 593: for(i=0; i<3; i++){
-"593
+[; ;main.c: 617: for(i=0; i<3; i++){
+"617
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 3 `i 391  ]
-[e $U 392  ]
-[e :U 391 ]
-{
-[; ;main.c: 594: color_low[i] = I2C_Master_Read(1);
-"594
-[e = *U + &U _color_low * -> -> _i `ui `ux -> -> # *U &U _color_low `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-[; ;main.c: 595: color_high[i] = I2C_Master_Read(1);
-"595
-[e = *U + &U _color_high * -> -> _i `ui `ux -> -> # *U &U _color_high `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-"596
-}
-"593
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 3 `i 391  ]
-[e :U 392 ]
-"596
-}
-[; ;main.c: 596: }
-[; ;main.c: 597: color_low[3] = I2C_Master_Read(1);
-"597
-[e = *U + &U _color_low * -> -> -> 3 `i `ui `ux -> -> # *U &U _color_low `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
-[; ;main.c: 598: color_high[3] = I2C_Master_Read(0);
-"598
-[e = *U + &U _color_high * -> -> -> 3 `i `ui `ux -> -> # *U &U _color_high `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
-[; ;main.c: 599: I2C_Master_Stop();
-"599
-[e ( _I2C_Master_Stop ..  ]
-[; ;main.c: 601: for(i=0; i<4; i++){
-"601
-{
-[e = _i -> 0 `i ]
-[e $ < _i -> 4 `i 394  ]
-[e $U 395  ]
-[e :U 394 ]
-{
-[; ;main.c: 602: color[i] = (color_high[i] << 8)|(color_low[i]);
-"602
-[e = *U + &U _color * -> -> _i `ui `ux -> -> # *U &U _color `ui `ux | << -> *U + &U _color_high * -> -> _i `ui `ux -> -> # *U &U _color_high `ui `ux `i -> 8 `i -> *U + &U _color_low * -> -> _i `ui `ux -> -> # *U &U _color_low `ui `ux `i ]
-"603
-}
-"601
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 4 `i 394  ]
+[e $ < _i -> 3 `i 395  ]
+[e $U 396  ]
 [e :U 395 ]
-"603
+{
+[; ;main.c: 618: color_low[i] = I2C_Master_Read(1);
+"618
+[e = *U + &U _color_low * -> -> _i `ui `ux -> -> # *U &U _color_low `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+[; ;main.c: 619: color_high[i] = I2C_Master_Read(1);
+"619
+[e = *U + &U _color_high * -> -> _i `ui `ux -> -> # *U &U _color_high `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+"620
 }
-[; ;main.c: 603: }
-[; ;main.c: 605: return;
-"605
-[e $UE 390  ]
-[; ;main.c: 606: }
-"606
-[e :UE 390 ]
+"617
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 3 `i 395  ]
+[e :U 396 ]
+"620
+}
+[; ;main.c: 620: }
+[; ;main.c: 621: color_low[3] = I2C_Master_Read(1);
+"621
+[e = *U + &U _color_low * -> -> -> 3 `i `ui `ux -> -> # *U &U _color_low `ui `ux ( _I2C_Master_Read (1 -> -> 1 `i `uc ]
+[; ;main.c: 622: color_high[3] = I2C_Master_Read(0);
+"622
+[e = *U + &U _color_high * -> -> -> 3 `i `ui `ux -> -> # *U &U _color_high `ui `ux ( _I2C_Master_Read (1 -> -> 0 `i `uc ]
+[; ;main.c: 623: I2C_Master_Stop();
+"623
+[e ( _I2C_Master_Stop ..  ]
+[; ;main.c: 625: for(i=0; i<4; i++){
+"625
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 4 `i 398  ]
+[e $U 399  ]
+[e :U 398 ]
+{
+[; ;main.c: 626: color[i] = (color_high[i] << 8)|(color_low[i]);
+"626
+[e = *U + &U _color * -> -> _i `ui `ux -> -> # *U &U _color `ui `ux | << -> *U + &U _color_high * -> -> _i `ui `ux -> -> # *U &U _color_high `ui `ux `i -> 8 `i -> *U + &U _color_low * -> -> _i `ui `ux -> -> # *U &U _color_low `ui `ux `i ]
+"627
+}
+"625
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 4 `i 398  ]
+[e :U 399 ]
+"627
+}
+[; ;main.c: 627: }
+[; ;main.c: 629: return;
+"629
+[e $UE 394  ]
+[; ;main.c: 630: }
+"630
+[e :UE 394 ]
 }
 [p f _printf 12616836 ]
-[a 6C 98 97 100 32 105 110 116 101 114 114 117 112 116 0 ]
-[a 20C 69 82 82 79 82 58 32 37 100 0 ]
-[a 7C 80 79 82 84 66 58 32 37 100 0 ]
-[a 28C 69 77 69 82 71 69 78 67 89 32 83 84 79 80 0 ]
-[a 5C 73 78 84 50 73 70 0 ]
-[a 27C 79 112 101 114 97 116 105 111 110 32 68 111 110 101 33 0 ]
-[a 19C 69 83 75 65 45 67 65 80 45 76 66 76 58 32 37 100 32 0 ]
-[a 17C 69 83 75 65 43 67 65 80 45 76 66 76 58 32 37 100 32 0 ]
-[a 18C 69 83 75 65 45 67 65 80 43 76 66 76 58 32 37 100 32 0 ]
-[a 16C 69 83 75 65 43 67 65 80 43 76 66 76 58 32 37 100 32 0 ]
-[a 9C 84 105 109 101 58 32 37 48 50 120 58 37 48 50 120 58 37 48 50 120 32 32 0 ]
-[a 8C 68 97 116 101 58 32 37 48 50 120 47 37 48 50 120 47 37 48 50 120 32 32 0 ]
-[a 15C 89 79 80 45 67 65 80 45 76 66 76 58 32 37 100 32 32 0 ]
-[a 13C 89 79 80 43 67 65 80 45 76 66 76 58 32 37 100 32 32 0 ]
-[a 14C 89 79 80 45 67 65 80 43 76 66 76 58 32 37 100 32 32 0 ]
-[a 12C 89 79 80 43 67 65 80 43 76 66 76 58 32 37 100 32 32 0 ]
-[a 10C 66 111 116 116 108 101 32 67 111 117 110 116 32 32 32 32 0 ]
-[a 22C 84 105 109 101 58 32 37 100 32 115 32 32 32 32 32 32 32 0 ]
-[a 21C 84 111 116 97 108 32 79 112 101 114 97 116 105 111 110 32 32 32 32 32 32 32 0 ]
-[a 11C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 0 ]
-[a 25C 82 117 110 110 105 110 103 126 126 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 24C 82 117 110 110 105 110 103 126 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 23C 82 117 110 110 105 110 103 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 5C 98 97 100 32 105 110 116 101 114 114 117 112 116 0 ]
+[a 22C 69 82 82 79 82 58 32 37 100 0 ]
+[a 7C 37 100 44 32 37 100 0 ]
+[a 8C 37 100 44 32 37 100 0 ]
+[a 9C 37 100 44 32 37 100 0 ]
+[a 30C 69 77 69 82 71 69 78 67 89 32 83 84 79 80 0 ]
+[a 29C 79 112 101 114 97 116 105 111 110 32 68 111 110 101 33 0 ]
+[a 21C 69 83 75 65 45 67 65 80 45 76 66 76 58 32 37 100 32 0 ]
+[a 19C 69 83 75 65 43 67 65 80 45 76 66 76 58 32 37 100 32 0 ]
+[a 20C 69 83 75 65 45 67 65 80 43 76 66 76 58 32 37 100 32 0 ]
+[a 18C 69 83 75 65 43 67 65 80 43 76 66 76 58 32 37 100 32 0 ]
+[a 11C 84 105 109 101 58 32 37 48 50 120 58 37 48 50 120 58 37 48 50 120 32 32 0 ]
+[a 10C 68 97 116 101 58 32 37 48 50 120 47 37 48 50 120 47 37 48 50 120 32 32 0 ]
+[a 17C 89 79 80 45 67 65 80 45 76 66 76 58 32 37 100 32 32 0 ]
+[a 15C 89 79 80 43 67 65 80 45 76 66 76 58 32 37 100 32 32 0 ]
+[a 16C 89 79 80 45 67 65 80 43 76 66 76 58 32 37 100 32 32 0 ]
+[a 14C 89 79 80 43 67 65 80 43 76 66 76 58 32 37 100 32 32 0 ]
+[a 12C 66 111 116 116 108 101 32 67 111 117 110 116 32 32 32 32 0 ]
+[a 6C 114 101 97 100 105 110 103 32 32 32 32 32 32 0 ]
+[a 24C 84 105 109 101 58 32 37 100 32 115 32 32 32 32 32 32 32 0 ]
+[a 23C 84 111 116 97 108 32 79 112 101 114 97 116 105 111 110 32 32 32 32 32 32 32 0 ]
+[a 13C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 0 ]
+[a 27C 82 117 110 110 105 110 103 126 126 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 26C 82 117 110 110 105 110 103 126 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 25C 82 117 110 110 105 110 103 126 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 1C 67 37 117 32 82 37 117 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 3C 67 37 117 32 82 37 117 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 2C 71 37 117 32 66 37 117 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 4C 71 37 117 32 66 37 117 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
-[a 26C 82 37 100 32 71 37 100 32 66 37 100 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 28C 82 37 100 32 71 37 100 32 66 37 100 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]

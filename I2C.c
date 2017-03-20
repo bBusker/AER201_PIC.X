@@ -63,7 +63,7 @@ void I2C_ColorSens_Init(void){
     I2C_Master_Start();             //Write Start condition
     I2C_Master_Write(0b01010010);   //7bit address for TCS (0x29) + Write
     I2C_Master_Write(0b10000000);   //Write to cmdreg + access enable reg
-    I2C_Master_Write(0b00010011);   //Start RGBC and Interrupts
+    I2C_Master_Write(0b00000011);   //Start RGBC and Interrupts TESTING -- INTERRUTPS OFF
     I2C_Master_Stop();
     
     I2C_Master_Start();             //Write Start condition
@@ -87,13 +87,18 @@ void I2C_ColorSens_Init(void){
     I2C_Master_Write(0b00000001);   //persistence of 1 value out of range
     I2C_Master_Stop();
     
+    I2C_Master_Start();             //Write Start condition
+    I2C_Master_Write(0b01010010);   //7bit address for TCS (0x29) + Write
+    I2C_Master_Write(0b10000001);   //Write to cmdreg + access RGBC timing register
+    I2C_Master_Write(0b11111110);   //Set RGBC timing register
+    I2C_Master_Stop();
 }
 
 void I2C_ColorSens_ClearInt(void){
     I2C_Master_Start();             //Write Start condition
     I2C_Master_Write(0b01010010);   //7bit address for TCS (0x29) + Write
     I2C_Master_Write(0b11100110);   //Write to cmdreg + special func clear int
-    I2C_Master_Write(0b11100110);   //TESTING 
+    I2C_Master_Write(0b11100110);   //TESTING -- works but not sure if needed 
     I2C_Master_Stop();
 }
 
