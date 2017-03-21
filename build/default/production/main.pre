@@ -3960,7 +3960,7 @@ int bottlequeue_tail;
 int bottlequeue_head;
 int nodedata;
 
-int testint[2];
+int testint[3];
 int testflag = 0;
 
 void main(void) {
@@ -4153,30 +4153,24 @@ return;
 
 void standby(void){
 read_colorsensor();
-if(color[0]>20){
-if(!testflag){
+if((color[0]>50) && (color[0]<55)){
+testflag += 1;
+if(testflag = 2){
 testint[0] = color[1];
-testflag = 1;
-}
-else{
-lcdInst(0b10000000);
-printf("reading      ");
-lcdInst(0b11000000);
-printf("%d, %d", color[0], color[1]);
-}
-}
-else{
-if(testflag){
-testint[1] = color[1];
+testint[1] = color[2];
+testint[2] = color[3];
 testflag = 0;
 }
+}
 else{
+testflag = 0;
+}
 lcdInst(0b10000000);
-printf("%d, %d", testint[0], testint[1]);
+printf("%03d, %03d, %03d", testint[0], testint[1], testint[2]);
 lcdInst(0b11000000);
-printf("%d, %d", color[0], color[1]);
-}
-}
+printf("%03d %03d %03d %03d", color[0], color[1], color[2], color[3]);
+
+# 418
 return;
 }
 

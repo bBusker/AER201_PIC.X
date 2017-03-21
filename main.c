@@ -84,7 +84,7 @@ int bottlequeue_tail;
 int bottlequeue_head;
 int nodedata;
 
-int testint[2];
+int testint[3];
 int testflag = 0;
 
 void main(void) {
@@ -375,30 +375,46 @@ void interrupt isr(void){
 
 void standby(void){
     read_colorsensor();
-    if(color[0]>20){
-        if(!testflag){
+    if((color[0]>50) && (color[0]<55)){
+        testflag += 1;
+        if(testflag = 2){
             testint[0] = color[1];
-            testflag = 1;
-        }
-        else{
-            __lcd_home();
-            printf("reading      ");
-            __lcd_newline();
-            printf("%d, %d", color[0], color[1]);
+            testint[1] = color[2];
+            testint[2] = color[3];
+            testflag = 0;
         }
     }
     else{
-        if(testflag){
-            testint[1] = color[1];
-            testflag = 0;
-        }
-        else{
-            __lcd_home();
-            printf("%d, %d", testint[0], testint[1]);
-            __lcd_newline();
-            printf("%d, %d", color[0], color[1]);
-        }
+        testflag = 0;
     }
+    __lcd_home();
+    printf("%03d, %03d, %03d", testint[0], testint[1], testint[2]);
+    __lcd_newline();
+    printf("%03d %03d %03d %03d", color[0], color[1], color[2], color[3]);
+//    if(color[0]>46){
+//        if(!testflag){
+//            testint[0] = color[1];
+//            testflag = 1;
+//        }
+//        else{
+//            __lcd_home();
+//            printf("reading      ");
+//            __lcd_newline();
+//            printf("%03d %03d %03d %03d", color[0], color[1], color[2], color[3]);
+//        }
+//    }
+//    else{
+//        if(testflag){
+//            testint[1] = color[1];
+//            testflag = 0;
+//        }
+//        else{
+//            __lcd_home();
+//            printf("%03d, %03d", testint[0], testint[1]);
+//            __lcd_newline();
+//            printf("%03d %03d %03d %03d", color[0], color[1], color[2], color[3]);
+//        }
+//    }
     return;
 }
 
