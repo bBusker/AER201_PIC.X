@@ -187,47 +187,11 @@ void interrupt isr(void){
 }
 
 void standby(void){
-    read_colorsensor();
-    if((color[0]>50) && (color[0]<55)){
-        testflag += 1;
-        if(testflag = 2){
-            testint[0] = color[1];
-            testint[1] = color[2];
-            testint[2] = color[3];
-            testflag = 0;
-        }
-    }
-    else{
-        testflag = 0;
-    }
     __lcd_home();
-    printf("%03d, %03d, %03d", testint[0], testint[1], testint[2]);
+    printf("standby");
     __lcd_newline();
-    printf("%03d %03d %03d %03d", color[0], color[1], color[2], color[3]);
-//    if(color[0]>46){
-//        if(!testflag){
-//            testint[0] = color[1];
-//            testflag = 1;
-//        }
-//        else{
-//            __lcd_home();
-//            printf("reading      ");
-//            __lcd_newline();
-//            printf("%03d %03d %03d %03d", color[0], color[1], color[2], color[3]);
-//        }
-//    }
-//    else{
-//        if(testflag){
-//            testint[1] = color[1];
-//            testflag = 0;
-//        }
-//        else{
-//            __lcd_home();
-//            printf("%03d, %03d", testint[0], testint[1]);
-//            __lcd_newline();
-//            printf("%03d %03d %03d %03d", color[0], color[1], color[2], color[3]);
-//        }
-//    }
+    read_colorsensor();
+    printf("%d", color[0]);
     return;
 }
 
@@ -352,7 +316,50 @@ void operation(void){
             operation_disp = 0;
             break;
     }
-    __delay_ms(100);
+    
+    read_colorsensor();
+    if(color[0]>AMBIENTTCSCLEAR){
+        flag_bottle = 1;
+        if(color[0]>NOCAPDISTINGUISH)flag_yopNC = 1;
+        if(color[0]>TCSBOTTLEHIGH){
+            if(!flag_top_read){
+                if((color[1]/color[3]) > 1.5) bottle_read_top = 1;
+                else if((color[1]/color[3]) <= 0.5) bottle_read_top = 2;
+                else bottle_read_top = 0;
+                flag_top_read = 1;
+            }
+            flag_bottle_high = 1;
+        }
+        else if(color[0]<TCSBOTTLEHIGH){
+            if(flag_bottle_high){
+                if((color[1]/color[3]) > 1.5) bottle_read_bot = 1;
+                else if((color[1]/color[3]) <= 0.5) bottle_read_bot = 2;
+                else bottle_read_top = 0;
+                flag_bottle_high = 0;
+            }
+        }
+    }
+    
+    else if(flag_bottle){
+        bottle_count_array[0] += 1;
+        if(bottle_read_top == 1 || bottle_read_bot == 1){
+            bottle_count_array[1] += 1;
+            //SERVO LOGIC
+        }
+        else if(bottle_read_top == 2 || bottle_read_bot == 2){
+            bottle_count_array[3] += 1;
+        }
+        else if(flag_yopNC){
+            bottle_count_array[2] += 1;
+        }
+        else{
+            bottle_count_array[4] += 1;
+        }
+        flag_bottle = 0;
+        flag_bottle_high = 0;
+        flag_top_read = 0;
+        flag_yopNC = 0;
+    }
     return;
 }
 

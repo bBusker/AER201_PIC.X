@@ -46,21 +46,32 @@ int operation_time;
 
 
 //For bottle count
-//0 = YOP + CAP
-//1 = YOP - CAP
-//2 = ESKA + CAP
-//3 = ESKA - CAP
-//4 = Total
+//0 = Total
+//1 = YOP + CAP
+//2 = YOP - CAP
+//3 = ESKA + CAP
+//4 = ESKA - CAP
 int bottle_count_disp = -1; //Data for bottle display screen
 int bottle_count_array[5];
 
 int operation_disp = 0;         //Data for operation running animation
-int color[4];          //Stores TCS data in form clear, red, green, blue
+float color[4];          //Stores TCS data in form clear, red, green, blue
 
 int testint[3];
 int testflag = 0;
 
+//Bottle Detection Logic
+int flag_bottle;
+int flag_bottle_high;
+int flag_top_read;
+int flag_yopNC;
+int bottle_read_top;
+int bottle_read_bot;
+
 //CONSTANTS
 #define MAINPOLLINGDELAYMS  10
+#define AMBIENTTCSCLEAR     17
+#define TCSBOTTLEHIGH       30
+#define NOCAPDISTINGUISH    300
 
 #endif	/* MAIN_H */
