@@ -1,34 +1,51 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"4740 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
-[v _SSPSTAT `Vuc ~T0 @X0 0 e@4039 ]
-"4671
-[v _SSPCON1 `Vuc ~T0 @X0 0 e@4038 ]
-"4610
-[v _SSPCON2 `Vuc ~T0 @X0 0 e@4037 ]
-"4960
-[v _SSPADD `Vuc ~T0 @X0 0 e@4040 ]
-"7638
-[v _TRISC3 `Vb ~T0 @X0 0 e@31907 ]
-"7640
-[v _TRISC4 `Vb ~T0 @X0 0 e@31908 ]
-"7420
-[v _SEN `Vb ~T0 @X0 0 e@32296 ]
-"7382
-[v _RSEN `Vb ~T0 @X0 0 e@32297 ]
-"7220
-[v _PEN `Vb ~T0 @X0 0 e@32298 ]
-"4966
-[v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
-[v F2878 `(v ~T0 @X0 1 tf1`ul ]
-"159 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
-[v __delay `JF2878 ~T0 @X0 0 e ]
-[p i __delay ]
-"7336 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
-[v _RCEN `Vb ~T0 @X0 0 e@32299 ]
-"6604
-[v _ACKDT `Vb ~T0 @X0 0 e@32301 ]
-"6606
-[v _ACKEN `Vb ~T0 @X0 0 e@32300 ]
+"5042 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+[v _PR2 `Vuc ~T0 @X0 0 e@4043 ]
+"6700
+[v _CCP1X `Vb ~T0 @X0 0 e@32237 ]
+"6702
+[v _CCP1Y `Vb ~T0 @X0 0 e@32236 ]
+"4308
+[v _CCPR1L `Vuc ~T0 @X0 0 e@4030 ]
+"6718
+[v _CCP2X `Vb ~T0 @X0 0 e@32213 ]
+"6720
+[v _CCP2Y `Vb ~T0 @X0 0 e@32212 ]
+"4194
+[v _CCPR2L `Vuc ~T0 @X0 0 e@4027 ]
+"7178
+[v _P1M1 `Vb ~T0 @X0 0 e@32239 ]
+"7176
+[v _P1M0 `Vb ~T0 @X0 0 e@32238 ]
+"6698
+[v _CCP1M3 `Vb ~T0 @X0 0 e@32235 ]
+"6696
+[v _CCP1M2 `Vb ~T0 @X0 0 e@32234 ]
+"6694
+[v _CCP1M1 `Vb ~T0 @X0 0 e@32233 ]
+"6692
+[v _CCP1M0 `Vb ~T0 @X0 0 e@32232 ]
+"7586
+[v _TMR2ON `Vb ~T0 @X0 0 e@32338 ]
+"1820
+[s S65 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S65 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"1830
+[s S66 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S66 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"1819
+[u S64 `S65 1 `S66 1 ]
+[n S64 . . . ]
+"1841
+[v _TRISCbits `VS64 ~T0 @X0 0 e@3988 ]
+"6716
+[v _CCP2M3 `Vb ~T0 @X0 0 e@32211 ]
+"6714
+[v _CCP2M2 `Vb ~T0 @X0 0 e@32210 ]
+"6712
+[v _CCP2M1 `Vb ~T0 @X0 0 e@32209 ]
+"6710
+[v _CCP2M0 `Vb ~T0 @X0 0 e@32208 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2710,10 +2727,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 159: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 161: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 163: extern __nonreentrant void _delay3(unsigned char);
-[; ;I2C.h: 1: void I2C_Master_Init(const unsigned long c);
-[; ;I2C.h: 3: void I2C_Master_Write(unsigned d);
-[; ;I2C.h: 4: unsigned char I2C_Master_Read(unsigned char a);
-[; ;I2C.h: 5: void delay_10ms(unsigned char n);
+[; ;pwm.h: 7: int PWM_Max_Duty();
+[; ;pwm.h: 8: void set_PWM_freq(long fre);
+[; ;pwm.h: 9: void set_PWM1_duty(unsigned int duty);
+[; ;pwm.h: 10: void set_PWM2_duty(unsigned int duty);
+[; ;pwm.h: 11: void PWM1_Start();
+[; ;pwm.h: 12: void PWM2_Start();
+[; ;pwm.h: 13: void PWM1_Stop();
+[; ;pwm.h: 14: void PWM2_Stop();
 "9 configBits.h
 [p x OSC=HS ]
 "10
@@ -2807,297 +2828,231 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 56: extern char * strichr(const char *, int);
 [; ;string.h: 57: extern char * strrchr(const char *, int);
 [; ;string.h: 58: extern char * strrichr(const char *, int);
-"14 I2C.c
-[v _I2C_Master_Init `(v ~T0 @X0 1 ef1`Cul ]
-"15
-{
-[; ;I2C.c: 14: void I2C_Master_Init(const unsigned long c)
-[; ;I2C.c: 15: {
-[e :U _I2C_Master_Init ]
-"14
-[v _c `Cul ~T0 @X0 1 r1 ]
-"15
-[f ]
-[; ;I2C.c: 17: SSPSTAT = 0b00000000;
-"17
-[e = _SSPSTAT -> -> 0 `i `uc ]
-[; ;I2C.c: 18: SSPCON1 = 0b00101000;
+"17 PWM.c
+[v _freq `l ~T0 @X0 1 e ]
+[; ;PWM.c: 17: long freq;
 "18
-[e = _SSPCON1 -> -> 40 `i `uc ]
-[; ;I2C.c: 19: SSPCON2 = 0b00000000;
-"19
-[e = _SSPCON2 -> -> 0 `i `uc ]
-[; ;I2C.c: 20: SSPADD = (10000000/(4*c))-1;
-"20
-[e = _SSPADD -> - / -> -> 10000000 `l `ul * -> -> -> 4 `i `l `ul _c -> -> -> 1 `i `l `ul `uc ]
-[; ;I2C.c: 21: TRISC3 = 1;
+[v _i `ui ~T0 @X0 1 e ]
+[i _i
+-> -> 0 `i `ui
+]
+[; ;PWM.c: 18: unsigned int i = 0;
 "21
-[e = _TRISC3 -> -> 1 `i `b ]
-[; ;I2C.c: 22: TRISC4 = 1;
-"22
-[e = _TRISC4 -> -> 1 `i `b ]
-[; ;I2C.c: 23: }
-"23
+[v _PWM_Max_Duty `(i ~T0 @X0 1 ef ]
+"25
+{
+[; ;PWM.c: 21: int PWM_Max_Duty()
+[; ;PWM.c: 25: {
+[e :U _PWM_Max_Duty ]
+[f ]
+[; ;PWM.c: 26: return(10000000/(freq*16);
+"26
+[e ) -> / -> 10000000 `l * _freq -> -> 16 `i `l `i ]
+[e $UE 265  ]
+[; ;PWM.c: 27: }
+"27
 [e :UE 265 ]
 }
-"25
-[v _I2C_Master_Wait `(v ~T0 @X0 1 ef ]
-"26
+"29
+[v _set_PWM_freq `(v ~T0 @X0 1 ef1`l ]
+"33
 {
-[; ;I2C.c: 25: void I2C_Master_Wait()
-[; ;I2C.c: 26: {
-[e :U _I2C_Master_Wait ]
+[; ;PWM.c: 29: void set_PWM_freq(long fre)
+[; ;PWM.c: 33: {
+[e :U _set_PWM_freq ]
+"29
+[v _fre `l ~T0 @X0 1 r1 ]
+"33
 [f ]
-[; ;I2C.c: 27: while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
-"27
-[e $U 267  ]
-[e :U 268 ]
-[e :U 267 ]
-[e $ || != & -> _SSPSTAT `i -> 4 `i -> 0 `i != & -> _SSPCON2 `i -> 31 `i -> 0 `i 268  ]
-[e :U 269 ]
-[; ;I2C.c: 28: }
-"28
+[; ;PWM.c: 34: PR2 = (10000000/(fre*4*16)) - 1;
+"34
+[e = _PR2 -> - / -> 10000000 `l * * _fre -> -> 4 `i `l -> -> 16 `i `l -> -> 1 `i `l `uc ]
+[; ;PWM.c: 35: freq = fre;
+"35
+[e = _freq _fre ]
+[; ;PWM.c: 36: }
+"36
 [e :UE 266 ]
 }
-"30
-[v _I2C_Master_Start `(v ~T0 @X0 1 ef ]
-"31
-{
-[; ;I2C.c: 30: void I2C_Master_Start()
-[; ;I2C.c: 31: {
-[e :U _I2C_Master_Start ]
-[f ]
-[; ;I2C.c: 32: I2C_Master_Wait();
-"32
-[e ( _I2C_Master_Wait ..  ]
-[; ;I2C.c: 33: SEN = 1;
-"33
-[e = _SEN -> -> 1 `i `b ]
-[; ;I2C.c: 34: }
-"34
-[e :UE 270 ]
-}
-"36
-[v _I2C_Master_RepeatedStart `(v ~T0 @X0 1 ef ]
-"37
-{
-[; ;I2C.c: 36: void I2C_Master_RepeatedStart()
-[; ;I2C.c: 37: {
-[e :U _I2C_Master_RepeatedStart ]
-[f ]
-[; ;I2C.c: 38: I2C_Master_Wait();
 "38
-[e ( _I2C_Master_Wait ..  ]
-[; ;I2C.c: 39: RSEN = 1;
-"39
-[e = _RSEN -> -> 1 `i `b ]
-[; ;I2C.c: 40: }
-"40
+[v _set_PWM1_duty `(v ~T0 @X0 1 ef1`ui ]
+"42
+{
+[; ;PWM.c: 38: void set_PWM1_duty(unsigned int duty)
+[; ;PWM.c: 42: {
+[e :U _set_PWM1_duty ]
+"38
+[v _duty `ui ~T0 @X0 1 r1 ]
+"42
+[f ]
+[; ;PWM.c: 43: if(duty<1024)
+"43
+[e $ ! < _duty -> -> 1024 `i `ui 268  ]
+[; ;PWM.c: 44: {
+"44
+{
+[; ;PWM.c: 45: duty = ((float)duty/1023)*PWM_Max_Duty();
+"45
+[e = _duty -> * / -> _duty `f -> -> 1023 `i `f -> ( _PWM_Max_Duty ..  `f `ui ]
+[; ;PWM.c: 46: CCP1X = duty & 2;
+"46
+[e = _CCP1X -> & _duty -> -> 2 `i `ui `b ]
+[; ;PWM.c: 47: CCP1Y = duty & 1;
+"47
+[e = _CCP1Y -> & _duty -> -> 1 `i `ui `b ]
+[; ;PWM.c: 48: CCPR1L = duty>>2;
+"48
+[e = _CCPR1L -> >> _duty -> 2 `i `uc ]
+"49
+}
+[e :U 268 ]
+[; ;PWM.c: 49: }
+[; ;PWM.c: 51: }
+"51
+[e :UE 267 ]
+}
+"53
+[v _set_PWM2_duty `(v ~T0 @X0 1 ef1`ui ]
+"57
+{
+[; ;PWM.c: 53: void set_PWM2_duty(unsigned int duty)
+[; ;PWM.c: 57: {
+[e :U _set_PWM2_duty ]
+"53
+[v _duty `ui ~T0 @X0 1 r1 ]
+"57
+[f ]
+[; ;PWM.c: 58: if(duty<1024)
+"58
+[e $ ! < _duty -> -> 1024 `i `ui 270  ]
+[; ;PWM.c: 59: {
+"59
+{
+[; ;PWM.c: 60: duty = ((float)duty/1023)*PWM_Max_Duty();
+"60
+[e = _duty -> * / -> _duty `f -> -> 1023 `i `f -> ( _PWM_Max_Duty ..  `f `ui ]
+[; ;PWM.c: 61: CCP2X = duty & 2;
+"61
+[e = _CCP2X -> & _duty -> -> 2 `i `ui `b ]
+[; ;PWM.c: 62: CCP2Y = duty & 1;
+"62
+[e = _CCP2Y -> & _duty -> -> 1 `i `ui `b ]
+[; ;PWM.c: 63: CCPR2L = duty>>2;
+"63
+[e = _CCPR2L -> >> _duty -> 2 `i `uc ]
+"64
+}
+[e :U 270 ]
+[; ;PWM.c: 64: }
+[; ;PWM.c: 65: }
+"65
+[e :UE 269 ]
+}
+"67
+[v _PWM1_Start `(v ~T0 @X0 1 ef ]
+"69
+{
+[; ;PWM.c: 67: void PWM1_Start()
+[; ;PWM.c: 69: {
+[e :U _PWM1_Start ]
+[f ]
+[; ;PWM.c: 71: P1M1 = 0;
+"71
+[e = _P1M1 -> -> 0 `i `b ]
+[; ;PWM.c: 72: P1M0 = 0;
+"72
+[e = _P1M0 -> -> 0 `i `b ]
+[; ;PWM.c: 73: CCP1M3 = 1;
+"73
+[e = _CCP1M3 -> -> 1 `i `b ]
+[; ;PWM.c: 74: CCP1M2 = 1;
+"74
+[e = _CCP1M2 -> -> 1 `i `b ]
+[; ;PWM.c: 75: CCP1M1 = 0;
+"75
+[e = _CCP1M1 -> -> 0 `i `b ]
+[; ;PWM.c: 76: CCP1M0 = 0;
+"76
+[e = _CCP1M0 -> -> 0 `i `b ]
+[; ;PWM.c: 91: TMR2ON = 1;
+"91
+[e = _TMR2ON -> -> 1 `i `b ]
+[; ;PWM.c: 94: TRISCbits.TRISC2 = 0;
+"94
+[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
+[; ;PWM.c: 95: }
+"95
 [e :UE 271 ]
 }
-"42
-[v _I2C_Master_Stop `(v ~T0 @X0 1 ef ]
-"43
+"97
+[v _PWM2_Start `(v ~T0 @X0 1 ef ]
+"99
 {
-[; ;I2C.c: 42: void I2C_Master_Stop()
-[; ;I2C.c: 43: {
-[e :U _I2C_Master_Stop ]
+[; ;PWM.c: 97: void PWM2_Start()
+[; ;PWM.c: 99: {
+[e :U _PWM2_Start ]
 [f ]
-[; ;I2C.c: 44: I2C_Master_Wait();
-"44
-[e ( _I2C_Master_Wait ..  ]
-[; ;I2C.c: 45: PEN = 1;
-"45
-[e = _PEN -> -> 1 `i `b ]
-[; ;I2C.c: 46: }
-"46
+[; ;PWM.c: 101: CCP1M3 = 1;
+"101
+[e = _CCP1M3 -> -> 1 `i `b ]
+[; ;PWM.c: 102: CCP1M2 = 1;
+"102
+[e = _CCP1M2 -> -> 1 `i `b ]
+[; ;PWM.c: 117: TMR2ON = 1;
+"117
+[e = _TMR2ON -> -> 1 `i `b ]
+[; ;PWM.c: 120: TRISCbits.TRISC1 = 0;
+"120
+[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
+[; ;PWM.c: 121: }
+"121
 [e :UE 272 ]
 }
-"48
-[v _I2C_Master_Write `(v ~T0 @X0 1 ef1`ui ]
-"49
+"123
+[v _PWM1_Stop `(v ~T0 @X0 1 ef ]
+"125
 {
-[; ;I2C.c: 48: void I2C_Master_Write(unsigned d)
-[; ;I2C.c: 49: {
-[e :U _I2C_Master_Write ]
-"48
-[v _d `ui ~T0 @X0 1 r1 ]
-"49
+[; ;PWM.c: 123: void PWM1_Stop()
+[; ;PWM.c: 125: {
+[e :U _PWM1_Stop ]
 [f ]
-[; ;I2C.c: 50: I2C_Master_Wait();
-"50
-[e ( _I2C_Master_Wait ..  ]
-[; ;I2C.c: 51: SSPBUF = d;
-"51
-[e = _SSPBUF -> _d `uc ]
-[; ;I2C.c: 52: }
-"52
+[; ;PWM.c: 126: CCP1M3 = 0;
+"126
+[e = _CCP1M3 -> -> 0 `i `b ]
+[; ;PWM.c: 127: CCP1M2 = 0;
+"127
+[e = _CCP1M2 -> -> 0 `i `b ]
+[; ;PWM.c: 128: CCP1M1 = 0;
+"128
+[e = _CCP1M1 -> -> 0 `i `b ]
+[; ;PWM.c: 129: CCP1M0 = 0;
+"129
+[e = _CCP1M0 -> -> 0 `i `b ]
+[; ;PWM.c: 130: }
+"130
 [e :UE 273 ]
 }
-"54
-[v _I2C_ColorSens_Init `(v ~T0 @X0 1 ef ]
+"132
+[v _PWM2_Stop `(v ~T0 @X0 1 ef ]
+"133
 {
-[; ;I2C.c: 54: void I2C_ColorSens_Init(void){
-[e :U _I2C_ColorSens_Init ]
+[; ;PWM.c: 132: void PWM2_Stop()
+[; ;PWM.c: 133: {
+[e :U _PWM2_Stop ]
 [f ]
-[; ;I2C.c: 55: I2C_Master_Start();
-"55
-[e ( _I2C_Master_Start ..  ]
-[; ;I2C.c: 56: I2C_Master_Write(0b01010010);
-"56
-[e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;I2C.c: 57: I2C_Master_Write(0b10000000);
-"57
-[e ( _I2C_Master_Write (1 -> -> 128 `i `ui ]
-[; ;I2C.c: 58: I2C_Master_Write(0b00000001);
-"58
-[e ( _I2C_Master_Write (1 -> -> 1 `i `ui ]
-[; ;I2C.c: 59: I2C_Master_Stop();
-"59
-[e ( _I2C_Master_Stop ..  ]
-[; ;I2C.c: 61: _delay((unsigned long)((3)*(10000000/4000.0)));
-"61
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
-[; ;I2C.c: 63: I2C_Master_Start();
-"63
-[e ( _I2C_Master_Start ..  ]
-[; ;I2C.c: 64: I2C_Master_Write(0b01010010);
-"64
-[e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;I2C.c: 65: I2C_Master_Write(0b10000000);
-"65
-[e ( _I2C_Master_Write (1 -> -> 128 `i `ui ]
-[; ;I2C.c: 66: I2C_Master_Write(0b00000011);
-"66
-[e ( _I2C_Master_Write (1 -> -> 3 `i `ui ]
-[; ;I2C.c: 67: I2C_Master_Stop();
-"67
-[e ( _I2C_Master_Stop ..  ]
-[; ;I2C.c: 69: I2C_Master_Start();
-"69
-[e ( _I2C_Master_Start ..  ]
-[; ;I2C.c: 70: I2C_Master_Write(0b01010010);
-"70
-[e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;I2C.c: 71: I2C_Master_Write(0b10001111);
-"71
-[e ( _I2C_Master_Write (1 -> -> 143 `i `ui ]
-[; ;I2C.c: 72: I2C_Master_Write(0b00000010);
-"72
-[e ( _I2C_Master_Write (1 -> -> 2 `i `ui ]
-[; ;I2C.c: 73: I2C_Master_Stop();
-"73
-[e ( _I2C_Master_Stop ..  ]
-[; ;I2C.c: 90: I2C_Master_Start();
-"90
-[e ( _I2C_Master_Start ..  ]
-[; ;I2C.c: 91: I2C_Master_Write(0b01010010);
-"91
-[e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;I2C.c: 92: I2C_Master_Write(0b10000001);
-"92
-[e ( _I2C_Master_Write (1 -> -> 129 `i `ui ]
-[; ;I2C.c: 93: I2C_Master_Write(0b11111111);
-"93
-[e ( _I2C_Master_Write (1 -> -> 255 `i `ui ]
-[; ;I2C.c: 94: I2C_Master_Stop();
-"94
-[e ( _I2C_Master_Stop ..  ]
-[; ;I2C.c: 95: }
-"95
+[; ;PWM.c: 134: CCP2M3 = 0;
+"134
+[e = _CCP2M3 -> -> 0 `i `b ]
+[; ;PWM.c: 135: CCP2M2 = 0;
+"135
+[e = _CCP2M2 -> -> 0 `i `b ]
+[; ;PWM.c: 136: CCP2M1 = 0;
+"136
+[e = _CCP2M1 -> -> 0 `i `b ]
+[; ;PWM.c: 137: CCP2M0 = 0;
+"137
+[e = _CCP2M0 -> -> 0 `i `b ]
+[; ;PWM.c: 138: }
+"138
 [e :UE 274 ]
-}
-"97
-[v _I2C_ColorSens_ClearInt `(v ~T0 @X0 1 ef ]
-{
-[; ;I2C.c: 97: void I2C_ColorSens_ClearInt(void){
-[e :U _I2C_ColorSens_ClearInt ]
-[f ]
-[; ;I2C.c: 98: I2C_Master_Start();
-"98
-[e ( _I2C_Master_Start ..  ]
-[; ;I2C.c: 99: I2C_Master_Write(0b01010010);
-"99
-[e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;I2C.c: 100: I2C_Master_Write(0b11100110);
-"100
-[e ( _I2C_Master_Write (1 -> -> 230 `i `ui ]
-[; ;I2C.c: 101: I2C_Master_Write(0b11100110);
-"101
-[e ( _I2C_Master_Write (1 -> -> 230 `i `ui ]
-[; ;I2C.c: 102: I2C_Master_Stop();
-"102
-[e ( _I2C_Master_Stop ..  ]
-[; ;I2C.c: 103: }
-"103
-[e :UE 275 ]
-}
-"105
-[v _I2C_Master_Read `(uc ~T0 @X0 1 ef1`uc ]
-"106
-{
-[; ;I2C.c: 105: unsigned char I2C_Master_Read(unsigned char a)
-[; ;I2C.c: 106: {
-[e :U _I2C_Master_Read ]
-"105
-[v _a `uc ~T0 @X0 1 r1 ]
-"106
-[f ]
-"107
-[v _temp `uc ~T0 @X0 1 a ]
-[; ;I2C.c: 107: unsigned char temp;
-[; ;I2C.c: 108: I2C_Master_Wait();
-"108
-[e ( _I2C_Master_Wait ..  ]
-[; ;I2C.c: 109: RCEN = 1;
-"109
-[e = _RCEN -> -> 1 `i `b ]
-[; ;I2C.c: 110: I2C_Master_Wait();
-"110
-[e ( _I2C_Master_Wait ..  ]
-[; ;I2C.c: 111: temp = SSPBUF;
-"111
-[e = _temp _SSPBUF ]
-[; ;I2C.c: 112: I2C_Master_Wait();
-"112
-[e ( _I2C_Master_Wait ..  ]
-[; ;I2C.c: 113: ACKDT = (a)?0:1;
-"113
-[e = _ACKDT -> ? != -> _a `i -> -> -> 0 `i `uc `i : -> 0 `i -> 1 `i `b ]
-[; ;I2C.c: 114: ACKEN = 1;
-"114
-[e = _ACKEN -> -> 1 `i `b ]
-[; ;I2C.c: 115: return temp;
-"115
-[e ) _temp ]
-[e $UE 276  ]
-[; ;I2C.c: 116: }
-"116
-[e :UE 276 ]
-}
-"118
-[v _delay_10ms `(v ~T0 @X0 1 ef1`uc ]
-{
-[; ;I2C.c: 118: void delay_10ms(unsigned char n) {
-[e :U _delay_10ms ]
-[v _n `uc ~T0 @X0 1 r1 ]
-[f ]
-[; ;I2C.c: 119: while (n-- != 0) {
-"119
-[e $U 278  ]
-[e :U 279 ]
-{
-[; ;I2C.c: 120: _delay((unsigned long)((5)*(10000000/4000.0)));
-"120
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
-"121
-}
-[e :U 278 ]
-"119
-[e $ != -> -- _n -> -> 1 `i `uc `i -> 0 `i 279  ]
-[e :U 280 ]
-[; ;I2C.c: 121: }
-[; ;I2C.c: 122: }
-"122
-[e :UE 277 ]
 }

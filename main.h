@@ -55,7 +55,8 @@ int bottle_count_disp = -1; //Data for bottle display screen
 int bottle_count_array[5];
 
 int operation_disp = 0;         //Data for operation running animation
-float color[4];          //Stores TCS data in form clear, red, green, blue
+int color[4];          //Stores TCS data in form clear, red, green, blue
+int colorprev[4];
 
 int testint[3];
 int testflag = 0;
@@ -65,12 +66,13 @@ int flag_bottle;
 int flag_bottle_high;
 int flag_top_read;
 int flag_yopNC;
+int flag_picbug;
 int bottle_read_top;
 int bottle_read_bot;
 
 //CONSTANTS
 #define MAINPOLLINGDELAYMS  10
-#define AMBIENTTCSCLEAR     17
+#define AMBIENTTCSCLEAR     22
 #define TCSBOTTLEHIGH       30
 #define NOCAPDISTINGUISH    300
 

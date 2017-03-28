@@ -1,5 +1,5 @@
 
-# 1 "I2C.c"
+# 1 "PWM.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -3637,12 +3637,15 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 1 "I2C.h"
-void I2C_Master_Init(const unsigned long c);
-
-void I2C_Master_Write(unsigned d);
-unsigned char I2C_Master_Read(unsigned char a);
-void delay_10ms(unsigned char n);
+# 7 "pwm.h"
+int PWM_Max_Duty();
+void set_PWM_freq(long fre);
+void set_PWM1_duty(unsigned int duty);
+void set_PWM2_duty(unsigned int duty);
+void PWM1_Start();
+void PWM2_Start();
+void PWM1_Stop();
+void PWM2_Stop();
 
 
 # 9 "configBits.h"
@@ -3735,99 +3738,103 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 14 "I2C.c"
-void I2C_Master_Init(const unsigned long c)
+# 17 "PWM.c"
+long freq;
+unsigned int i = 0;
+
+
+int PWM_Max_Duty()
+
+
+
+{
+return(10000000/(freq*16);
+}
+
+void set_PWM_freq(long fre)
+
+
+
+{
+PR2 = (10000000/(fre*4*16)) - 1;
+freq = fre;
+}
+
+void set_PWM1_duty(unsigned int duty)
+
+
+
+{
+if(duty<1024)
+{
+duty = ((float)duty/1023)*PWM_Max_Duty();
+CCP1X = duty & 2;
+CCP1Y = duty & 1;
+CCPR1L = duty>>2;
+}
+
+}
+
+void set_PWM2_duty(unsigned int duty)
+
+
+
+{
+if(duty<1024)
+{
+duty = ((float)duty/1023)*PWM_Max_Duty();
+CCP2X = duty & 2;
+CCP2Y = duty & 1;
+CCPR2L = duty>>2;
+}
+}
+
+void PWM1_Start()
+
 {
 
-SSPSTAT = 0b00000000;
-SSPCON1 = 0b00101000;
-SSPCON2 = 0b00000000;
-SSPADD = (10000000/(4*c))-1;
-TRISC3 = 1;
-TRISC4 = 1;
+P1M1 = 0;
+P1M0 = 0;
+CCP1M3 = 1;
+CCP1M2 = 1;
+CCP1M1 = 0;
+CCP1M0 = 0;
+
+# 91
+TMR2ON = 1;
+
+
+TRISCbits.TRISC2 = 0;
 }
 
-void I2C_Master_Wait()
+void PWM2_Start()
+
 {
-while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
+
+CCP1M3 = 1;
+CCP1M2 = 1;
+
+# 117
+TMR2ON = 1;
+
+
+TRISCbits.TRISC1 = 0;
 }
 
-void I2C_Master_Start()
+void PWM1_Stop()
+
 {
-I2C_Master_Wait();
-SEN = 1;
+CCP1M3 = 0;
+CCP1M2 = 0;
+CCP1M1 = 0;
+CCP1M0 = 0;
 }
 
-void I2C_Master_RepeatedStart()
+void PWM2_Stop()
 {
-I2C_Master_Wait();
-RSEN = 1;
+CCP2M3 = 0;
+CCP2M2 = 0;
+CCP2M1 = 0;
+CCP2M0 = 0;
 }
 
-void I2C_Master_Stop()
-{
-I2C_Master_Wait();
-PEN = 1;
-}
-
-void I2C_Master_Write(unsigned d)
-{
-I2C_Master_Wait();
-SSPBUF = d;
-}
-
-void I2C_ColorSens_Init(void){
-I2C_Master_Start();
-I2C_Master_Write(0b01010010);
-I2C_Master_Write(0b10000000);
-I2C_Master_Write(0b00000001);
-I2C_Master_Stop();
-
-_delay((unsigned long)((3)*(10000000/4000.0)));
-
-I2C_Master_Start();
-I2C_Master_Write(0b01010010);
-I2C_Master_Write(0b10000000);
-I2C_Master_Write(0b00000011);
-I2C_Master_Stop();
-
-I2C_Master_Start();
-I2C_Master_Write(0b01010010);
-I2C_Master_Write(0b10001111);
-I2C_Master_Write(0b00000010);
-I2C_Master_Stop();
-
-# 90
-I2C_Master_Start();
-I2C_Master_Write(0b01010010);
-I2C_Master_Write(0b10000001);
-I2C_Master_Write(0b11111111);
-I2C_Master_Stop();
-}
-
-void I2C_ColorSens_ClearInt(void){
-I2C_Master_Start();
-I2C_Master_Write(0b01010010);
-I2C_Master_Write(0b11100110);
-I2C_Master_Write(0b11100110);
-I2C_Master_Stop();
-}
-
-unsigned char I2C_Master_Read(unsigned char a)
-{
-unsigned char temp;
-I2C_Master_Wait();
-RCEN = 1;
-I2C_Master_Wait();
-temp = SSPBUF;
-I2C_Master_Wait();
-ACKDT = (a)?0:1;
-ACKEN = 1;
-return temp;
-}
-
-void delay_10ms(unsigned char n) {
-while (n-- != 0) {
-_delay((unsigned long)((5)*(10000000/4000.0)));
-}
-}

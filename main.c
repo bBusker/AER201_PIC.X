@@ -47,6 +47,11 @@ void main(void) {
     I2C_Master_Init(10000);     //Initialize I2C Master with 100KHz clock
     I2C_ColorSens_Init();       //Initialize TCS34725 Color Sensor
     
+    I2C_Master_Start();
+    I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
+    I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
+    I2C_Master_Stop();
+    
     //Set Timer Properties
     TMR0 = 0;
     T08BIT = 0;
@@ -55,7 +60,6 @@ void main(void) {
     T0PS2 = 1;
     T0PS1 = 1;
     T0PS0 = 1;  
-
     //</editor-fold>
     
     curr_state = STANDBY;
@@ -84,7 +88,7 @@ void main(void) {
                 bottle_time();
                 break;
         }
-        __delay_ms(MAINPOLLINGDELAYMS);
+        //__delay_ms(MAINPOLLINGDELAYMS);
     }
     
     return;
@@ -103,7 +107,16 @@ void interrupt isr(void){
                 start_time[1] = time[1];
                 start_time[0] = time[0];
                 
+                bottle_count_array[0] = 0;
+                bottle_count_array[1] = 0;
+                bottle_count_array[2] = 0;
+                bottle_count_array[3] = 0;
+                bottle_count_array[4] = 0;
+                
                 __lcd_clear();
+                __delay_ms(100);
+                __lcd_home();
+                printf("running");
                 bottle_count_disp = -1;
                 curr_state = OPERATION;
                 break;
@@ -155,10 +168,10 @@ void interrupt isr(void){
                 //I2C_ColorSens_Init(); TESTING
                 break;
             case 7:   //KP_B -- TESTING
-                servo_rotate0(1);
+                servo_rotate1(8);
                 break;
             case 11:   //KP_C -- TESTING
-                servo_rotate0(2);
+                servo_rotate1(18);
                 break;
         }
         INT1IF = 0;
@@ -171,10 +184,10 @@ void interrupt isr(void){
         end_time[0] = time[0];
         stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
         etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
-        __lcd_clear();
         curr_state = OPERATIONEND;
         bottle_count_disp = -1;
         TMR0IF = 0;
+        printf("debug1");
     }
     else{
         while(1){
@@ -191,7 +204,8 @@ void standby(void){
     printf("standby");
     __lcd_newline();
     read_colorsensor();
-    printf("%d", color[0]);
+    printf("%d      ", color[0]);
+    __delay_ms(500);
     return;
 }
 
@@ -238,7 +252,8 @@ void date_time(void){
     printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);    //Print date in MM/DD/YY
     __lcd_newline();
     printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);    //HH:MM:SS
-
+    
+    __delay_ms(100);
     return;
 }
 
@@ -266,19 +281,19 @@ void bottle_count(void){
             __lcd_home();
             printf("Bottle Count    ");
             __lcd_newline();
-            printf("Total: %d       ", bottle_count_array[4]);
+            printf("Total: %d       ", bottle_count_array[0]);
             break;
         case 1:
             __lcd_home();
-            printf("YOP W/ CAP: %d  ", bottle_count_array[0]);
+            printf("YOP W/ CAP: %d  ", bottle_count_array[1]);
             __lcd_newline();
-            printf("YOP NO CAP: %d  ", bottle_count_array[1]);
+            printf("YOP NO CAP: %d  ", bottle_count_array[2]);
             break;
         case 2:
             __lcd_home();
-            printf("ESKA W/ CAP: %d ", bottle_count_array[2]);
+            printf("ESKA W/ CAP: %d ", bottle_count_array[3]);
             __lcd_newline();
-            printf("ESKA NO CAP: %d ", bottle_count_array[3]);
+            printf("ESKA NO CAP: %d ", bottle_count_array[4]);
             break;
         default:
             while(1){
@@ -287,6 +302,7 @@ void bottle_count(void){
             }
             break;
     }
+    __delay_ms(100);
     return;
 }
 
@@ -299,32 +315,39 @@ void bottle_time(void){
 }
 
 void operation(void){
-    switch(operation_disp){
-        case 0:
-            __lcd_home();
-            printf("Running~              ");
-            operation_disp = 1;
-            break;
-        case 1:
-            __lcd_home();
-            printf("Running~~              ");
-            operation_disp = 2;
-            break;
-        case 2:
-            __lcd_home();
-            printf("Running~~~              ");
-            operation_disp = 0;
-            break;
+//    switch(operation_disp){
+//        case 0:
+//            __lcd_home();
+//            printf("Running~              ");
+//            operation_disp = 1;
+//            break;
+//        case 1:
+//            __lcd_home();
+//            printf("Running~~              ");
+//            operation_disp = 2;
+//            break;
+//        case 2:
+//            __lcd_home();
+//            printf("Running~~~              ");
+//            operation_disp = 0;
+//            break;
+//    }
+    int i;
+    for(i=0; i<4; i++){
+        colorprev[i] = color[i];
     }
-    
+    GIE = 0;    //TESTING
     read_colorsensor();
     if(color[0]>AMBIENTTCSCLEAR){
         flag_bottle = 1;
+        flag_picbug = 0;
         if(color[0]>NOCAPDISTINGUISH)flag_yopNC = 1;
         if(color[0]>TCSBOTTLEHIGH){
             if(!flag_top_read){
-                if((color[1]/color[3]) > 1.5) bottle_read_top = 1;
-                else if((color[1]/color[3]) <= 0.5) bottle_read_top = 2;
+                //float r = (float) color[1];
+                //float b = (float) color[3];
+                if(color[1] > 1.5*color[3]) bottle_read_top = 1;
+                else if(color[1] <= 0.75*color[3]) bottle_read_top = 2;
                 else bottle_read_top = 0;
                 flag_top_read = 1;
             }
@@ -332,34 +355,48 @@ void operation(void){
         }
         else if(color[0]<TCSBOTTLEHIGH){
             if(flag_bottle_high){
-                if((color[1]/color[3]) > 1.5) bottle_read_bot = 1;
-                else if((color[1]/color[3]) <= 0.5) bottle_read_bot = 2;
+                //float r_p = (float) colorprev[1];
+                //float b_p = (float) colorprev[3];
+                if(colorprev[1] > 1.5*colorprev[3]) bottle_read_bot = 1;
+                else if(colorprev[1] <= 0.75*colorprev[3]) bottle_read_bot = 2;
                 else bottle_read_top = 0;
                 flag_bottle_high = 0;
             }
         }
     }
-    
+
     else if(flag_bottle){
-        bottle_count_array[0] += 1;
-        if(bottle_read_top == 1 || bottle_read_bot == 1){
-            bottle_count_array[1] += 1;
-            //SERVO LOGIC
+        flag_picbug += 1;
+        if(flag_picbug>7){
+            bottle_count_array[0] += 1;
+            TMR0 = 0;
+            if(bottle_read_top == 1 || bottle_read_bot == 1){
+                bottle_count_array[1] += 1;
+                servo_rotate0(8);
+            }
+            else if(bottle_read_top == 2 || bottle_read_bot == 2){
+                bottle_count_array[3] += 1;
+                servo_rotate1(8);
+            }
+            else if(flag_yopNC){
+                bottle_count_array[2] += 1;
+                servo_rotate0(18);
+            }
+            else{
+                bottle_count_array[4] += 1;
+                servo_rotate1(18);
+            }
+            flag_bottle = 0;
+            flag_bottle_high = 0;
+            flag_top_read = 0;
+            flag_yopNC = 0;
+            __lcd_home();   //TESTING
+            __lcd_newline(); 
+            printf("    %d, %d", bottle_read_top, bottle_read_bot);
         }
-        else if(bottle_read_top == 2 || bottle_read_bot == 2){
-            bottle_count_array[3] += 1;
-        }
-        else if(flag_yopNC){
-            bottle_count_array[2] += 1;
-        }
-        else{
-            bottle_count_array[4] += 1;
-        }
-        flag_bottle = 0;
-        flag_bottle_high = 0;
-        flag_top_read = 0;
-        flag_yopNC = 0;
     }
+    GIE  = 1; //TESTING
+    __delay_ms(3);
     return;
 }
 
@@ -380,27 +417,37 @@ void emergencystop(void){
 }
 
 void servo_rotate0(int degree){
+//        PWM1_Start();
+//        set_PWM1_duty(degree);
+//        __lcd_home();
+//        __lcd_newline();
+//        printf("      %d", PWM_Max_Duty());
+
     unsigned int i;
     unsigned int j;
     int duty = degree;
-    for (i=0; i<50; i++) {
+    for (i=0; i<10; i++) {
         LATCbits.LATC0 = 1;
-        for(j=0; j<duty; j++) __delay_ms(1);
+        for(j=0; j<duty; j++) __delay_us(100);
         LATCbits.LATC0 = 0;
-        for(j=0; j<(20 - duty); j++) __delay_ms(1);
+        for(j=0; j<(200 - duty); j++) __delay_us(100);
     }
     return;
 }
 
 void servo_rotate1(int degree){
+//    PWM2_Stop();
+//    set_PWM1_duty(degree);
+//    PWM2_Start();
+    
     unsigned int i;
     unsigned int j;
     int duty = degree;
-    for (i=0; i<50; i++) {
-        LATCbits.LATC0 = 1;
-        for(j=0; j<duty; j++) __delay_ms(1);
-        LATCbits.LATC0 = 0;
-        for(j=0; j<(20 - duty); j++) __delay_ms(1);
+    for (i=0; i<10; i++) {
+        LATCbits.LATC1` = 1;
+        for(j=0; j<duty; j++) __delay_us(100);
+        LATCbits.LATC1 = 0;
+        for(j=0; j<(200 - duty); j++) __delay_us(100);
     }
     return;
 }
@@ -411,9 +458,25 @@ void read_colorsensor(void){
     int i;
     
     //Reading Color
-    I2C_Master_Start();
-    I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
-    I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
+//    I2C_Master_Start();
+//    I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
+//    I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
+//    I2C_Master_Start();     //Repeated start command for combined I2C
+//    I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
+//    for(i=0; i<3; i++){
+//        color_low[i] = I2C_Master_Read(1); //Reading with acknowledge, continuous
+//        color_high[i] = I2C_Master_Read(1); 
+//    }
+//    color_low[3] = I2C_Master_Read(1); 
+//    color_high[3] = I2C_Master_Read(0);    //Final read, no ack 
+//    I2C_Master_Stop();              //Stop condition
+//    
+//    for(i=0; i<4; i++){
+//        color[i] = (color_high[i] << 8)|(color_low[i]);
+//    }
+    
+
+    
     I2C_Master_Start();     //Repeated start command for combined I2C
     I2C_Master_Write(0b01010011);   //7bit address 0x29 + Read
     for(i=0; i<3; i++){
@@ -423,7 +486,6 @@ void read_colorsensor(void){
     color_low[3] = I2C_Master_Read(1); 
     color_high[3] = I2C_Master_Read(0);    //Final read, no ack 
     I2C_Master_Stop();              //Stop condition
-    
     for(i=0; i<4; i++){
         color[i] = (color_high[i] << 8)|(color_low[i]);
     }
