@@ -1,17 +1,17 @@
 
 # 1 "main.c"
 
-# 26 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
+# 26 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\xc8debug.h"
+# 13 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 49 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h"
+# 49 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h"
 extern volatile unsigned char PORTA @ 0xF80;
 
 asm("PORTA equ 0F80h");
@@ -3614,7 +3614,7 @@ extern volatile __bit nWR @ (((unsigned) &PORTE)*8) + 1;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
-# 18 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h"
+# 18 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h"
 __attribute__((__unsupported__("The " "flash_write" " routine is no longer supported. Please use the MPLAB X MCC."))) void flash_write(const unsigned char *, unsigned int, __far unsigned char *);
 __attribute__((__unsupported__("The " "EraseFlash" " routine is no longer supported. Please use the MPLAB X MCC."))) void EraseFlash(unsigned long startaddr, unsigned long endaddr);
 
@@ -3637,10 +3637,10 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
+# 4 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
 typedef unsigned size_t;
 
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdarg.h"
+# 7 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdarg.h"
 typedef void * va_list[1];
 
 #pragma intrinsic(__va_start)
@@ -3649,17 +3649,17 @@ extern void * __va_start(void);
 #pragma intrinsic(__va_arg)
 extern void * __va_arg(void *, ...);
 
-# 43 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
+# 43 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
 struct __prbuf
 {
 char * ptr;
 void (* func)(char);
 };
 
-# 29 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\errno.h"
+# 29 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\errno.h"
 extern int errno;
 
-# 12 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\conio.h"
+# 12 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\conio.h"
 extern void init_uart(void);
 
 extern char getch(void);
@@ -3673,7 +3673,7 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 88 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
+# 88 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
 extern int cprintf(char *, ...);
 #pragma printf_check(cprintf)
 
@@ -3700,7 +3700,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdlib.h"
+# 7 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdlib.h"
 typedef unsigned short wchar_t;
 
 # 15
@@ -3769,7 +3769,7 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
-# 30 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h"
+# 30 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h"
 extern double fabs(double);
 extern double floor(double);
 extern double ceil(double);
@@ -3853,7 +3853,7 @@ extern double round(double);
 
 #pragma config EBTRB = OFF
 
-# 14 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
+# 14 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
 extern void * memcpy(void *, const void *, size_t);
 extern void * memmove(void *, const void *, size_t);
 extern void * memset(void *, int, size_t);
@@ -3896,7 +3896,7 @@ void I2C_Master_Init(const unsigned long c);
 void I2C_Master_Write(unsigned d);
 unsigned char I2C_Master_Read(unsigned char a);
 
-# 16 "main.c"
+# 5 "main.h"
 void set_time(void);
 int dec_to_hex(int num);
 void date_time(void);
@@ -3909,8 +3909,8 @@ void operationend(void);
 void emergencystop(void);
 void servo_rotate0(int degree);
 void servo_rotate1(int degree);
-void servo_rotate2(int degree);
 void read_colorsensor(void);
+
 
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
@@ -3939,33 +3939,20 @@ int stime;
 int etime;
 int operation_time;
 
-
+# 54
 int bottle_count_disp = -1;
-int yopcaplbl_count = 0;
-int yopcap_count = 0;
-int yoplbl_count = 0;
-int yop_count = 0;
-int eskacaplbl_count = 0;
-int eskacap_count = 0;
-int eskalbl_count = 0;
-int eska_count = 0;
-int total_bottle_count = 0;
+int bottle_count_array[5];
 
 int operation_disp = 0;
 int color[4];
 
-# 82
-int bottlequeue[11];
-int bottlequeue_tail;
-int bottlequeue_head;
-int nodedata;
-
 int testint[3];
 int testflag = 0;
 
+# 16 "main.c"
 void main(void) {
 
-# 97
+# 23
 TRISA = 0b11111011;
 TRISB = 0xFF;
 TRISC = 0x00;
@@ -3985,7 +3972,6 @@ ADCON1 = 0xFF;
 GIE = 1;
 INT1IE = 1;
 INT0IE = 0;
-
 INT2IE = 0;
 
 nRBPU = 0;
@@ -4039,16 +4025,9 @@ return;
 
 void interrupt isr(void){
 if (INT1IF) {
-switch(PORTB){
-case 239:
-bottle_count_disp = -1;
-curr_state = STANDBY;
-I2C_ColorSens_Init();
-break;
-case 15:
+switch(PORTB>>4){
+case 0:
 LATAbits.LATA2 = 1;
-
-
 TMR0IE = 1;
 TMR0ON = 1;
 TMR0 = 0;
@@ -4057,30 +4036,26 @@ read_time();
 start_time[1] = time[1];
 start_time[0] = time[0];
 
-bottlequeue_head = bottlequeue_tail = 0;
-
 lcdInst(0b00000001);
 bottle_count_disp = -1;
 curr_state = OPERATION;
 break;
-case 31:
+case 1:
 bottle_count_disp += 1;
 curr_state = BOTTLECOUNT;
 while(PORTB == 31){}
 break;
-case 47:
+case 2:
 operation_time = etime - stime;
 bottle_count_disp = -1;
 curr_state = BOTTLETIME;
 break;
-case 63:
+case 3:
 bottle_count_disp = -1;
 curr_state = DATETIME;
 break;
-case 79:
+case 4:
 LATAbits.LATA2 = 0;
-INT0IE = 0;
-INT2IE = 0;
 TMR0IE = 0;
 TMR0ON = 0;
 
@@ -4093,41 +4068,34 @@ lcdInst(0b00000001);
 bottle_count_disp = -1;
 curr_state = OPERATIONEND;
 break;
-case 95:
+case 5:
 read_colorsensor();
 lcdInst(0b10000000);
 printf("C%u R%u                ", color[0], color[1]);
 lcdInst(0b11000000);
 printf("G%u B%u                ", color[2], color[3]);
 break;
-case 91:
-read_colorsensor();
-lcdInst(0b10000000);
-printf("C%u R%u                ", color[0], color[1]);
-lcdInst(0b11000000);
-printf("G%u B%u                ", color[2], color[3]);
-break;
-case 235:
-curr_state = STANDBY;
-break;
-case 207:
+case 12:
 LATAbits.LATA2 = 0;
 (INTCONbits.GIE = 0);
 TMR0ON = 0;
 lcdInst(0b00000001);
 curr_state = EMERGENCYSTOP;
 break;
-case 127:
+case 14:
+bottle_count_disp = -1;
+curr_state = STANDBY;
+
+break;
+case 7:
 servo_rotate0(1);
 break;
-case 191:
+case 11:
 servo_rotate0(2);
 break;
 }
 INT1IF = 0;
 }
-
-# 353
 else if (TMR0IF){
 LATAbits.LATA2 = 0;
 TMR0ON = 0;
@@ -4144,7 +4112,7 @@ TMR0IF = 0;
 else{
 while(1){
 lcdInst(0b10000000);
-printf("bad interrupt");
+printf("ERR: BAD ISR");
 for(char i=0;i<100;i++){_delay((unsigned long)((10)*(10000000/4000.0)));};
 }
 }
@@ -4170,7 +4138,7 @@ printf("%03d, %03d, %03d", testint[0], testint[1], testint[2]);
 lcdInst(0b11000000);
 printf("%03d %03d %03d %03d", color[0], color[1], color[2], color[3]);
 
-# 418
+# 231
 return;
 }
 
@@ -4189,9 +4157,7 @@ int i = 0, quotient = num, temp, hexnum = 0;
 
 while (quotient != 0) {
 temp = quotient % 16;
-
 hexnum += temp*pow(10,i);
-
 quotient = quotient / 16;
 i += 1;
 }
@@ -4242,41 +4208,29 @@ return;
 }
 
 void bottle_count(void){
-switch(bottle_count_disp % 5){
+switch(bottle_count_disp % 3){
 case 0:
 lcdInst(0b10000000);
 printf("Bottle Count    ");
 lcdInst(0b11000000);
-printf("Total: %d       ", total_bottle_count);
+printf("Total: %d       ", bottle_count_array[4]);
 break;
 case 1:
 lcdInst(0b10000000);
-printf("YOP+CAP+LBL: %d  ", yopcaplbl_count);
+printf("YOP W/ CAP: %d  ", bottle_count_array[0]);
 lcdInst(0b11000000);
-printf("YOP+CAP-LBL: %d  ", yopcap_count);
+printf("YOP NO CAP: %d  ", bottle_count_array[1]);
 break;
 case 2:
 lcdInst(0b10000000);
-printf("YOP-CAP+LBL: %d  ", yoplbl_count);
+printf("ESKA W/ CAP: %d ", bottle_count_array[2]);
 lcdInst(0b11000000);
-printf("YOP-CAP-LBL: %d  ", yop_count);
-break;
-case 3:
-lcdInst(0b10000000);
-printf("ESKA+CAP+LBL: %d ", eskacaplbl_count);
-lcdInst(0b11000000);
-printf("ESKA+CAP-LBL: %d ", eskacap_count);
-break;
-case 4:
-lcdInst(0b10000000);
-printf("ESKA-CAP+LBL: %d ", eskalbl_count);
-lcdInst(0b11000000);
-printf("ESKA-CAP-LBL: %d ", eska_count);
+printf("ESKA NO CAP: %d ", bottle_count_array[3]);
 break;
 default:
 while(1){
 lcdInst(0b10000000);
-printf("ERROR: %d", bottle_count_disp);
+printf("ERR: BAD BTLCNT");
 }
 break;
 }
@@ -4309,10 +4263,7 @@ printf("Running~~~              ");
 operation_disp = 0;
 break;
 }
-
-lcdInst(0b11000000);
-read_colorsensor();
-printf("R%d G%d B%d                ", color[1], color[2], color[3]);
+_delay((unsigned long)((100)*(10000000/4000.0)));
 return;
 }
 
@@ -4348,34 +4299,17 @@ return;
 void servo_rotate1(int degree){
 unsigned int i;
 unsigned int j;
-int duty = ((degree+90)*5/90)+10;
+int duty = degree;
 for (i=0; i<50; i++) {
-LATCbits.LATC1 = 1;
-for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
-LATCbits.LATC1 = 0;
-for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
-}
-return;
-}
-
-void servo_rotate2(int degree){
-unsigned int i;
-unsigned int j;
-int duty = ((degree+90)*5/90)+10;
-for (i=0; i<50; i++) {
-LATCbits.LATC2 = 1;
-for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
-LATCbits.LATC2 = 0;
-for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
+LATCbits.LATC0 = 1;
+for(j=0; j<duty; j++) _delay((unsigned long)((1)*(10000000/4000.0)));
+LATCbits.LATC0 = 0;
+for(j=0; j<(20 - duty); j++) _delay((unsigned long)((1)*(10000000/4000.0)));
 }
 return;
 }
 
 void read_colorsensor(void){
-
-
-
-
 unsigned char color_low[4];
 unsigned char color_high[4];
 int i;

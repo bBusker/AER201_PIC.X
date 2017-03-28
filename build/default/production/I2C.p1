@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"4740 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"4740 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _SSPSTAT `Vuc ~T0 @X0 0 e@4039 ]
 "4671
 [v _SSPCON1 `Vuc ~T0 @X0 0 e@4038 ]
@@ -20,10 +20,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "4966
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
 [v F2878 `(v ~T0 @X0 1 tf1`ul ]
-"159 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
+"159 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
-"7336 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"7336 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _RCEN `Vb ~T0 @X0 0 e@32299 ]
 "6604
 [v _ACKDT `Vb ~T0 @X0 0 e@32301 ]
@@ -33,7 +33,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic18f4620.h: 49: extern volatile unsigned char PORTA @ 0xF80;
-"51 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"51 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [; ;pic18f4620.h: 51: asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
 [; ;pic18f4620.h: 54: typedef union {
@@ -2987,45 +2987,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;I2C.c: 73: I2C_Master_Stop();
 "73
 [e ( _I2C_Master_Stop ..  ]
-[; ;I2C.c: 75: I2C_Master_Start();
-"75
-[e ( _I2C_Master_Start ..  ]
-[; ;I2C.c: 76: I2C_Master_Write(0b01010010);
-"76
-[e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;I2C.c: 77: I2C_Master_Write(0b10100100);
-"77
-[e ( _I2C_Master_Write (1 -> -> 164 `i `ui ]
-[; ;I2C.c: 78: I2C_Master_Write(0x00);
-"78
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;I2C.c: 79: I2C_Master_Write(0x00);
-"79
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;I2C.c: 80: I2C_Master_Write(0x00);
-"80
-[e ( _I2C_Master_Write (1 -> -> 0 `i `ui ]
-[; ;I2C.c: 81: I2C_Master_Write(0b01001010);
-"81
-[e ( _I2C_Master_Write (1 -> -> 74 `i `ui ]
-[; ;I2C.c: 82: I2C_Master_Stop();
-"82
-[e ( _I2C_Master_Stop ..  ]
-[; ;I2C.c: 84: I2C_Master_Start();
-"84
-[e ( _I2C_Master_Start ..  ]
-[; ;I2C.c: 85: I2C_Master_Write(0b01010010);
-"85
-[e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;I2C.c: 86: I2C_Master_Write(0b10001100);
-"86
-[e ( _I2C_Master_Write (1 -> -> 140 `i `ui ]
-[; ;I2C.c: 87: I2C_Master_Write(0b00000001);
-"87
-[e ( _I2C_Master_Write (1 -> -> 1 `i `ui ]
-[; ;I2C.c: 88: I2C_Master_Stop();
-"88
-[e ( _I2C_Master_Stop ..  ]
 [; ;I2C.c: 90: I2C_Master_Start();
 "90
 [e ( _I2C_Master_Start ..  ]
@@ -3044,31 +3005,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;I2C.c: 95: }
 "95
 [e :UE 274 ]
-}
-"97
-[v _I2C_ColorSens_ClearInt `(v ~T0 @X0 1 ef ]
-{
-[; ;I2C.c: 97: void I2C_ColorSens_ClearInt(void){
-[e :U _I2C_ColorSens_ClearInt ]
-[f ]
-[; ;I2C.c: 98: I2C_Master_Start();
-"98
-[e ( _I2C_Master_Start ..  ]
-[; ;I2C.c: 99: I2C_Master_Write(0b01010010);
-"99
-[e ( _I2C_Master_Write (1 -> -> 82 `i `ui ]
-[; ;I2C.c: 100: I2C_Master_Write(0b11100110);
-"100
-[e ( _I2C_Master_Write (1 -> -> 230 `i `ui ]
-[; ;I2C.c: 101: I2C_Master_Write(0b11100110);
-"101
-[e ( _I2C_Master_Write (1 -> -> 230 `i `ui ]
-[; ;I2C.c: 102: I2C_Master_Stop();
-"102
-[e ( _I2C_Master_Stop ..  ]
-[; ;I2C.c: 103: }
-"103
-[e :UE 275 ]
 }
 "105
 [v _I2C_Master_Read `(uc ~T0 @X0 1 ef1`uc ]
@@ -3108,10 +3044,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;I2C.c: 115: return temp;
 "115
 [e ) _temp ]
-[e $UE 276  ]
+[e $UE 275  ]
 [; ;I2C.c: 116: }
 "116
-[e :UE 276 ]
+[e :UE 275 ]
 }
 "118
 [v _delay_10ms `(v ~T0 @X0 1 ef1`uc ]
@@ -3122,20 +3058,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;I2C.c: 119: while (n-- != 0) {
 "119
-[e $U 278  ]
-[e :U 279 ]
+[e $U 277  ]
+[e :U 278 ]
 {
 [; ;I2C.c: 120: _delay((unsigned long)((5)*(10000000/4000.0)));
 "120
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 10000000 `l `d .4000.0 `ul ]
 "121
 }
-[e :U 278 ]
+[e :U 277 ]
 "119
-[e $ != -> -- _n -> -> 1 `i `uc `i -> 0 `i 279  ]
-[e :U 280 ]
+[e $ != -> -- _n -> -> 1 `i `uc `i -> 0 `i 278  ]
+[e :U 279 ]
 [; ;I2C.c: 121: }
 [; ;I2C.c: 122: }
 "122
-[e :UE 277 ]
+[e :UE 276 ]
 }
