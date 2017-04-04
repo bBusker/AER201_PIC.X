@@ -4267,6 +4267,8 @@ colorprev[i] = color[i];
 }
 GIE = 0;
 read_colorsensor();
+lcdInst(0b10000000);
+printf("%d, %d, %d", color[1], color[2], color[3]);
 if(color[0]>22){
 flag_bottle = 1;
 flag_picbug = 0;
@@ -4319,9 +4321,9 @@ flag_bottle = 0;
 flag_bottle_high = 0;
 flag_top_read = 0;
 flag_yopNC = 0;
-lcdInst(0b10000000);
-lcdInst(0b11000000);
-printf("    %d, %d", bottle_read_top, bottle_read_bot);
+
+
+
 }
 }
 GIE = 1;
@@ -4347,7 +4349,7 @@ return;
 
 void servo_rotate0(int degree){
 
-# 426
+# 428
 unsigned int i;
 unsigned int j;
 int duty = degree;
@@ -4382,7 +4384,7 @@ unsigned char color_low[4];
 unsigned char color_high[4];
 int i;
 
-# 480
+# 482
 I2C_Master_Start();
 I2C_Master_Write(0b01010011);
 for(i=0; i<3; i++){

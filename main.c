@@ -338,6 +338,8 @@ void operation(void){
     }
     GIE = 0;    //TESTING
     read_colorsensor();
+    __lcd_home();
+    printf("%d, %d, %d", color[1], color[2], color[3]);
     if(color[0]>AMBIENTTCSCLEAR){
         flag_bottle = 1;
         flag_picbug = 0;
@@ -390,9 +392,9 @@ void operation(void){
             flag_bottle_high = 0;
             flag_top_read = 0;
             flag_yopNC = 0;
-            __lcd_home();   //TESTING
-            __lcd_newline(); 
-            printf("    %d, %d", bottle_read_top, bottle_read_bot);
+//            __lcd_home();   //TESTING
+//            __lcd_newline(); 
+//            printf("    %d, %d", bottle_read_top, bottle_read_bot);
         }
     }
     GIE  = 1; //TESTING

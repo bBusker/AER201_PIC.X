@@ -132,16 +132,16 @@ BOTTLETIME 6
 [v _bottle_time bottle_time `(v  1 e 1 0 ]
 "317
 [v _operation operation `(v  1 e 1 0 ]
-"403
+"405
 [v _operationend operationend `(v  1 e 1 0 ]
-"409
+"411
 [v _emergencystop emergencystop `(v  1 e 1 0 ]
-"419
+"421
 [v _servo_rotate0 servo_rotate0 `(v  1 e 1 0 ]
-"438
+"440
 [v _servo_rotate1 servo_rotate1 `(v  1 e 1 0 ]
 [v i2_servo_rotate1 servo_rotate1 `(v  1 e 1 0 ]
-"455
+"457
 [v _read_colorsensor read_colorsensor `(v  1 e 1 0 ]
 [v i2_read_colorsensor read_colorsensor `(v  1 e 1 0 ]
 [s S326 . 1 `uc 1 RA0 1 0 :1:0 
@@ -405,54 +405,54 @@ BOTTLETIME 6
 {
 "210
 } 0
-"403
+"405
 [v _operationend operationend `(v  1 e 1 0 ]
 {
-"407
+"409
 } 0
 "317
 [v _operation operation `(v  1 e 1 0 ]
 {
 "335
 [v operation@i i `i  1 a 2 10 ]
-"401
+"403
 } 0
-"438
+"440
 [v _servo_rotate1 servo_rotate1 `(v  1 e 1 0 ]
 {
-"444
+"446
 [v servo_rotate1@j j `ui  1 a 2 24 ]
-"443
-[v servo_rotate1@i i `ui  1 a 2 22 ]
 "445
+[v servo_rotate1@i i `ui  1 a 2 22 ]
+"447
 [v servo_rotate1@duty duty `i  1 a 2 20 ]
-"438
+"440
 [v servo_rotate1@degree degree `i  1 p 2 16 ]
-"453
+"455
 } 0
-"419
+"421
 [v _servo_rotate0 servo_rotate0 `(v  1 e 1 0 ]
 {
-"427
+"429
 [v servo_rotate0@j j `ui  1 a 2 24 ]
-"426
-[v servo_rotate0@i i `ui  1 a 2 22 ]
 "428
+[v servo_rotate0@i i `ui  1 a 2 22 ]
+"430
 [v servo_rotate0@duty duty `i  1 a 2 20 ]
-"419
+"421
 [v servo_rotate0@degree degree `i  1 p 2 16 ]
-"436
+"438
 } 0
-"455
+"457
 [v _read_colorsensor read_colorsensor `(v  1 e 1 0 ]
 {
-"457
+"459
 [v read_colorsensor@color_high color_high `[4]uc  1 a 4 27 ]
-"456
-[v read_colorsensor@color_low color_low `[4]uc  1 a 4 23 ]
 "458
+[v read_colorsensor@color_low color_low `[4]uc  1 a 4 23 ]
+"460
 [v read_colorsensor@i i `i  1 a 2 31 ]
-"494
+"496
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
@@ -497,10 +497,10 @@ BOTTLETIME 6
 {
 "24
 } 0
-"409 C:\Users\shich\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
+"411 C:\Users\shich\OneDrive\Documents\Homework\AER201\AER201_PIC.X\main.c
 [v _emergencystop emergencystop `(v  1 e 1 0 ]
 {
-"417
+"419
 } 0
 "234
 [v _date_time date_time `(v  1 e 1 0 ]
@@ -683,22 +683,22 @@ BOTTLETIME 6
 [v isr@i i `uc  1 a 1 114 ]
 "200
 } 0
-"438
+"440
 [v i2_servo_rotate1 servo_rotate1 `(v  1 e 1 0 ]
 {
 [v i2servo_rotate1@j servo_rotate1 `ui  1 a 2 8 ]
 [v i2servo_rotate1@i servo_rotate1 `ui  1 a 2 6 ]
 [v i2servo_rotate1@duty servo_rotate1 `i  1 a 2 4 ]
 [v i2servo_rotate1@degree degree `i  1 p 2 0 ]
-"453
-} 0
 "455
+} 0
+"457
 [v i2_read_colorsensor read_colorsensor `(v  1 e 1 0 ]
 {
 [v i2read_colorsensor@color_high read_colorsensor `[4]uc  1 a 4 11 ]
 [v i2read_colorsensor@color_low read_colorsensor `[4]uc  1 a 4 7 ]
 [v i2read_colorsensor@i read_colorsensor `i  1 a 2 15 ]
-"494
+"496
 } 0
 "464 C:\Program Files (x86)\Microchip\xc8\v1.40\sources\common\doprnt.c
 [v i2_printf printf `(i  1 e 2 0 ]
