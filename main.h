@@ -17,6 +17,8 @@ void servo_rotate1(int degree);
 void read_colorsensor(void);
 
 //VARIABLES
+int i;
+int j;
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
                             0x35, //Minutes
@@ -45,6 +47,7 @@ int etime;
 int operation_time;
 
 
+
 //For bottle count
 //0 = Total
 //1 = YOP + CAP
@@ -57,6 +60,8 @@ int bottle_count_array[5];
 int operation_disp = 0;         //Data for operation running animation
 int color[4];          //Stores TCS data in form clear, red, green, blue
 int colorprev[4];
+unsigned char color_low[4];     //For reading colors
+unsigned char color_high[4];
 
 int testint[3];
 int testflag = 0;
@@ -69,10 +74,11 @@ int flag_yopNC;
 int flag_picbug;
 int bottle_read_top;
 int bottle_read_bot;
+float r, b, r_p, b_p;
 
 //CONSTANTS
 #define MAINPOLLINGDELAYMS  10
-#define AMBIENTTCSCLEAR     22
+#define AMBIENTTCSCLEAR     17
 #define TCSBOTTLEHIGH       30
 #define NOCAPDISTINGUISH    300
 

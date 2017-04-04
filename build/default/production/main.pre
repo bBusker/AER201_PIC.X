@@ -1,17 +1,17 @@
 
 # 1 "main.c"
 
-# 26 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
+# 26 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\xc8debug.h"
+# 13 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 49 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h"
+# 49 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h"
 extern volatile unsigned char PORTA @ 0xF80;
 
 asm("PORTA equ 0F80h");
@@ -3614,7 +3614,7 @@ extern volatile __bit nWR @ (((unsigned) &PORTE)*8) + 1;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
-# 18 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h"
+# 18 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h"
 __attribute__((__unsupported__("The " "flash_write" " routine is no longer supported. Please use the MPLAB X MCC."))) void flash_write(const unsigned char *, unsigned int, __far unsigned char *);
 __attribute__((__unsupported__("The " "EraseFlash" " routine is no longer supported. Please use the MPLAB X MCC."))) void EraseFlash(unsigned long startaddr, unsigned long endaddr);
 
@@ -3637,10 +3637,10 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
+# 4 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
 typedef unsigned size_t;
 
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdarg.h"
+# 7 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdarg.h"
 typedef void * va_list[1];
 
 #pragma intrinsic(__va_start)
@@ -3649,17 +3649,17 @@ extern void * __va_start(void);
 #pragma intrinsic(__va_arg)
 extern void * __va_arg(void *, ...);
 
-# 43 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
+# 43 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
 struct __prbuf
 {
 char * ptr;
 void (* func)(char);
 };
 
-# 29 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\errno.h"
+# 29 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\errno.h"
 extern int errno;
 
-# 12 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\conio.h"
+# 12 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\conio.h"
 extern void init_uart(void);
 
 extern char getch(void);
@@ -3673,7 +3673,7 @@ extern __bit kbhit(void);
 extern char * cgets(char *);
 extern void cputs(const char *);
 
-# 88 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
+# 88 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h"
 extern int cprintf(char *, ...);
 #pragma printf_check(cprintf)
 
@@ -3700,7 +3700,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 7 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdlib.h"
+# 7 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdlib.h"
 typedef unsigned short wchar_t;
 
 # 15
@@ -3769,7 +3769,7 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
-# 30 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h"
+# 30 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h"
 extern double fabs(double);
 extern double floor(double);
 extern double ceil(double);
@@ -3853,7 +3853,7 @@ extern double round(double);
 
 #pragma config EBTRB = OFF
 
-# 14 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
+# 14 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
 extern void * memcpy(void *, const void *, size_t);
 extern void * memmove(void *, const void *, size_t);
 extern void * memset(void *, int, size_t);
@@ -3913,6 +3913,8 @@ void servo_rotate1(int degree);
 void read_colorsensor(void);
 
 
+int i;
+int j;
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = { 0x50,
 0x35,
@@ -3940,13 +3942,15 @@ int stime;
 int etime;
 int operation_time;
 
-# 54
+# 57
 int bottle_count_disp = -1;
 int bottle_count_array[5];
 
 int operation_disp = 0;
 int color[4];
 int colorprev[4];
+unsigned char color_low[4];
+unsigned char color_high[4];
 
 int testint[3];
 int testflag = 0;
@@ -3959,6 +3963,7 @@ int flag_yopNC;
 int flag_picbug;
 int bottle_read_top;
 int bottle_read_bot;
+float r, b, r_p, b_p;
 
 # 16 "main.c"
 void main(void) {
@@ -3991,11 +3996,6 @@ initLCD();
 I2C_Master_Init(10000);
 I2C_ColorSens_Init();
 
-I2C_Master_Start();
-I2C_Master_Write(0b01010010);
-I2C_Master_Write(0b10110100);
-I2C_Master_Stop();
-
 
 TMR0 = 0;
 T08BIT = 0;
@@ -4012,24 +4012,30 @@ while(1){
 switch(curr_state){
 case STANDBY:
 standby();
+_delay((unsigned long)((500)*(10000000/4000.0)));
 break;
 case EMERGENCYSTOP:
 emergencystop();
 break;
 case OPERATION:
 operation();
+_delay((unsigned long)((3)*(10000000/4000.0)));
 break;
 case OPERATIONEND:
 operationend();
+_delay((unsigned long)((500)*(10000000/4000.0)));
 break;
 case DATETIME:
 date_time();
+_delay((unsigned long)((300)*(10000000/4000.0)));
 break;
 case BOTTLECOUNT:
 bottle_count();
+_delay((unsigned long)((300)*(10000000/4000.0)));
 break;
 case BOTTLETIME:
 bottle_time();
+_delay((unsigned long)((300)*(10000000/4000.0)));
 break;
 }
 
@@ -4043,20 +4049,16 @@ if (INT1IF) {
 switch(PORTB>>4){
 case 0:
 LATAbits.LATA2 = 1;
-TMR0IE = 1;
-TMR0ON = 1;
-TMR0 = 0;
+
+
+
 
 read_time();
 start_time[1] = time[1];
 start_time[0] = time[0];
-
-bottle_count_array[0] = 0;
-bottle_count_array[1] = 0;
-bottle_count_array[2] = 0;
-bottle_count_array[3] = 0;
-bottle_count_array[4] = 0;
-
+for(i=0;i<5;i++){
+bottle_count_array[i] = 0;
+}
 lcdInst(0b00000001);
 _delay((unsigned long)((100)*(10000000/4000.0)));
 lcdInst(0b10000000);
@@ -4131,7 +4133,6 @@ etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
 curr_state = OPERATIONEND;
 bottle_count_disp = -1;
 TMR0IF = 0;
-printf("debug1");
 }
 else{
 while(1){
@@ -4149,7 +4150,6 @@ printf("standby");
 lcdInst(0b11000000);
 read_colorsensor();
 printf("%d      ", color[0]);
-_delay((unsigned long)((500)*(10000000/4000.0)));
 return;
 }
 
@@ -4197,7 +4197,6 @@ printf("Date: %02x/%02x/%02x  ", time[5],time[4],time[6]);
 lcdInst(0b11000000);
 printf("Time: %02x:%02x:%02x  ", time[2],time[1],time[0]);
 
-_delay((unsigned long)((100)*(10000000/4000.0)));
 return;
 }
 
@@ -4246,7 +4245,6 @@ printf("ERR: BAD BTLCNT");
 }
 break;
 }
-_delay((unsigned long)((100)*(10000000/4000.0)));
 return;
 }
 
@@ -4260,25 +4258,27 @@ return;
 
 void operation(void){
 
-# 335
-int i;
-for(i=0; i<4; i++){
-colorprev[i] = color[i];
-}
+# 328
+colorprev[0] = color[0];
+colorprev[1] = color[1];
+colorprev[2] = color[2];
+colorprev[3] = color[3];
+
 GIE = 0;
 read_colorsensor();
-lcdInst(0b10000000);
-printf("%d, %d, %d", color[1], color[2], color[3]);
-if(color[0]>22){
+if(color[0]>17){
 flag_bottle = 1;
-flag_picbug = 0;
+
 if(color[0]>300)flag_yopNC = 1;
+if(color[0]>flag_picbug) flag_picbug = color[0];
 if(color[0]>30){
 if(!flag_top_read){
+r = (float) color[1];
+b = (float) color[3];
 
 
-if(color[1] > 1.5*color[3]) bottle_read_top = 1;
-else if(color[1] <= 0.75*color[3]) bottle_read_top = 2;
+if(r/b > 2) bottle_read_top = 1;
+else if(r/b < 0.75) bottle_read_top = 2;
 else bottle_read_top = 0;
 flag_top_read = 1;
 }
@@ -4286,32 +4286,33 @@ flag_bottle_high = 1;
 }
 else if(color[0]<30){
 if(flag_bottle_high){
-
-
-if(colorprev[1] > 1.5*colorprev[3]) bottle_read_bot = 1;
-else if(colorprev[1] <= 0.75*colorprev[3]) bottle_read_bot = 2;
-else bottle_read_top = 0;
+r_p = (float) colorprev[1];
+b_p = (float) colorprev[3];
+if(r_p/b_p > 3.2) bottle_read_bot = 1;
+else if(r_p/b_p < 0.75) bottle_read_bot = 2;
+else bottle_read_bot = 0;
 flag_bottle_high = 0;
 }
 }
 }
 
 else if(flag_bottle){
-flag_picbug += 1;
-if(flag_picbug>7){
+
+
 bottle_count_array[0] += 1;
 TMR0 = 0;
-if(bottle_read_top == 1 || bottle_read_bot == 1){
-bottle_count_array[1] += 1;
-servo_rotate0(8);
-}
-else if(bottle_read_top == 2 || bottle_read_bot == 2){
+if(bottle_read_top == 2 || bottle_read_bot == 2){
 bottle_count_array[3] += 1;
-servo_rotate1(8);
+servo_rotate1(10);
 }
+else if(bottle_read_top == 1 || bottle_read_bot == 1){
+bottle_count_array[1] += 1;
+servo_rotate0(10);
+}
+
 else if(flag_yopNC){
 bottle_count_array[2] += 1;
-servo_rotate0(18);
+servo_rotate0(14);
 }
 else{
 bottle_count_array[4] += 1;
@@ -4324,10 +4325,12 @@ flag_yopNC = 0;
 
 
 
-}
+lcdInst(0b10000000);
+printf("%d", flag_picbug);
+flag_picbug = 0;
+
 }
 GIE = 1;
-_delay((unsigned long)((3)*(10000000/4000.0)));
 return;
 }
 
@@ -4349,11 +4352,9 @@ return;
 
 void servo_rotate0(int degree){
 
-# 428
-unsigned int i;
-unsigned int j;
+# 426
 int duty = degree;
-for (i=0; i<10; i++) {
+for (i=0; i<20; i++) {
 LATCbits.LATC0 = 1;
 for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
 LATCbits.LATC0 = 0;
@@ -4367,11 +4368,9 @@ void servo_rotate1(int degree){
 
 
 
-unsigned int i;
-unsigned int j;
 int duty = degree;
-for (i=0; i<10; i++) {
-LATCbits.LATC1` = 1;
+for (i=0; i<20; i++) {
+LATCbits.LATC1 = 1;
 for(j=0; j<duty; j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
 LATCbits.LATC1 = 0;
 for(j=0; j<(200 - duty); j++) _delay((unsigned long)((100)*(10000000/4000000.0)));
@@ -4380,23 +4379,23 @@ return;
 }
 
 void read_colorsensor(void){
-unsigned char color_low[4];
-unsigned char color_high[4];
-int i;
 
-# 482
+# 470
 I2C_Master_Start();
 I2C_Master_Write(0b01010011);
-for(i=0; i<3; i++){
-color_low[i] = I2C_Master_Read(1);
-color_high[i] = I2C_Master_Read(1);
-}
+color_low[0] = I2C_Master_Read(1);
+color_high[0] = I2C_Master_Read(1);
+color_low[1] = I2C_Master_Read(1);
+color_high[1] = I2C_Master_Read(1);
+color_low[2] = I2C_Master_Read(1);
+color_high[2] = I2C_Master_Read(1);
 color_low[3] = I2C_Master_Read(1);
 color_high[3] = I2C_Master_Read(0);
 I2C_Master_Stop();
-for(i=0; i<4; i++){
-color[i] = (color_high[i] << 8)|(color_low[i]);
-}
+color[0] = (color_high[0] << 8)|(color_low[0]);
+color[1] = (color_high[1] << 8)|(color_low[1]);
+color[2] = (color_high[2] << 8)|(color_low[2]);
+color[3] = (color_high[3] << 8)|(color_low[3]);
 
 return;
 }

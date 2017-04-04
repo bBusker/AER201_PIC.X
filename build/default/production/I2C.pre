@@ -1,17 +1,17 @@
 
 # 1 "I2C.c"
 
-# 26 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
+# 26 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
 extern double __fpnormalize(double);
 
 
-# 13 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\xc8debug.h"
+# 13 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\xc8debug.h"
 #pragma intrinsic(__builtin_software_breakpoint)
 extern void __builtin_software_breakpoint(void);
 
-# 49 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h"
+# 49 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h"
 extern volatile unsigned char PORTA @ 0xF80;
 
 asm("PORTA equ 0F80h");
@@ -3614,7 +3614,7 @@ extern volatile __bit nWR @ (((unsigned) &PORTE)*8) + 1;
 
 extern volatile __bit nWRITE @ (((unsigned) &SSPSTAT)*8) + 2;
 
-# 18 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h"
+# 18 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h"
 __attribute__((__unsupported__("The " "flash_write" " routine is no longer supported. Please use the MPLAB X MCC."))) void flash_write(const unsigned char *, unsigned int, __far unsigned char *);
 __attribute__((__unsupported__("The " "EraseFlash" " routine is no longer supported. Please use the MPLAB X MCC."))) void EraseFlash(unsigned long startaddr, unsigned long endaddr);
 
@@ -3700,10 +3700,10 @@ void delay_10ms(unsigned char n);
 
 #pragma config EBTRB = OFF
 
-# 4 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
+# 4 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\__size_t.h"
 typedef unsigned size_t;
 
-# 14 "C:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
+# 14 "D:\Program Files (x86)\Microchip\xc8\v1.40\include\string.h"
 extern void * memcpy(void *, const void *, size_t);
 extern void * memmove(void *, const void *, size_t);
 extern void * memset(void *, int, size_t);
@@ -3802,6 +3802,11 @@ I2C_Master_Start();
 I2C_Master_Write(0b01010010);
 I2C_Master_Write(0b10000001);
 I2C_Master_Write(0b11111111);
+I2C_Master_Stop();
+
+I2C_Master_Start();
+I2C_Master_Write(0b01010010);
+I2C_Master_Write(0b10110100);
 I2C_Master_Stop();
 }
 

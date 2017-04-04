@@ -92,6 +92,11 @@ void I2C_ColorSens_Init(void){
     I2C_Master_Write(0b10000001);   //Write to cmdreg + access RGBC timing register
     I2C_Master_Write(0b11111111);   //Set RGBC timing register
     I2C_Master_Stop();
+    
+    I2C_Master_Start();             //Initializing for reading
+    I2C_Master_Write(0b01010010);   //7bit address 0x29 + Write
+    I2C_Master_Write(0b10110100);   //Write to cmdreg + access&increment clear low reg
+    I2C_Master_Stop();
 }
 
 void I2C_ColorSens_ClearInt(void){
