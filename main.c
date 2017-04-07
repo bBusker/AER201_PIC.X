@@ -37,6 +37,7 @@ void main(void) {
     
     //ei();                     //Global Interrupt Mask
     GIE = 1;
+    PEIE = 1;
     INT1IE = 1;                 //Enable KP interrupts
     INT0IE = 0;                 //Disable external interrupts
     INT2IE = 0;
@@ -55,6 +56,28 @@ void main(void) {
     T0PS2 = 1;
     T0PS1 = 1;
     T0PS0 = 1;  
+    
+    TMR1 = 0;
+    servo0_flag = 0;
+    servo0_timer = 1;
+    T1CON = 0b10000001;
+    TMR1ON = 1;
+    TMR1CS = 0;
+    T1CKPS1 = 0;
+    T1CKPS0 = 0;
+    TMR1IE = 1;
+    
+    TMR3 = 0;
+    servo1_flag = 0;
+    servo1_timer = 1;
+    T3CON = 0b1000001;
+    TMR3ON = 1;
+    TMR3CS = 0;
+    T3CKPS1 = 0;
+    T3CKPS0 = 0;
+    TMR3IE = 1;
+      
+    
     //</editor-fold>
     
     curr_state = STANDBY;
@@ -165,13 +188,41 @@ void interrupt isr(void){
                 //I2C_ColorSens_Init(); TESTING
                 break;
             case 7:   //KP_B -- TESTING
-                servo_rotate1(8);
+                servo0_timer = 1;
                 break;
             case 11:   //KP_C -- TESTING
-                servo_rotate1(18);
+                servo0_timer = 0;
                 break;
         }
         INT1IF = 0;
+    }
+    else if (TMR1IF){
+        if(servo0_flag){
+            LATCbits.LATC0 = 0;
+            TMR1 = 16517;
+            servo0_flag = 0;
+        }
+        else{
+            LATCbits.LATC0 = 1;
+            if(servo0_timer) TMR1 = 63000;
+            else TMR1 = 62000;
+            servo0_flag = 1;
+        }
+        TMR1IF = 0;
+    }
+    else if (TMR3IF){
+        if(servo1_flag){
+            LATCbits.LATC1 = 0;
+            TMR3 = 16517;
+            servo1_flag = 0;
+        }
+        else{
+            LATCbits.LATC1 = 1;
+            if(servo1_timer) TMR3 = 62000;
+            else TMR3 = 63000;
+            servo1_flag = 1;
+        }
+        TMR3IF = 0;
     }
     else if (TMR0IF){
         LATAbits.LATA2 = 0;
@@ -334,15 +385,15 @@ void operation(void){
     read_colorsensor();
     if(color[0]>AMBIENTTCSCLEAR){
         flag_bottle = 1;
+        flag_picbug += 1;
 //        flag_picbug = 0;      //PICBUG DISABLED FOR TESTING
         if(color[0]>NOCAPDISTINGUISH)flag_yopNC = 1;
-        if(color[0]>flag_picbug) flag_picbug = color[0];
         if(color[0]>TCSBOTTLEHIGH){
             if(!flag_top_read){
                 r = (float) color[1];
                 b = (float) color[3];
-//                __lcd_home();
-//                printf("%f ", r/b);
+                __lcd_home();
+                printf("%f ", r/b);
                 if(r/b > 2) bottle_read_top = 1;
                 else if(r/b < 0.75) bottle_read_top = 2;
                 else bottle_read_top = 0;
@@ -362,41 +413,36 @@ void operation(void){
         }
     }
 
-    else if(flag_bottle){
-//        flag_picbug += 1;
-//        if(flag_picbug>1){
-            bottle_count_array[0] += 1;
-            TMR0 = 0;
-            if(bottle_read_top == 2 || bottle_read_bot == 2){
-                bottle_count_array[3] += 1;
-                servo_rotate1(11);
-            }
-            else if(bottle_read_top == 1 || bottle_read_bot == 1){
-                bottle_count_array[1] += 1;
-                servo_rotate0(10);
-            }
-            
-            else if(flag_yopNC){
-                bottle_count_array[2] += 1;
-                servo_rotate0(14);
-            }
-            else{
-                bottle_count_array[4] += 1;
-                servo_rotate1(18);
-            }
-            flag_bottle = 0;
-            flag_bottle_high = 0;
-            flag_top_read = 0;
-            flag_yopNC = 0;
-//            printf("%f", r_p/b_p);
-//            __lcd_newline();   //TESTING
-//            printf("%d, %d", bottle_read_top, bottle_read_bot);
-            __lcd_home();
-            printf("%d", flag_picbug);
-            flag_picbug = 0; //testing
-//      }
+    else if(flag_bottle && flag_picbug>20){
+        flag_picbug = 0;
+        bottle_count_array[0] += 1;
+        TMR0 = 0;
+        if(bottle_read_top == 2 || bottle_read_bot == 2){
+            bottle_count_array[3] += 1;
+            servo1_timer = 1;
+        }
+        else if(bottle_read_top == 1 || bottle_read_bot == 1){
+            bottle_count_array[1] += 1;
+            servo0_timer = 1;
+        }
+
+        else if(flag_yopNC){
+            bottle_count_array[2] += 1;
+            servo0_timer = 0;
+        }
+        else{
+            bottle_count_array[4] += 1;
+            servo1_timer = 1;
+        }
+        flag_bottle = 0;
+        flag_bottle_high = 0;
+        flag_top_read = 0;
+        flag_yopNC = 0;
+        printf("%f", r_p/b_p);
+        __lcd_newline();   //TESTING
+        printf("%d, %d", bottle_read_top, bottle_read_bot);
     }
-    GIE  = 1; //TESTING
+    GIE  = 1;
     return;
 }
 
@@ -416,13 +462,7 @@ void emergencystop(void){
     return;
 }
 
-void servo_rotate0(int degree){
-//        PWM1_Start();
-//        set_PWM1_duty(degree);
-//        __lcd_home();
-//        __lcd_newline();
-//        printf("      %d", PWM_Max_Duty());
-
+void servo_rotate0(int degree){         //depreciated
     int duty = degree;
     for (i=0; i<20; i++) {
         LATCbits.LATC0 = 1;
@@ -434,10 +474,6 @@ void servo_rotate0(int degree){
 }
 
 void servo_rotate1(int degree){
-//    PWM2_Stop();
-//    set_PWM1_duty(degree);
-//    PWM2_Start();
-    
     int duty = degree;
     for (i=0; i<20; i++) {
         LATCbits.LATC1 = 1;

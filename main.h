@@ -63,6 +63,11 @@ int colorprev[4];
 unsigned char color_low[4];     //For reading colors
 unsigned char color_high[4];
 
+int servo0_timer;       //1250 = 1ms
+int servo1_timer;       
+char servo0_flag;
+char servo1_flag;
+
 int testint[3];
 int testflag = 0;
 
