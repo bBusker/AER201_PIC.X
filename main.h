@@ -15,17 +15,21 @@ void emergencystop(void);
 void servo_rotate0(int degree);
 void servo_rotate1(int degree);
 void read_colorsensor(void);
+uint8_t eeprom_readbyte(uint16_t);
+void eeprom_writebyte(uint16_t, uint8_t);
+void savedata(void);
+
 
 //VARIABLES
 int i;
 int j;
 const char keys[] = "123A456B789C*0#D";
 const char timeset[7] = {   0x50, //Seconds 
-                            0x35, //Minutes
-                            0x21, //Hour, 24 hour mode
-                            0x08, //Day of the week, Monday = 1
-                            0x05, //Day/Date
-                            0x02, //Month
+                            0x36, //Minutes
+                            0x19, //Hour, 24 hour mode
+                            0x01, //Day of the week, Monday = 1
+                            0x10, //Day/Date
+                            0x04, //Month
                             0x17};//Year, last two digits
 
 enum state {
@@ -58,8 +62,8 @@ int bottle_count_disp = -1; //Data for bottle display screen
 int bottle_count_array[5];
 
 int operation_disp = 0;         //Data for operation running animation
-int color[4];          //Stores TCS data in form clear, red, green, blue
-int colorprev[4];
+unsigned int color[4];          //Stores TCS data in form clear, red, green, blue
+unsigned int colorprev[4];
 unsigned char color_low[4];     //For reading colors
 unsigned char color_high[4];
 
@@ -77,6 +81,7 @@ int flag_bottle_high;
 int flag_top_read;
 int flag_yopNC;
 int flag_picbug;
+int flag_eskaC;
 int bottle_read_top;
 int bottle_read_bot;
 float r, b, r_p, b_p;
@@ -85,6 +90,6 @@ float r, b, r_p, b_p;
 #define MAINPOLLINGDELAYMS  10
 #define AMBIENTTCSCLEAR     17
 #define TCSBOTTLEHIGH       30
-#define NOCAPDISTINGUISH    300
+#define NOCAPDISTINGUISH    150
 
 #endif	/* MAIN_H */

@@ -10,6 +10,7 @@
       <itemPath>lcd.h</itemPath>
       <itemPath>macros.h</itemPath>
       <itemPath>main.h</itemPath>
+      <itemPath>eeprom_routines.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

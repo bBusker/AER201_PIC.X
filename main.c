@@ -4,6 +4,7 @@
 
 #include <xc.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <math.h>
 #include "configBits.h"
@@ -12,6 +13,7 @@
 #include "I2C.h"
 #include "macros.h"
 #include "main.h"
+#include "eeprom_routines.h"
 
 void main(void) {
     
@@ -61,7 +63,7 @@ void main(void) {
     servo0_flag = 0;
     servo0_timer = 1;
     T1CON = 0b10000001;
-    TMR1ON = 1;
+    TMR1ON = 0;
     TMR1CS = 0;
     T1CKPS1 = 0;
     T1CKPS0 = 0;
@@ -71,7 +73,7 @@ void main(void) {
     servo1_flag = 0;
     servo1_timer = 1;
     T3CON = 0b1000001;
-    TMR3ON = 1;
+    TMR3ON = 0;
     TMR3CS = 0;
     T3CKPS1 = 0;
     T3CKPS0 = 0;
@@ -93,7 +95,8 @@ void main(void) {
                 break;
             case OPERATION:
                 operation();
-                __delay_ms(3);
+                __delay_ms(2);
+                __delay_us(400);
                 break;
             case OPERATIONEND:
                 operationend();
@@ -126,6 +129,8 @@ void interrupt isr(void){
 //                TMR0IE = 1;         //Start timer with interrupts
 //                TMR0ON = 1;         //TESTING
 //                TMR0 = 0;
+                TMR1ON = 1;
+                TMR3ON = 1;
                 
                 read_time();
                 start_time[1] = time[1];
@@ -158,6 +163,8 @@ void interrupt isr(void){
                 LATAbits.LATA2 = 0; //Stop centrifuge motor
                 TMR0IE = 0;         //Disable timer
                 TMR0ON = 0;
+                TMR1ON = 0;
+                TMR3ON = 0;
                 
                 read_time();
                 end_time[1] = time[1];
@@ -188,7 +195,9 @@ void interrupt isr(void){
                 //I2C_ColorSens_Init(); TESTING
                 break;
             case 7:   //KP_B -- TESTING
-                servo0_timer = 1;
+//                servo0_timer = 1;
+                __lcd_home();
+                printf("%d", flag_picbug);
                 break;
             case 11:   //KP_C -- TESTING
                 servo0_timer = 0;
@@ -248,7 +257,7 @@ void interrupt isr(void){
 
 void standby(void){
     __lcd_home();
-    printf("standby");
+    printf("standby          ");
     __lcd_newline();
     read_colorsensor();
     printf("%d      ", color[0]);
@@ -387,14 +396,15 @@ void operation(void){
         flag_bottle = 1;
         flag_picbug += 1;
 //        flag_picbug = 0;      //PICBUG DISABLED FOR TESTING
-        if(color[0]>NOCAPDISTINGUISH)flag_yopNC = 1;
+        if(color[3]>color[1] && !flag_top_read) flag_eskaC += 1;
+        if(color[1]>NOCAPDISTINGUISH || color[2]>NOCAPDISTINGUISH)flag_yopNC = 1;
         if(color[0]>TCSBOTTLEHIGH){
             if(!flag_top_read){
                 r = (float) color[1];
                 b = (float) color[3];
-                __lcd_home();
-                printf("%f ", r/b);
-                if(r/b > 2) bottle_read_top = 1;
+//                __lcd_home();
+//                printf("%u, %u, %u,      ", color[1], color[2], color[3]);
+                if(r/b > 2 && r>16) bottle_read_top = 1;
                 else if(r/b < 0.75) bottle_read_top = 2;
                 else bottle_read_top = 0;
                 flag_top_read = 1;
@@ -405,19 +415,18 @@ void operation(void){
             if(flag_bottle_high){
                 r_p = (float) colorprev[1];
                 b_p = (float) colorprev[3];
-                if(r_p/b_p > 3.2) bottle_read_bot = 1;
+                if(r_p/b_p > 3.2 && r_p>18) bottle_read_bot = 1;
                 else if(r_p/b_p < 0.75) bottle_read_bot = 2;
                 else bottle_read_bot = 0;
                 flag_bottle_high = 0;
             }
         }
     }
-
-    else if(flag_bottle && flag_picbug>20){
+    else if(flag_bottle && flag_picbug > 23){
         flag_picbug = 0;
         bottle_count_array[0] += 1;
         TMR0 = 0;
-        if(bottle_read_top == 2 || bottle_read_bot == 2){
+        if(bottle_read_top == 2 || bottle_read_bot == 2 || flag_eskaC>1){
             bottle_count_array[3] += 1;
             servo1_timer = 1;
         }
@@ -432,16 +441,22 @@ void operation(void){
         }
         else{
             bottle_count_array[4] += 1;
-            servo1_timer = 1;
+            servo1_timer = 0;
         }
         flag_bottle = 0;
         flag_bottle_high = 0;
         flag_top_read = 0;
         flag_yopNC = 0;
-        printf("%f", r_p/b_p);
-        __lcd_newline();   //TESTING
-        printf("%d, %d", bottle_read_top, bottle_read_bot);
+        __lcd_home();
+//        __lcd_newline();   //TESTING
+//        printf("%d       ", flag_eskaC);
+        flag_eskaC = 0;
+
+////        printf("%d, %d, %d", color[1], color[2], color[3]);
+        printf("%f", r_p/b_p);      
+//        printf("%d, %d, %d", bottle_count_array[0], bottle_read_top, bottle_read_bot);
     }
+    else if(flag_picbug < 3 && flag_picbug > 0) flag_picbug -= 1;
     GIE  = 1;
     return;
 }
@@ -520,4 +535,56 @@ void read_colorsensor(void){
     color[3] = (color_high[3] << 8)|(color_low[3]);
     
     return;
+}
+
+uint8_t eeprom_readbyte(uint16_t address) {
+
+    // Set address registers
+    EEADRH = (uint8_t)(address >> 8);
+    EEADR = (uint8_t)address;
+
+    EECON1bits.EEPGD = 0;       // Select EEPROM Data Memory
+    EECON1bits.CFGS = 0;        // Access flash/EEPROM NOT config. registers
+    EECON1bits.RD = 1;          // Start a read cycle
+
+    // A read should only take one cycle, and then the hardware will clear
+    // the RD bit
+    while(EECON1bits.RD == 1);
+
+    return EEDATA;              // Return data
+}
+
+void eeprom_writebyte(uint16_t address, uint8_t data) {    
+    // Set address registers
+    EEADRH = (uint8_t)(address >> 8);
+    EEADR = (uint8_t)address;
+
+    EEDATA = data;          // Write data we want to write to SFR
+    EECON1bits.EEPGD = 0;   // Select EEPROM data memory
+    EECON1bits.CFGS = 0;    // Access flash/EEPROM NOT config. registers
+    EECON1bits.WREN = 1;    // Enable writing of EEPROM (this is disabled again after the write completes)
+
+    // The next three lines of code perform the required operations to
+    // initiate a EEPROM write
+    EECON2 = 0x55;          // Part of required sequence for write to internal EEPROM
+    EECON2 = 0xAA;          // Part of required sequence for write to internal EEPROM
+    EECON1bits.WR = 1;      // Part of required sequence for write to internal EEPROM
+
+    // Loop until write operation is complete
+    while(PIR2bits.EEIF == 0)
+    {
+        continue;   // Do nothing, are just waiting
+    }
+
+    PIR2bits.EEIF = 0;      //Clearing EEIF bit (this MUST be cleared in software after each write)
+    EECON1bits.WREN = 0;    // Disable write (for safety, it is re-enabled next time a EEPROM write is performed)
+}
+
+void savedata(void) {
+    for(i=19;i--;i>=0){
+        eeprom_writebyte(25+i, eeprom_readbyte(20+i));
+    }
+    for(i=0;i++;i<5){
+        eeprom_writebyte(20+i, bottle_count_array[i]); 
+    }
 }
