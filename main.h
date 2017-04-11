@@ -7,6 +7,10 @@ int dec_to_hex(int num);
 void date_time(void);
 void read_time(void);
 void bottle_count(void);
+void bottle_count1(void);
+void bottle_count2(void);
+void bottle_count3(void);
+void bottle_count4(void);
 void bottle_time(void);
 void standby(void);
 void operation(void);
@@ -39,6 +43,10 @@ enum state {
         OPERATIONEND,
         DATETIME,
         BOTTLECOUNT,
+        BOTTLECOUNT1,
+        BOTTLECOUNT2,
+        BOTTLECOUNT3,
+        BOTTLECOUNT4,
         BOTTLETIME
     };
 enum state curr_state;
@@ -49,6 +57,7 @@ unsigned char end_time[2];
 int stime;
 int etime;
 int operation_time;
+int temp;
 
 
 
@@ -58,10 +67,11 @@ int operation_time;
 //2 = YOP - CAP
 //3 = ESKA + CAP
 //4 = ESKA - CAP
-int bottle_count_disp = -1; //Data for bottle display screen
+int bottle_count_disp[5] = -1; //Data for bottle display screen
 int bottle_count_array[5];
 
 int operation_disp = 0;         //Data for operation running animation
+int operation_timeout = 0;
 unsigned int color[4];          //Stores TCS data in form clear, red, green, blue
 unsigned int colorprev[4];
 unsigned char color_low[4];     //For reading colors
@@ -71,9 +81,6 @@ int servo0_timer;       //1250 = 1ms
 int servo1_timer;       
 char servo0_flag;
 char servo1_flag;
-
-int testint[3];
-int testflag = 0;
 
 //Bottle Detection Logic
 int flag_bottle;
@@ -88,8 +95,8 @@ float r, b, r_p, b_p;
 
 //CONSTANTS
 #define MAINPOLLINGDELAYMS  10
-#define AMBIENTTCSCLEAR     17
+#define AMBIENTTCSCLEAR     15
 #define TCSBOTTLEHIGH       30
-#define NOCAPDISTINGUISH    150
+#define NOCAPDISTINGUISH    130
 
 #endif	/* MAIN_H */

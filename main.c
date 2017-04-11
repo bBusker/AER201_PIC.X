@@ -81,6 +81,8 @@ void main(void) {
       
     
     //</editor-fold>
+    for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+    for(i=20;i<50;i++) eeprom_writebyte(i, 0);
     
     curr_state = STANDBY;
     
@@ -110,6 +112,22 @@ void main(void) {
                 bottle_count();
                 __delay_ms(300);
                 break;
+            case BOTTLECOUNT1:
+                bottle_count1();
+                __delay_ms(300);
+                break;
+            case BOTTLECOUNT2:
+                bottle_count2();
+                __delay_ms(300);
+                break;
+            case BOTTLECOUNT3:
+                bottle_count3();
+                __delay_ms(300);
+                break;
+            case BOTTLECOUNT4:
+                bottle_count4();
+                __delay_ms(300);
+                break;
             case BOTTLETIME:
                 bottle_time();
                 __delay_ms(300);
@@ -126,40 +144,99 @@ void interrupt isr(void){
         switch(PORTB>>4){
             case 0:    //KP_1 -- OPERATION START
                 LATAbits.LATA2 = 1; //Start centrifuge motor
-//                TMR0IE = 1;         //Start timer with interrupts
-//                TMR0ON = 1;         //TESTING
-//                TMR0 = 0;
+                TMR0IE = 1;         //Start timer with interrupts
+                TMR0ON = 1;         
+                TMR0 = 0;
                 TMR1ON = 1;
                 TMR3ON = 1;
+                operation_timeout = 0;
                 
                 read_time();
                 start_time[1] = time[1];
                 start_time[0] = time[0];
                 for(i=0;i<5;i++){
                     bottle_count_array[i] = 0;
+                    bottle_count_disp[i] = -1;
                 }
                 __lcd_clear();
                 __delay_ms(100);
                 __lcd_home();
                 printf("running");
-                bottle_count_disp = -1;
+
                 curr_state = OPERATION;
                 break;
             case 1:    //KP_2 -- BOTTLECOUNT
-                bottle_count_disp += 1;
+//                bottle_count_disp[0] += 1;
+//                curr_state = BOTTLECOUNT;
+                temp = bottle_count_disp[0];
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+                bottle_count_disp[0] = temp + 1;
+                bottle_count_array[0] = eeprom_readbyte(20);
+                bottle_count_array[1] = eeprom_readbyte(21);
+                bottle_count_array[2] = eeprom_readbyte(22);
+                bottle_count_array[3] = eeprom_readbyte(23);
+                bottle_count_array[4] = eeprom_readbyte(24);
                 curr_state = BOTTLECOUNT;
-                while(PORTB == 31){}
+                while((PORTB>>4) == 1){}
                 break;
             case 2:    //KP_3
                 operation_time = etime - stime;
-                bottle_count_disp = -1;
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
                 curr_state = BOTTLETIME;
                 break;
             case 3:    //KP_A
-                bottle_count_disp = -1;
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
                 curr_state = DATETIME;
                 break;
-            case 4:    //KP_4
+            case 4:     //KP_4
+                temp = bottle_count_disp[1];
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+                bottle_count_disp[1] = temp + 1;
+                bottle_count_array[0] = eeprom_readbyte(25);
+                bottle_count_array[1] = eeprom_readbyte(26);
+                bottle_count_array[2] = eeprom_readbyte(27);
+                bottle_count_array[3] = eeprom_readbyte(28);
+                bottle_count_array[4] = eeprom_readbyte(29);
+                curr_state = BOTTLECOUNT1;
+                while((PORTB>>4) == 4){}
+                break;
+            case 5:     //KP_5
+                temp = bottle_count_disp[2];
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+                bottle_count_disp[2] = temp + 1;
+                bottle_count_array[0] = eeprom_readbyte(30);
+                bottle_count_array[1] = eeprom_readbyte(31);
+                bottle_count_array[2] = eeprom_readbyte(32);
+                bottle_count_array[3] = eeprom_readbyte(33);
+                bottle_count_array[4] = eeprom_readbyte(34);
+                curr_state = BOTTLECOUNT2;
+                while((PORTB>>4) == 5){}
+                break;
+            case 6:     //KP_6
+                temp = bottle_count_disp[3];
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+                bottle_count_disp[3] = temp + 1;
+                bottle_count_array[0] = eeprom_readbyte(35);
+                bottle_count_array[1] = eeprom_readbyte(36);
+                bottle_count_array[2] = eeprom_readbyte(37);
+                bottle_count_array[3] = eeprom_readbyte(38);
+                bottle_count_array[4] = eeprom_readbyte(39);
+                curr_state = BOTTLECOUNT3;
+                while((PORTB>>4) == 6){}
+                break;
+            case 7:     //KP_B
+                temp = bottle_count_disp[4];
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+                bottle_count_disp[4] = temp + 1;
+                bottle_count_array[0] = eeprom_readbyte(40);
+                bottle_count_array[1] = eeprom_readbyte(41);
+                bottle_count_array[2] = eeprom_readbyte(42);
+                bottle_count_array[3] = eeprom_readbyte(43);
+                bottle_count_array[4] = eeprom_readbyte(44);
+                curr_state = BOTTLECOUNT4;
+                while((PORTB>>4) == 7){}
+                break;
+            case 8:    //KP_7
                 LATAbits.LATA2 = 0; //Stop centrifuge motor
                 TMR0IE = 0;         //Disable timer
                 TMR0ON = 0;
@@ -172,10 +249,11 @@ void interrupt isr(void){
                 stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
                 etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
                 __lcd_clear();
-                bottle_count_disp = -1;
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+                savedata();
                 curr_state = OPERATIONEND;
                 break;
-            case 5:    //KP_5 -- TESTING
+            case 9:    //KP_8 -- TESTING
                 read_colorsensor();
                 __lcd_home();
                 printf("C%u R%u                ", color[0], color[1]);
@@ -190,17 +268,14 @@ void interrupt isr(void){
                 curr_state = EMERGENCYSTOP;
                 break;
             case 14:   //KP_#
-                bottle_count_disp = -1;
+                for(i=0;i<5;i++) bottle_count_disp[i] = -1;
                 curr_state = STANDBY;
-                //I2C_ColorSens_Init(); TESTING
                 break;
-            case 7:   //KP_B -- TESTING
-//                servo0_timer = 1;
-                __lcd_home();
-                printf("%d", flag_picbug);
+            case 10:   //KP_9 -- TESTING
+                bottle_count_array[0] += 1;
                 break;
             case 11:   //KP_C -- TESTING
-                servo0_timer = 0;
+                savedata();
                 break;
         }
         INT1IF = 0;
@@ -234,15 +309,24 @@ void interrupt isr(void){
         TMR3IF = 0;
     }
     else if (TMR0IF){
-        LATAbits.LATA2 = 0;
-        TMR0ON = 0;
-        read_time();
-        end_time[1] = time[1];
-        end_time[0] = time[0];
-        stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
-        etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
-        curr_state = OPERATIONEND;
-        bottle_count_disp = -1;
+        if(operation_timeout > 4){
+            LATAbits.LATA2 = 0; //Stop centrifuge motor
+            TMR0IE = 0;         //Disable timer
+            TMR0ON = 0;
+            TMR1ON = 0;
+            TMR3ON = 0;
+
+            read_time();
+            end_time[1] = time[1];
+            end_time[0] = time[0];
+            stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+            etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
+            __lcd_clear();
+            for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+            savedata();
+            curr_state = OPERATIONEND;
+        }
+        else operation_timeout += 1;
         TMR0IF = 0;
     }
     else{
@@ -330,10 +414,130 @@ void read_time(void){
 }
 
 void bottle_count(void){
-    switch(bottle_count_disp % 3){
+    switch(bottle_count_disp[0] % 3){
         case 0:
             __lcd_home();
             printf("Bottle Count    ");
+            __lcd_newline();
+            printf("Total: %d       ", bottle_count_array[0]);
+            break;
+        case 1:
+            __lcd_home();
+            printf("YOP W/ CAP: %d  ", bottle_count_array[1]);
+            __lcd_newline();
+            printf("YOP NO CAP: %d  ", bottle_count_array[2]);
+            break;
+        case 2:
+            __lcd_home();
+            printf("ESKA W/ CAP: %d ", bottle_count_array[3]);
+            __lcd_newline();
+            printf("ESKA NO CAP: %d ", bottle_count_array[4]);
+            break;
+        default:
+            while(1){
+                __lcd_home();
+                printf("ERR: BAD BTLCNT");
+            }
+            break;
+    }
+    return;
+}
+
+void bottle_count1(void){
+    switch(bottle_count_disp[1] % 3){
+        case 0:
+            __lcd_home();
+            printf("BttlCnt Prev 1    ");
+            __lcd_newline();
+            printf("Total: %d       ", bottle_count_array[0]);
+            break;
+        case 1:
+            __lcd_home();
+            printf("YOP W/ CAP: %d  ", bottle_count_array[1]);
+            __lcd_newline();
+            printf("YOP NO CAP: %d  ", bottle_count_array[2]);
+            break;
+        case 2:
+            __lcd_home();
+            printf("ESKA W/ CAP: %d ", bottle_count_array[3]);
+            __lcd_newline();
+            printf("ESKA NO CAP: %d ", bottle_count_array[4]);
+            break;
+        default:
+            while(1){
+                __lcd_home();
+                printf("ERR: BAD BTLCNT");
+            }
+            break;
+    }
+    return;
+}
+
+void bottle_count2(void){
+    switch(bottle_count_disp[2] % 3){
+        case 0:
+            __lcd_home();
+            printf("BttlCnt Prev 2    ");
+            __lcd_newline();
+            printf("Total: %d       ", bottle_count_array[0]);
+            break;
+        case 1:
+            __lcd_home();
+            printf("YOP W/ CAP: %d  ", bottle_count_array[1]);
+            __lcd_newline();
+            printf("YOP NO CAP: %d  ", bottle_count_array[2]);
+            break;
+        case 2:
+            __lcd_home();
+            printf("ESKA W/ CAP: %d ", bottle_count_array[3]);
+            __lcd_newline();
+            printf("ESKA NO CAP: %d ", bottle_count_array[4]);
+            break;
+        default:
+            while(1){
+                __lcd_home();
+                printf("ERR: BAD BTLCNT");
+            }
+            break;
+    }
+    return;
+}
+
+void bottle_count3(void){
+    switch(bottle_count_disp[3] % 3){
+        case 0:
+            __lcd_home();
+            printf("BttlCnt Prev 3    ");
+            __lcd_newline();
+            printf("Total: %d       ", bottle_count_array[0]);
+            break;
+        case 1:
+            __lcd_home();
+            printf("YOP W/ CAP: %d  ", bottle_count_array[1]);
+            __lcd_newline();
+            printf("YOP NO CAP: %d  ", bottle_count_array[2]);
+            break;
+        case 2:
+            __lcd_home();
+            printf("ESKA W/ CAP: %d ", bottle_count_array[3]);
+            __lcd_newline();
+            printf("ESKA NO CAP: %d ", bottle_count_array[4]);
+            break;
+        default:
+            while(1){
+                __lcd_home();
+                printf("ERR: BAD BTLCNT");
+            }
+            break;
+    }
+    return;
+}
+
+void bottle_count4(void){
+    switch(bottle_count_disp[4] % 3){
+        case 0:
+            __lcd_home();
+            printf("BttlCnt Prev 4    ");
             __lcd_newline();
             printf("Total: %d       ", bottle_count_array[0]);
             break;
@@ -368,23 +572,25 @@ void bottle_time(void){
 }
 
 void operation(void){
-//    switch(operation_disp){
-//        case 0:
-//            __lcd_home();
-//            printf("Running~              ");
-//            operation_disp = 1;
-//            break;
-//        case 1:
-//            __lcd_home();
-//            printf("Running~~              ");
-//            operation_disp = 2;
-//            break;
-//        case 2:
-//            __lcd_home();
-//            printf("Running~~~              ");
-//            operation_disp = 0;
-//            break;
-//    }
+    if(bottle_count_array[0] > 9){
+        __delay_ms(1000);
+        LATAbits.LATA2 = 0; //Stop centrifuge motor
+        TMR0IE = 0;         //Disable timer
+        TMR0ON = 0;
+        TMR1ON = 0;
+        TMR3ON = 0;
+
+        read_time();
+        end_time[1] = time[1];
+        end_time[0] = time[0];
+        stime = 60*dec_to_hex(start_time[1])+dec_to_hex(start_time[0]);
+        etime = 60*dec_to_hex(end_time[1])+dec_to_hex(end_time[0]);
+        curr_state = OPERATIONEND;
+        __lcd_clear();
+        for(i=0;i<5;i++) bottle_count_disp[i] = -1;
+        savedata();
+        return;
+    }
     colorprev[0] = color[0];
     colorprev[1] = color[1];
     colorprev[2] = color[2];
@@ -395,7 +601,6 @@ void operation(void){
     if(color[0]>AMBIENTTCSCLEAR){
         flag_bottle = 1;
         flag_picbug += 1;
-//        flag_picbug = 0;      //PICBUG DISABLED FOR TESTING
         if(color[3]>color[1] && !flag_top_read) flag_eskaC += 1;
         if(color[1]>NOCAPDISTINGUISH || color[2]>NOCAPDISTINGUISH)flag_yopNC = 1;
         if(color[0]>TCSBOTTLEHIGH){
@@ -422,7 +627,7 @@ void operation(void){
             }
         }
     }
-    else if(flag_bottle && flag_picbug > 23){
+    else if(flag_bottle && flag_picbug > 22){
         flag_picbug = 0;
         bottle_count_array[0] += 1;
         TMR0 = 0;
@@ -434,7 +639,6 @@ void operation(void){
             bottle_count_array[1] += 1;
             servo0_timer = 1;
         }
-
         else if(flag_yopNC){
             bottle_count_array[2] += 1;
             servo0_timer = 0;
@@ -447,13 +651,13 @@ void operation(void){
         flag_bottle_high = 0;
         flag_top_read = 0;
         flag_yopNC = 0;
-        __lcd_home();
+//        __lcd_home();
 //        __lcd_newline();   //TESTING
 //        printf("%d       ", flag_eskaC);
         flag_eskaC = 0;
 
-////        printf("%d, %d, %d", color[1], color[2], color[3]);
-        printf("%f", r_p/b_p);      
+//        printf("%d, %d, %d", color[1], color[2], color[3]);
+//        printf("%f", r_p/b_p);      
 //        printf("%d, %d, %d", bottle_count_array[0], bottle_read_top, bottle_read_bot);
     }
     else if(flag_picbug < 3 && flag_picbug > 0) flag_picbug -= 1;
@@ -581,10 +785,39 @@ void eeprom_writebyte(uint16_t address, uint8_t data) {
 }
 
 void savedata(void) {
-    for(i=19;i--;i>=0){
-        eeprom_writebyte(25+i, eeprom_readbyte(20+i));
-    }
-    for(i=0;i++;i<5){
-        eeprom_writebyte(20+i, bottle_count_array[i]); 
-    }
+//    for(i=19;i--;i>=0){
+//        eeprom_writebyte(25+i, eeprom_readbyte(20+i));
+//    }
+//    for(i=0;i++;i<5){
+//        eeprom_writebyte((20+i), bottle_count_array[i]); 
+//    }
+    eeprom_writebyte(44, eeprom_readbyte(39));
+    eeprom_writebyte(43, eeprom_readbyte(38));
+    eeprom_writebyte(42, eeprom_readbyte(37));
+    eeprom_writebyte(41, eeprom_readbyte(36));
+    eeprom_writebyte(40, eeprom_readbyte(35));
+    
+    eeprom_writebyte(39, eeprom_readbyte(34));
+    eeprom_writebyte(38, eeprom_readbyte(33));
+    eeprom_writebyte(37, eeprom_readbyte(32));
+    eeprom_writebyte(36, eeprom_readbyte(31));
+    eeprom_writebyte(35, eeprom_readbyte(30));
+    
+    eeprom_writebyte(34, eeprom_readbyte(29));
+    eeprom_writebyte(33, eeprom_readbyte(28));
+    eeprom_writebyte(32, eeprom_readbyte(27));
+    eeprom_writebyte(31, eeprom_readbyte(26));
+    eeprom_writebyte(30, eeprom_readbyte(25));
+    
+    eeprom_writebyte(29, eeprom_readbyte(34));
+    eeprom_writebyte(28, eeprom_readbyte(23));
+    eeprom_writebyte(27, eeprom_readbyte(22));
+    eeprom_writebyte(26, eeprom_readbyte(21));
+    eeprom_writebyte(25, eeprom_readbyte(20));
+    
+    eeprom_writebyte(24, bottle_count_array[4]);
+    eeprom_writebyte(23, bottle_count_array[3]);
+    eeprom_writebyte(22, bottle_count_array[2]);
+    eeprom_writebyte(21, bottle_count_array[1]);
+    eeprom_writebyte(20, bottle_count_array[0]);
 }
