@@ -161,7 +161,7 @@ void interrupt isr(void){
                 __lcd_clear();
                 __delay_ms(100);
                 __lcd_home();
-                printf("running");
+                printf("running               ");
 
                 curr_state = OPERATION;
                 break;
@@ -272,10 +272,10 @@ void interrupt isr(void){
                 curr_state = STANDBY;
                 break;
             case 10:   //KP_9 -- TESTING
-                bottle_count_array[0] += 1;
+                //set_time();
                 break;
             case 11:   //KP_C -- TESTING
-                savedata();
+                //savedata();
                 break;
         }
         INT1IF = 0;
@@ -309,7 +309,7 @@ void interrupt isr(void){
         TMR3IF = 0;
     }
     else if (TMR0IF){
-        if(operation_timeout > 4){
+        if(operation_timeout > 2){
             LATAbits.LATA2 = 0; //Stop centrifuge motor
             TMR0IE = 0;         //Disable timer
             TMR0ON = 0;
@@ -417,9 +417,9 @@ void bottle_count(void){
     switch(bottle_count_disp[0] % 3){
         case 0:
             __lcd_home();
-            printf("Bottle Count    ");
+            printf("Bottle Count         ");
             __lcd_newline();
-            printf("Total: %d       ", bottle_count_array[0]);
+            printf("Total: %d            ", bottle_count_array[0]);
             break;
         case 1:
             __lcd_home();
@@ -447,9 +447,9 @@ void bottle_count1(void){
     switch(bottle_count_disp[1] % 3){
         case 0:
             __lcd_home();
-            printf("BttlCnt Prev 1    ");
+            printf("BttlCnt Prev 1        ");
             __lcd_newline();
-            printf("Total: %d       ", bottle_count_array[0]);
+            printf("Total: %d           ", bottle_count_array[0]);
             break;
         case 1:
             __lcd_home();
@@ -477,9 +477,9 @@ void bottle_count2(void){
     switch(bottle_count_disp[2] % 3){
         case 0:
             __lcd_home();
-            printf("BttlCnt Prev 2    ");
+            printf("BttlCnt Prev 2         ");
             __lcd_newline();
-            printf("Total: %d       ", bottle_count_array[0]);
+            printf("Total: %d            ", bottle_count_array[0]);
             break;
         case 1:
             __lcd_home();
@@ -507,9 +507,9 @@ void bottle_count3(void){
     switch(bottle_count_disp[3] % 3){
         case 0:
             __lcd_home();
-            printf("BttlCnt Prev 3    ");
+            printf("BttlCnt Prev 3         ");
             __lcd_newline();
-            printf("Total: %d       ", bottle_count_array[0]);
+            printf("Total: %d            ", bottle_count_array[0]);
             break;
         case 1:
             __lcd_home();
@@ -537,9 +537,9 @@ void bottle_count4(void){
     switch(bottle_count_disp[4] % 3){
         case 0:
             __lcd_home();
-            printf("BttlCnt Prev 4    ");
+            printf("BttlCnt Prev 4          ");
             __lcd_newline();
-            printf("Total: %d       ", bottle_count_array[0]);
+            printf("Total: %d           ", bottle_count_array[0]);
             break;
         case 1:
             __lcd_home();
@@ -565,9 +565,9 @@ void bottle_count4(void){
 
 void bottle_time(void){
     __lcd_home();
-    printf("Total Operation       ");
+    printf("Total Operation          ");
     __lcd_newline();
-    printf("Time: %d s       ", operation_time);
+    printf("Time: %d s             ", operation_time);
     return;
 }
 
@@ -627,7 +627,7 @@ void operation(void){
             }
         }
     }
-    else if(flag_bottle && flag_picbug > 22){
+    else if(flag_bottle && flag_picbug > 20){
         flag_picbug = 0;
         bottle_count_array[0] += 1;
         TMR0 = 0;
@@ -667,7 +667,7 @@ void operation(void){
 
 void operationend(void){
     __lcd_home();
-    printf("Operation Done!");
+    printf("Operation Done!          ");
     return;
 }
 
@@ -676,7 +676,7 @@ void emergencystop(void){
     PORTAbits.RA2 = 0;
     __lcd_clear();
     __lcd_home();
-    printf("EMERGENCY STOP");
+    printf("EMERGENCY STOP          ");
     while(1){}
     return;
 }

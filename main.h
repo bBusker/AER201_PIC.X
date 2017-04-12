@@ -28,11 +28,11 @@ void savedata(void);
 int i;
 int j;
 const char keys[] = "123A456B789C*0#D";
-const char timeset[7] = {   0x50, //Seconds 
-                            0x36, //Minutes
-                            0x19, //Hour, 24 hour mode
-                            0x01, //Day of the week, Monday = 1
-                            0x10, //Day/Date
+const char timeset[7] = {   0x30, //Seconds 
+                            0x19, //Minutes
+                            0x13, //Hour, 24 hour mode
+                            0x02, //Day of the week, Monday = 1
+                            0x11, //Day/Date
                             0x04, //Month
                             0x17};//Year, last two digits
 
@@ -95,7 +95,7 @@ float r, b, r_p, b_p;
 
 //CONSTANTS
 #define MAINPOLLINGDELAYMS  10
-#define AMBIENTTCSCLEAR     15
+#define AMBIENTTCSCLEAR     18
 #define TCSBOTTLEHIGH       30
 #define NOCAPDISTINGUISH    130
 

@@ -3,7 +3,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [c E3296 0 1 2 3 4 5 6 7 8 9 10 .. ]
 [n E3296 state STANDBY EMERGENCYSTOP OPERATION OPERATIONEND DATETIME BOTTLECOUNT BOTTLECOUNT1 BOTTLECOUNT2 BOTTLECOUNT3 BOTTLECOUNT4 BOTTLETIME  ]
 [p mainexit ]
-"1367 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"1367 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
 "1588
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
@@ -45,7 +45,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _I2C_Master_Init `(v ~T0 @X0 0 ef1`Cul ]
 "51 main.c
 [v _I2C_ColorSens_Init `(i ~T0 @X0 0 ef ]
-"5857 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"5857 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _TMR0 `Vus ~T0 @X0 0 e@4054 ]
 "7500
 [v _T08BIT `Vb ~T0 @X0 0 e@32430 ]
@@ -92,7 +92,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "15
 [v _standby `(v ~T0 @X0 0 ef ]
 [v F2878 `(v ~T0 @X0 1 tf1`ul ]
-"159 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
+"159 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18.h
 [v __delay `JF2878 ~T0 @X0 0 e ]
 [p i __delay ]
 "18 main.h
@@ -115,7 +115,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _bottle_count4 `(v ~T0 @X0 0 ef ]
 "14
 [v _bottle_time `(v ~T0 @X0 0 ef ]
-"6898 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"6898 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _INT1IF `Vb ~T0 @X0 0 e@32640 ]
 "878
 [s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -136,11 +136,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _read_time `(v ~T0 @X0 0 ef ]
 "11 lcd.h
 [v _lcdInst `(v ~T0 @X0 0 ef1`uc ]
-"195 D:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
+"195 C:\Program Files (x86)\Microchip\xc8\v1.40\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "22 main.h
 [v _eeprom_readbyte `(uc ~T0 @X0 0 ef1`ui ]
-"185 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"185 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
 "6 main.h
 [v _dec_to_hex `(i ~T0 @X0 0 ef1`i ]
@@ -148,7 +148,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _savedata `(v ~T0 @X0 0 ef ]
 "21
 [v _read_colorsensor `(v ~T0 @X0 0 ef ]
-"6272 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"6272 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [s S258 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S258 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
 "6282
@@ -185,11 +185,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _I2C_Master_Write `(v ~T0 @X0 0 ef1`ui ]
 "358 main.c
 [v _I2C_Master_Stop `(i ~T0 @X0 0 ef ]
-"45 D:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h
+"45 C:\Program Files (x86)\Microchip\xc8\v1.40\include\math.h
 [v _pow `(d ~T0 @X0 0 ef2`d`d ]
 "4 I2C.h
 [v _I2C_Master_Read `(uc ~T0 @X0 0 ef1`uc ]
-"55 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"55 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
 "65
@@ -252,7 +252,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
 [; ;pic18f4620.h: 49: extern volatile unsigned char PORTA @ 0xF80;
-"51 D:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
+"51 C:\Program Files (x86)\Microchip\xc8\v1.40\include\pic18f4620.h
 [; ;pic18f4620.h: 51: asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
 [; ;pic18f4620.h: 54: typedef union {
@@ -3216,26 +3216,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _timeset `Cuc ~T0 @X0 -> 7 `i e ]
 [i _timeset
 :U ..
--> -> 80 `i `uc
+-> -> 48 `i `uc
 "32
--> -> 54 `i `uc
-"33
 -> -> 25 `i `uc
+"33
+-> -> 19 `i `uc
 "34
--> -> 1 `i `uc
+-> -> 2 `i `uc
 "35
--> -> 16 `i `uc
+-> -> 17 `i `uc
 "36
 -> -> 4 `i `uc
 "37
 -> -> 23 `i `uc
 ..
 ]
-[; ;main.h: 31: const char timeset[7] = { 0x50,
-[; ;main.h: 32: 0x36,
-[; ;main.h: 33: 0x19,
-[; ;main.h: 34: 0x01,
-[; ;main.h: 35: 0x10,
+[; ;main.h: 31: const char timeset[7] = { 0x30,
+[; ;main.h: 32: 0x19,
+[; ;main.h: 33: 0x13,
+[; ;main.h: 34: 0x02,
+[; ;main.h: 35: 0x11,
 [; ;main.h: 36: 0x04,
 [; ;main.h: 37: 0x17};
 [; ;main.h: 39: enum state {
@@ -3777,7 +3777,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 163: lcdInst(0b10000000);
 "163
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 164: printf("running");
+[; ;main.c: 164: printf("running               ");
 "164
 [e ( _printf :s 1C ]
 [; ;main.c: 166: curr_state = OPERATION;
@@ -4209,18 +4209,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 274: case 10:
 "274
 [e :U 354 ]
-[; ;main.c: 275: bottle_count_array[0] += 1;
-"275
-[e =+ *U + &U _bottle_count_array * -> -> -> 0 `i `ui `ux -> -> # *U &U _bottle_count_array `ui `ux -> 1 `i ]
 [; ;main.c: 276: break;
 "276
 [e $U 295  ]
 [; ;main.c: 277: case 11:
 "277
 [e :U 355 ]
-[; ;main.c: 278: savedata();
-"278
-[e ( _savedata ..  ]
 [; ;main.c: 279: break;
 "279
 [e $U 295  ]
@@ -4365,9 +4359,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 311: else if (TMR0IF){
 [e $ ! _TMR0IF 369  ]
 {
-[; ;main.c: 312: if(operation_timeout > 4){
+[; ;main.c: 312: if(operation_timeout > 2){
 "312
-[e $ ! > _operation_timeout -> 4 `i 370  ]
+[e $ ! > _operation_timeout -> 2 `i 370  ]
 {
 [; ;main.c: 313: LATAbits.LATA2 = 0;
 "313
@@ -4749,13 +4743,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 419: lcdInst(0b10000000);
 "419
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 420: printf("Bottle Count    ");
+[; ;main.c: 420: printf("Bottle Count         ");
 "420
 [e ( _printf :s 9C ]
 [; ;main.c: 421: lcdInst(0b11000000);
 "421
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 422: printf("Total: %d       ", bottle_count_array[0]);
+[; ;main.c: 422: printf("Total: %d            ", bottle_count_array[0]);
 "422
 [e ( _printf , (. :s 10C *U + &U _bottle_count_array * -> -> -> 0 `i `ui `ux -> -> # *U &U _bottle_count_array `ui `ux ]
 [; ;main.c: 423: break;
@@ -4855,13 +4849,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 449: lcdInst(0b10000000);
 "449
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 450: printf("BttlCnt Prev 1    ");
+[; ;main.c: 450: printf("BttlCnt Prev 1        ");
 "450
 [e ( _printf :s 16C ]
 [; ;main.c: 451: lcdInst(0b11000000);
 "451
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 452: printf("Total: %d       ", bottle_count_array[0]);
+[; ;main.c: 452: printf("Total: %d           ", bottle_count_array[0]);
 "452
 [e ( _printf , (. :s 17C *U + &U _bottle_count_array * -> -> -> 0 `i `ui `ux -> -> # *U &U _bottle_count_array `ui `ux ]
 [; ;main.c: 453: break;
@@ -4961,13 +4955,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 479: lcdInst(0b10000000);
 "479
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 480: printf("BttlCnt Prev 2    ");
+[; ;main.c: 480: printf("BttlCnt Prev 2         ");
 "480
 [e ( _printf :s 23C ]
 [; ;main.c: 481: lcdInst(0b11000000);
 "481
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 482: printf("Total: %d       ", bottle_count_array[0]);
+[; ;main.c: 482: printf("Total: %d            ", bottle_count_array[0]);
 "482
 [e ( _printf , (. :s 24C *U + &U _bottle_count_array * -> -> -> 0 `i `ui `ux -> -> # *U &U _bottle_count_array `ui `ux ]
 [; ;main.c: 483: break;
@@ -5067,13 +5061,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 509: lcdInst(0b10000000);
 "509
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 510: printf("BttlCnt Prev 3    ");
+[; ;main.c: 510: printf("BttlCnt Prev 3         ");
 "510
 [e ( _printf :s 30C ]
 [; ;main.c: 511: lcdInst(0b11000000);
 "511
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 512: printf("Total: %d       ", bottle_count_array[0]);
+[; ;main.c: 512: printf("Total: %d            ", bottle_count_array[0]);
 "512
 [e ( _printf , (. :s 31C *U + &U _bottle_count_array * -> -> -> 0 `i `ui `ux -> -> # *U &U _bottle_count_array `ui `ux ]
 [; ;main.c: 513: break;
@@ -5173,13 +5167,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 539: lcdInst(0b10000000);
 "539
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 540: printf("BttlCnt Prev 4    ");
+[; ;main.c: 540: printf("BttlCnt Prev 4          ");
 "540
 [e ( _printf :s 37C ]
 [; ;main.c: 541: lcdInst(0b11000000);
 "541
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 542: printf("Total: %d       ", bottle_count_array[0]);
+[; ;main.c: 542: printf("Total: %d           ", bottle_count_array[0]);
 "542
 [e ( _printf , (. :s 38C *U + &U _bottle_count_array * -> -> -> 0 `i `ui `ux -> -> # *U &U _bottle_count_array `ui `ux ]
 [; ;main.c: 543: break;
@@ -5272,13 +5266,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 567: lcdInst(0b10000000);
 "567
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 568: printf("Total Operation       ");
+[; ;main.c: 568: printf("Total Operation          ");
 "568
 [e ( _printf :s 44C ]
 [; ;main.c: 569: lcdInst(0b11000000);
 "569
 [e ( _lcdInst (1 -> -> 192 `i `uc ]
-[; ;main.c: 570: printf("Time: %d s       ", operation_time);
+[; ;main.c: 570: printf("Time: %d s             ", operation_time);
 "570
 [e ( _printf , (. :s 45C _operation_time ]
 [; ;main.c: 571: return;
@@ -5377,9 +5371,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 600: read_colorsensor();
 "600
 [e ( _read_colorsensor ..  ]
-[; ;main.c: 601: if(color[0]>15){
+[; ;main.c: 601: if(color[0]>19){
 "601
-[e $ ! > *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux -> -> 15 `i `ui 455  ]
+[e $ ! > *U + &U _color * -> -> -> 0 `i `ui `ux -> -> # *U &U _color `ui `ux -> -> 19 `i `ui 455  ]
 {
 [; ;main.c: 602: flag_bottle = 1;
 "602
@@ -5492,8 +5486,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 471  ]
 "630
 [e :U 455 ]
-[; ;main.c: 630: else if(flag_bottle && flag_picbug > 22){
-[e $ ! && != _flag_bottle -> 0 `i > _flag_picbug -> 22 `i 472  ]
+[; ;main.c: 630: else if(flag_bottle && flag_picbug > 20){
+[e $ ! && != _flag_bottle -> 0 `i > _flag_picbug -> 20 `i 472  ]
 {
 [; ;main.c: 631: flag_picbug = 0;
 "631
@@ -5610,7 +5604,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 669: lcdInst(0b10000000);
 "669
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 670: printf("Operation Done!");
+[; ;main.c: 670: printf("Operation Done!          ");
 "670
 [e ( _printf :s 46C ]
 [; ;main.c: 671: return;
@@ -5638,7 +5632,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 678: lcdInst(0b10000000);
 "678
 [e ( _lcdInst (1 -> -> 128 `i `uc ]
-[; ;main.c: 679: printf("EMERGENCY STOP");
+[; ;main.c: 679: printf("EMERGENCY STOP          ");
 "679
 [e ( _printf :s 47C ]
 [; ;main.c: 680: while(1){}
@@ -6029,15 +6023,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 519 ]
 }
 [p f _printf 12616836 ]
-[a 1C 114 117 110 110 105 110 103 0 ]
 [a 15C 69 82 82 58 32 66 65 68 32 66 84 76 67 78 84 0 ]
 [a 22C 69 82 82 58 32 66 65 68 32 66 84 76 67 78 84 0 ]
 [a 29C 69 82 82 58 32 66 65 68 32 66 84 76 67 78 84 0 ]
 [a 36C 69 82 82 58 32 66 65 68 32 66 84 76 67 78 84 0 ]
 [a 43C 69 82 82 58 32 66 65 68 32 66 84 76 67 78 84 0 ]
 [a 4C 69 82 82 58 32 66 65 68 32 73 83 82 0 ]
-[a 47C 69 77 69 82 71 69 78 67 89 32 83 84 79 80 0 ]
-[a 46C 79 112 101 114 97 116 105 111 110 32 68 111 110 101 33 0 ]
 [a 14C 69 83 75 65 32 78 79 32 67 65 80 58 32 37 100 32 0 ]
 [a 21C 69 83 75 65 32 78 79 32 67 65 80 58 32 37 100 32 0 ]
 [a 28C 69 83 75 65 32 78 79 32 67 65 80 58 32 37 100 32 0 ]
@@ -6060,19 +6051,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 25C 89 79 80 32 87 47 32 67 65 80 58 32 37 100 32 32 0 ]
 [a 32C 89 79 80 32 87 47 32 67 65 80 58 32 37 100 32 32 0 ]
 [a 39C 89 79 80 32 87 47 32 67 65 80 58 32 37 100 32 32 0 ]
-[a 9C 66 111 116 116 108 101 32 67 111 117 110 116 32 32 32 32 0 ]
-[a 37C 66 116 116 108 67 110 116 32 80 114 101 118 32 52 32 32 32 32 0 ]
-[a 30C 66 116 116 108 67 110 116 32 80 114 101 118 32 51 32 32 32 32 0 ]
-[a 23C 66 116 116 108 67 110 116 32 80 114 101 118 32 50 32 32 32 32 0 ]
-[a 16C 66 116 116 108 67 110 116 32 80 114 101 118 32 49 32 32 32 32 0 ]
 [a 6C 37 100 32 32 32 32 32 32 0 ]
-[a 45C 84 105 109 101 58 32 37 100 32 115 32 32 32 32 32 32 32 0 ]
-[a 44C 84 111 116 97 108 32 79 112 101 114 97 116 105 111 110 32 32 32 32 32 32 32 0 ]
-[a 10C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 0 ]
-[a 17C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 0 ]
-[a 24C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 0 ]
-[a 31C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 0 ]
-[a 38C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 0 ]
+[a 16C 66 116 116 108 67 110 116 32 80 114 101 118 32 49 32 32 32 32 32 32 32 32 0 ]
+[a 9C 66 111 116 116 108 101 32 67 111 117 110 116 32 32 32 32 32 32 32 32 32 0 ]
+[a 30C 66 116 116 108 67 110 116 32 80 114 101 118 32 51 32 32 32 32 32 32 32 32 32 0 ]
+[a 23C 66 116 116 108 67 110 116 32 80 114 101 118 32 50 32 32 32 32 32 32 32 32 32 0 ]
 [a 5C 115 116 97 110 100 98 121 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 44C 84 111 116 97 108 32 79 112 101 114 97 116 105 111 110 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 47C 69 77 69 82 71 69 78 67 89 32 83 84 79 80 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 37C 66 116 116 108 67 110 116 32 80 114 101 118 32 52 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 46C 79 112 101 114 97 116 105 111 110 32 68 111 110 101 33 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 17C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 38C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 10C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 24C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 31C 84 111 116 97 108 58 32 37 100 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 45C 84 105 109 101 58 32 37 100 32 115 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
+[a 1C 114 117 110 110 105 110 103 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 2C 67 37 117 32 82 37 117 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
 [a 3C 71 37 117 32 66 37 117 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 0 ]
