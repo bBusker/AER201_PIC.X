@@ -613,7 +613,7 @@ void operation(void){
                 else if(r/b < 0.75) bottle_read_top = 2;
                 else bottle_read_top = 0;
                 flag_top_read = 1;
-            }
+            }       //FOR FINAL REPORT SIMPLICITY REMOVE CERTAIN MINOR CODE OPTIMIZATIONS
             flag_bottle_high = 1;
         }
         else if(color[0]<TCSBOTTLEHIGH){
